@@ -1,0 +1,27 @@
+.flightInfo:first-child {
+    text-align: left;
+}
+
+.flightInfo:last-child {
+    text-align: right;
+}
+
+.time {
+    font-size: 32px;
+    line-height: 0.81;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.city {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #4a4a4a;
+}
+
+.date {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #8b9497;
+}

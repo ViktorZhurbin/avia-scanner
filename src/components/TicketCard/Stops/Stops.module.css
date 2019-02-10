@@ -1,0 +1,22 @@
+.connections {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.21;
+    text-align: center;
+    color: #8b9497;
+    text-transform: uppercase;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    height: 13px;
+    margin: 6px 20px 0;
+}
+
+.line {
+  width: 96px;
+  height: 1px;
+  margin-right: 1px;
+  background-color: #d2d5d6;
+}

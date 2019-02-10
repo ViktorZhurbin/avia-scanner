@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ price }) => (
-    <div className="buyButton">
+import styles from './PurchaseButton.module.css';
+
+const PurchaseButton = ({ price }) => (
+    <div className={styles.button}>
         <div>Купить</div>
         <div>{`за ${price}`}</div>
     </div>
 );
 
-Button.propTypes = {
+PurchaseButton.propTypes = {
   price: PropTypes.number.isRequired,
 };
 
-export default Button;
+export default PurchaseButton;
