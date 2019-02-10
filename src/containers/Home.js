@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Logo from '../components/Logo';
+import TicketCard from '../components/TicketCard';
+
 const Home = () => (
-    <div>
-        <p>React Here!</p>
+    <div className="homePage">
+        <Logo />
+        <TicketCard />
     </div>
 );
 
