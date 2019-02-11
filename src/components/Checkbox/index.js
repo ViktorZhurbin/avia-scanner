@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 
 import styles from './Checkbox.module.css';
+
+const cx = classNames.bind(styles);
 
 const Checkbox = (props) => {
     const {
@@ -12,24 +15,18 @@ const Checkbox = (props) => {
     } = props;
 
     return (
-        <span
-            className={styles.checkbox}
-        >
-            <label
-                className={styles.name}
-                htmlFor={id}
-            >
-                <input
-                    className={styles.input}
-                    id={id}
-                    checked={checked}
-                    name={name}
-                    type="checkbox"
-                    onChange={onChange}
-                />
-                {name}
-            </label>
-        </span>
+        <label className={styles.row}> {/*eslint-disable-line*/}
+            <input
+                className={cx('input')}
+                id={id}
+                checked={checked}
+                name={name}
+                type="checkbox"
+                onChange={onChange}
+            />
+            <span className={cx('checkmark')} />
+            {name}
+        </label>
     );
 };
 
