@@ -8,7 +8,9 @@ import styles from './Header.module.css';
 
 const Header = () => (
     <div className={styles.container}>
-        <Logo />
+        <div className={styles.logo}>
+            <Logo />
+        </div>
         <CurrencySelector />
     </div>
 );
