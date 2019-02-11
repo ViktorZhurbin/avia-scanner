@@ -5,6 +5,11 @@
     border-radius: 5px;
     box-shadow: 0 5px 25px 0 rgba(91, 137, 164, 0.1);
     background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.card:last-child {
+    margin-bottom: 0;
 }
 
 .left {

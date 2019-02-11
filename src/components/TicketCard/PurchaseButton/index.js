@@ -11,7 +11,7 @@ const PurchaseButton = ({ price }) => (
 );
 
 PurchaseButton.propTypes = {
-  price: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
 };
 
 export default PurchaseButton;

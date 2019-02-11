@@ -17,7 +17,7 @@ const Stops = ({ stops = 1 }) => (
 );
 
 Stops.propTypes = {
-  stops: PropTypes.number.isRequired,
+    stops: PropTypes.number.isRequired,
 };
 
 export default Stops;
