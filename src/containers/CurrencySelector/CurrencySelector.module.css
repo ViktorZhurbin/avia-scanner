@@ -1,0 +1,41 @@
+.triggerContainer {
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #8b9497;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.triggerText {
+    font-size: 14px;
+    line-height: 35px;
+    padding: 0 20px;
+}
+
+.currencyList {
+    padding: 0;
+    margin: 0;
+}
+
+.currencyItem {
+    list-style-type: none;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: left;
+    cursor: pointer;
+    padding: 0 15px;
+}
+
+.currencyItem:hover {
+    background: #e5f9ff;
+}
+
+.code,
+.name {
+    color: #4a4a4a;
+}
+
+.code {
+    margin-right: 15px;
+}

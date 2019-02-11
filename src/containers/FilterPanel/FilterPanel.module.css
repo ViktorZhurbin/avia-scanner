@@ -1,0 +1,23 @@
+.container {
+    width: 232px;
+    height: 331px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px 0 rgba(91, 137, 164, 0.25);
+    background-color: #ffffff;
+    margin-right: 20px;
+}
+
+.currency {
+    padding: 15px 15px 0;
+}
+
+.title {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.58;
+    letter-spacing: 0.5px;
+    color: #4a4a4a;
+    margin-bottom: 11px;
+}
