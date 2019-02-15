@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import formatDate from '../../../utils/date';
+
 import styles from './FlightInfo.module.css';
 
 const FlightInfo = (props) => {
@@ -14,7 +16,7 @@ const FlightInfo = (props) => {
         <div className={styles.flightInfo}>
             <div className={styles.time}>{time}</div>
             <div className={styles.city}>{city}</div>
-            <div className={styles.date}>{date}</div>
+            <div className={styles.date}>{formatDate(date)}</div>
         </div>
     );
 };
