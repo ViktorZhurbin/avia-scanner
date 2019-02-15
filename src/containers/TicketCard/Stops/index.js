@@ -2,13 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SVGInline from 'react-svg-inline';
 
+import inflectStops from '../../../utils/inflection';
 import planeSVG from '../../../assets/plane.svg';
 
 import styles from './Stops.module.css';
 
-const Stops = ({ stops = 1 }) => (
+const Stops = ({ stops }) => (
     <div className={styles.container}>
-        <div className={styles.connections}>{`${stops} пересадка`}</div>
+        {stops === 0
+            ? null
+            : (
+                <div className={styles.connections}>
+                    {`${stops} ${inflectStops(stops)}`}
+                </div>
+            )}
         <div className={styles.bottom}>
             <div className={styles.line} />
             <SVGInline svg={planeSVG} />

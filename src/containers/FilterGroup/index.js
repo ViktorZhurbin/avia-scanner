@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from '../../components/Checkbox';
+import inflectStops from '../../utils/inflection';
 
 import styles from './FilterGroup.module.css';
 
@@ -64,7 +65,7 @@ class FilterGroup extends React.Component {
                             className={styles.filterItem}
                             id={item}
                             checked={Boolean(checked[item])}
-                            name={`${item} пересадка`}
+                            name={`${item} ${inflectStops(item)}`}
                             onChange={() => this.onToggleFilter(item)}
                         />
                     ))}
