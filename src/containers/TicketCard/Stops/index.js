@@ -13,7 +13,7 @@ const Stops = ({ stops }) => (
             ? null
             : (
                 <div className={styles.connections}>
-                    {`${stops} ${inflectStops(stops)}`}
+                    {inflectStops(stops)}
                 </div>
             )}
         <div className={styles.bottom}>

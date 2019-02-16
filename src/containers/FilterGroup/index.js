@@ -62,16 +62,21 @@ class FilterGroup extends React.Component {
                                 name="Все"
                                 onChange={() => this.onToggleAll(isAllChecked)}
                             />
-                            {stops.map(item => (
-                                <Checkbox
-                                    key={item}
-                                    className={styles.filterItem}
-                                    id={item}
-                                    checked={Boolean(checked[item])}
-                                    name={`${item} ${inflectStops(item)}`}
-                                    onChange={() => this.onToggleFilter(item)}
-                                />
-                            ))}
+                            {stops.map((item) => {
+                                const isChecked = Boolean(checked[item]);
+                                const name = inflectStops(item);
+
+                                return (
+                                    <Checkbox
+                                        key={item}
+                                        className={styles.filterItem}
+                                        id={item}
+                                        checked={isChecked}
+                                        name={name}
+                                        onChange={() => this.onToggleFilter(item)}
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
                 )

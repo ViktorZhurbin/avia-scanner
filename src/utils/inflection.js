@@ -1,12 +1,14 @@
 export default (number) => {
     switch (number) {
+        case 0:
+            return 'Без пересадок';
         case 1:
-            return 'пересадка';
+            return `${number} пересадка`;
         case 2:
         case 3:
         case 4:
-            return 'пересадки';
+            return `${number} пересадки`;
         default:
-            return 'пересадок';
+            return `${number} пересадок`;
     }
 };
