@@ -9,6 +9,7 @@ import styles from './FilterGroup.module.css';
 class FilterGroup extends React.Component {
     static propTypes = {
         stops: PropTypes.arrayOf(PropTypes.number).isRequired,
+        onFilter: PropTypes.func.isRequired,
     }
 
     state = {
@@ -19,25 +20,26 @@ class FilterGroup extends React.Component {
 
     onToggleFilter = (key) => {
         const { checked } = this.state;
+        const { onFilter } = this.props;
 
         this.setState(() => ({
             checked: {
                 ...checked,
                 [key]: !checked[key],
             },
-        }));
+        }), () => onFilter(this.state.checked));
     }
 
     onToggleAll = (isAllChecked) => {
-        const { stops } = this.props;
+        const { onFilter, stops } = this.props;
 
-        const newStatus = {};
+        const filters = {};
         stops.forEach(
-            (key) => { newStatus[key] = !isAllChecked; },
+            (key) => { filters[key] = !isAllChecked; },
         );
         this.setState({
-            checked: newStatus,
-        });
+            checked: filters,
+        }, () => onFilter(this.state.checked));
     }
 
     render() {
@@ -45,32 +47,35 @@ class FilterGroup extends React.Component {
         const { stops } = this.props;
 
         const checkedCount = Object.values(checked).filter(item => Boolean(item));
-
         const isAllChecked = checkedCount.length === stops.length;
 
         return (
-            <div className={styles.container}>
-                <div className={styles.title}>Количество пересадок</div>
-                <div className={styles.filters}>
-                    <Checkbox
-                        className={styles.filterItem}
-                        id="all"
-                        checked={isAllChecked}
-                        name="Все"
-                        onChange={() => this.onToggleAll(isAllChecked)}
-                    />
-                    {stops.map(item => (
-                        <Checkbox
-                            key={item}
-                            className={styles.filterItem}
-                            id={item}
-                            checked={Boolean(checked[item])}
-                            name={`${item} ${inflectStops(item)}`}
-                            onChange={() => this.onToggleFilter(item)}
-                        />
-                    ))}
-                </div>
-            </div>
+            stops
+                ? (
+                    <div className={styles.container}>
+                        <div className={styles.title}>Количество пересадок</div>
+                        <div className={styles.filters}>
+                            <Checkbox
+                                className={styles.filterItem}
+                                id="all"
+                                checked={isAllChecked}
+                                name="Все"
+                                onChange={() => this.onToggleAll(isAllChecked)}
+                            />
+                            {stops.map(item => (
+                                <Checkbox
+                                    key={item}
+                                    className={styles.filterItem}
+                                    id={item}
+                                    checked={Boolean(checked[item])}
+                                    name={`${item} ${inflectStops(item)}`}
+                                    onChange={() => this.onToggleFilter(item)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )
+                : null
         );
     }
 }
