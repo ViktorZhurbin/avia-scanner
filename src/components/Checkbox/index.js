@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import styles from './Checkbox.module.css';
+import styles from './checkbox.css';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +15,7 @@ const Checkbox = (props) => {
     } = props;
 
     return (
-        <label className={styles.row}> {/*eslint-disable-line*/}
+        <label className={cx('row')}> {/*eslint-disable-line*/}
             <input
                 className={cx('input')}
                 id={id}

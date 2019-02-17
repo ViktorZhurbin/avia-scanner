@@ -11,7 +11,7 @@
 }
 
 .row:hover {
-  background-color: #f1fcff;
+    background-color: #f1fcff;
 }
 
 .input {
@@ -35,19 +35,16 @@
     background-color: #f2fcff;
 }
 
-.checkmark:after {
+.checkmark::after {
     display: none;
-}
-
-.input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.checkmark:after {
     content: "";
     width: 4px;
     height: 6px;
     border: solid #3e9ce8;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+}
+
+.input:checked ~ .checkmark::after {
+    display: block;
 }
