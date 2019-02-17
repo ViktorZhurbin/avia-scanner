@@ -6,8 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint . --color",
-    "lint-fix": "eslint . --color --fix"
+    "lint": "npm run lint-js && npm run lint-css",
+    "lint-js": "eslint src/",
+    "lint-css": "stylelint 'src/**/*.css'",
+    "lint-fix": "npm run lint-js -- --fix && npm run lint-css -- --fix"
   },
   "husky": {
     "hooks": {
@@ -51,6 +53,8 @@
     "postcss-loader": "^3.0.0",
     "raw-loader": "^1.0.0",
     "style-loader": "^0.23.1",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
