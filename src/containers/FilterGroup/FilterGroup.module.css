@@ -3,7 +3,7 @@
     height: 331px;
     border-radius: 5px;
     box-shadow: 0 1px 4px 0 rgba(91, 137, 164, 0.25);
-    background-color: #fff;
+    background-color: var(--color-white);
     margin-right: 20px;
     padding: 15px 0;
 }
@@ -11,11 +11,10 @@
 .title {
     text-align: left;
     text-transform: uppercase;
-    font-size: 12px;
+    font: var(--p3);
     font-weight: 600;
-    line-height: 1.58;
     letter-spacing: 0.5px;
-    color: #4a4a4a;
+    color: var(--color-grey);
     margin-bottom: 11px;
     padding: 0 15px;
 }
@@ -23,13 +22,13 @@
 .filters {
     display: flex;
     flex-direction: column;
-    font-size: 13px;
-    line-height: 2.69;
-    color: #4a4a4a;
+    font: var(--p3);
+    line-height: 35px;
+    color: var(--color-grey);
 }
 
 .filterItem {
-    font-size: 13px;
-    line-height: 2.69;
-    color: #4a4a4a;
+    font: var(--p3);
+    line-height: 35px;
+    color: var(--color-grey);
 }

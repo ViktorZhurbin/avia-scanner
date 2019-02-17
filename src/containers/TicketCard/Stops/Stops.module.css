@@ -1,9 +1,9 @@
 .connections {
-    font-size: 10px;
+    font: var(--p4);
     font-weight: 600;
     line-height: 1.21;
     text-align: center;
-    color: #8b9497;
+    color: var(--color-grey-light);
     text-transform: uppercase;
 }
 
@@ -18,5 +18,5 @@
     width: 96px;
     height: 1px;
     margin-right: 1px;
-    background-color: #d2d5d6;
+    background-color: var(--color-bg-grey);
 }

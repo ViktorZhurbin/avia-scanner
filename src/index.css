@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic-ext');
 
+:root {
+    /* Headers */
+    --h1: 32px 'Open Sans', sans-serif;
+
+    /* Paragraph text */
+    --p1: 16px 'Open Sans', sans-serif;
+    --p2: 14px 'Open Sans', sans-serif;
+    --p3: 12px/18px 'Open Sans', sans-serif;
+    --p4: 10px 'Open Sans', sans-serif;
+
+    /* Colors */
+    --color-blue: #2196f3;
+    --color-grey: #4a4a4a;
+    --color-grey-light: #8b9497;
+    --color-orange: #ff6d00;
+    --color-white: #fff;
+    --color-bg-white: #f2fcff;
+    --color-bg-grey: #d2d5d6;
+    --color-bg-blue: #e5f9ff;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;

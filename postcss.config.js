@@ -1,12 +1,8 @@
 module.exports = {
     plugins: {
-        autoprefixer: {},
         stylelint: {},
+        autoprefixer: {},
+        'postcss-custom-properties': {},
         // 'postcss-nested': {},
-        // 'postcss-import': {},
-        // 'postcss-mixins': {},
-        // cssnano: {
-        //     preset: 'default',
-        // },
     },
 };

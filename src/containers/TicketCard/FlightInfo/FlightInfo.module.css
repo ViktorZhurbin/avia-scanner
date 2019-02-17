@@ -7,21 +7,18 @@
 }
 
 .time {
-    font-size: 32px;
-    line-height: 0.81;
-    color: #4a4a4a;
+    font: var(--h1);
+    color: var(--color-grey);
     margin-bottom: 10px;
 }
 
 .city {
-    font-size: 12px;
+    font: var(--p3);
     font-weight: 600;
-    line-height: 1.5;
-    color: #4a4a4a;
+    color: var(--color-grey);
 }
 
 .date {
-    font-size: 12px;
-    line-height: 1.5;
-    color: #8b9497;
+    font: var(--p3);
+    color: var(--color-grey-light);
 }
