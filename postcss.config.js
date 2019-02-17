@@ -3,6 +3,6 @@ module.exports = {
         stylelint: {},
         autoprefixer: {},
         'postcss-custom-properties': {},
-        // 'postcss-nested': {},
+        'postcss-nesting': {},
     },
 };

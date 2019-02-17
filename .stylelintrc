@@ -7,5 +7,6 @@
       "selector-no-vendor-prefix": true,
       "value-no-vendor-prefix": true,
       "indentation": 4,
+      "selector-nested-pattern": "^&",
   }
 }

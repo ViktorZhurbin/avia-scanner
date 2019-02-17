@@ -8,10 +8,10 @@
     font: var(--p3);
     line-height: 35px;
     color: var(--color-grey);
-}
 
-.row:hover {
-    background-color: var(--color-bg-white);
+    &:hover {
+        background-color: var(--color-bg-white);
+    }
 }
 
 .input {
