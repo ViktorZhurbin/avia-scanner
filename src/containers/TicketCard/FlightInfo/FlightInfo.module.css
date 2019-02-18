@@ -8,17 +8,17 @@
 
 .time {
     font: var(--h1);
-    color: var(--color-grey);
+    color: var(--color-twilight);
     margin-bottom: 10px;
 }
 
 .city {
     font: var(--p3);
     font-weight: 600;
-    color: var(--color-grey);
+    color: var(--color-twilight);
 }
 
 .date {
     font: var(--p3);
-    color: var(--color-grey-light);
+    color: var(--color-metal);
 }

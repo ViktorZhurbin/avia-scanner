@@ -12,13 +12,13 @@
 
     /* Colors */
     --color-blue: #2196f3;
-    --color-grey: #4a4a4a;
-    --color-grey-light: #8b9497;
+    --color-twilight: #4a4a4a;
+    --color-metal: #8b9497;
     --color-orange: #ff6d00;
     --color-white: #fff;
-    --color-bg-white: #f2fcff;
-    --color-bg-grey: #d2d5d6;
-    --color-bg-blue: #e5f9ff;
+    --color-white-background: #f2fcff;
+    --color-grey-background: #d2d5d6;
+    --color-blue-background: #e5f9ff;
 }
 
 body {

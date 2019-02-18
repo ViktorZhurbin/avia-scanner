@@ -2,7 +2,7 @@
     display: inline-block;
     box-sizing: border-box;
     background-color: var(--color-white);
-    border: 1px solid var(--color-grey-light);
+    border: 1px solid var(--color-metal);
     border-radius: 100px;
     cursor: pointer;
 }
@@ -28,12 +28,12 @@
 }
 
 .currencyItem:hover {
-    background-color: var(--color-bg-blue);
+    background-color: var(--color-blue-background);
 }
 
 .code,
 .name {
-    color: var(--color-grey);
+    color: var(--color-twilight);
 }
 
 .code {

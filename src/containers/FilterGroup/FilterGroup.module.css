@@ -14,7 +14,7 @@
     font: var(--p3);
     font-weight: 600;
     letter-spacing: 0.5px;
-    color: var(--color-grey);
+    color: var(--color-twilight);
     margin-bottom: 11px;
     padding: 0 15px;
 }
@@ -24,11 +24,11 @@
     flex-direction: column;
     font: var(--p3);
     line-height: 35px;
-    color: var(--color-grey);
+    color: var(--color-twilight);
 }
 
 .filterItem {
     font: var(--p3);
     line-height: 35px;
-    color: var(--color-grey);
+    color: var(--color-twilight);
 }

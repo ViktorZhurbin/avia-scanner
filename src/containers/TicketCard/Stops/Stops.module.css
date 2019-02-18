@@ -3,7 +3,7 @@
     font-weight: 600;
     line-height: 1.21;
     text-align: center;
-    color: var(--color-grey-light);
+    color: var(--color-metal);
     text-transform: uppercase;
 }
 
@@ -18,5 +18,5 @@
     width: 96px;
     height: 1px;
     margin-right: 1px;
-    background-color: var(--color-bg-grey);
+    background-color: var(--color-grey-background);
 }
