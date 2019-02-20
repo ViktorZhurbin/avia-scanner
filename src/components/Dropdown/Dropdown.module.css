@@ -5,6 +5,10 @@
     position: relative;
 }
 
+.trigger {
+    outline: 0;
+}
+
 .dropdown {
     position: absolute;
     top: 42px;

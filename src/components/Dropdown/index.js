@@ -59,6 +59,7 @@ class Dropdown extends React.Component {
                 onKeyPress={this.handleKeyPress}
             >
                 <div
+                    className={styles.trigger}
                     role="button"
                     data-toggle="dropdown"
                     tabIndex="0"

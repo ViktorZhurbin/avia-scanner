@@ -6,10 +6,23 @@
     width: 100%;
     max-width: 160px;
     height: 56px;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1), 0 1px 0 var(--color-orange);
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1), 0 1px 0 var(--color-orange-dark);
     border-radius: 5px;
     font: var(--p1);
-    font-weight: 600;
     text-align: center;
     color: var(--color-white);
+
+    &:hover {
+        background-color: #ff8124;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 0 #f7661d;
+    }
+}
+
+.buttonText,
+.buttonPrice {
+    margin: 0 auto;
+}
+
+.buttonText {
+    font-weight: 600;
 }

@@ -72,13 +72,13 @@ class CurrencySelector extends React.Component {
 
     render() {
         return (
-            <div className={styles.container}>
-                <Dropdown
-                    trigger={this.renderTrigger()}
-                >
-                    {this.renderDropdown()}
-                </Dropdown>
-            </div>
+            // <div className={styles.container}>
+            <Dropdown
+                trigger={this.renderTrigger()}
+            >
+                {this.renderDropdown()}
+            </Dropdown>
+            // {/* </div> */}
         );
     }
 }

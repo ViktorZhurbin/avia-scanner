@@ -7,8 +7,8 @@ import styles from './PurchaseButton.module.css';
 
 const PurchaseButton = ({ price }) => (
     <div className={styles.button}>
-        <div>Купить</div>
-        <div>{`за ${formatPrice(price)}`}</div>
+        <div className={styles.buttonText}>Купить</div>
+        <div className={styles.buttonPrice}>{`за ${formatPrice(price)}`}</div>
     </div>
 );
 
