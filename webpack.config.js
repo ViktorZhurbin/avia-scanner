@@ -1,6 +1,16 @@
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const env = process.env.NODE_ENV;
+const outputDirectory = 'dist';
 
 module.exports = {
+    entry: ['./src/index.js'],
+    output: {
+        path: path.join(__dirname, outputDirectory),
+        filename: 'bundle.js',
+    },
     module: {
         rules: [
             {
@@ -52,7 +62,9 @@ module.exports = {
             },
         ],
     },
+    devtool: env === 'production' ? 'none' : 'eval-source-map',
     plugins: [
+        new CleanWebpackPlugin([outputDirectory]),
         new HtmlWebPackPlugin({
             template: './public/index.html',
             filename: './index.html',
