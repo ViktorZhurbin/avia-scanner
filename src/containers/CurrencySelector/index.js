@@ -6,12 +6,12 @@ import styles from './CurrencySelector.module.css';
 
 const currencyList = [
     {
-        code: 'RUB',
-        name: 'Rouble',
-    },
-    {
         code: 'USD',
         name: 'US Dollar',
+    },
+    {
+        code: 'RUB',
+        name: 'Rouble',
     },
     {
         code: 'EUR',
@@ -21,7 +21,7 @@ const currencyList = [
 
 class CurrencySelector extends React.Component {
     state = {
-        selectedCurrency: 'RUB',
+        selectedCurrency: 'USD',
         // stops: [],
     }
 

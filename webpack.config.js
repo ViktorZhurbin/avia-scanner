@@ -1,6 +1,6 @@
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const env = process.env.NODE_ENV;
 const outputDirectory = 'dist';
@@ -63,6 +63,13 @@ module.exports = {
         ],
     },
     devtool: env === 'production' ? 'none' : 'eval-source-map',
+    devServer: {
+        port: 3000,
+        open: false,
+        proxy: {
+            '/api': 'http://localhost:8080',
+        },
+    },
     plugins: [
         new CleanWebpackPlugin([outputDirectory]),
         new HtmlWebPackPlugin({

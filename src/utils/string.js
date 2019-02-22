@@ -1,19 +1,21 @@
 import date from 'date-and-time';
 
-export const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split('.');
-    const dateObj = new Date(`20${year}`, month - 1, day);
-    date.locale('ru');
-    const formattedDate = date.format(dateObj, 'D MMM YYYY, ddd');
+export const getTimeDate = (dateString) => {
+    const dateObject = new Date(dateString);
+    date.locale('en');
 
-    return formattedDate;
+    return {
+        time: date.format(dateObject, 'hh:mm'),
+        date: date.format(dateObject, 'D MMM YYYY, ddd'),
+    };
 };
 
 export const formatPrice = (price) => {
-    const formatter = new Intl.NumberFormat('ru-RU', {
+    const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'RUB',
+        currency: 'USD',
         minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
     });
 
     return formatter.format(price);

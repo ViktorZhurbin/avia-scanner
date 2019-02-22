@@ -1,30 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatDate } from '../../../utils/string';
+import { getTimeDate } from '../../../utils/string';
 
 import styles from './FlightInfo.module.css';
 
-const FlightInfo = (props) => {
-    const {
-        time,
-        city,
-        date,
-    } = props;
+const FlightInfo = ({ dateString, city }) => {
+    const { time, date } = getTimeDate(dateString);
 
     return (
         <div className={styles.flightInfo}>
             <div className={styles.time}>{time}</div>
             <div className={styles.city}>{city}</div>
-            <div className={styles.date}>{formatDate(date)}</div>
+            <div className={styles.date}>{date}</div>
         </div>
     );
 };
 
 FlightInfo.propTypes = {
-    time: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    dateString: PropTypes.string.isRequired,
 };
 
 export default FlightInfo;
