@@ -7,9 +7,8 @@ import Header from '../../containers/Header';
 import styles from './Home.module.css';
 
 import mockData from '../../utils/mockData';
-import formatTicketData from '../../utils/formatTicketData';
 import getUniqueByKey from '../../utils/objectHelpers';
-import fetchTicketData from '../../utils/api';
+import { getFormattedTickets, formatTicketData } from '../../utils/formatTicketData';
 
 class Home extends React.Component {
     state = {
@@ -19,9 +18,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        const test = fetchTicketData();
-        console.log(test);
-
+        console.log(getFormattedTickets());
         const tickets = formatTicketData(mockData);
         const availableStops = getUniqueByKey(tickets, 'stops');
         const selectedStops = [availableStops[0]];
