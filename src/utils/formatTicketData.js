@@ -46,15 +46,11 @@ export const getFormattedTickets = () => {
             destinationStation,
             originStation,
             stops,
-            arrival,
-            departure,
             directionality,
         } = camelCased;
 
         const formattedItem = {
             ...camelCased,
-            departure: new Date(departure),
-            arrival: new Date(arrival),
             stops: stops.length,
             originStation: findObjectByValue(places, 'Id', originStation),
             destinationStation: findObjectByValue(places, 'Id', destinationStation),

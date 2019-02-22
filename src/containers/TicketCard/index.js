@@ -11,17 +11,16 @@ import styles from './TicketCard.module.css';
 
 const TicketCard = ({ ticket }) => {
     const {
-        origin,
-        originName,
-        destination,
-        destinationName,
-        departureDate,
-        departureTime,
-        arrivalDate,
-        arrivalTime,
+        originStation,
+        destinationStation,
+        departure,
+        arrival,
         stops,
         price,
     } = ticket;
+
+    const origin = `${originStation.Code}, ${originStation.Name}`;
+    const destination = `${destinationStation.Code}, ${destinationStation.Name}`;
 
     return (
         <div className={styles.card}>
@@ -35,15 +34,13 @@ const TicketCard = ({ ticket }) => {
             </div>
             <div className={styles.right}>
                 <FlightInfo
-                    time={departureTime}
-                    city={`${origin}, ${originName}`}
-                    date={departureDate}
+                    city={origin}
+                    dateString={departure}
                 />
                 <Stops stops={stops} />
                 <FlightInfo
-                    time={arrivalTime}
-                    city={`${destination}, ${destinationName}`}
-                    date={arrivalDate}
+                    city={destination}
+                    dateString={arrival}
                 />
             </div>
         </div>
