@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import FilterGroup from '../../containers/FilterGroup';
-import TicketCard from '../../containers/TicketCard';
-import Header from '../../containers/Header';
+import FilterGroup from '../FilterGroup';
+import TicketCard from '../TicketCard';
+import Header from '../Header';
 
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets } from '../../utils/api';
@@ -12,7 +12,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-class Home extends React.Component {
+class SearchLayout extends React.Component {
     state = {
         tickets: [],
         filteredTickets: [],
@@ -100,4 +100,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default SearchLayout;
