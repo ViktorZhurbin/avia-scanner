@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SVGInline from 'react-svg-inline';
 
-import inflectStops from '../../../utils/inflection';
+import { inflectStopsEn } from '../../../utils/inflection';
 import planeSVG from '../../../assets/plane.svg';
 
 import styles from './Stops.module.css';
@@ -13,7 +13,7 @@ const Stops = ({ stops }) => (
             ? null
             : (
                 <div className={styles.connections}>
-                    {inflectStops(stops)}
+                    {inflectStopsEn(stops)}
                 </div>
             )}
         <div className={styles.bottom}>

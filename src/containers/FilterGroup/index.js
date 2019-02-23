@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from '../../components/Checkbox';
-import inflectStops from '../../utils/inflection';
+import { inflectStopsEn } from '../../utils/inflection';
 
 import styles from './FilterGroup.module.css';
 
@@ -53,18 +53,18 @@ class FilterGroup extends React.Component {
             stops
                 ? (
                     <div className={styles.container}>
-                        <div className={styles.title}>Количество пересадок</div>
+                        <div className={styles.title}>Number of stops</div>
                         <div className={styles.filters}>
                             <Checkbox
                                 className={styles.filterItem}
                                 id="all"
                                 checked={isAllChecked}
-                                name="Все"
+                                name="All"
                                 onChange={() => this.onToggleAll(isAllChecked)}
                             />
                             {stops.map((item) => {
                                 const isChecked = Boolean(checked[item]);
-                                const name = inflectStops(item);
+                                const name = inflectStopsEn(item);
 
                                 return (
                                     <Checkbox
