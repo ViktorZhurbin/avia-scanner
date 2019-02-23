@@ -2,22 +2,7 @@ import {
     camelCase,
     mapKeys,
     sortBy,
-    uniqueId,
 } from 'lodash';
-
-import mockTicketData from '../server/mockTicketData';
-
-export const formatTicketData = (data) => {
-    const formatted = data.map((item) => {
-        const camelCased = mapKeys(item, (value, key) => camelCase(key));
-        camelCased.id = uniqueId();
-
-        return camelCased;
-    });
-
-    return sortBy(formatted, ['price']);
-};
-
 
 const findObjectByValue = (array, searchKey, inputValue) => (
     array.find(item => item[searchKey] === inputValue)
@@ -29,14 +14,13 @@ const getPrice = (arr, searchKey, inputValue) => (
         .Price
 );
 
-export const getFormattedTickets = () => {
-    // const ticketData = await fetchTickets();
+export default (ticketsData) => {
     const {
         Legs: tickets,
         Places: places,
         Carriers: carriersList,
         Itineraries: itineraries,
-    } = mockTicketData;
+    } = ticketsData;
     const ticketsSlice = tickets.slice(0, 10);
     const formatted = ticketsSlice.map((item) => {
         const camelCased = mapKeys(item, (value, key) => camelCase(key));
