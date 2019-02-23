@@ -1,75 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 
 import Checkbox from '../../components/Checkbox';
 import { inflectStopsEn } from '../../utils/inflection';
 
-import styles from './FilterGroup.module.css';
+import styles from './index.css';
+
+const cx = classNames.bind(styles);
 
 class FilterGroup extends React.Component {
     static propTypes = {
-        stops: PropTypes.arrayOf(PropTypes.number).isRequired,
+        stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
+        selectedStops: PropTypes.objectOf(
+            PropTypes.bool,
+        ).isRequired,
         onFilter: PropTypes.func.isRequired,
     }
 
-    state = {
-        checked: {
-            0: true,
-        },
-    }
-
     onToggleFilter = (key) => {
-        const { checked } = this.state;
-        const { onFilter } = this.props;
+        const { onFilter, selectedStops } = this.props;
 
-        this.setState(() => ({
-            checked: {
-                ...checked,
-                [key]: !checked[key],
-            },
-        }), () => onFilter(this.state.checked));
+        const selectedFilters = {
+            ...selectedStops,
+            [key]: !selectedStops[key],
+        };
+        onFilter(selectedFilters);
     }
 
     onToggleAll = (isAllChecked) => {
-        const { onFilter, stops } = this.props;
+        const { onFilter, stopOptions } = this.props;
 
-        const filters = {};
-        stops.forEach(
-            (key) => { filters[key] = !isAllChecked; },
+        const selectedFilters = {};
+        stopOptions.forEach(
+            (key) => { selectedFilters[key] = !isAllChecked; },
         );
-        this.setState({
-            checked: filters,
-        }, () => onFilter(this.state.checked));
+        onFilter(selectedFilters);
     }
 
     render() {
-        const { checked } = this.state;
-        const { stops } = this.props;
+        const { stopOptions, selectedStops } = this.props;
 
-        const checkedCount = Object.values(checked).filter(item => Boolean(item));
-        const isAllChecked = checkedCount.length === stops.length;
+        const selectedCount = Object.values(selectedStops).filter(item => Boolean(item));
+        const isAllChecked = selectedCount.length === stopOptions.length;
 
         return (
-            stops
+            stopOptions
                 ? (
-                    <div className={styles.container}>
-                        <div className={styles.title}>Number of stops</div>
-                        <div className={styles.filters}>
+                    <div className={cx('container')}>
+                        <div className={cx('title')}>Number of stopOptions</div>
+                        <div className={cx('filters')}>
                             <Checkbox
-                                className={styles.filterItem}
+                                className={cx('filterItem')}
                                 id="all"
                                 checked={isAllChecked}
                                 name="All"
                                 onChange={() => this.onToggleAll(isAllChecked)}
                             />
-                            {stops.map((item) => {
-                                const isChecked = Boolean(checked[item]);
+                            {stopOptions.map((item) => {
+                                const isChecked = Boolean(selectedStops[item]);
                                 const name = inflectStopsEn(item);
 
                                 return (
                                     <Checkbox
                                         key={item}
-                                        className={styles.filterItem}
+                                        className={cx('filterItem')}
                                         id={item}
                                         checked={isChecked}
                                         name={name}

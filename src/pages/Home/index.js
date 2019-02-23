@@ -1,41 +1,49 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 import FilterGroup from '../../containers/FilterGroup';
 import TicketCard from '../../containers/TicketCard';
 import Header from '../../containers/Header';
 
-import styles from './Home.module.css';
-
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets } from '../../utils/api';
+
+import styles from './index.css';
+
+const cx = classNames.bind(styles);
 
 class Home extends React.Component {
     state = {
         tickets: [],
         filteredTickets: [],
-        availableStops: [],
+        stopOptions: [],
+        selectedStops: {},
     }
 
     async componentDidMount() {
         const tickets = await getFormattedTickets({ mockData: true });
-        const availableStops = getUniqueByKey(tickets, 'stops');
-        const selectedStops = [availableStops[0]];
-        const filteredTickets = this.filterTickets(tickets, selectedStops);
+        const stopOptions = getUniqueByKey(tickets, 'stops');
+        const selectedStops = {
+            [stopOptions[0]]: true,
+        };
+        const filteredTickets = this.filterTickets(tickets, [stopOptions[0]]);
         this.setState({
             tickets,
             filteredTickets,
-            availableStops,
+            stopOptions,
+            selectedStops,
         });
     }
 
-    onFilterStops = (selectedStops) => {
+    onFilterByStops = (newSelectedStops) => {
         const { tickets } = this.state;
 
         const filteredTickets = tickets.filter(({ stops }) => (
-            selectedStops[stops]
+            newSelectedStops[stops]
         ));
         this.setState({
             filteredTickets,
+            selectedStops: newSelectedStops,
         });
     }
 
@@ -45,19 +53,38 @@ class Home extends React.Component {
         ))
     );
 
+    resetFilters = () => {
+        const { stopOptions } = this.state;
+
+        this.onFilterByStops({ [stopOptions[0]]: true });
+    }
+
     render() {
-        const { filteredTickets, availableStops } = this.state;
+        const {
+            tickets,
+            filteredTickets,
+            stopOptions,
+            selectedStops,
+        } = this.state;
+
+        const hasFilteredTickets = filteredTickets && filteredTickets.length > 0;
 
         return (
-            <div className={styles.container}>
+            <div className={cx('container')}>
                 <Header />
-                <div className={styles.content}>
+                <div className={cx('content')}>
                     <FilterGroup
-                        stops={availableStops}
-                        onFilter={this.onFilterStops}
+                        stopOptions={stopOptions}
+                        selectedStops={selectedStops}
+                        onFilter={this.onFilterByStops}
                     />
-                    {filteredTickets
+                    {tickets && !hasFilteredTickets
                         ? (
+                            <TicketCard
+                                onFilterReset={this.resetFilters}
+                            />
+                        )
+                        : (
                             <div>
                                 {filteredTickets.map(ticket => (
                                     <TicketCard
@@ -66,8 +93,7 @@ class Home extends React.Component {
                                     />
                                 ))}
                             </div>
-                        )
-                        : null}
+                        )}
                 </div>
             </div>
         );

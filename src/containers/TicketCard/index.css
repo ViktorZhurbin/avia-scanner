@@ -1,5 +1,6 @@
 .card {
     width: 100%;
+    min-width: 565px;
     height: 161px;
     box-sizing: border-box;
     display: flex;
@@ -40,4 +41,28 @@
     width: 120px;
     height: 30px;
     margin-bottom: 20px;
+}
+
+.empty {
+    flex-direction: column;
+}
+
+.infoText {
+    font: var(--p1);
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.hintText {
+    font: var(--p3);
+    margin: auto;
+    margin-top: 10px;
+}
+
+.resetButton {
+    color: var(--color-blue-link);
+    margin-right: 0.3em;
+    border-bottom: 1px dashed;
+    cursor: pointer;
+    user-select: none;
 }
