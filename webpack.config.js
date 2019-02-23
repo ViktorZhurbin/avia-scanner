@@ -2,10 +2,10 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-const env = process.env.NODE_ENV;
 const outputDirectory = 'dist';
 
-module.exports = {
+module.exports = (env, argv) => ({
+    mode: argv.mode,
     entry: ['./src/index.js'],
     output: {
         path: path.join(__dirname, outputDirectory),
@@ -62,7 +62,7 @@ module.exports = {
             },
         ],
     },
-    devtool: env === 'production' ? 'none' : 'eval-source-map',
+    devtool: argv.mode === 'production' ? 'none' : 'eval-source-map',
     devServer: {
         port: 3000,
         open: false,
@@ -77,4 +77,4 @@ module.exports = {
             filename: './index.html',
         }),
     ],
-};
+});
