@@ -1,3 +1,5 @@
+Using Skyscanner API through [RapidAPI](https://rapidapi.com/skyscanner/api/skyscanner-flight-search).
+
 ## Тестовое задание Aviasales ([frontend](https://aviasales.recruitee.com/o/frontend-developer-js-coffeescript-react%C2%A0redux--aviasalesru))
 
 Основной фронтенд проект нашей команды — это страница выдачи билетов со множеством фильтров, настроек и, собственно, билетов.
