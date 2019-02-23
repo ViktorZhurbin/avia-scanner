@@ -2,6 +2,7 @@ import {
     camelCase,
     mapKeys,
     sortBy,
+    uniqBy,
 } from 'lodash';
 
 const findObjectByValue = (array, searchKey, inputValue) => (
@@ -14,6 +15,17 @@ const getPrice = (arr, searchKey, inputValue) => (
         .Price
 );
 
+const getId = (ticket) => {
+    const {
+        originStation,
+        departure,
+        destinationStation,
+        arrival,
+    } = ticket;
+
+    return [originStation, departure, destinationStation, arrival].join('-');
+};
+
 export default (ticketsData) => {
     const {
         Legs: tickets,
@@ -21,7 +33,7 @@ export default (ticketsData) => {
         Carriers: carriersList,
         Itineraries: itineraries,
     } = ticketsData;
-    const ticketsSlice = tickets.slice(0, 10);
+    const ticketsSlice = tickets.slice(0, 20);
     const formatted = ticketsSlice.map((item) => {
         const camelCased = mapKeys(item, (value, key) => camelCase(key));
         const {
@@ -35,6 +47,7 @@ export default (ticketsData) => {
 
         const formattedItem = {
             ...camelCased,
+            id: getId(camelCased),
             stops: stops.length,
             originStation: findObjectByValue(places, 'Id', originStation),
             destinationStation: findObjectByValue(places, 'Id', destinationStation),
@@ -45,5 +58,8 @@ export default (ticketsData) => {
         return formattedItem;
     });
 
-    return sortBy(formatted, ['price']);
+    const sorted = sortBy(formatted, ['price']);
+    const unique = uniqBy(sorted, 'id');
+
+    return unique;
 };

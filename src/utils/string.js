@@ -5,7 +5,7 @@ export const getTimeDate = (dateString) => {
     date.locale('en');
 
     return {
-        time: date.format(dateObject, 'hh:mm'),
+        time: date.format(dateObject, 'HH:mm'),
         date: date.format(dateObject, 'D MMM YYYY, ddd'),
     };
 };
