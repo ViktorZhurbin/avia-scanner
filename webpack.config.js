@@ -49,6 +49,17 @@ module.exports = (env, argv) => ({
                 ],
             },
             {
+                test: /_datepicker.css$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                ],
+            },
+            {
                 test: /\.svg$/,
                 use: ['raw-loader'],
             },

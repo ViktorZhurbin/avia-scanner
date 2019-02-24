@@ -1,13 +1,15 @@
 import React from 'react';
-import classNames from 'classnames/bind';
+import cl from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import { DateRangePicker } from 'react-dates';
 
-// import Input from '../../components/Input';
 import PlaceSelector from '../PlaceSelector';
 
 import styles from './index.css';
 
-const cx = classNames.bind(styles);
+import 'react-dates/lib/css/_datepicker.css';
+
+const cx = cl.bind(styles);
 
 const places = [
     {
@@ -66,11 +68,11 @@ class LandingLayout extends React.Component {
                     Flights and airline tickets
                 </div>
                 <form
-                    className={cx('form')}
+                    className={cx('formContainer')}
                     onSubmit={this.onSubmit}
                     target="_self"
                 >
-                    <div className={cx('mainFormContent')}>
+                    <div className={cx('formInput')}>
                         <div className={cx('places')}>
                             <div className={cx('placeItem')}>
                                 <PlaceSelector
@@ -88,6 +90,26 @@ class LandingLayout extends React.Component {
                                     onSelect={this.onSelect}
                                 />
                             </div>
+                        </div>
+                        <div className={cx('dates')}>
+                            <DateRangePicker
+                                // momentPropTypes.momentObj or null,
+                                startDate={this.state.startDate}
+                                // PropTypes.string.isRequired,
+                                startDateId="your_unique_start_date_id"
+                                // momentPropTypes.momentObj or null,
+                                endDate={this.state.endDate}
+                                // PropTypes.string.isRequired,
+                                endDateId="your_unique_end_date_id"
+                                // PropTypes.func.isRequired,
+                                onDatesChange={({ startDate, endDate }) => (
+                                    this.setState({ startDate, endDate })
+                                )}
+                                // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                focusedInput={this.state.focusedInput}
+                                // PropTypes.func.isRequired,
+                                onFocusChange={focusedInput => this.setState({ focusedInput })}
+                            />
                         </div>
                     </div>
                     <div className={cx('buttonWrapper')}>

@@ -8,18 +8,25 @@
     background-color: var(--color-white);
 }
 
-.form {
+.header {
+    text-align: center;
+    color: var(--color-twilight);
+    font: var(--p1);
+    margin-bottom: 30px;
+}
+
+.formContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.header {
-    text-align: center;
-    color: var(--color-twilight);
-    font: var(--p1);
-    margin-bottom: 30px;
+.formInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .places {
