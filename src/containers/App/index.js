@@ -11,7 +11,7 @@ const App = () => (
         <div className={styles.container}>
             <Switch>
                 <Route exact path="/" component={LandingLayout} />
-                <Route exact path="/search" component={SearchLayout} />
+                <Route path="/search" component={SearchLayout} />
                 <Route render={() => <p>Not Found</p>} />
             </Switch>
         </div>

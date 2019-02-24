@@ -1,16 +1,32 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import Input from '../../components/Input';
+// import Input from '../../components/Input';
+import PlaceSelector from '../PlaceSelector';
 
 import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
+const places = [
+    {
+        code: 'LHR',
+        name: 'London',
+    },
+    {
+        code: 'CDG',
+        name: 'Paris',
+    },
+    {
+        code: 'SVO',
+        name: 'Moscow',
+    },
+];
+
 class LandingLayout extends React.Component {
     state = {
-        origin: '',
-        destination: '',
+        origin: places[0],
+        destination: places[1],
     }
 
     onSubmit = () => null;
@@ -23,42 +39,53 @@ class LandingLayout extends React.Component {
         });
     };
 
+    onSelect = (code, id) => {
+        this.setState({
+            [id]: code,
+        });
+    }
+
     render() {
         const { origin, destination } = this.state;
 
         return (
-            <div>
+            <div className={cx('container')}>
                 <div className={cx('header')}>
                     Flights and airline tickets
                 </div>
                 <form
+                    className={cx('form')}
                     onSubmit={this.onSubmit}
                     target="_self"
                 >
                     <div className={cx('mainFormContent')}>
                         <div className={cx('places')}>
-                            <Input
-                                id="origin"
-                                label="From"
-                                placeholder="From"
-                                inputValue={origin}
-                                onInputChange={this.onInputChange}
-                            />
-                            <Input
-                                id="destination"
-                                label="To"
-                                placeholder="To"
-                                inputValue={destination}
-                                onInputChange={this.onInputChange}
-                            />
+                            <div className={cx('placeItem')}>
+                                <PlaceSelector
+                                    id="origin"
+                                    itemList={places}
+                                    selectedItem={origin}
+                                    onSelect={this.onSelect}
+                                />
+                            </div>
+                            <div className={cx('placeItem')}>
+                                <PlaceSelector
+                                    id="destination"
+                                    itemList={places}
+                                    selectedItem={destination}
+                                    onSelect={this.onSelect}
+                                />
+                            </div>
                         </div>
                     </div>
-                    <button
-                        className={cx('searchButton')}
-                        type="submit"
-                    >
-                        Search
-                    </button>
+                    <div className={cx('buttonWrapper')}>
+                        <button
+                            className={cx('submitButton')}
+                            type="submit"
+                        >
+                            Search
+                        </button>
+                    </div>
                 </form>
             </div>
         );

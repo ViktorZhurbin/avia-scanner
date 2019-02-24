@@ -1,3 +1,55 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-white);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .header {
-    color: var(--color-blue);
+    text-align: center;
+    color: var(--color-twilight);
+    font: var(--p1);
+    margin-bottom: 30px;
+}
+
+.places {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.placeItem {
+    &:first-child {
+        margin-right: 100px;
+    }
+}
+
+.submitButton {
+    --height: 46px;
+
+    border: 0;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    width: 170px;
+    height: var(--height);
+    background: var(--color-orange);
+    border-radius: var(--height);
+    color: var(--color-white);
+    font: var(--p1);
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        background-color: #ff8124;
+    }
 }

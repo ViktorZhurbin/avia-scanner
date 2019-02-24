@@ -1,0 +1,44 @@
+.triggerContainer {
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid var(--color-metal);
+    border-radius: 100px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: hsla(0, 0%, 88%, 0.2);
+    }
+}
+
+.triggerText {
+    font: var(--p2);
+    line-height: 35px;
+    padding: 0 20px;
+}
+
+.itemList {
+    padding: 0;
+    margin: 0;
+}
+
+.item {
+    list-style-type: none;
+    font: var(--p2);
+    line-height: 35px;
+    text-align: left;
+    cursor: pointer;
+    padding: 0 15px;
+
+    &:hover {
+        background-color: var(--color-blue-light-background);
+    }
+}
+
+.code,
+.name {
+    color: var(--color-twilight);
+}
+
+.code {
+    margin-right: 15px;
+}
