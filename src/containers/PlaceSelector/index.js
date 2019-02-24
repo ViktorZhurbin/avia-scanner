@@ -15,22 +15,18 @@ class PlaceSelector extends React.Component {
             PropTypes.objectOf(PropTypes.string),
         ).isRequired,
         onSelect: PropTypes.func.isRequired,
-        selectedItem: PropTypes.objectOf(PropTypes.string).isRequired,
+        iataCode: PropTypes.string.isRequired,
     }
 
-    // static defaultProps = {
-    //     selectedItem: itemList[0],
-    // }
-    handleSelect = (code) => {
-        const { onSelect, id, itemList } = this.props;
-        const selectedItem = itemList.find(item => item.code === code);
+    handleSelect = (iataCode) => {
+        const { onSelect, id } = this.props;
 
-        onSelect(selectedItem, id);
+        onSelect(iataCode, id);
     }
 
-    handleKeyPress = (event, code) => {
+    handleKeyPress = (event, iataCode) => {
         if (event.key === 'Enter') {
-            this.handleSelect(code);
+            this.handleSelect(iataCode);
         }
     }
 
@@ -45,7 +41,7 @@ class PlaceSelector extends React.Component {
                     onKeyPress={() => this.handleKeyPress(code)}
                     onClick={() => this.handleSelect(code)}
                 >
-                    <strong className={cx('code')}>{code}</strong>
+                    <strong className={cx('iataCode')}>{code}</strong>
                     <span className={cx('name')}>{name}</span>
                 </div>
             ))}
@@ -53,7 +49,9 @@ class PlaceSelector extends React.Component {
     );
 
     renderTrigger = () => {
-        const { selectedItem } = this.props;
+        const { iataCode, itemList } = this.props;
+
+        const selectedItem = itemList.find(item => item.code === iataCode);
 
         return (
             <div className={cx('triggerContainer')}>

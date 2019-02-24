@@ -1,4 +1,5 @@
 const unirest = require('unirest');
+const moment = require('moment');
 
 const mockTicketData = require('./mockTicketData');
 
@@ -14,7 +15,12 @@ module.exports = {
 
     createSession: (req, res) => {
         // console.log(req.query);
-        const { from, to } = req.query;
+        const today = moment().format('YYYY-MM-DD');
+        const {
+            origin = 'SVO',
+            destination = 'LHR',
+            departure = today,
+        } = req.query;
 
         unirest.post(`${baseUrl}/v1.0`)
             .header('X-RapidAPI-Key', apiKey)
@@ -22,10 +28,9 @@ module.exports = {
             .send('country=US')
             .send('currency=USD')
             .send('locale=en-US')
-            .send(`originPlace=${from || 'SVO'}-sky`)
-            .send(`destinationPlace=${to || 'KZN'}-sky`)
-            .send('inboundDate=2019-03-05')
-            .send('outboundDate=2019-03-03')
+            .send(`originPlace=${origin}-sky`)
+            .send(`destinationPlace=${destination}-sky`)
+            .send(`outboundDate=${departure}`)
             .send('adults=1')
             .end((result) => {
                 // console.log(result.status, result.ok, result.headers.location);

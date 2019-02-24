@@ -1,9 +1,11 @@
 import React from 'react';
 import cl from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
+import quryString from 'query-string';
 
 import PlaceSelector from '../PlaceSelector';
+import DatePicker from '../../components/DatePicker';
 
 import styles from './index.css';
 
@@ -28,8 +30,9 @@ const places = [
 
 class LandingLayout extends React.Component {
     state = {
-        origin: places[0],
-        destination: places[1],
+        origin: places[0].code,
+        destination: places[1].code,
+        departure: null,
     }
 
     onSubmit = () => null;
@@ -42,6 +45,14 @@ class LandingLayout extends React.Component {
         });
     };
 
+    onDateChange = (departure) => {
+        if (departure) {
+            this.setState({
+                departure,
+            });
+        }
+    }
+
     onSelect = (code, id) => {
         this.setState({
             [id]: code,
@@ -50,16 +61,24 @@ class LandingLayout extends React.Component {
 
     getSearchQuery = () => {
         const {
-            origin,
-            destination,
+            origin = null,
+            destination = null,
+            departure = null,
         } = this.state;
 
-        return `from=${origin.code}&to=${destination.code}`;
+        const queryObject = {
+            origin,
+            destination,
+            departure,
+        };
+
+        return quryString.stringify(queryObject);
     };
 
     render() {
         const { origin, destination } = this.state;
 
+        moment.locale('en');
         const searchQuery = this.getSearchQuery();
 
         return (
@@ -78,7 +97,7 @@ class LandingLayout extends React.Component {
                                 <PlaceSelector
                                     id="origin"
                                     itemList={places}
-                                    selectedItem={origin}
+                                    iataCode={origin}
                                     onSelect={this.onSelect}
                                 />
                             </div>
@@ -86,29 +105,14 @@ class LandingLayout extends React.Component {
                                 <PlaceSelector
                                     id="destination"
                                     itemList={places}
-                                    selectedItem={destination}
+                                    iataCode={destination}
                                     onSelect={this.onSelect}
                                 />
                             </div>
                         </div>
                         <div className={cx('dates')}>
-                            <DateRangePicker
-                                // momentPropTypes.momentObj or null,
-                                startDate={this.state.startDate}
-                                // PropTypes.string.isRequired,
-                                startDateId="your_unique_start_date_id"
-                                // momentPropTypes.momentObj or null,
-                                endDate={this.state.endDate}
-                                // PropTypes.string.isRequired,
-                                endDateId="your_unique_end_date_id"
-                                // PropTypes.func.isRequired,
-                                onDatesChange={({ startDate, endDate }) => (
-                                    this.setState({ startDate, endDate })
-                                )}
-                                // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                focusedInput={this.state.focusedInput}
-                                // PropTypes.func.isRequired,
-                                onFocusChange={focusedInput => this.setState({ focusedInput })}
+                            <DatePicker
+                                handleChange={this.onDateChange}
                             />
                         </div>
                     </div>

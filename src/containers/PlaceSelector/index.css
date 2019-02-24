@@ -34,11 +34,11 @@
     }
 }
 
-.code,
+.iataCode,
 .name {
     color: var(--color-twilight);
 }
 
-.code {
+.iataCode {
     margin-right: 15px;
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getTimeDate } from '../../../utils/string';
+import { getFlightTimeDate } from '../../../utils/string';
 
 import styles from './FlightInfo.module.css';
 
 const FlightInfo = ({ dateString, city }) => {
-    const { time, date } = getTimeDate(dateString);
+    const { time, date } = getFlightTimeDate(dateString);
 
     return (
         <div className={styles.flightInfo}>
