@@ -2,7 +2,7 @@
 
 :root {
     /* Headers */
-    --h1: 32px 'Open Sans', sans-serif;
+    --h1: 500 36px/50px 'Open Sans', sans-serif;
 
     /* Paragraph text */
     --p1: 16px 'Open Sans', sans-serif;

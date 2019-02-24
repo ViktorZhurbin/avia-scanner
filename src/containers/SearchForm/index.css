@@ -1,19 +1,25 @@
 .container {
-    /* width: 100vw;
-    height: 100vh; */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* background-color: var(--color-blue-white); */
 }
 
-.header {
+.searchForm {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 20px;
+    min-height: calc(100vh - 50px);
+    background-color: var(--color-blue-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.headerText {
     text-align: center;
-    color: var(--color-twilight);
-    font: var(--p1);
+    color: var(--color-white);
+    font: var(--h1);
     margin-bottom: 30px;
 }
 
