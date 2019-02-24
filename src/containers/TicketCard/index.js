@@ -6,7 +6,7 @@ import Button from './PurchaseButton';
 import FlightInfo from './FlightInfo';
 import Stops from './Stops';
 
-import ticketProps from '../../entities/props';
+import ticketProps from '../../entities/propTypes';
 import genericLogo from '../../assets/generic-logo.png';
 
 import styles from './index.css';

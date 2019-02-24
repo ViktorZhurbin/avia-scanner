@@ -5,22 +5,9 @@ import Dropdown from '../../components/Dropdown';
 
 import styles from './index.css';
 
-const cx = cl.bind(styles);
+import { currencyList } from '../../constants/mockData';
 
-const currencyList = [
-    {
-        code: 'USD',
-        name: 'US Dollar',
-    },
-    {
-        code: 'RUB',
-        name: 'Rouble',
-    },
-    {
-        code: 'EUR',
-        name: 'Euro',
-    },
-];
+const cx = cl.bind(styles);
 
 class CurrencySelector extends React.Component {
     state = {

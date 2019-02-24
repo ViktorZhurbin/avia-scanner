@@ -8,7 +8,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const Header = () => (
+const NavBar = () => (
     <div className={cx('container')}>
         <div className={cx('logo')}>
             <Logo />
@@ -17,4 +17,4 @@ const Header = () => (
     </div>
 );
 
-export default Header;
+export default NavBar;
