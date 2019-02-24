@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
+import cl from 'classnames/bind';
 
-import styles from './Dropdown.module.css';
+import styles from './index.css';
+
+const cx = cl.bind(styles);
 
 class Dropdown extends React.Component {
     static propTypes = {
@@ -33,7 +36,7 @@ class Dropdown extends React.Component {
                 classNames="message"
                 unmountOnExit
             >
-                <div className={styles.dropdown}>
+                <div className={cx('dropdown')}>
                     {children}
                 </div>
             </CSSTransition>
@@ -51,7 +54,7 @@ class Dropdown extends React.Component {
 
         return (
             <div
-                className={styles.container}
+                className={cx('container')}
                 role="button"
                 data-toggle="dropdown"
                 tabIndex="0"
@@ -59,7 +62,7 @@ class Dropdown extends React.Component {
                 onKeyPress={this.handleKeyPress}
             >
                 <div
-                    className={styles.trigger}
+                    className={cx('trigger')}
                     role="button"
                     data-toggle="dropdown"
                     tabIndex="0"

@@ -1,8 +1,11 @@
 import React from 'react';
+import cl from 'classnames/bind';
 
 import Dropdown from '../../components/Dropdown';
 
-import styles from './CurrencySelector.module.css';
+import styles from './index.css';
+
+const cx = cl.bind(styles);
 
 const currencyList = [
     {
@@ -41,18 +44,18 @@ class CurrencySelector extends React.Component {
         const list = currencyList;
 
         return (
-            <div className={styles.currencyList}>
+            <div className={cx('currencyList')}>
                 {list.map(({ code, name }, index) => (
                     <div
                         key={code}
-                        className={styles.currencyItem}
+                        className={cx('currencyItem')}
                         role="button"
                         tabIndex={index + 1}
                         onKeyPress={() => this.handleKeyPress(code)}
                         onClick={() => this.onCurrencySelect(code)}
                     >
-                        <strong className={styles.code}>{code}</strong>
-                        <span className={styles.name}>{name}</span>
+                        <strong className={cx('code')}>{code}</strong>
+                        <span className={cx('name')}>{name}</span>
                     </div>
                 ))}
             </div>
@@ -63,8 +66,8 @@ class CurrencySelector extends React.Component {
         const { selectedCurrency } = this.state;
 
         return (
-            <div className={styles.triggerContainer}>
-                <span className={styles.triggerText}>{selectedCurrency}</span>
+            <div className={cx('triggerContainer')}>
+                <span className={cx('triggerText')}>{selectedCurrency}</span>
             </div>
         );
     }

@@ -1,11 +1,13 @@
 .container {
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw;
+    height: 100vh; */
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-white);
+
+    /* background-color: var(--color-blue-white); */
 }
 
 .header {
@@ -24,20 +26,13 @@
 
 .formInput {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .places {
     display: flex;
-    margin-bottom: 40px;
-}
-
-.placeItem {
-    &:first-child {
-        margin-right: 100px;
-    }
 }
 
 .submitButton {

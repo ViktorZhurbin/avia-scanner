@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 
 import FilterGroup from '../FilterGroup';
 import TicketCard from '../TicketCard';
-import Header from '../Header';
 
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets } from '../../utils/api';
@@ -26,9 +25,10 @@ class SearchLayout extends React.Component {
     }
 
     async componentDidMount() {
-        const { location } = this.props;
+        const { location } = this.props; // eslint-disable-line
 
-        const tickets = await getFormattedTickets(location.search);
+        const tickets = await getFormattedTickets();
+        // const tickets = await getFormattedTickets(location.search);
         const stopOptions = getUniqueByKey(tickets, 'stops');
         const selectedStops = {
             [stopOptions[0]]: true,
@@ -79,30 +79,27 @@ class SearchLayout extends React.Component {
 
         return (
             <div className={cx('container')}>
-                <Header />
-                <div className={cx('content')}>
-                    <FilterGroup
-                        stopOptions={stopOptions}
-                        selectedStops={selectedStops}
-                        onFilter={this.onFilterByStops}
-                    />
-                    {tickets && !hasFilteredTickets
-                        ? (
-                            <TicketCard
-                                onFilterReset={this.resetFilters}
-                            />
-                        )
-                        : (
-                            <div>
-                                {filteredTickets.map(ticket => (
-                                    <TicketCard
-                                        key={ticket.id}
-                                        ticket={ticket}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                </div>
+                <FilterGroup
+                    stopOptions={stopOptions}
+                    selectedStops={selectedStops}
+                    onFilter={this.onFilterByStops}
+                />
+                {tickets && !hasFilteredTickets
+                    ? (
+                        <TicketCard
+                            onFilterReset={this.resetFilters}
+                        />
+                    )
+                    : (
+                        <div>
+                            {filteredTickets.map(ticket => (
+                                <TicketCard
+                                    key={ticket.id}
+                                    ticket={ticket}
+                                />
+                            ))}
+                        </div>
+                    )}
             </div>
         );
     }

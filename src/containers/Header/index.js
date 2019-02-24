@@ -1,14 +1,16 @@
 import React from 'react';
+import cl from 'classnames/bind';
 
 import Logo from '../../components/Logo';
 import CurrencySelector from '../CurrencySelector';
 
-import styles from './Header.module.css';
+import styles from './index.css';
 
+const cx = cl.bind(styles);
 
 const Header = () => (
-    <div className={styles.container}>
-        <div className={styles.logo}>
+    <div className={cx('container')}>
+        <div className={cx('logo')}>
             <Logo />
         </div>
         <CurrencySelector />

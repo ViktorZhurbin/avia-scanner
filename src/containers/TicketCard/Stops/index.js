@@ -1,23 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SVGInline from 'react-svg-inline';
+import cl from 'classnames/bind';
 
 import { inflectStopsEn } from '../../../utils/inflection';
 import planeSVG from '../../../assets/plane.svg';
 
-import styles from './Stops.module.css';
+import styles from './index.css';
+
+const cx = cl.bind(styles);
 
 const Stops = ({ stops }) => (
-    <div className={styles.container}>
+    <div className={cx('container')}>
         {stops === 0
             ? null
             : (
-                <div className={styles.connections}>
+                <div className={cx('connections')}>
                     {inflectStopsEn(stops)}
                 </div>
             )}
-        <div className={styles.bottom}>
-            <div className={styles.line} />
+        <div className={cx('bottom')}>
+            <div className={cx('line')} />
             <SVGInline svg={planeSVG} />
         </div>
     </div>
