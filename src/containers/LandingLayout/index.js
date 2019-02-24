@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 // import Input from '../../components/Input';
 import PlaceSelector from '../PlaceSelector';
@@ -45,8 +46,19 @@ class LandingLayout extends React.Component {
         });
     }
 
+    getId = () => {
+        const {
+            origin,
+            destination,
+        } = this.state;
+
+        return [origin.code, destination.code].join('');
+    };
+
     render() {
         const { origin, destination } = this.state;
+
+        const searchId = this.getId();
 
         return (
             <div className={cx('container')}>
@@ -79,12 +91,14 @@ class LandingLayout extends React.Component {
                         </div>
                     </div>
                     <div className={cx('buttonWrapper')}>
-                        <button
-                            className={cx('submitButton')}
-                            type="submit"
-                        >
-                            Search
-                        </button>
+                        <Link to={`/search/${searchId}`}>
+                            <button
+                                className={cx('submitButton')}
+                                type="submit"
+                            >
+                                Search
+                            </button>
+                        </Link>
                     </div>
                 </form>
             </div>

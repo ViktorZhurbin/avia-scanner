@@ -10,8 +10,8 @@ const App = () => (
     <BrowserRouter>
         <div className={styles.container}>
             <Switch>
-                <Route exact path="/" component={LandingLayout} />
-                <Route path="/search" component={SearchLayout} />
+                <Route path="/" exact component={LandingLayout} />
+                <Route path="/search/:searchId" component={SearchLayout} />
                 <Route render={() => <p>Not Found</p>} />
             </Switch>
         </div>
