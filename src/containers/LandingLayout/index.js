@@ -46,19 +46,19 @@ class LandingLayout extends React.Component {
         });
     }
 
-    getId = () => {
+    getSearchQuery = () => {
         const {
             origin,
             destination,
         } = this.state;
 
-        return [origin.code, destination.code].join('');
+        return `from=${origin.code}&to=${destination.code}`;
     };
 
     render() {
         const { origin, destination } = this.state;
 
-        const searchId = this.getId();
+        const searchQuery = this.getSearchQuery();
 
         return (
             <div className={cx('container')}>
@@ -91,7 +91,7 @@ class LandingLayout extends React.Component {
                         </div>
                     </div>
                     <div className={cx('buttonWrapper')}>
-                        <Link to={`/search/${searchId}`}>
+                        <Link to={`/search?${searchQuery}`}>
                             <button
                                 className={cx('submitButton')}
                                 type="submit"

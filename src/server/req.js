@@ -13,14 +13,17 @@ module.exports = {
     },
 
     createSession: (req, res) => {
+        // console.log(req.query);
+        const { from, to } = req.query;
+
         unirest.post(`${baseUrl}/v1.0`)
             .header('X-RapidAPI-Key', apiKey)
             .header('Content-Type', 'application/x-www-form-urlencoded')
             .send('country=US')
             .send('currency=USD')
             .send('locale=en-US')
-            .send('originPlace=SFO-sky')
-            .send('destinationPlace=LHR-sky')
+            .send(`originPlace=${from || 'SVO'}-sky`)
+            .send(`destinationPlace=${to || 'KZN'}-sky`)
             .send('inboundDate=2019-03-05')
             .send('outboundDate=2019-03-03')
             .send('adults=1')
@@ -34,9 +37,9 @@ module.exports = {
 
     fetchTickets: (req, res) => {
         const key = req.params.sessionKey;
-        console.log(key);
+        // console.log(key);
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;
-        console.log(reqUrl);
+        // console.log(reqUrl);
         unirest.get(reqUrl)
             .header('X-RapidAPI-Key', apiKey)
             .end((result) => {

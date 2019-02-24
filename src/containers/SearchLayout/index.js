@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import FilterGroup from '../FilterGroup';
@@ -13,6 +14,10 @@ import styles from './index.css';
 const cx = classNames.bind(styles);
 
 class SearchLayout extends React.Component {
+    static propTypes = {
+        location: PropTypes.objectOf(PropTypes.string).isRequired,
+    }
+
     state = {
         tickets: [],
         filteredTickets: [],
@@ -21,12 +26,15 @@ class SearchLayout extends React.Component {
     }
 
     async componentDidMount() {
-        const tickets = await getFormattedTickets({ mockData: true });
+        const { location } = this.props;
+
+        const tickets = await getFormattedTickets(location.search);
         const stopOptions = getUniqueByKey(tickets, 'stops');
         const selectedStops = {
             [stopOptions[0]]: true,
         };
         const filteredTickets = this.filterTickets(tickets, [stopOptions[0]]);
+
         this.setState({
             tickets,
             filteredTickets,

@@ -3,17 +3,21 @@ import {
     mapKeys,
     sortBy,
     uniqBy,
+    filter,
 } from 'lodash';
 
 const findObjectByValue = (array, searchKey, inputValue) => (
     array.find(item => item[searchKey] === inputValue)
 );
 
-const getPrice = (arr, searchKey, inputValue) => (
-    findObjectByValue(arr, searchKey, inputValue)
-        .PricingOptions[0]
-        .Price
-);
+const getPrice = (arr, searchKey, inputValue) => {
+    const obj = findObjectByValue(arr, searchKey, inputValue);
+
+    const options = obj && obj.PricingOptions[0];
+    const price = options ? options.Price : null;
+
+    return price;
+};
 
 const getId = (ticket) => {
     const {
@@ -58,7 +62,8 @@ export default (ticketsData) => {
         return formattedItem;
     });
 
-    const sorted = sortBy(formatted, ['price']);
+    const filtered = filter(formatted, item => item.price > 0);
+    const sorted = sortBy(filtered, ['price']);
     const unique = uniqBy(sorted, 'id');
 
     return unique;
