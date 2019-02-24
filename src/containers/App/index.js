@@ -24,11 +24,8 @@ class App extends React.Component {
         selectedStops: {},
     }
 
-    async componentDidMount() {
-        const { location } = this.props; // eslint-disable-line
-
-        const tickets = await getFormattedTickets();
-        // const tickets = await getFormattedTickets(location.search);
+    fetchTickets = async (query = '') => {
+        const tickets = await getFormattedTickets(query);
         const stopOptions = getUniqueByKey(tickets, 'stops');
         const selectedStops = {
             [stopOptions[0]]: true,
@@ -43,7 +40,12 @@ class App extends React.Component {
         });
     }
 
-    onSubmit = () => null;
+    onSubmit = async (event) => {
+        event.preventDefault();
+        const query = this.getSearchQuery();
+        window.history.pushState(query, '', `search?${query}`);
+        this.fetchTickets(query);
+    };
 
     onInputChange = (event) => {
         const inputValue = event.target.value;
@@ -129,14 +131,18 @@ class App extends React.Component {
                     onDateChange={this.onDateChange}
                     locale={locale}
                 />
-                <SearchResults
-                    tickets={tickets}
-                    filteredTickets={filteredTickets}
-                    stopOptions={stopOptions}
-                    selectedStops={selectedStops}
-                    onFilterByStops={this.onFilterByStops}
-                    onResetFilters={this.onResetFilters}
-                />
+                {tickets.length > 0
+                    ? (
+                        <SearchResults
+                            tickets={tickets}
+                            filteredTickets={filteredTickets}
+                            stopOptions={stopOptions}
+                            selectedStops={selectedStops}
+                            onFilterByStops={this.onFilterByStops}
+                            onResetFilters={this.onResetFilters}
+                        />
+                    )
+                    : null}
             </div>
         );
     }

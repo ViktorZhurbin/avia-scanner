@@ -22,7 +22,7 @@ const getURI = (...args) => {
 
 export const createApiSession = async (query) => {
     const encodedURI = getURI(api.createSession);
-    const { data } = await axios.get(encodedURI + query).catch(handleError);
+    const { data } = await axios.get(`${encodedURI}?${query}`).catch(handleError);
     const sessionKey = data && data.sessionKey;
     return sessionKey;
 };
