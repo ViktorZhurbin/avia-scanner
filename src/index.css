@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic-ext');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Rubik:500&subset=cyrillic');
 
 :root {
     /* Headers */
+    --h1: 500 36px/50px 'Rubik', sans-serif;
     --h3: 28px/40px 'Open Sans', sans-serif;
     --h4: 500 22px 'Open Sans', sans-serif;
 
