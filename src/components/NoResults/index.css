@@ -1,0 +1,33 @@
+.container {
+    width: 100%;
+    min-width: 611px;
+    min-height: 140px;
+    padding: 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+    background-color: var(--color-white);
+    color: var(--color-twilight);
+}
+
+.text {
+    font: var(--h4);
+    font-weight: 600;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+.resetButton {
+    margin-top: 25px;
+    cursor: pointer;
+    user-select: none;
+    max-width: 232px;
+}
+
+.buttonText {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 45px;
+}

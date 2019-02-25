@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 
 import Filters from '../Filters';
 import Ticket from '../Ticket';
+import NoResuts from '../../components/NoResults';
 
 import ticketPropType from '../../entities/propTypes';
 
@@ -21,7 +22,7 @@ const SearchResults = (props) => {
         onResetFilters,
     } = props;
 
-    const hasFilteredTickets = filteredTickets && filteredTickets.length > 0;
+    const hasFilteredTickets = tickets.length > 0 && filteredTickets.length > 0;
 
     return (
         <div className={cx('container')}>
@@ -30,9 +31,10 @@ const SearchResults = (props) => {
                 selectedStops={selectedStops}
                 onFilter={onFilterByStops}
             />
-            {tickets && !hasFilteredTickets
+            {!hasFilteredTickets
                 ? (
-                    <Ticket
+                    <NoResuts
+                        ticketsCount={tickets.length}
                         onFilterReset={onResetFilters}
                     />
                 )

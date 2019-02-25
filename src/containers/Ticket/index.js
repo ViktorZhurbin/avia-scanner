@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import BuyButton from './BuyButton';
@@ -13,27 +12,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const Ticket = ({ ticket, onFilterReset }) => {
-    if (!ticket) {
-        return (
-            <div className={cx(['card', 'empty'])}>
-                <div className={cx('infoText')}>
-                    There were no tickets that matched your filter settings.
-                </div>
-                <div className={cx('hintText')}>
-                    {/* eslint-disable-next-line */}
-                    <span
-                        className={cx('resetButton')}
-                        onClick={onFilterReset}
-                    >
-                        Reset
-                    </span>
-                    filters to see more of the tickets we found.
-                </div>
-            </div>
-        );
-    }
-
+const Ticket = ({ ticket }) => {
     const {
         originStation,
         destinationStation,
@@ -70,12 +49,10 @@ const Ticket = ({ ticket, onFilterReset }) => {
 
 Ticket.propTypes = {
     ticket: ticketProps,
-    onFilterReset: PropTypes.func,
 };
 
 Ticket.defaultProps = {
     ticket: null,
-    onFilterReset: () => null,
 };
 
 export default Ticket;

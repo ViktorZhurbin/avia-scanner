@@ -1,31 +1,21 @@
 .button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    max-width: 165px;
-    height: 48px;
-    border-radius: 5px;
-    font: var(--p1);
+    border: none;
+    box-sizing: border-box;
+    display: block;
     text-align: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
     color: var(--color-white);
-    user-select: none;
+    font: var(--h4);
     cursor: pointer;
+    user-select: none;
     background-color: var(--color-orange);
     box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 1px 0 rgba(0, 0, 0, 0.1);
 
     &:hover {
         border-bottom-color: transparent;
-        background-color: #ffa353;
+        background-color: #ff8a32;
         transition: all 0.3s;
     }
-}
-
-.buttonText,
-.buttonPrice {
-    margin: 0 auto;
-}
-
-.buttonText {
-    font-weight: 600;
 }

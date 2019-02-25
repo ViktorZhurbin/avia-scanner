@@ -1,3 +1,7 @@
+body {
+    background-color: var(--color-white-background);
+}
+
 .form {
     background-color: var(--color-blue-white);
     height: 305px;
@@ -10,5 +14,4 @@
 
 .results {
     padding-top: 20px;
-    background-color: var(--color-white-background);
 }
