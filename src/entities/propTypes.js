@@ -13,8 +13,8 @@ export default PropTypes.shape({
     carriers: PropTypes.arrayOf(
         PropTypes.number,
     ),
-    originStation: mixedObject,
-    destinationStation: mixedObject,
+    origin: mixedObject,
+    destination: mixedObject,
     directionality: PropTypes.string,
     direction: PropTypes.number,
     flightCarrier: mixedObject,

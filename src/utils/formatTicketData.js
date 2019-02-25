@@ -21,23 +21,23 @@ const getPrice = (arr, searchKey, inputValue) => {
 
 const getId = (ticket) => {
     const {
-        originStation,
+        origin,
         departure,
-        destinationStation,
+        destination,
         arrival,
     } = ticket;
 
-    return [originStation, departure, destinationStation, arrival].join('-');
+    return [origin, departure, destination, arrival].join('-');
 };
 
 export default (ticketsData) => {
     const {
-        Legs: tickets,
-        Places: places,
-        Carriers: carriersList,
-        Itineraries: itineraries,
+        Legs: ticketList,
+        Places: placeList,
+        Carriers: carrierList,
+        Itineraries: itineraryList,
     } = ticketsData;
-    const ticketsSlice = tickets.slice(0, 20);
+    const ticketsSlice = ticketList.slice(0, 20);
     const formatted = ticketsSlice.map((item) => {
         const camelCased = mapKeys(item, (value, key) => camelCase(key));
         const {
@@ -53,10 +53,10 @@ export default (ticketsData) => {
             ...camelCased,
             id: getId(camelCased),
             stops: stops.length,
-            originStation: findObjectByValue(places, 'Id', originStation),
-            destinationStation: findObjectByValue(places, 'Id', destinationStation),
-            flightCarrier: findObjectByValue(carriersList, 'Id', carriers[0]),
-            price: getPrice(itineraries, `${directionality}LegId`, id),
+            origin: findObjectByValue(placeList, 'Id', originStation),
+            destination: findObjectByValue(placeList, 'Id', destinationStation),
+            flightCarrier: findObjectByValue(carrierList, 'Id', carriers[0]),
+            price: getPrice(itineraryList, `${directionality}LegId`, id),
         };
 
         return formattedItem;

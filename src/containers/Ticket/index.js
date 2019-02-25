@@ -14,32 +14,33 @@ const cx = classNames.bind(styles);
 
 const Ticket = ({ ticket }) => {
     const {
-        originStation,
-        destinationStation,
+        origin,
+        destination,
         departure,
         arrival,
         stops,
         price,
+        flightCarrier,
     } = ticket;
 
     return (
         <div className={cx('card')}>
             <div className={cx('left')}>
                 <img
-                    src={genericLogo}
-                    alt="Airline Logo"
-                    className={cx('companyLogo')}
+                    src={flightCarrier.ImageUrl || genericLogo}
+                    alt="Carrier Logo"
+                    className={cx('carrierLogo')}
                 />
                 <BuyButton price={price} />
             </div>
             <div className={cx('right')}>
                 <Route
-                    location={originStation.Name}
+                    location={origin.Name}
                     dateString={departure}
                 />
                 <Path stops={stops} />
                 <Route
-                    location={destinationStation.Name}
+                    location={destination.Name}
                     dateString={arrival}
                 />
             </div>
