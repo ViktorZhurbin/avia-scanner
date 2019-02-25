@@ -23,6 +23,7 @@ const SearchForm = (props) => {
         onPlaceSelect,
         onDateChange,
         onResetState,
+        isLoading,
     } = props;
 
     return (
@@ -61,7 +62,7 @@ const SearchForm = (props) => {
                             </div>
                         </div>
                         <div className={cx('buttonWrapper')}>
-                            <Button>
+                            <Button isLoading={isLoading}>
                                 <div className={cx('buttonText')}>Search</div>
                             </Button>
                         </div>
@@ -85,6 +86,11 @@ SearchForm.propTypes = {
     onPlaceSelect: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
     onResetState: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool,
+};
+
+SearchForm.defaultProps = {
+    isLoading: false,
 };
 
 export default SearchForm;

@@ -1,0 +1,43 @@
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.preloader {
+    display: inline-block;
+}
+
+.wheel {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    animation: spin 1s infinite linear;
+    border-radius: 50%;
+    font: inherit;
+
+    &.color-white {
+        border: 2px solid var(--color-white);
+        border-top-color: transparent;
+        border-left-color: transparent;
+    }
+}
+
+.wheel::before {
+    visibility: hidden;
+    content: '\A0';
+}
+
+.s {
+    height: 30px;
+    width: 30px;
+}
+
+.m {
+    height: 48px;
+    width: 48px;
+}

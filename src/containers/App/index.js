@@ -53,6 +53,7 @@ class App extends React.Component {
     }
 
     fetchTickets = async (query = '') => {
+        this.setState({ isLoading: true });
         const tickets = await getFormattedTickets(query);
         const stopOptions = getUniqueByKey(tickets, 'stops');
         const selectedStops = {
@@ -65,6 +66,7 @@ class App extends React.Component {
             filteredTickets,
             stopOptions,
             selectedStops,
+            isLoading: false,
         });
     }
 
@@ -149,6 +151,7 @@ class App extends React.Component {
             filteredTickets,
             stopOptions,
             selectedStops,
+            isLoading,
         } = this.state;
 
         const hasResults = tickets.length > 0;
@@ -162,6 +165,7 @@ class App extends React.Component {
                     })}
                 >
                     <SearchForm
+                        isLoading={isLoading}
                         origin={origin}
                         destination={destination}
                         places={places}
