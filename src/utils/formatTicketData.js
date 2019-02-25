@@ -30,6 +30,15 @@ const getId = (ticket) => {
     return [originStation, departure, destinationStation, arrival].filter(item => Boolean(item)).join('-');
 };
 
+const getLocation = (places, placeId) => {
+    const firstRun = findObjectByValue(places, 'Id', placeId);
+    if (firstRun.Type === 'City') {
+        return firstRun;
+    }
+
+    return findObjectByValue(places, 'Id', firstRun.ParentId);
+};
+
 export default (ticketsData) => {
     const {
         Legs: ticketList,
@@ -55,8 +64,8 @@ export default (ticketsData) => {
             ...camelCased,
             id: getId(camelCased),
             stops: stops.length,
-            origin: findObjectByValue(placeList, 'Id', originStation),
-            destination: findObjectByValue(placeList, 'Id', destinationStation),
+            origin: getLocation(placeList, originStation),
+            destination: getLocation(placeList, destinationStation),
             flightCarrier: findObjectByValue(carrierList, 'Id', carriers[0]),
             price: getPrice(itineraryList, `${directionality}LegId`, id),
         };
