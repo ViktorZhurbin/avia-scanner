@@ -8,19 +8,27 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const BuyButton = ({ price }) => (
+const BuyButton = ({ price, link }) => (
     <div className={cx('buttonWrapper')}>
-        <Button>
-            <div className={cx('buttonText')}>
-                <div className={cx('buyText')}>Book</div>
-                <div className={cx('priceText')}>{price}</div>
-            </div>
-        </Button>
+        <a
+            className={cx('buttonLink')}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Button>
+                <div className={cx('buttonTextWrap')}>
+                    <div className={cx('buyText')}>Book</div>
+                    <div className={cx('priceText')}>{price}</div>
+                </div>
+            </Button>
+        </a>
     </div>
 );
 
 BuyButton.propTypes = {
     price: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
 };
 
 export default BuyButton;

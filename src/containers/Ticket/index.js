@@ -36,7 +36,10 @@ const Ticket = ({ ticket, locale, currency }) => {
                     alt="Carrier Logo"
                     className={cx('carrierLogo')}
                 />
-                <BuyButton price={price} />
+                <BuyButton
+                    price={price}
+                    link={offer.link}
+                />
             </div>
             <div className={cx('right')}>
                 <Route

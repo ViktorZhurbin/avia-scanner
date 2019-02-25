@@ -13,3 +13,8 @@
 .buyText {
     font-weight: 600;
 }
+
+.buttonLink {
+    text-decoration: none;
+    outline: none;
+}
