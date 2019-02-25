@@ -14,7 +14,7 @@ class DatePicker extends React.Component {
     }
 
     state = {
-        date: null,
+        date: moment().add(1, 'days'),
     }
 
     onDateChange = (date) => {
@@ -40,7 +40,7 @@ class DatePicker extends React.Component {
                 required
                 noBorder
                 placeholder="Departure"
-                showClearDate={this.state.date}
+                showClearDate={Boolean(this.state.date)}
                 showDefaultInputIcon={!this.state.date}
                 inputIconPosition={ICON_AFTER_POSITION}
                 openDirection={OPEN_UP}
