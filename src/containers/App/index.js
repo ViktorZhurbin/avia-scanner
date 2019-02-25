@@ -1,5 +1,4 @@
 import React from 'react';
-import cl from 'classnames/bind';
 import quryString from 'query-string';
 
 import SearchResults from '../SearchResults';
@@ -8,10 +7,6 @@ import SearchForm from '../SearchForm';
 import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets } from '../../utils/api';
-
-import styles from './index.css';
-
-const cx = cl.bind(styles);
 
 class App extends React.Component {
     state = {
@@ -128,7 +123,7 @@ class App extends React.Component {
         } = this.state;
 
         return (
-            <div className={cx('container')}>
+            <div>
                 <SearchForm
                     origin={origin}
                     destination={destination}

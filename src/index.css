@@ -27,16 +27,21 @@
     --color-metal-background: #eceff1;
     --color-metal-light-background: #f2fcff;
     --color-white-background: #f2f2f2;
+
+    /* Width */
+    --max-width: 1280px;
 }
 
 html,
 body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    position: relative;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
-    margin: 0;
-    min-height: 100vh;
-    min-width: 100vw;
-    position: relative;
     background-color: var(--color-white-background);
 }

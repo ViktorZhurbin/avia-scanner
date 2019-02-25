@@ -29,47 +29,49 @@ const SearchForm = (props) => {
 
     return (
         <div className={cx('container')}>
-            <NavBar />
-            <div className={cx('searchForm')}>
-                <div className={cx('headerText')}>
-                    Flights and airline tickets
+            <div className={cx('innerContainer')}>
+                <NavBar />
+                <div className={cx('searchForm')}>
+                    <div className={cx('headerText')}>
+                        Flights and airline tickets
+                    </div>
+                    <form
+                        className={cx('formContainer')}
+                        onSubmit={onSubmit}
+                        target="_self"
+                    >
+                        <div className={cx('formInput')}>
+                            <div className={cx('places')}>
+                                <PlaceSelector
+                                    isFirst
+                                    id="origin"
+                                    itemList={places}
+                                    iataCode={origin}
+                                    onSelect={onPlaceSelect}
+                                />
+                                <PlaceSelector
+                                    id="destination"
+                                    itemList={places}
+                                    iataCode={destination}
+                                    onSelect={onPlaceSelect}
+                                />
+                            </div>
+                            <div className={cx('dates')}>
+                                <DatePicker
+                                    handleChange={onDateChange}
+                                />
+                            </div>
+                        </div>
+                        <div className={cx('buttonWrapper')}>
+                            <button
+                                className={cx('submitButton')}
+                                type="submit"
+                            >
+                                Search
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <form
-                    className={cx('formContainer')}
-                    onSubmit={onSubmit}
-                    target="_self"
-                >
-                    <div className={cx('formInput')}>
-                        <div className={cx('places')}>
-                            <PlaceSelector
-                                isFirst
-                                id="origin"
-                                itemList={places}
-                                iataCode={origin}
-                                onSelect={onPlaceSelect}
-                            />
-                            <PlaceSelector
-                                id="destination"
-                                itemList={places}
-                                iataCode={destination}
-                                onSelect={onPlaceSelect}
-                            />
-                        </div>
-                        <div className={cx('dates')}>
-                            <DatePicker
-                                handleChange={onDateChange}
-                            />
-                        </div>
-                    </div>
-                    <div className={cx('buttonWrapper')}>
-                        <button
-                            className={cx('submitButton')}
-                            type="submit"
-                        >
-                            Search
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     );

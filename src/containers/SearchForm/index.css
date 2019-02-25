@@ -3,17 +3,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    background-color: var(--color-blue-white);
+}
+
+.innerContainer {
+    box-sizing: border-box;
+    padding: 0 10px;
+    margin: 0 auto;
+    width: 748px;
+    min-height: 100vh;
+    max-width: var(--max-width);
+}
+
+@media (min-width: 1024px) {
+    .innerContainer {
+        width: 1004px;
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
 }
 
 .searchForm {
     box-sizing: border-box;
-    width: 100%;
-    padding: 0 20px;
-    min-height: calc(100vh - 50px);
-    background-color: var(--color-blue-white);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-bottom: 30px;
 }
 
 .headerText {
