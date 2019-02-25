@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import BuyButton from './BuyButton';
@@ -12,7 +13,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const Ticket = ({ ticket }) => {
+const Ticket = ({ ticket, locale }) => {
     const {
         origin,
         destination,
@@ -37,11 +38,13 @@ const Ticket = ({ ticket }) => {
                 <Route
                     location={origin.Name}
                     dateString={departure}
+                    locale={locale}
                 />
                 <Path stops={stops} />
                 <Route
                     location={destination.Name}
                     dateString={arrival}
+                    locale={locale}
                 />
             </div>
         </div>
@@ -50,6 +53,7 @@ const Ticket = ({ ticket }) => {
 
 Ticket.propTypes = {
     ticket: ticketProps,
+    locale: PropTypes.string.isRequired,
 };
 
 Ticket.defaultProps = {

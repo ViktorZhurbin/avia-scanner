@@ -8,8 +8,8 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const Route = ({ dateString, location }) => {
-    const { time, date } = getFlightTimeDate(dateString);
+const Route = ({ dateString, location, locale }) => {
+    const { time, date } = getFlightTimeDate(dateString, locale);
 
     return (
         <div className={cx('flightInfo')}>
@@ -22,6 +22,7 @@ const Route = ({ dateString, location }) => {
 
 Route.propTypes = {
     location: PropTypes.string.isRequired,
+    locale: PropTypes.string.isRequired,
     dateString: PropTypes.string.isRequired,
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import moment from 'moment';
 
 import PlaceSelect from '../PlaceSelect';
 import NavBar from '../NavBar';
@@ -23,11 +22,8 @@ const SearchForm = (props) => {
         onSubmit,
         onPlaceSelect,
         onDateChange,
-        locale,
         onResetState,
     } = props;
-
-    moment.locale(locale);
 
     return (
         <div className={cx('container')}>
@@ -89,11 +85,6 @@ SearchForm.propTypes = {
     onPlaceSelect: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
     onResetState: PropTypes.func.isRequired,
-    locale: PropTypes.string,
-};
-
-SearchForm.defaultProps = {
-    locale: 'en',
 };
 
 export default SearchForm;

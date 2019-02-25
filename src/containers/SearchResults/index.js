@@ -20,6 +20,7 @@ const SearchResults = (props) => {
         selectedStops,
         onFilterByStops,
         onResetFilters,
+        locale,
     } = props;
 
     const hasFilteredTickets = tickets.length > 0 && filteredTickets.length > 0;
@@ -43,6 +44,7 @@ const SearchResults = (props) => {
                         {filteredTickets.map(ticket => (
                             <Ticket
                                 key={ticket.id}
+                                locale={locale}
                                 ticket={ticket}
                             />
                         ))}
@@ -59,6 +61,7 @@ SearchResults.propTypes = {
     selectedStops: PropTypes.objectOf(PropTypes.bool).isRequired,
     onFilterByStops: PropTypes.func.isRequired,
     onResetFilters: PropTypes.func.isRequired,
+    locale: PropTypes.string.isRequired,
 };
 
 export default SearchResults;

@@ -29,6 +29,7 @@ class App extends React.Component {
 
     componentDidMount() {
         const locale = getBrowserLocale();
+        moment.locale(locale);
         const query = window.location.search;
         this.setState({ locale }, () => {
             if (query.length > 0) {
@@ -104,13 +105,11 @@ class App extends React.Component {
             locale = null,
         } = this.state;
 
-        const userLocale = locale || getBrowserLocale();
-
         const queryObject = {
             origin,
             destination,
             departure,
-            locale: userLocale,
+            locale,
         };
 
         return qs.stringify(queryObject);
@@ -168,7 +167,6 @@ class App extends React.Component {
                         onSubmit={this.onSubmit}
                         onPlaceSelect={this.onPlaceSelect}
                         onDateChange={this.onDateChange}
-                        locale={locale}
                         onResetState={this.onResetState}
                     />
                 </div>
@@ -182,6 +180,7 @@ class App extends React.Component {
                                 selectedStops={selectedStops}
                                 onFilterByStops={this.onFilterByStops}
                                 onResetFilters={this.onResetFilters}
+                                locale={locale}
                             />
                         </div>
                     )
