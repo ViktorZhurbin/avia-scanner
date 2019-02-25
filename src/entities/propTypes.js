@@ -10,14 +10,12 @@ const mixedObject = PropTypes.objectOf(
 export default PropTypes.shape({
     arrival: PropTypes.string,
     departure: PropTypes.string,
-    carriers: PropTypes.arrayOf(
-        PropTypes.number,
-    ),
     origin: mixedObject,
     destination: mixedObject,
     directionality: PropTypes.string,
     direction: PropTypes.number,
-    flightCarrier: mixedObject,
+    carrier: mixedObject,
+    carriers: PropTypes.arrayOf(PropTypes.number),
     flightNumbers: PropTypes.arrayOf(mixedObject),
     operatingCarriers: PropTypes.arrayOf(
         PropTypes.number,
@@ -28,5 +26,8 @@ export default PropTypes.shape({
         PropTypes.number,
     ),
     stops: PropTypes.number,
-    price: PropTypes.number,
+    offer: PropTypes.shape({
+        price: PropTypes.number,
+        link: PropTypes.string,
+    }),
 });

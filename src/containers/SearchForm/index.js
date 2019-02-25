@@ -20,16 +20,21 @@ const SearchForm = (props) => {
         destination,
         places,
         onSubmit,
-        onPlaceSelect,
+        onSelect,
         onDateChange,
         onResetState,
         isLoading,
+        selectedCurrency,
     } = props;
 
     return (
         <div className={cx('container')}>
             <div className={cx('innerContainer')}>
-                <NavBar onResetState={onResetState} />
+                <NavBar
+                    onResetState={onResetState}
+                    onCurrencySelect={onSelect}
+                    selectedCurrency={selectedCurrency}
+                />
                 <div className={cx('searchForm')}>
                     <div className={cx('headerText')}>
                         Flights and airline tickets
@@ -46,13 +51,13 @@ const SearchForm = (props) => {
                                     id="origin"
                                     itemList={places}
                                     iataCode={origin}
-                                    onSelect={onPlaceSelect}
+                                    onSelect={onSelect}
                                 />
                                 <PlaceSelect
                                     id="destination"
                                     itemList={places}
                                     iataCode={destination}
-                                    onSelect={onPlaceSelect}
+                                    onSelect={onSelect}
                                 />
                             </div>
                             <div className={cx('dates')}>
@@ -83,14 +88,16 @@ SearchForm.propTypes = {
         }),
     ).isRequired,
     onSubmit: PropTypes.func.isRequired,
-    onPlaceSelect: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
     onResetState: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
+    selectedCurrency: PropTypes.string,
 };
 
 SearchForm.defaultProps = {
     isLoading: false,
+    selectedCurrency: null,
 };
 
 export default SearchForm;

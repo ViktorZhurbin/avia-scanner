@@ -21,6 +21,7 @@ const SearchResults = (props) => {
         onFilterByStops,
         onResetFilters,
         locale,
+        currency,
     } = props;
 
     const hasFilteredTickets = tickets.length > 0 && filteredTickets.length > 0;
@@ -45,6 +46,7 @@ const SearchResults = (props) => {
                             <Ticket
                                 key={ticket.id}
                                 locale={locale}
+                                currency={currency}
                                 ticket={ticket}
                             />
                         ))}
@@ -62,6 +64,7 @@ SearchResults.propTypes = {
     onFilterByStops: PropTypes.func.isRequired,
     onResetFilters: PropTypes.func.isRequired,
     locale: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
 };
 
 export default SearchResults;

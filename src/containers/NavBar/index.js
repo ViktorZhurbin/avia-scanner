@@ -18,12 +18,21 @@ const NavBar = props => (
         >
             <Logo />
         </div>
-        <CurrencySelect />
+        <CurrencySelect
+            selectedCurrency={props.selectedCurrency}
+            onSelect={props.onCurrencySelect}
+        />
     </div>
 );
 
 NavBar.propTypes = {
     onResetState: PropTypes.func.isRequired,
+    onCurrencySelect: PropTypes.func.isRequired,
+    selectedCurrency: PropTypes.string,
+};
+
+NavBar.defaultProps = {
+    selectedCurrency: null,
 };
 
 export default NavBar;

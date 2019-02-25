@@ -10,10 +10,10 @@ export const getFlightTimeDate = (dateString, locale) => {
     };
 };
 
-export const formatPrice = (price) => {
-    const formatter = new Intl.NumberFormat('en-US', {
+export const formatPrice = (price, currencyCode, locale) => {
+    const formatter = new Intl.NumberFormat(locale, {
         style: 'currency',
-        currency: 'USD',
+        currency: currencyCode,
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
     });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Dropdown from '../../components/Dropdown';
@@ -10,15 +11,17 @@ import { currencyList } from '../../constants/mockData';
 const cx = cl.bind(styles);
 
 class CurrencySelect extends React.Component {
-    state = {
-        selectedCurrency: 'USD',
+    static propTypes = {
+        onSelect: PropTypes.func.isRequired,
+        selectedCurrency: PropTypes.string,
     }
 
+    static defaultProps = {
+        selectedCurrency: null,
+    }
 
     onCurrencySelect = (currencyCode) => {
-        this.setState({
-            selectedCurrency: currencyCode,
-        });
+        this.props.onSelect(currencyCode, 'currency');
     }
 
     handleKeyPress = (event, currencyCode) => {
@@ -28,7 +31,7 @@ class CurrencySelect extends React.Component {
     }
 
     renderDropdown = () => {
-        const { selectedCurrency } = this.state;
+        const { selectedCurrency } = this.props;
 
         return (
             <div className={cx('currencyList')}>
@@ -53,7 +56,7 @@ class CurrencySelect extends React.Component {
     }
 
     renderTrigger = () => {
-        const { selectedCurrency } = this.state;
+        const { selectedCurrency } = this.props;
 
         return (
             <div className={cx('triggerContainer')}>

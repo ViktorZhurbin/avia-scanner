@@ -6,30 +6,33 @@ import BuyButton from './BuyButton';
 import Route from './Route';
 import Path from './Path';
 
-import ticketProps from '../../entities/propTypes';
+import { formatPrice } from '../../utils/string';
+import ticketPropType from '../../entities/propTypes';
 import genericLogo from '../../assets/generic-logo.png';
 
 import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const Ticket = ({ ticket, locale }) => {
+const Ticket = ({ ticket, locale, currency }) => {
     const {
         origin,
         destination,
         departure,
         arrival,
         // stops,
-        price,
-        flightCarrier,
+        offer,
+        carrier,
         duration,
     } = ticket;
+
+    const price = formatPrice(offer.price, currency, locale);
 
     return (
         <div className={cx('card')}>
             <div className={cx('left')}>
                 <img
-                    src={flightCarrier.ImageUrl || genericLogo}
+                    src={carrier.ImageUrl || genericLogo}
                     alt="Carrier Logo"
                     className={cx('carrierLogo')}
                 />
@@ -53,12 +56,11 @@ const Ticket = ({ ticket, locale }) => {
 };
 
 Ticket.propTypes = {
-    ticket: ticketProps,
+    ticket: ticketPropType.isRequired,
     locale: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
 };
 
-Ticket.defaultProps = {
-    ticket: null,
-};
+Ticket.defaultProps = {};
 
 export default Ticket;

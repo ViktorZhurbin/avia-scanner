@@ -4,6 +4,7 @@ import {
     sortBy,
     uniqBy,
     filter,
+    // find,
 } from 'lodash';
 
 const findObjectByValue = (array, searchKey, inputValue) => (
@@ -15,8 +16,9 @@ const getPrice = (arr, searchKey, inputValue) => {
 
     const options = obj && obj.PricingOptions[0];
     const price = options ? options.Price : null;
+    const link = options ? options.DeeplinkUrl : null;
 
-    return price;
+    return { price, link };
 };
 
 const getId = (ticket) => {
@@ -66,15 +68,15 @@ export default (ticketsData) => {
             stops: stops.length,
             origin: getLocation(placeList, originStation),
             destination: getLocation(placeList, destinationStation),
-            flightCarrier: findObjectByValue(carrierList, 'Id', carriers[0]),
-            price: getPrice(itineraryList, `${directionality}LegId`, id),
+            carrier: findObjectByValue(carrierList, 'Id', carriers[0]),
+            offer: getPrice(itineraryList, `${directionality}LegId`, id),
         };
 
         return formattedItem;
     });
 
-    const filtered = filter(formatted, item => item.price > 0);
-    const sorted = sortBy(filtered, ['price']);
+    const filtered = filter(formatted, ({ offer }) => offer.price > 0);
+    const sorted = sortBy(filtered, ({ offer }) => offer.price);
     const unique = uniqBy(sorted, 'id');
 
     return unique;

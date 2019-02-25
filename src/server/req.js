@@ -21,6 +21,7 @@ module.exports = {
             destination = 'LHR',
             departure = today,
             locale = 'en-US',
+            currency = 'USD',
         } = req.query;
 
         const [, country] = locale.split('-');
@@ -29,7 +30,7 @@ module.exports = {
             .header('X-RapidAPI-Key', apiKey)
             .header('Content-Type', 'application/x-www-form-urlencoded')
             .send(`country=${country}`)
-            .send('currency=USD')
+            .send(`currency=${currency}`)
             .send(`locale=${locale}`)
             .send(`originPlace=${origin}-sky`)
             .send(`destinationPlace=${destination}-sky`)

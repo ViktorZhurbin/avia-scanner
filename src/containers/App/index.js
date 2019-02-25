@@ -2,6 +2,7 @@ import React from 'react';
 import qs from 'query-string';
 import cl from 'classnames/bind';
 import moment from 'moment';
+import localeCurrency from 'locale-currency';
 
 import SearchResults from '../SearchResults';
 import SearchForm from '../SearchForm';
@@ -25,13 +26,15 @@ class App extends React.Component {
         stopOptions: [],
         selectedStops: {},
         locale: null,
+        currency: null,
     }
 
     componentDidMount() {
         const locale = getBrowserLocale();
         moment.locale(locale);
+        const currency = localeCurrency.getCurrency(locale);
         const query = window.location.search;
-        this.setState({ locale }, () => {
+        this.setState({ locale, currency }, () => {
             if (query.length > 0) {
                 const queryObject = qs.parse(query);
                 this.setState({ ...queryObject }, () => {
@@ -94,9 +97,9 @@ class App extends React.Component {
         });
     }
 
-    onPlaceSelect = (code, id) => {
+    onSelect = (code, key) => {
         this.setState({
-            [id]: code,
+            [key]: code,
         });
     }
 
@@ -106,6 +109,7 @@ class App extends React.Component {
             destination = null,
             departure = null,
             locale = null,
+            currency = null,
         } = this.state;
 
         const queryObject = {
@@ -113,6 +117,7 @@ class App extends React.Component {
             destination,
             departure,
             locale,
+            currency,
         };
 
         return qs.stringify(queryObject);
@@ -152,6 +157,7 @@ class App extends React.Component {
             stopOptions,
             selectedStops,
             isLoading,
+            currency,
         } = this.state;
 
         const hasResults = tickets.length > 0;
@@ -170,9 +176,10 @@ class App extends React.Component {
                         destination={destination}
                         places={places}
                         onSubmit={this.onSubmit}
-                        onPlaceSelect={this.onPlaceSelect}
+                        onSelect={this.onSelect}
                         onDateChange={this.onDateChange}
                         onResetState={this.onResetState}
+                        selectedCurrency={currency}
                     />
                 </div>
                 {hasResults
@@ -186,6 +193,7 @@ class App extends React.Component {
                                 onFilterByStops={this.onFilterByStops}
                                 onResetFilters={this.onResetFilters}
                                 locale={locale}
+                                currency={currency}
                             />
                         </div>
                     )
