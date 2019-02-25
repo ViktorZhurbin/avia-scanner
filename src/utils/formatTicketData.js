@@ -21,13 +21,13 @@ const getPrice = (arr, searchKey, inputValue) => {
 
 const getId = (ticket) => {
     const {
-        origin,
+        originStation,
         departure,
-        destination,
+        destinationStation,
         arrival,
     } = ticket;
 
-    return [origin, departure, destination, arrival].join('-');
+    return [originStation, departure, destinationStation, arrival].filter(item => Boolean(item)).join('-');
 };
 
 export default (ticketsData) => {
@@ -37,7 +37,7 @@ export default (ticketsData) => {
         Carriers: carrierList,
         Itineraries: itineraryList,
     } = ticketsData;
-    const ticketsSlice = ticketList.slice(0, 20);
+    const ticketsSlice = ticketList.slice(0, 30);
     const formatted = ticketsSlice.map((item) => {
         const camelCased = mapKeys(item, (value, key) => camelCase(key));
         const {

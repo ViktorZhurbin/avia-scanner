@@ -20,3 +20,13 @@ export const formatPrice = (price) => {
 
     return formatter.format(price);
 };
+
+export const getDuration = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const min = minutes % 60;
+    const format = (num, str) => (
+        num > 0 ? `${num}${str}` : ''
+    );
+
+    return `${format(hours, 'h ')}${format(min, 'm')}`;
+};

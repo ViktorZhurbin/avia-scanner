@@ -35,7 +35,8 @@ class App extends React.Component {
             if (query.length > 0) {
                 const queryObject = qs.parse(query);
                 this.setState({ ...queryObject }, () => {
-                    this.fetchTickets(query);
+                    // this.fetchTickets(query);
+                    this.fetchTickets();
                 });
             }
         });

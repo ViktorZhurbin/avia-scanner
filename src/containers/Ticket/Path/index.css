@@ -1,9 +1,7 @@
-.connections {
-    font: var(--p4);
+.duration {
+    font: var(--p3);
     text-align: center;
     color: var(--color-metal);
-    text-transform: uppercase;
-    padding-bottom: 7px;
 }
 
 .bottom {

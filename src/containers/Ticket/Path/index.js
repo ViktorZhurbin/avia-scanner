@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import SVGInline from 'react-svg-inline';
 import cl from 'classnames/bind';
 
-import { inflectStopsEn } from '../../../utils/inflection';
+import { getDuration } from '../../../utils/string';
 import planeSVG from '../../../assets/plane.svg';
 
 import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const Path = ({ stops }) => (
+const Path = ({ duration }) => (
     <div className={cx('container')}>
-        {stops === 0
+        {!duration
             ? null
             : (
-                <div className={cx('connections')}>
-                    {inflectStopsEn(stops)}
+                <div className={cx('duration')}>
+                    {getDuration(duration)}
                 </div>
             )}
         <div className={cx('bottom')}>
@@ -27,7 +27,7 @@ const Path = ({ stops }) => (
 );
 
 Path.propTypes = {
-    stops: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired,
 };
 
 export default Path;

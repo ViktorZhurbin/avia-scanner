@@ -19,9 +19,10 @@ const Ticket = ({ ticket, locale }) => {
         destination,
         departure,
         arrival,
-        stops,
+        // stops,
         price,
         flightCarrier,
+        duration,
     } = ticket;
 
     return (
@@ -40,7 +41,7 @@ const Ticket = ({ ticket, locale }) => {
                     dateString={departure}
                     locale={locale}
                 />
-                <Path stops={stops} />
+                <Path duration={duration} />
                 <Route
                     location={destination.Name}
                     dateString={arrival}
