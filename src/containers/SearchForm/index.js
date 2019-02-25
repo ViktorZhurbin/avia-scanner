@@ -4,8 +4,9 @@ import cl from 'classnames/bind';
 import moment from 'moment';
 
 import PlaceSelect from '../PlaceSelect';
-import DatePicker from '../../components/DatePicker';
 import NavBar from '../NavBar';
+import DatePicker from '../../components/DatePicker';
+import Button from '../../components/Button';
 
 import styles from './index.css';
 
@@ -64,12 +65,9 @@ const SearchForm = (props) => {
                             </div>
                         </div>
                         <div className={cx('buttonWrapper')}>
-                            <button
-                                className={cx('submitButton')}
-                                type="submit"
-                            >
-                                Search
-                            </button>
+                            <Button>
+                                <div className={cx('buttonText')}>Search</div>
+                            </Button>
                         </div>
                     </form>
                 </div>

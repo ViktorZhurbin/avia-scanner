@@ -1,31 +1,15 @@
-.button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.buttonWrapper {
     width: 100%;
     max-width: 165px;
     height: 48px;
-    border-radius: 5px;
-    font: var(--p1);
-    text-align: center;
-    color: var(--color-white);
-    user-select: none;
-    cursor: pointer;
-    background-color: var(--color-orange);
-    box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 1px 0 rgba(0, 0, 0, 0.1);
-
-    &:hover {
-        border-bottom-color: transparent;
-        background-color: #ffa353;
-        transition: all 0.3s;
-    }
 }
 
-.buttonText,
-.buttonPrice {
+.buyText,
+.priceText {
     margin: 0 auto;
+    font: var(--p1);
 }
 
-.buttonText {
+.buyText {
     font-weight: 600;
 }

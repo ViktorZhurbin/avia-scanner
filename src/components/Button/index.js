@@ -7,7 +7,6 @@ import styles from './index.css';
 const cx = cl.bind(styles);
 
 const Button = ({ children, onClick }) => (
-    // eslint-disable-next-line
     <button
         className={cx('button')}
         type="submit"
@@ -18,8 +17,15 @@ const Button = ({ children, onClick }) => (
 );
 
 Button.propTypes = {
-    children: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+    ]).isRequired,
+    onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+    onClick: () => null,
 };
 
 export default Button;

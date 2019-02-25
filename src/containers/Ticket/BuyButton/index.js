@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import { formatPrice } from '../../../utils/string';
+import Button from '../../../components/Button';
 
 import styles from './index.css';
 
 const cx = cl.bind(styles);
 
 const BuyButton = ({ price }) => (
-    <div className={cx('button')}>
-        <div className={cx('buttonText')}>Book</div>
-        <div className={cx('buttonPrice')}>{`${formatPrice(price)}`}</div>
+    <div className={cx('buttonWrapper')}>
+        <Button>
+            <div className={cx('buttonText')}>
+                <div className={cx('buyText')}>Book</div>
+                <div className={cx('priceText')}>{`${formatPrice(price)}`}</div>
+            </div>
+        </Button>
     </div>
 );
 
