@@ -24,6 +24,13 @@ class App extends React.Component {
         selectedStops: {},
     }
 
+    componentDidMount() {
+        const query = window.location.search;
+        if (query.length > 0) {
+            this.fetchTickets(query);
+        }
+    }
+
     fetchTickets = async (query = '') => {
         const tickets = await getFormattedTickets(query);
         const stopOptions = getUniqueByKey(tickets, 'stops');

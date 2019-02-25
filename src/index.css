@@ -3,6 +3,7 @@
 :root {
     /* Headers */
     --h1: 500 36px/50px 'Open Sans', sans-serif;
+    --h4: 500 22px 'Open Sans', sans-serif;
 
     /* Paragraph text */
     --p1: 16px 'Open Sans', sans-serif;
@@ -18,7 +19,7 @@
     --color-blue: #2196f3;
     --color-blue-white: #49aaf6;
     --color-blue-link: #00b1df;
-    --color-orange: #ff6d00;
+    --color-orange: #f57c00;
     --color-orange-dark: #d64d08;
     --color-blue-light-background: #e5f9ff;
     --color-grey-light-background: #f3f7fa;

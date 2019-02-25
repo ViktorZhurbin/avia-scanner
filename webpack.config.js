@@ -30,7 +30,7 @@ module.exports = (env, argv) => ({
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
+                exclude: /(node_modules|custom)/,
                 use: [
                     {
                         loader: 'style-loader',
@@ -49,7 +49,7 @@ module.exports = (env, argv) => ({
                 ],
             },
             {
-                test: /_datepicker.css$/,
+                test: /(_datepicker.css|datepickerOverrides.css)$/,
                 use: [
                     {
                         loader: 'style-loader',

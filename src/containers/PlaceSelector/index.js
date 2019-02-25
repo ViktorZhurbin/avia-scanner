@@ -16,6 +16,11 @@ class PlaceSelector extends React.Component {
         ).isRequired,
         onSelect: PropTypes.func.isRequired,
         iataCode: PropTypes.string.isRequired,
+        isFirst: PropTypes.bool,
+    }
+
+    static defaultProps = {
+        isFirst: false,
     }
 
     handleSelect = (iataCode) => {
@@ -49,13 +54,20 @@ class PlaceSelector extends React.Component {
     );
 
     renderTrigger = () => {
-        const { iataCode, itemList } = this.props;
+        const { iataCode, itemList, isFirst } = this.props;
 
         const selectedItem = itemList.find(item => item.code === iataCode);
 
         return (
-            <div className={cx('triggerContainer')}>
-                <span className={cx('triggerText')}>{selectedItem.name}</span>
+            <div
+                className={cx({
+                    triggerContainer: true,
+                    isFirst,
+                })}
+            >
+                <div className={cx('triggerText')}>
+                    {selectedItem.name}
+                </div>
             </div>
         );
     }

@@ -1,24 +1,41 @@
+:root {
+    --width: 152px;
+    --height: 46px;
+}
+
 .triggerContainer {
+    min-height: var(--height);
+    min-width: var(--width);
     display: inline-block;
     box-sizing: border-box;
-    border: 1px solid var(--color-metal);
     background-color: var(--color-white);
+    margin-right: 2px;
     cursor: pointer;
 
-    &:hover {
-        background-color: hsla(0, 0%, 88%, 0.2);
+    &.isFirst {
+        border-radius: 5px 0 0 5px;
+        padding-left: 2px;
     }
 }
 
 .triggerText {
-    font: var(--p2);
-    line-height: 35px;
-    padding: 0 20px;
+    font: 200 19px/24px 'Arial', sans-serif;
+    color: #484848;
+    margin: 0;
+    padding: 11px 11px 9px;
+    text-align: start;
+    user-select: none;
 }
 
 .itemList {
-    padding: 0;
+    position: absolute;
+    top: 49px;
+    right: 2px;
     margin: 0;
+    width: var(--width);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 15px 0;
+    background: white;
 }
 
 .item {
@@ -28,6 +45,7 @@
     text-align: left;
     cursor: pointer;
     padding: 0 15px;
+    outline: none;
 
     &:hover {
         background-color: var(--color-blue-light-background);

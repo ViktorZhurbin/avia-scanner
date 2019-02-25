@@ -42,20 +42,19 @@
 }
 
 .submitButton {
-    --height: 46px;
-
     border: 0;
     box-sizing: border-box;
     display: block;
     text-align: center;
-    width: 170px;
-    height: var(--height);
+    width: 274px;
+    height: 59px;
     background: var(--color-orange);
-    border-radius: var(--height);
+    border-radius: 5px;
     color: var(--color-white);
-    font: var(--p1);
+    font: var(--h4);
     cursor: pointer;
     user-select: none;
+    box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 6px 0 rgba(0, 0, 0, 0.15);
 
     &:hover {
         background-color: #ff8124;

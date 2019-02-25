@@ -8,8 +8,18 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-export default () => (
-    <div className={cx('container')}>
+const onClick = () => {
+    window.history.pushState('', '', '/');
+};
+
+const Logo = () => (
+    // eslint-disable-next-line
+    < div
+        className={cx('container')}
+        onClick={onClick}
+    >
         <SVGInline svg={logoSVG} />
     </div>
 );
+
+export default Logo;
