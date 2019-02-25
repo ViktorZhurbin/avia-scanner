@@ -1,5 +1,5 @@
 import React from 'react';
-import quryString from 'query-string';
+import qs from 'query-string';
 import cl from 'classnames/bind';
 import moment from 'moment';
 
@@ -29,11 +29,15 @@ class App extends React.Component {
 
     componentDidMount() {
         const locale = getBrowserLocale();
-        this.setState({ locale });
         const query = window.location.search;
-        if (query.length > 0) {
-            this.fetchTickets(query);
-        }
+        this.setState({ locale }, () => {
+            if (query.length > 0) {
+                const queryObject = qs.parse(query);
+                this.setState({ ...queryObject }, () => {
+                    this.fetchTickets(query);
+                });
+            }
+        });
     }
 
     onResetState = () => {
@@ -109,7 +113,7 @@ class App extends React.Component {
             locale: userLocale,
         };
 
-        return quryString.stringify(queryObject);
+        return qs.stringify(queryObject);
     };
 
     onFilterByStops = (newSelectedStops) => {
