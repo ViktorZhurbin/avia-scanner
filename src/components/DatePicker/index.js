@@ -4,10 +4,6 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import { ICON_AFTER_POSITION, OPEN_UP } from 'react-dates/constants';
 
-const formatDate = date => (
-    moment(date).format('YYYY-MM-DD')
-);
-
 class DatePicker extends React.Component {
     static propTypes = {
         handleChange: PropTypes.func.isRequired,
@@ -17,6 +13,25 @@ class DatePicker extends React.Component {
         date: moment().add(1, 'days'),
     }
 
+    componentDidMount() {
+        const { date } = this.state;
+        const { handleChange } = this.props;
+
+        if (date) {
+            handleChange('departure', date);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { date } = this.state;
+        const { handleChange } = this.props;
+
+        console.log('did');
+        if (prevState.date !== date) {
+            handleChange('departure', date);
+        }
+    }
+
     onDateChange = (date) => {
         const { handleChange } = this.props;
 
@@ -24,7 +39,7 @@ class DatePicker extends React.Component {
             date,
         }, () => {
             if (date) {
-                handleChange(formatDate(date));
+                handleChange('departure', date);
             }
         });
     }

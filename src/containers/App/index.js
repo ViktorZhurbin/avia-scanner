@@ -1,6 +1,7 @@
 import React from 'react';
 import quryString from 'query-string';
 import cl from 'classnames/bind';
+import moment from 'moment';
 
 import SearchResults from '../SearchResults';
 import SearchForm from '../SearchForm';
@@ -75,13 +76,14 @@ class App extends React.Component {
         });
     };
 
-    onDateChange = (departure) => {
-        if (departure) {
+    onDateChange = (key, date) => {
+        const dateString = date
+            ? moment(date).format('YYYY-MM-DD')
+            : null;
             this.setState({
-                departure,
+            [key]: dateString,
             });
         }
-    }
 
     onPlaceSelect = (code, id) => {
         this.setState({
