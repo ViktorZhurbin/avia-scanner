@@ -7,11 +7,12 @@ body {
     height: 305px;
     transition: height 1s cubic-bezier(0.23, 1, 0.32, 1);
 
-    &.only {
+    &.formOnly {
         height: 100vh;
     }
 }
 
 .results {
     padding-top: 20px;
+    overflow: auto;
 }

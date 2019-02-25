@@ -147,7 +147,7 @@ class App extends React.Component {
                 <div
                     className={cx({
                         form: true,
-                        only: !hasResults,
+                        formOnly: !hasResults,
                     })}
                 >
                     <SearchForm
@@ -161,9 +161,9 @@ class App extends React.Component {
                         onResetState={this.onResetState}
                     />
                 </div>
-                <div className={cx('results')}>
-                    {hasResults
-                        ? (
+                {hasResults
+                    ? (
+                        <div className={cx('results')}>
                             <SearchResults
                                 tickets={tickets}
                                 filteredTickets={filteredTickets}
@@ -172,9 +172,9 @@ class App extends React.Component {
                                 onFilterByStops={this.onFilterByStops}
                                 onResetFilters={this.onResetFilters}
                             />
-                        )
-                        : null}
-                </div>
+                        </div>
+                    )
+                    : null}
             </div>
         );
     }
