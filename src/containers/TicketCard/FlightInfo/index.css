@@ -1,3 +1,7 @@
+.flightInfo {
+    width: 105px;
+}
+
 .flightInfo:first-child {
     text-align: left;
 }
@@ -9,16 +13,14 @@
 .time {
     font: var(--h3);
     color: var(--color-twilight);
-    margin-bottom: 10px;
 }
 
-.location {
-    font: var(--p3);
-    font-weight: 600;
-    color: var(--color-metal);
-}
-
+.location,
 .date {
     font: var(--p3);
     color: var(--color-metal);
+}
+
+.location {
+    font-weight: 600;
 }

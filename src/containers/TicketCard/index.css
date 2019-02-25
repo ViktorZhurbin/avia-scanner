@@ -1,7 +1,7 @@
 .card {
     width: 100%;
     min-width: 565px;
-    height: 161px;
+    height: 140px;
     box-sizing: border-box;
     display: flex;
     border-radius: 5px;
@@ -19,22 +19,21 @@
 }
 
 .left {
-    width: 200px;
+    width: 206px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-right: 1px solid var(--color-metal-background);
-    padding: 25px 20px;
 }
 
 .right {
     width: 365px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
-    padding: 25px 25px 0;
+    padding: 12px 20px 15px;
 }
 
 .companyLogo {

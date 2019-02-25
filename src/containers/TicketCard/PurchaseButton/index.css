@@ -4,18 +4,20 @@
     justify-content: center;
     background-color: var(--color-orange);
     width: 100%;
-    max-width: 160px;
-    height: 56px;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1), 0 1px 0 var(--color-orange-dark);
+    max-width: 165px;
+    height: 48px;
+    box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 1px 0 rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font: var(--p1);
     text-align: center;
     color: var(--color-white);
     user-select: none;
+    cursor: pointer;
 
     &:hover {
-        background-color: #ff8124;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25), 0 1px 0 #f7661d;
+        border-bottom-color: transparent;
+        background-color: #ffa353;
+        transition: all 0.3s;
     }
 }
 

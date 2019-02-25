@@ -48,7 +48,7 @@ class FilterGroup extends React.Component {
             stopOptions
                 ? (
                     <div className={cx('container')}>
-                        <div className={cx('title')}>Number of stopOptions</div>
+                        <div className={cx('title')}>Number of stops</div>
                         <div className={cx('filters')}>
                             <Checkbox
                                 className={cx('filterItem')}

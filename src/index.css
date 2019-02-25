@@ -7,7 +7,7 @@
     --h4: 500 22px 'Open Sans', sans-serif;
 
     /* Paragraph text */
-    --p1: 16px 'Open Sans', sans-serif;
+    --p1: 16px/22px 'Open Sans', sans-serif;
     --p2: 14px 'Open Sans', sans-serif;
     --p3: 12px/18px 'Open Sans', sans-serif;
     --p4: 10px 'Open Sans', sans-serif;
@@ -21,12 +21,12 @@
     --color-blue-white: #49aaf6;
     --color-blue-link: #00b1df;
     --color-orange: #f57c00;
-    --color-orange-dark: #d64d08;
+    --color-orange-dark: #ed7a18;
     --color-blue-light-background: #e5f9ff;
+    --color-metal-background: #e4e7e8;
+    --color-white-background: #eff1f4;
     --color-grey-light-background: #f3f7fa;
-    --color-metal-background: #eceff1;
     --color-metal-light-background: #f2fcff;
-    --color-white-background: #f2f2f2;
 
     /* Width */
     --max-width: 1280px;
@@ -43,5 +43,4 @@ body {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
-    background-color: var(--color-white-background);
 }
