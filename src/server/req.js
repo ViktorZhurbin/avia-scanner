@@ -20,14 +20,17 @@ module.exports = {
             origin = 'SVO',
             destination = 'LHR',
             departure = today,
+            locale = 'en-US',
         } = req.query;
+
+        const [, country] = locale.split('-');
 
         unirest.post(`${baseUrl}/v1.0`)
             .header('X-RapidAPI-Key', apiKey)
             .header('Content-Type', 'application/x-www-form-urlencoded')
-            .send('country=US')
+            .send(`country=${country}`)
             .send('currency=USD')
-            .send('locale=en-US')
+            .send(`locale=${locale}`)
             .send(`originPlace=${origin}-sky`)
             .send(`destinationPlace=${destination}-sky`)
             .send(`outboundDate=${departure}`)

@@ -9,6 +9,7 @@ import SearchForm from '../SearchForm';
 import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets } from '../../utils/api';
+import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
 
@@ -23,21 +24,21 @@ class App extends React.Component {
         filteredTickets: [],
         stopOptions: [],
         selectedStops: {},
+        locale: null,
     }
 
     componentDidMount() {
+        const locale = getBrowserLocale();
+        this.setState({ locale });
         const query = window.location.search;
         if (query.length > 0) {
-            this.fetchTickets();
+            this.fetchTickets(query);
         }
     }
 
     onResetState = () => {
         window.history.pushState('', '', '/');
         this.setState({
-            origin: places[0].code,
-            destination: places[1].code,
-            departure: null,
             tickets: [],
             filteredTickets: [],
             stopOptions: [],
@@ -61,11 +62,11 @@ class App extends React.Component {
         });
     }
 
-    onSubmit = async (event) => {
+    onSubmit = (event) => {
         event.preventDefault();
         const query = this.getSearchQuery();
         window.history.pushState(query, '', `search?${query}`);
-        this.fetchTickets();
+        this.fetchTickets(query);
     };
 
     onInputChange = (event) => {
@@ -80,10 +81,10 @@ class App extends React.Component {
         const dateString = date
             ? moment(date).format('YYYY-MM-DD')
             : null;
-            this.setState({
+        this.setState({
             [key]: dateString,
-            });
-        }
+        });
+    }
 
     onPlaceSelect = (code, id) => {
         this.setState({
@@ -96,12 +97,16 @@ class App extends React.Component {
             origin = null,
             destination = null,
             departure = null,
+            locale = null,
         } = this.state;
+
+        const userLocale = locale || getBrowserLocale();
 
         const queryObject = {
             origin,
             destination,
             departure,
+            locale: userLocale,
         };
 
         return quryString.stringify(queryObject);

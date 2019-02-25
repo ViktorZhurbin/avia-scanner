@@ -26,7 +26,6 @@ class DatePicker extends React.Component {
         const { date } = this.state;
         const { handleChange } = this.props;
 
-        console.log('did');
         if (prevState.date !== date) {
             handleChange('departure', date);
         }
