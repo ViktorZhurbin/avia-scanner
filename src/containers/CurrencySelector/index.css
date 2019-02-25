@@ -1,24 +1,42 @@
+:root {
+    --color: rgba(255, 255, 255, 0.7);
+}
+
 .triggerContainer {
     display: inline-block;
     box-sizing: border-box;
-    border: 1px solid var(--color-metal);
+    border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 100px;
     cursor: pointer;
+    min-width: 66px;
+    min-height: 34px;
 
     &:hover {
+        color: #fff;
+        text-decoration: none;
         background-color: hsla(0, 0%, 88%, 0.2);
     }
 }
 
 .triggerText {
     font: var(--p2);
+    color: var(--color-white);
     line-height: 35px;
+    text-align: center;
     padding: 0 20px;
+    text-transform: uppercase;
 }
 
 .currencyList {
-    padding: 0;
-    margin: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    width: var(--width);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 15px 0;
+    background: white;
+    border-radius: 5px;
 }
 
 .currencyItem {
@@ -27,16 +45,16 @@
     line-height: 35px;
     text-align: left;
     cursor: pointer;
-    padding: 0 15px;
+    padding: 0 20px;
+    color: var(--color-twilight);
+
+    &.isSelected {
+        color: var(--color-blue);
+    }
 }
 
 .currencyItem:hover {
     background-color: var(--color-blue-light-background);
-}
-
-.code,
-.name {
-    color: var(--color-twilight);
 }
 
 .code {

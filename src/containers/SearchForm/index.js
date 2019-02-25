@@ -10,6 +10,7 @@ import NavBar from '../NavBar';
 import styles from './index.css';
 
 import 'react-dates/lib/css/_datepicker.css';
+import '../../custom/datepickerOverrides.css';
 
 const cx = cl.bind(styles);
 
@@ -40,22 +41,16 @@ const SearchForm = (props) => {
                 >
                     <div className={cx('formInput')}>
                         <div className={cx('places')}>
-                            <div className={cx('placeItem')}>
+                            {[origin, destination].map((item, index) => (
                                 <PlaceSelector
-                                    id="origin"
+                                    key={item}
+                                    isFirst={index === 0}
+                                    id={item}
                                     itemList={places}
-                                    iataCode={origin}
+                                    iataCode={item}
                                     onSelect={onPlaceSelect}
                                 />
-                            </div>
-                            <div className={cx('placeItem')}>
-                                <PlaceSelector
-                                    id="destination"
-                                    itemList={places}
-                                    iataCode={destination}
-                                    onSelect={onPlaceSelect}
-                                />
-                            </div>
+                            ))}
                         </div>
                         <div className={cx('dates')}>
                             <DatePicker

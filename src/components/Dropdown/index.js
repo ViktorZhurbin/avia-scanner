@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
+import ReactOutsideEvent from 'react-outside-event';
 import cl from 'classnames/bind';
 
 import styles from './index.css';
@@ -22,6 +23,12 @@ class Dropdown extends React.Component {
 
         this.setState(() => ({
             isOpen: !isOpen,
+        }));
+    }
+
+    onOutsideEvent = () => {
+        this.setState(() => ({
+            isOpen: false,
         }));
     }
 
@@ -77,4 +84,4 @@ class Dropdown extends React.Component {
     }
 }
 
-export default Dropdown;
+export default ReactOutsideEvent(Dropdown, ['click']);

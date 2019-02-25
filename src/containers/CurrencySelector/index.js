@@ -28,14 +28,17 @@ class CurrencySelector extends React.Component {
     }
 
     renderDropdown = () => {
-        const list = currencyList;
+        const { selectedCurrency } = this.state;
 
         return (
             <div className={cx('currencyList')}>
-                {list.map(({ code, name }, index) => (
+                {currencyList.map(({ code, name }, index) => (
                     <div
                         key={code}
-                        className={cx('currencyItem')}
+                        className={cx({
+                            currencyItem: true,
+                            isSelected: code === selectedCurrency,
+                        })}
                         role="button"
                         tabIndex={index + 1}
                         onKeyPress={() => this.handleKeyPress(code)}
