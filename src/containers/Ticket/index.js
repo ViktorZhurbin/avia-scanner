@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import Button from './PurchaseButton';
-import FlightInfo from './FlightInfo';
-import Stops from './Stops';
+import BuyButton from './BuyButton';
+import Route from './Route';
+import Path from './Path';
 
 import ticketProps from '../../entities/propTypes';
 import genericLogo from '../../assets/generic-logo.png';
@@ -13,7 +13,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const TicketCard = ({ ticket, onFilterReset }) => {
+const Ticket = ({ ticket, onFilterReset }) => {
     if (!ticket) {
         return (
             <div className={cx(['card', 'empty'])}>
@@ -51,15 +51,15 @@ const TicketCard = ({ ticket, onFilterReset }) => {
                     alt="Airline Logo"
                     className={cx('companyLogo')}
                 />
-                <Button price={price} />
+                <BuyButton price={price} />
             </div>
             <div className={cx('right')}>
-                <FlightInfo
+                <Route
                     location={originStation.Name}
                     dateString={departure}
                 />
-                <Stops stops={stops} />
-                <FlightInfo
+                <Path stops={stops} />
+                <Route
                     location={destinationStation.Name}
                     dateString={arrival}
                 />
@@ -68,14 +68,14 @@ const TicketCard = ({ ticket, onFilterReset }) => {
     );
 };
 
-TicketCard.propTypes = {
+Ticket.propTypes = {
     ticket: ticketProps,
     onFilterReset: PropTypes.func,
 };
 
-TicketCard.defaultProps = {
+Ticket.defaultProps = {
     ticket: null,
     onFilterReset: () => null,
 };
 
-export default TicketCard;
+export default Ticket;

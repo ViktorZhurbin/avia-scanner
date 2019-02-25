@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-class FilterGroup extends React.Component {
+class Filters extends React.Component {
     static propTypes = {
         stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
         selectedStops: PropTypes.objectOf(
@@ -80,4 +80,4 @@ class FilterGroup extends React.Component {
     }
 }
 
-export default FilterGroup;
+export default Filters;

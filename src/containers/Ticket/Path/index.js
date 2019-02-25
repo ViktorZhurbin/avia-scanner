@@ -10,7 +10,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const Stops = ({ stops }) => (
+const Path = ({ stops }) => (
     <div className={cx('container')}>
         {stops === 0
             ? null
@@ -26,8 +26,8 @@ const Stops = ({ stops }) => (
     </div>
 );
 
-Stops.propTypes = {
+Path.propTypes = {
     stops: PropTypes.number.isRequired,
 };
 
-export default Stops;
+export default Path;

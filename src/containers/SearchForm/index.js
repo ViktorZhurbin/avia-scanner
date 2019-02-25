@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import moment from 'moment';
 
-import PlaceSelector from '../PlaceSelector';
+import PlaceSelect from '../PlaceSelect';
 import DatePicker from '../../components/DatePicker';
 import NavBar from '../NavBar';
 
@@ -43,14 +43,14 @@ const SearchForm = (props) => {
                     >
                         <div className={cx('formInput')}>
                             <div className={cx('places')}>
-                                <PlaceSelector
+                                <PlaceSelect
                                     isFirst
                                     id="origin"
                                     itemList={places}
                                     iataCode={origin}
                                     onSelect={onPlaceSelect}
                                 />
-                                <PlaceSelector
+                                <PlaceSelect
                                     id="destination"
                                     itemList={places}
                                     iataCode={destination}

@@ -8,7 +8,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class PlaceSelector extends React.Component {
+class PlaceSelect extends React.Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         itemList: PropTypes.arrayOf(
@@ -83,4 +83,4 @@ class PlaceSelector extends React.Component {
     }
 }
 
-export default PlaceSelector;
+export default PlaceSelect;

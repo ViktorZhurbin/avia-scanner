@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import FilterGroup from '../FilterGroup';
-import TicketCard from '../TicketCard';
+import Filters from '../Filters';
+import Ticket from '../Ticket';
 
 import ticketPropType from '../../entities/propTypes';
 
@@ -25,21 +25,21 @@ const SearchResults = (props) => {
 
     return (
         <div className={cx('container')}>
-            <FilterGroup
+            <Filters
                 stopOptions={stopOptions}
                 selectedStops={selectedStops}
                 onFilter={onFilterByStops}
             />
             {tickets && !hasFilteredTickets
                 ? (
-                    <TicketCard
+                    <Ticket
                         onFilterReset={onResetFilters}
                     />
                 )
                 : (
                     <div>
                         {filteredTickets.map(ticket => (
-                            <TicketCard
+                            <Ticket
                                 key={ticket.id}
                                 ticket={ticket}
                             />

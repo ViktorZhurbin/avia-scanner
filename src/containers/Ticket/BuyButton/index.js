@@ -8,15 +8,15 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const PurchaseButton = ({ price }) => (
+const BuyButton = ({ price }) => (
     <div className={cx('button')}>
         <div className={cx('buttonText')}>Book</div>
         <div className={cx('buttonPrice')}>{`${formatPrice(price)}`}</div>
     </div>
 );
 
-PurchaseButton.propTypes = {
+BuyButton.propTypes = {
     price: PropTypes.number.isRequired,
 };
 
-export default PurchaseButton;
+export default BuyButton;

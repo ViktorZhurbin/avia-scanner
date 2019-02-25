@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Logo from '../../components/Logo';
-import CurrencySelector from '../CurrencySelector';
+import CurrencySelect from '../CurrencySelect';
 
 import styles from './index.css';
 
@@ -18,7 +18,7 @@ const NavBar = props => (
         >
             <Logo />
         </div>
-        <CurrencySelector />
+        <CurrencySelect />
     </div>
 );
 

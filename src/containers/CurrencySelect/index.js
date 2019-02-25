@@ -9,7 +9,7 @@ import { currencyList } from '../../constants/mockData';
 
 const cx = cl.bind(styles);
 
-class CurrencySelector extends React.Component {
+class CurrencySelect extends React.Component {
     state = {
         selectedCurrency: 'USD',
     }
@@ -73,4 +73,4 @@ class CurrencySelector extends React.Component {
     }
 }
 
-export default CurrencySelector;
+export default CurrencySelect;
