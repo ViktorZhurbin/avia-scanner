@@ -7,15 +7,15 @@
 }
 
 .time {
-    font: var(--h1);
+    font: var(--h3);
     color: var(--color-twilight);
     margin-bottom: 10px;
 }
 
-.city {
+.location {
     font: var(--p3);
     font-weight: 600;
-    color: var(--color-twilight);
+    color: var(--color-metal);
 }
 
 .date {

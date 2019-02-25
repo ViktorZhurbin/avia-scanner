@@ -43,9 +43,6 @@ const TicketCard = ({ ticket, onFilterReset }) => {
         price,
     } = ticket;
 
-    const origin = `${originStation.Code}, ${originStation.Name}`;
-    const destination = `${destinationStation.Code}, ${destinationStation.Name}`;
-
     return (
         <div className={cx('card')}>
             <div className={cx('left')}>
@@ -58,12 +55,12 @@ const TicketCard = ({ ticket, onFilterReset }) => {
             </div>
             <div className={cx('right')}>
                 <FlightInfo
-                    city={origin}
+                    location={originStation.Name}
                     dateString={departure}
                 />
                 <Stops stops={stops} />
                 <FlightInfo
-                    city={destination}
+                    location={destinationStation.Name}
                     dateString={arrival}
                 />
             </div>
