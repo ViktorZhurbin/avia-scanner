@@ -37,8 +37,10 @@ export default (ticketsData) => {
         Carriers: carrierList,
         Itineraries: itineraryList,
     } = ticketsData;
-    const ticketsSlice = ticketList.slice(0, 30);
-    const formatted = ticketsSlice.map((item) => {
+
+    const outboundTickets = filter(ticketList, ticket => ticket.Directionality === 'Outbound');
+
+    const formatted = outboundTickets.map((item) => {
         const camelCased = mapKeys(item, (value, key) => camelCase(key));
         const {
             id,
