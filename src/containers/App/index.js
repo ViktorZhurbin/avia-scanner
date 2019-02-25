@@ -1,5 +1,6 @@
 import React from 'react';
 import quryString from 'query-string';
+import cl from 'classnames/bind';
 
 import SearchResults from '../SearchResults';
 import SearchForm from '../SearchForm';
@@ -7,6 +8,10 @@ import SearchForm from '../SearchForm';
 import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets } from '../../utils/api';
+
+import styles from './index.css';
+
+const cx = cl.bind(styles);
 
 class App extends React.Component {
     state = {
@@ -22,7 +27,7 @@ class App extends React.Component {
     componentDidMount() {
         const query = window.location.search;
         if (query.length > 0) {
-            this.fetchTickets(query);
+            this.fetchTickets();
         }
     }
 
@@ -122,29 +127,40 @@ class App extends React.Component {
             selectedStops,
         } = this.state;
 
+        const hasResults = tickets.length > 0;
+
         return (
             <div>
-                <SearchForm
-                    origin={origin}
-                    destination={destination}
-                    places={places}
-                    onSubmit={this.onSubmit}
-                    onPlaceSelect={this.onPlaceSelect}
-                    onDateChange={this.onDateChange}
-                    locale={locale}
-                />
-                {tickets.length > 0
-                    ? (
-                        <SearchResults
-                            tickets={tickets}
-                            filteredTickets={filteredTickets}
-                            stopOptions={stopOptions}
-                            selectedStops={selectedStops}
-                            onFilterByStops={this.onFilterByStops}
-                            onResetFilters={this.onResetFilters}
-                        />
-                    )
-                    : null}
+                <div
+                    className={cx({
+                        form: true,
+                        only: !hasResults,
+                    })}
+                >
+                    <SearchForm
+                        origin={origin}
+                        destination={destination}
+                        places={places}
+                        onSubmit={this.onSubmit}
+                        onPlaceSelect={this.onPlaceSelect}
+                        onDateChange={this.onDateChange}
+                        locale={locale}
+                    />
+                </div>
+                <div className={cx('results')}>
+                    {hasResults
+                        ? (
+                            <SearchResults
+                                tickets={tickets}
+                                filteredTickets={filteredTickets}
+                                stopOptions={stopOptions}
+                                selectedStops={selectedStops}
+                                onFilterByStops={this.onFilterByStops}
+                                onResetFilters={this.onResetFilters}
+                            />
+                        )
+                        : null}
+                </div>
             </div>
         );
     }
