@@ -23,6 +23,7 @@ const SearchForm = (props) => {
         onPlaceSelect,
         onDateChange,
         locale,
+        onResetState,
     } = props;
 
     moment.locale(locale);
@@ -30,7 +31,7 @@ const SearchForm = (props) => {
     return (
         <div className={cx('container')}>
             <div className={cx('innerContainer')}>
-                <NavBar />
+                <NavBar onResetState={onResetState} />
                 <div className={cx('searchForm')}>
                     <div className={cx('headerText')}>
                         Flights and airline tickets
@@ -89,6 +90,7 @@ SearchForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onPlaceSelect: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
+    onResetState: PropTypes.func.isRequired,
     locale: PropTypes.string,
 };
 

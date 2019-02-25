@@ -31,6 +31,19 @@ class App extends React.Component {
         }
     }
 
+    onResetState = () => {
+        window.history.pushState('', '', '/');
+        this.setState({
+            origin: places[0].code,
+            destination: places[1].code,
+            departure: null,
+            tickets: [],
+            filteredTickets: [],
+            stopOptions: [],
+            selectedStops: {},
+        });
+    }
+
     fetchTickets = async (query = '') => {
         const tickets = await getFormattedTickets(query);
         const stopOptions = getUniqueByKey(tickets, 'stops');
@@ -51,7 +64,7 @@ class App extends React.Component {
         event.preventDefault();
         const query = this.getSearchQuery();
         window.history.pushState(query, '', `search?${query}`);
-        this.fetchTickets(query);
+        this.fetchTickets();
     };
 
     onInputChange = (event) => {
@@ -145,6 +158,7 @@ class App extends React.Component {
                         onPlaceSelect={this.onPlaceSelect}
                         onDateChange={this.onDateChange}
                         locale={locale}
+                        onResetState={this.onResetState}
                     />
                 </div>
                 <div className={cx('results')}>
