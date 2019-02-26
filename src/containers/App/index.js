@@ -106,7 +106,7 @@ class App extends React.Component {
         });
     };
 
-    onDateChange = (key, date) => {
+    onDateSelect = (key, date) => {
         const dateString = date
             ? moment(date).format('YYYY-MM-DD')
             : null;
@@ -115,10 +115,12 @@ class App extends React.Component {
         });
     }
 
-    onSelect = (code, key) => {
-        this.setState({
-            [key]: code,
-        });
+    onPlaceSelect = (code, key) => {
+        const otherKey = key === 'origin' ? 'destination' : 'origin';
+        const iataCode = this.state[otherKey] === code ? null : code;
+        this.setState(() => ({
+            [key]: iataCode,
+        }));
     }
 
     getSearchQuery = () => {
@@ -198,8 +200,8 @@ class App extends React.Component {
                         destination={destination}
                         places={places}
                         onSubmit={this.onSubmit}
-                        onSelect={this.onSelect}
-                        onDateChange={this.onDateChange}
+                        onPlaceSelect={this.onPlaceSelect}
+                        onDateSelect={this.onDateSelect}
                         onResetState={this.onResetState}
                         selectedCurrency={currency}
                     />

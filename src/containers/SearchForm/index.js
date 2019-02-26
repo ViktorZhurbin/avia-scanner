@@ -20,8 +20,8 @@ const SearchForm = (props) => {
         destination,
         places,
         onSubmit,
-        onSelect,
-        onDateChange,
+        onPlaceSelect,
+        onDateSelect,
         onResetState,
         isLoading,
         selectedCurrency,
@@ -32,7 +32,7 @@ const SearchForm = (props) => {
             <div className={cx('innerContainer')}>
                 <NavBar
                     onResetState={onResetState}
-                    onCurrencySelect={onSelect}
+                    onCurrencySelect={onPlaceSelect}
                     selectedCurrency={selectedCurrency}
                 />
                 <div className={cx('searchForm')}>
@@ -51,20 +51,20 @@ const SearchForm = (props) => {
                                     id="origin"
                                     itemList={places}
                                     iataCode={origin}
-                                    onSelect={onSelect}
+                                    onSelect={onPlaceSelect}
                                     placeholder="From"
                                 />
                                 <PlaceSelect
                                     id="destination"
                                     itemList={places}
                                     iataCode={destination}
-                                    onSelect={onSelect}
+                                    onSelect={onPlaceSelect}
                                     placeholder="To"
                                 />
                             </div>
                             <div className={cx('dates')}>
                                 <DatePicker
-                                    handleChange={onDateChange}
+                                    handleChange={onDateSelect}
                                 />
                             </div>
                         </div>
@@ -90,8 +90,8 @@ SearchForm.propTypes = {
         }),
     ).isRequired,
     onSubmit: PropTypes.func.isRequired,
-    onSelect: PropTypes.func.isRequired,
-    onDateChange: PropTypes.func.isRequired,
+    onPlaceSelect: PropTypes.func.isRequired,
+    onDateSelect: PropTypes.func.isRequired,
     onResetState: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
     selectedCurrency: PropTypes.string,
