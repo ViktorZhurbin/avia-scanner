@@ -1,5 +1,6 @@
 const express = require('express');
 const queries = require('./req');
+const currency = require('./currency');
 
 const app = express();
 const port = 8080;
@@ -15,5 +16,7 @@ app.use(express.static('dist'));
 app.get('/api/createsession', (req, res) => queries.createSession(req, res));
 app.get('/api/getTicketData/:sessionKey', (req, res) => queries.fetchTickets(req, res));
 app.get('/api/mockData', (req, res) => queries.mockData(req, res));
+
+app.get('/api/currencyRates', (req, res) => currency.fetchCurrencyRates(req, res));
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

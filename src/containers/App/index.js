@@ -9,7 +9,7 @@ import SearchForm from '../SearchForm';
 
 import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
-import { getFormattedTickets } from '../../utils/api';
+import { getFormattedTickets, fetchCurrencyRates } from '../../utils/api';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
@@ -29,12 +29,13 @@ class App extends React.Component {
         currency: null,
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const locale = getBrowserLocale();
         moment.locale(locale);
         const currency = localeCurrency.getCurrency(locale);
+        const rates = await fetchCurrencyRates(currency);
         const query = window.location.search;
-        this.setState({ locale, currency }, () => {
+        this.setState({ locale, currency, rates }, () => {
             if (query.length > 0) {
                 const queryObject = qs.parse(query);
                 this.setState({ ...queryObject }, () => {
@@ -56,6 +57,8 @@ class App extends React.Component {
     }
 
     fetchTickets = async (query = '') => {
+        const { currency } = this.state;
+
         this.setState({ isLoading: true });
         const tickets = await getFormattedTickets(query);
         const stopOptions = getUniqueByKey(tickets, 'stops');
@@ -63,6 +66,7 @@ class App extends React.Component {
             [stopOptions[0]]: true,
         };
         const filteredTickets = this.filterTickets(tickets, [stopOptions[0]]);
+        const rates = await fetchCurrencyRates(currency);
 
         this.setState({
             tickets,
@@ -70,6 +74,7 @@ class App extends React.Component {
             stopOptions,
             selectedStops,
             isLoading: false,
+            rates,
         });
     }
 
@@ -78,6 +83,7 @@ class App extends React.Component {
         const query = this.getSearchQuery();
         window.history.pushState(query, '', `search?${query}`);
         this.fetchTickets(query);
+        // this.fetchTickets();
     };
 
     onInputChange = (event) => {
@@ -158,6 +164,7 @@ class App extends React.Component {
             selectedStops,
             isLoading,
             currency,
+            rates,
         } = this.state;
 
         const hasResults = tickets.length > 0;
@@ -186,6 +193,7 @@ class App extends React.Component {
                     ? (
                         <div className={cx('results')}>
                             <SearchResults
+                                rates={rates}
                                 tickets={tickets}
                                 filteredTickets={filteredTickets}
                                 stopOptions={stopOptions}

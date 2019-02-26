@@ -14,7 +14,12 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const Ticket = ({ ticket, locale, currency }) => {
+const Ticket = ({
+    ticket,
+    locale,
+    currency,
+    rates,
+}) => {
     const {
         origin,
         destination,
@@ -26,7 +31,7 @@ const Ticket = ({ ticket, locale, currency }) => {
         duration,
     } = ticket;
 
-    const price = formatPrice(offer.price, currency, locale);
+    const price = formatPrice(offer.price, currency, rates, locale);
 
     return (
         <div className={cx('card')}>
@@ -62,6 +67,7 @@ Ticket.propTypes = {
     ticket: ticketPropType.isRequired,
     locale: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
+    rates: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
 Ticket.defaultProps = {};

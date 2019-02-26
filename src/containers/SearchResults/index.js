@@ -22,6 +22,7 @@ const SearchResults = (props) => {
         onResetFilters,
         locale,
         currency,
+        rates,
     } = props;
 
     const hasFilteredTickets = tickets.length > 0 && filteredTickets.length > 0;
@@ -48,6 +49,7 @@ const SearchResults = (props) => {
                                 locale={locale}
                                 currency={currency}
                                 ticket={ticket}
+                                rates={rates}
                             />
                         ))}
                     </div>
@@ -61,6 +63,7 @@ SearchResults.propTypes = {
     filteredTickets: PropTypes.arrayOf(ticketPropType).isRequired,
     stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
     selectedStops: PropTypes.objectOf(PropTypes.bool).isRequired,
+    rates: PropTypes.objectOf(PropTypes.number).isRequired,
     onFilterByStops: PropTypes.func.isRequired,
     onResetFilters: PropTypes.func.isRequired,
     locale: PropTypes.string.isRequired,
