@@ -18,3 +18,10 @@ body {
     overflow: auto;
     position: relative;
 }
+
+@media (min-height: 500px) {
+    .form {
+        height: 100vh;
+        display: flex;
+    }
+}

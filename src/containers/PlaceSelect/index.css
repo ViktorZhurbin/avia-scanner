@@ -1,12 +1,7 @@
-:root {
-    --width: 152px;
-    --height: 46px;
-}
-
 .triggerContainer {
-    min-height: var(--height);
-    min-width: var(--width);
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
     background-color: var(--color-white);
     margin-right: 2px;
@@ -14,7 +9,6 @@
 
     &.isFirst {
         border-radius: 5px 0 0 5px;
-        padding-left: 2px;
     }
 }
 
@@ -22,7 +16,6 @@
     font: 200 19px/24px 'Arial', sans-serif;
     color: #484848;
     margin: 0;
-    padding: 11px 11px 9px;
     text-align: start;
     user-select: none;
 
@@ -36,7 +29,6 @@
     top: 49px;
     right: 2px;
     margin: 0;
-    width: var(--width);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
     padding: 15px 0;
     background: white;
@@ -63,4 +55,17 @@
 
 .iataCode {
     margin-right: 15px;
+}
+
+@media (max-width: 500px) {
+    .triggerContainer {
+        margin-bottom: 2px;
+        margin-right: 0;
+        width: calc(100vw - 40px);
+        height: 60px;
+
+        &.isFirst {
+            border-radius: 5px 5px 0 0;
+        }
+    }
 }

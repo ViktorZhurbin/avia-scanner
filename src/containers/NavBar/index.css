@@ -1,6 +1,5 @@
 .container {
     box-sizing: border-box;
-    padding: 0 20px;
     margin: 0 auto;
     height: 50px;
     display: flex;
@@ -12,4 +11,12 @@
 
 .logo {
     margin-left: -10px;
+}
+
+@media (max-width: 500px) {
+    .container {
+        position: fixed;
+        top: 10px;
+        width: calc(100vw - 40px);
+    }
 }

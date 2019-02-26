@@ -53,35 +53,31 @@ const SearchForm = (props) => {
                         target="_self"
                     >
                         <div className={cx('formInput')}>
-                            <div className={cx('places')}>
-                                <PlaceSelect
-                                    isFirst
-                                    id="origin"
-                                    itemList={places}
-                                    iataCode={origin}
-                                    onSelect={onPlaceSelect}
-                                    placeholder="From"
-                                />
-                                <PlaceSelect
-                                    id="destination"
-                                    itemList={places}
-                                    iataCode={destination}
-                                    onSelect={onPlaceSelect}
-                                    placeholder="To"
-                                />
+                            <PlaceSelect
+                                isFirst
+                                id="origin"
+                                itemList={places}
+                                iataCode={origin}
+                                onSelect={onPlaceSelect}
+                                placeholder="From"
+                            />
+                            <PlaceSelect
+                                id="destination"
+                                itemList={places}
+                                iataCode={destination}
+                                onSelect={onPlaceSelect}
+                                placeholder="To"
+                            />
+                            <DatePicker
+                                handleChange={onDateSelect}
+                                date={departure}
+                                placeholder="Departure"
+                            />
+                            <div className={cx('buttonWrapper')}>
+                                <Button isLoading={isLoading}>
+                                    <div className={cx('buttonText')}>Search</div>
+                                </Button>
                             </div>
-                            <div className={cx('dates')}>
-                                <DatePicker
-                                    handleChange={onDateSelect}
-                                    date={departure}
-                                    placeholder="Departure"
-                                />
-                            </div>
-                        </div>
-                        <div className={cx('buttonWrapper')}>
-                            <Button isLoading={isLoading}>
-                                <div className={cx('buttonText')}>Search</div>
-                            </Button>
                         </div>
                     </form>
                 </div>
