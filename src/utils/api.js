@@ -2,6 +2,7 @@ import axios from 'axios';
 // import qs from 'query-string';
 
 import formatTickets from './formatTicketData';
+import hardcodedCurrencyFallback from '../constants/fallbackData';
 
 const handleError = (error) => {
     console.warn(error); // eslint-disable-line
@@ -52,7 +53,7 @@ export const fetchCurrencyRates = async (base) => {
         return null;
     });
 
-    return rates;
+    return rates || hardcodedCurrencyFallback(base);
 };
 
 export const fetchTickets = async (query = '') => {
@@ -64,16 +65,9 @@ export const fetchTickets = async (query = '') => {
     }
 
     const sessionKey = await createApiSession(query);
-
-    // const baseCurrency = qs.stringify(query).currency;
-    // const currencyRates = await fetchCurrencyRates(baseCurrency);
-
     const encodedURI = getURI(api.getTickets, sessionKey);
     const { data } = await axios.get(encodedURI).catch(handleError);
-
     const tickets = data && data.ok && data.body;
-    // tickets.currencyRates = currencyRates;
-    // console.log(tickets);
 
     return tickets;
 };

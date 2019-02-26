@@ -1,11 +1,7 @@
 // const unirest = require('unirest');
 const https = require('https');
 
-// const convertCurrency = require('./testCurrency');
-
-// const baseUrl = 'https://free.currencyconverterapi.com';
-// const apiKey = '91ba9cf6354f4e83126b';
-// const currencyList = ['USD', 'EUR', 'RUB'];
+// const currencyFallback = require('../constants/fallbackData');
 
 module.exports = {
     convertCurrency: (amount, fromCurrency, toCurrency, cb) => {
