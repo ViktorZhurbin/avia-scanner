@@ -19,7 +19,7 @@ const cx = cl.bind(styles);
 class App extends React.Component {
     state = {
         origin: places[0].code,
-        destination: places[1].code,
+        destination: null,
         departure: null,
         tickets: [],
         filteredTickets: [],
@@ -30,24 +30,36 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
+        window.onpopstate = () => this.onUpdateState();
         const locale = getBrowserLocale();
         moment.locale(locale);
         const currency = localeCurrency.getCurrency(locale);
         const rates = await fetchCurrencyRates(currency);
-        const query = window.location.search;
-        this.setState({ locale, currency, rates }, () => {
-            if (query.length > 0) {
-                const queryObject = qs.parse(query);
-                this.setState({ ...queryObject }, () => {
-                    // this.fetchTickets(query);
-                    this.fetchTickets();
-                });
-            }
+        this.setState({
+            locale,
+            currency,
+            rates,
+        }, () => {
+            this.onUpdateState();
         });
     }
 
+    onUpdateState = () => {
+        const { search } = window.location;
+        if (search.length > 0) {
+            const queryObject = qs.parse(search);
+            this.setState({ ...queryObject }, () => {
+                this.onResetState();
+                // this.fetchTickets(search);
+                this.fetchTickets();
+            });
+        } else {
+            window.history.pushState('', '', '/');
+            this.onResetState();
+        }
+    }
+
     onResetState = () => {
-        window.history.pushState('', '', '/');
         this.setState({
             tickets: [],
             filteredTickets: [],
@@ -80,10 +92,10 @@ class App extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const query = this.getSearchQuery();
-        window.history.pushState(query, '', `search?${query}`);
-        this.fetchTickets(query);
-        // this.fetchTickets();
+        const { searchObj, search } = this.getSearchQuery();
+        window.history.pushState(searchObj, '', `search?${search}`);
+        // this.fetchTickets(search);
+        this.fetchTickets();
     };
 
     onInputChange = (event) => {
@@ -126,7 +138,10 @@ class App extends React.Component {
             currency,
         };
 
-        return qs.stringify(queryObject);
+        return {
+            searchObj: queryObject,
+            search: qs.stringify(queryObject),
+        };
     };
 
     onFilterByStops = (newSelectedStops) => {
