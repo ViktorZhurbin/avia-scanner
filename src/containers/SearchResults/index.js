@@ -12,62 +12,78 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const SearchResults = (props) => {
-    const {
-        tickets,
-        filteredTickets,
-        stopOptions,
-        selectedStops,
-        onFilterByStops,
-        onResetFilters,
-        locale,
-        currency,
-        rates,
-    } = props;
+class SearchResults extends React.Component {
+    static propTypes = {
+        tickets: PropTypes.arrayOf(ticketPropType).isRequired,
+        filteredTickets: PropTypes.arrayOf(ticketPropType).isRequired,
+        stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
+        selectedStops: PropTypes.objectOf(PropTypes.bool).isRequired,
+        rates: PropTypes.objectOf(PropTypes.number).isRequired,
+        onFilterByStops: PropTypes.func.isRequired,
+        onResetFilters: PropTypes.func.isRequired,
+        locale: PropTypes.string.isRequired,
+        currency: PropTypes.string.isRequired,
+    };
 
-    const hasFilteredTickets = tickets.length > 0 && filteredTickets.length > 0;
+    state = {
+        isFilterVisible: true,
+    }
 
-    return (
-        <div className={cx('container')}>
-            <Filters
-                stopOptions={stopOptions}
-                selectedStops={selectedStops}
-                onFilter={onFilterByStops}
-            />
-            {!hasFilteredTickets
-                ? (
-                    <NoResuts
-                        ticketsCount={tickets.length}
-                        onFilterReset={onResetFilters}
+    render() {
+        const {
+            tickets,
+            filteredTickets,
+            stopOptions,
+            selectedStops,
+            onFilterByStops,
+            onResetFilters,
+            locale,
+            currency,
+            rates,
+        } = this.props;
+        const { isFilterVisible } = this.state;
+
+        const hasFilteredTickets = tickets.length > 0 && filteredTickets.length > 0;
+
+        return (
+            <div className={cx('container')}>
+                <div
+                    className={cx({
+                        filters: true,
+                        isVisible: isFilterVisible,
+                    })}
+                >
+                    <Filters
+                        stopOptions={stopOptions}
+                        selectedStops={selectedStops}
+                        onFilter={onFilterByStops}
                     />
-                )
-                : (
-                    <div>
-                        {filteredTickets.map(ticket => (
-                            <Ticket
-                                key={ticket.id}
-                                locale={locale}
-                                currency={currency}
-                                ticket={ticket}
-                                rates={rates}
+                </div>
+                {
+                    !hasFilteredTickets
+                        ? (
+                            <NoResuts
+                                ticketsCount={tickets.length}
+                                onFilterReset={onResetFilters}
                             />
-                        ))}
-                    </div>
-                )}
-        </div>
-    );
-};
-
-SearchResults.propTypes = {
-    tickets: PropTypes.arrayOf(ticketPropType).isRequired,
-    filteredTickets: PropTypes.arrayOf(ticketPropType).isRequired,
-    stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
-    selectedStops: PropTypes.objectOf(PropTypes.bool).isRequired,
-    rates: PropTypes.objectOf(PropTypes.number).isRequired,
-    onFilterByStops: PropTypes.func.isRequired,
-    onResetFilters: PropTypes.func.isRequired,
-    locale: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-};
+                        )
+                        : (
+                            <div>
+                                {filteredTickets.map(ticket => (
+                                    <Ticket
+                                        key={ticket.id}
+                                        locale={locale}
+                                        currency={currency}
+                                        ticket={ticket}
+                                        rates={rates}
+                                    />
+                                ))}
+                            </div>
+                        )
+                }
+            </div>
+        );
+    }
+}
 
 export default SearchResults;

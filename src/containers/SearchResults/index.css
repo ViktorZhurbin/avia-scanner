@@ -8,10 +8,8 @@
     box-sizing: border-box;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 892px) {
     .container {
-        width: 1004px;
-        flex-grow: 1;
-        flex-shrink: 0;
+        flex-direction: column;
     }
 }
