@@ -35,10 +35,12 @@ class App extends React.Component {
         moment.locale(locale);
         const currency = localeCurrency.getCurrency(locale);
         const rates = await fetchCurrencyRates(currency);
+        const departure = moment().add(1, 'days');
         this.setState({
             locale,
             currency,
             rates,
+            departure,
         }, () => {
             this.onUpdateState();
         });
@@ -47,9 +49,13 @@ class App extends React.Component {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            const queryObject = qs.parse(search);
-            this.setState({ ...queryObject }, () => {
-                this.onResetState();
+            const { departure, ...rest } = qs.parse(search);
+            const departureDate = moment(departure);
+            this.setState({
+                departure: departureDate,
+                ...rest,
+            }, () => {
+                this.onResetTicketData();
                 // this.fetchTickets(search);
                 this.fetchTickets();
             });
@@ -59,12 +65,20 @@ class App extends React.Component {
         }
     }
 
-    onResetState = () => {
+    onResetTicketData = () => {
         this.setState({
             tickets: [],
             filteredTickets: [],
             stopOptions: [],
             selectedStops: {},
+        });
+    }
+
+    onResetState = () => {
+        this.onResetTicketData();
+        this.setState({
+            departure: null,
+            destination: null,
         });
     }
 
@@ -107,11 +121,8 @@ class App extends React.Component {
     };
 
     onDateSelect = (key, date) => {
-        const dateString = date
-            ? moment(date).format('YYYY-MM-DD')
-            : null;
         this.setState({
-            [key]: dateString,
+            [key]: date,
         });
     }
 
@@ -132,10 +143,14 @@ class App extends React.Component {
             currency = null,
         } = this.state;
 
+        const departureDateString = departure
+            ? moment(departure).format('YYYY-MM-DD')
+            : null;
+
         const queryObject = {
             origin,
             destination,
-            departure,
+            departure: departureDateString,
             locale,
             currency,
         };
@@ -182,6 +197,7 @@ class App extends React.Component {
             isLoading,
             currency,
             rates,
+            departure,
         } = this.state;
 
         const hasResults = tickets.length > 0;
@@ -204,6 +220,7 @@ class App extends React.Component {
                         onDateSelect={this.onDateSelect}
                         onResetState={this.onResetState}
                         selectedCurrency={currency}
+                        departure={departure}
                     />
                 </div>
                 {hasResults

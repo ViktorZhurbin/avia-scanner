@@ -14,7 +14,10 @@ const NavBar = props => (
         {/* eslint-disable-next-line */}
         <div
             className={cx('logo')}
-            onClick={props.onResetState}
+            onClick={() => {
+                window.history.pushState('', '', '/');
+                props.onResetState();
+            }}
         >
             <Logo />
         </div>

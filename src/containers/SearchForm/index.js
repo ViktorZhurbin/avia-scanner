@@ -25,6 +25,7 @@ const SearchForm = (props) => {
         onResetState,
         isLoading,
         selectedCurrency,
+        departure,
     } = props;
 
     return (
@@ -65,6 +66,8 @@ const SearchForm = (props) => {
                             <div className={cx('dates')}>
                                 <DatePicker
                                     handleChange={onDateSelect}
+                                    date={departure}
+                                    placeholder="Departure"
                                 />
                             </div>
                         </div>
@@ -95,12 +98,14 @@ SearchForm.propTypes = {
     onResetState: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
     selectedCurrency: PropTypes.string,
+    departure: PropTypes.object, // eslint-disable-line
 };
 
 SearchForm.defaultProps = {
     isLoading: false,
     selectedCurrency: null,
     destination: null,
+    departure: null,
 };
 
 export default SearchForm;
