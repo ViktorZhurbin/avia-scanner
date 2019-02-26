@@ -44,16 +44,20 @@ export const fetchCurrencyRates = async (base) => {
 
     const url = `${curBaseUrl}apiKey=${apiKey}&q=${queryOne},${queryTwo}&compact=ultra`;
     const encodedURI = encodeURI(url);
-    const { data } = await axios.get(encodedURI).catch(handleError);
+    const response = await axios.get(encodedURI).catch(handleError);
     const rates = {};
-    Object.entries(data).map(([key, value]) => {
-        const [baseCurrency, currency] = key.split('_');
-        rates[currency] = value;
-        rates[baseCurrency] = 1;
-        return null;
-    });
+    if (response) {
+        Object.entries(response.data).map(([key, value]) => {
+            const [baseCurrency, currency] = key.split('_');
+            rates[currency] = value;
+            rates[baseCurrency] = 1;
+            return null;
+        });
+    } else {
+        hardcodedCurrencyFallback(base);
+    }
 
-    return rates || hardcodedCurrencyFallback(base);
+    return rates;
 };
 
 export const fetchTickets = async (query = '') => {
