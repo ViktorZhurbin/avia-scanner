@@ -25,6 +25,10 @@
     padding: 11px 11px 9px;
     text-align: start;
     user-select: none;
+
+    &.placeholder {
+        opacity: 0.5;
+    }
 }
 
 .itemList {

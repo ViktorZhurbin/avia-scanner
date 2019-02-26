@@ -7,6 +7,14 @@
     padding-right: 0;
 }
 
+/* input[value] {
+    color: red;
+} */
+
+input:placeholder-shown {
+    opacity: 0.5;
+}
+
 .SingleDatePickerInput_calendarIcon.SingleDatePickerInput_calendarIcon_1 {
     outline: none;
 }

@@ -15,12 +15,15 @@ class PlaceSelect extends React.Component {
             PropTypes.objectOf(PropTypes.string),
         ).isRequired,
         onSelect: PropTypes.func.isRequired,
-        iataCode: PropTypes.string.isRequired,
+        iataCode: PropTypes.string,
+        placeholder: PropTypes.string,
         isFirst: PropTypes.bool,
     }
 
     static defaultProps = {
         isFirst: false,
+        iataCode: null,
+        placeholder: 'To',
     }
 
     handleSelect = (iataCode) => {
@@ -37,26 +40,32 @@ class PlaceSelect extends React.Component {
 
     renderDropdown = () => (
         <div className={cx('itemList')}>
-            {this.props.itemList.map(({ code, name }, index) => (
+            {this.props.itemList.map((place, index) => (
                 <div
-                    key={code}
+                    key={place.code}
                     className={cx('item')}
                     role="button"
                     tabIndex={index + 1}
-                    onKeyPress={() => this.handleKeyPress(code)}
-                    onClick={() => this.handleSelect(code)}
+                    onKeyPress={() => this.handleKeyPress(place.code)}
+                    onClick={() => this.handleSelect(place.code)}
                 >
-                    <strong className={cx('iataCode')}>{code}</strong>
-                    <span className={cx('name')}>{name}</span>
+                    <strong className={cx('iataCode')}>{place.code}</strong>
+                    <span className={cx('name')}>{place.name}</span>
                 </div>
             ))}
         </div>
     );
 
     renderTrigger = () => {
-        const { iataCode, itemList, isFirst } = this.props;
+        const {
+            iataCode,
+            placeholder,
+            itemList,
+            isFirst,
+        } = this.props;
 
         const selectedItem = itemList.find(item => item.code === iataCode);
+        const triggerText = selectedItem ? selectedItem.name : placeholder;
 
         return (
             <div
@@ -65,8 +74,13 @@ class PlaceSelect extends React.Component {
                     isFirst,
                 })}
             >
-                <div className={cx('triggerText')}>
-                    {selectedItem.name}
+                <div
+                    className={cx({
+                        triggerText: true,
+                        placeholder: triggerText === placeholder,
+                    })}
+                >
+                    {triggerText}
                 </div>
             </div>
         );

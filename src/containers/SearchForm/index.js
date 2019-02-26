@@ -52,12 +52,14 @@ const SearchForm = (props) => {
                                     itemList={places}
                                     iataCode={origin}
                                     onSelect={onSelect}
+                                    placeholder="From"
                                 />
                                 <PlaceSelect
                                     id="destination"
                                     itemList={places}
                                     iataCode={destination}
                                     onSelect={onSelect}
+                                    placeholder="To"
                                 />
                             </div>
                             <div className={cx('dates')}>
@@ -80,7 +82,7 @@ const SearchForm = (props) => {
 
 SearchForm.propTypes = {
     origin: PropTypes.string.isRequired,
-    destination: PropTypes.string.isRequired,
+    destination: PropTypes.string,
     places: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string,
@@ -98,6 +100,7 @@ SearchForm.propTypes = {
 SearchForm.defaultProps = {
     isLoading: false,
     selectedCurrency: null,
+    destination: null,
 };
 
 export default SearchForm;
