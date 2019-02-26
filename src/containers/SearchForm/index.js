@@ -30,6 +30,11 @@ const SearchForm = (props) => {
 
     return (
         <div className={cx('container')}>
+            <div
+                className={cx({
+                    isLoading,
+                })}
+            />
             <div className={cx('innerContainer')}>
                 <NavBar
                     onResetState={onResetState}
@@ -38,7 +43,9 @@ const SearchForm = (props) => {
                 />
                 <div className={cx('searchForm')}>
                     <div className={cx('headerText')}>
-                        Flights and airline tickets
+                        {isLoading
+                            ? 'Fetching tickets...'
+                            : 'Flights and airline tickets'}
                     </div>
                     <form
                         className={cx('formContainer')}
