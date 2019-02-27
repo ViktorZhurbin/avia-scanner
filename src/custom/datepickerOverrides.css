@@ -4,66 +4,55 @@
 
 .DateInput.DateInput_1 {
     width: 100%;
-    border-bottom-left-radius: 5px;
 }
 
 .DateInput_input.DateInput_input_1 {
     padding: 9px 0 9px 18px;
     height: 60px;
     box-sizing: border-box;
-    border-bottom-left-radius: 5px;
 }
 
 .SingleDatePickerInput.SingleDatePickerInput_1 {
     display: flex;
     padding-right: 0;
+}
+
+.DateInput_input.DateInput_input_1,
+.DateInput.DateInput_1,
+.SingleDatePickerInput.SingleDatePickerInput_1 {
     border-radius: 0 0 5px 5px;
 }
-
-@media (min-width: 500px) {
-    .SingleDatePickerInput.SingleDatePickerInput_1 {
-        border-radius: 0 5px 5px 0;
-    }
-
-    .DateInput_input.DateInput_input_1,
-    .DateInput.DateInput_1 {
-        border-radius: 0 5px 5px 0;
-    }
-}
-
-/* input[value] {
-    color: red;
-} */
 
 input:placeholder-shown {
     opacity: 0.5;
 }
 
-.SingleDatePickerInput_calendarIcon.SingleDatePickerInput_calendarIcon_1 {
+.SingleDatePickerInput_calendarIcon_1 {
     outline: none;
     padding: 0;
     margin: 0 15px;
 }
 
-.SingleDatePickerInput_clearDate.SingleDatePickerInput_clearDate_1.SingleDatePickerInput_clearDate__default.SingleDatePickerInput_clearDate__default_2 {
-    /* top: 26px;
-    outline: none;
-    margin: 0 15px;
-    padding: 0; */
-
-    outline: none;
-    margin: 0 15px;
-    padding: 0;
-    vertical-align: middle;
-    display: inline-block;
+.SingleDatePickerInput_clearDate__default_2 {
+    display: none;
 }
 
-.SingleDatePickerInput_clearDate.SingleDatePickerInput_clearDate_1.SingleDatePickerInput_clearDate__default.SingleDatePickerInput_clearDate__default_2:hover {
-    background: none;
-}
+@media (min-width: 500px) {
+    .DateInput_input.DateInput_input_1,
+    .DateInput.DateInput_1,
+    .SingleDatePickerInput.SingleDatePickerInput_1 {
+        border-radius: 0 5px 5px 0;
+    }
 
-@media (max-width: 500px) {
-    .SingleDatePickerInput_clearDate.SingleDatePickerInput_clearDate_1.SingleDatePickerInput_clearDate__default.SingleDatePickerInput_clearDate__default_2 {
-        display: none;
+    .SingleDatePickerInput_clearDate__default_2 {
+        outline: none;
+        margin: 0 15px;
+        padding: 0;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .SingleDatePickerInput_clearDate__default_2:hover {
+        background: none;
     }
 }
