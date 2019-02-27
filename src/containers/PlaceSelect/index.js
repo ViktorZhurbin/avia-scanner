@@ -89,6 +89,9 @@ class PlaceSelect extends React.Component {
     render() {
         return (
             <Dropdown
+                classNames={{
+                    placeSelect: true,
+                }}
                 trigger={this.renderTrigger()}
             >
                 {this.renderDropdown()}

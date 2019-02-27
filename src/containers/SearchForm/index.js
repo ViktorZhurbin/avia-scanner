@@ -41,46 +41,47 @@ const SearchForm = (props) => {
                     onCurrencySelect={onPlaceSelect}
                     selectedCurrency={selectedCurrency}
                 />
-                <div className={cx('searchForm')}>
+                <form
+                    className={cx('formContainer')}
+                    onSubmit={onSubmit}
+                    target="_self"
+                >
                     <div className={cx('headerText')}>
                         {isLoading
                             ? 'Fetching tickets...'
                             : 'Flights and airline tickets'}
                     </div>
-                    <form
-                        className={cx('formContainer')}
-                        onSubmit={onSubmit}
-                        target="_self"
-                    >
-                        <div className={cx('formInput')}>
-                            <PlaceSelect
-                                isFirst
-                                id="origin"
-                                itemList={places}
-                                iataCode={origin}
-                                onSelect={onPlaceSelect}
-                                placeholder="From"
-                            />
-                            <PlaceSelect
-                                id="destination"
-                                itemList={places}
-                                iataCode={destination}
-                                onSelect={onPlaceSelect}
-                                placeholder="To"
-                            />
-                            <DatePicker
-                                handleChange={onDateSelect}
-                                date={departure}
-                                placeholder="Departure"
-                            />
-                            <div className={cx('buttonWrapper')}>
-                                <Button isLoading={isLoading}>
-                                    <div className={cx('buttonText')}>Search</div>
-                                </Button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    <div className={cx('formInput')}>
+                        <PlaceSelect
+                            isFirst
+                            id="origin"
+                            itemList={places}
+                            iataCode={origin}
+                            onSelect={onPlaceSelect}
+                            placeholder="From"
+                        />
+                        <PlaceSelect
+                            id="destination"
+                            itemList={places}
+                            iataCode={destination}
+                            onSelect={onPlaceSelect}
+                            placeholder="To"
+                            classNames={{
+                                isSecond: true,
+                            }}
+                        />
+                        <DatePicker
+                            handleChange={onDateSelect}
+                            date={departure}
+                            placeholder="Departure"
+                        />
+                    </div>
+                    <div className={cx('formSubmit')}>
+                        <Button isLoading={isLoading}>
+                            <div className={cx('buttonText')}>Search</div>
+                        </Button>
+                    </div>
+                </form>
             </div>
         </div>
     );

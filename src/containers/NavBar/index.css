@@ -14,9 +14,9 @@
 }
 
 @media (max-width: 500px) {
-    .container {
+    /* .container {
         position: fixed;
         top: 10px;
         width: calc(100vw - 40px);
-    }
+    } */
 }

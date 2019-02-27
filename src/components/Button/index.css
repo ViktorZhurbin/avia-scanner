@@ -1,5 +1,6 @@
 .button {
     border: none;
+    padding: 0;
     box-sizing: border-box;
     display: block;
     text-align: center;
@@ -8,14 +9,14 @@
     border-radius: 5px;
     color: var(--color-white);
     font: var(--h4);
+    background-color: var(--color-orange);
+    box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
     cursor: pointer;
     user-select: none;
-    background-color: var(--color-orange);
-    box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 1px 0 rgba(0, 0, 0, 0.1);
 
     &:hover {
         border-bottom-color: transparent;
-        background-color: #ff8a32;
+        background-color: var(--color-orange-light);
         transition: all 0.3s;
     }
 }

@@ -1,26 +1,29 @@
 .SingleDatePicker.SingleDatePicker_1 {
-    width: 154px;
+    width: 100%;
 }
 
-@media (max-width: 500px) {
-    .SingleDatePicker.SingleDatePicker_1 {
-        width: calc(100vw - 40px);
-    }
-}
-
-.SingleDatePickerInput.SingleDatePickerInput_1 {
-    padding-right: 0;
-    border-radius: 0 5px 5px 0;
-}
-
-@media (max-width: 500px) {
-    .SingleDatePickerInput.SingleDatePickerInput_1 {
-        border-radius: 0 0 10px 5px;
-    }
+.DateInput.DateInput_1 {
+    width: 100%;
+    border-bottom-left-radius: 5px;
 }
 
 .DateInput_input.DateInput_input_1 {
+    padding: 9px 0 9px 18px;
+    height: 60px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 5px;
+}
+
+.SingleDatePickerInput.SingleDatePickerInput_1 {
+    display: flex;
     padding-right: 0;
+    border-radius: 0 0 5px 5px;
+}
+
+@media (min-width: 500px) {
+    .SingleDatePickerInput.SingleDatePickerInput_1 {
+        border-radius: 0 5px 5px 0;
+    }
 }
 
 /* input[value] {

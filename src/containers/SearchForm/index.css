@@ -7,33 +7,21 @@
 }
 
 .innerContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     box-sizing: border-box;
-    padding: 0 20px;
     margin: 0 auto;
     width: 100%;
-
-    /* min-height: 100vh; */
     max-width: var(--max-width);
-}
-
-@media (min-width: 1024px) {
-    .innerContainer {
-        width: 1004px;
-        flex-grow: 1;
-        flex-shrink: 0;
-    }
-}
-
-.searchForm {
-    box-sizing: border-box;
-    padding-bottom: 30px;
+    padding: 0 20px;
 }
 
 .headerText {
     text-align: center;
     color: var(--color-white);
-    font: var(--h1);
-    margin-bottom: 30px;
+    margin: 0 auto 30px;
+    font: var(--p0);
 }
 
 .formContainer {
@@ -41,26 +29,53 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
+    width: 100%;
+    max-width: 1070px;
+    min-height: 178px;
+    margin: auto;
 }
 
 .formInput {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 35px;
 }
 
-.places {
-    display: flex;
-}
-
-.buttonWrapper {
-    width: 274px;
+.formSubmit {
+    width: 100%;
     height: 59px;
 }
 
 .buttonText {
     font: var(--h4);
+}
+
+@media (min-width: 500px) {
+    /* .innerContainer: {
+
+    } */
+
+    .formContainer {
+        padding-top: 0;
+    }
+
+    .headerText {
+        font: var(--h1);
+        margin-bottom: 30px;
+    }
+
+    .formInput {
+        flex-direction: row;
+        width: 100%;
+        margin-bottom: 60px;
+    }
+
+    .formSubmit {
+        width: 274px;
+        height: 59px;
+    }
 }
 
 .isLoading {
@@ -92,25 +107,4 @@
     80% { left: 50%; }
     95% { left: 120%; }
     to { left: 100%; }
-}
-
-@media (max-width: 500px) {
-    .places {
-        flex-direction: column;
-    }
-
-    .formInput {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 18px;
-    }
-
-    .buttonWrapper {
-        margin-top: 30px;
-    }
-
-    .headerText {
-        font: var(--p0);
-        margin-bottom: 20px;
-    }
 }

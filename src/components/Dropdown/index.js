@@ -12,6 +12,16 @@ class Dropdown extends React.Component {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
         children: PropTypes.node.isRequired,
+        classNames: PropTypes.objectOf(
+            PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.bool,
+            ]),
+        ),
+    }
+
+    static defaultProps = {
+        classNames: '',
     }
 
     state = {
@@ -57,11 +67,14 @@ class Dropdown extends React.Component {
     }
 
     render() {
-        const { trigger } = this.props;
+        const { trigger, classNames } = this.props;
 
         return (
             <div
-                className={cx('container')}
+                className={cx({
+                    ...classNames,
+                    container: true,
+                })}
                 role="button"
                 data-toggle="dropdown"
                 tabIndex="0"
