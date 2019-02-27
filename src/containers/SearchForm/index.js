@@ -66,19 +66,18 @@ const SearchForm = (props) => {
                             iataCode={destination}
                             onSelect={onPlaceSelect}
                             placeholder="To"
-                            classNames={{
-                                isSecond: true,
-                            }}
                         />
-                        <DatePicker
-                            handleChange={onDateSelect}
-                            date={departure}
-                            placeholder="Departure"
-                        />
+                        <div className={cx('dateSelect')}>
+                            <DatePicker
+                                handleChange={onDateSelect}
+                                date={departure}
+                                placeholder="Departure"
+                            />
+                        </div>
                     </div>
                     <div className={cx('formSubmit')}>
                         <Button isLoading={isLoading}>
-                            <div className={cx('buttonText')}>Search</div>
+                            <div className={cx('buttonText')}>Find tickets</div>
                         </Button>
                     </div>
                 </form>

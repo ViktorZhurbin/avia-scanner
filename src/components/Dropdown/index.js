@@ -4,6 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import ReactOutsideEvent from 'react-outside-event';
 import cl from 'classnames/bind';
 
+import { classNamesPropType } from '../../entities/propTypes';
+
 import styles from './index.css';
 
 const cx = cl.bind(styles);
@@ -12,12 +14,7 @@ class Dropdown extends React.Component {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
         children: PropTypes.node.isRequired,
-        classNames: PropTypes.objectOf(
-            PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.bool,
-            ]),
-        ),
+        classNames: classNamesPropType,
     }
 
     static defaultProps = {

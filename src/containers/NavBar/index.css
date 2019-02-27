@@ -8,15 +8,3 @@
     width: 100%;
     background-color: var(--color-blue-white);
 }
-
-.logo {
-    margin-left: -10px;
-}
-
-@media (max-width: 500px) {
-    /* .container {
-        position: fixed;
-        top: 10px;
-        width: calc(100vw - 40px);
-    } */
-}

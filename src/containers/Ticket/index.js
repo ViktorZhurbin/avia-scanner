@@ -7,7 +7,7 @@ import Route from './Route';
 import Path from './Path';
 
 import { formatPrice } from '../../utils/string';
-import ticketPropType from '../../entities/propTypes';
+import { ticketPropType } from '../../entities/propTypes';
 import genericLogo from '../../assets/generic-logo.png';
 
 import styles from './index.css';

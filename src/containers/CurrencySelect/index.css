@@ -1,29 +1,23 @@
-:root {
-    --color: rgba(255, 255, 255, 0.7);
-}
-
 .triggerContainer {
-    display: inline-block;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 100px;
     cursor: pointer;
-    min-width: 66px;
-    min-height: 34px;
+    min-width: 36px;
+    min-height: 36px;
+    transition: background 0.3s ease-in-out;
 
     &:hover {
-        color: #fff;
-        text-decoration: none;
-        background-color: hsla(0, 0%, 88%, 0.2);
+        background-color: rgba(224, 224, 224, 0.2);
     }
 }
 
 .triggerText {
     font: var(--p2);
     color: var(--color-white);
-    line-height: 35px;
+    line-height: 34px;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 19px;
     text-transform: uppercase;
     user-select: none;
 }
@@ -41,6 +35,7 @@
 }
 
 .currencyItem {
+    display: flex;
     list-style-type: none;
     font: var(--p2);
     line-height: 35px;
@@ -60,4 +55,8 @@
 
 .code {
     margin-right: 15px;
+}
+
+.name {
+    white-space: pre;
 }

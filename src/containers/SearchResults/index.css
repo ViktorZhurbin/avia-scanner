@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     width: 748px;
-    max-width: var(--max-width);
     padding: 0 10px;
     margin: 0 auto;
     box-sizing: border-box;

@@ -6,7 +6,7 @@ import Filters from '../Filters';
 import Ticket from '../Ticket';
 import NoResuts from '../../components/NoResults';
 
-import ticketPropType from '../../entities/propTypes';
+import { ticketPropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 

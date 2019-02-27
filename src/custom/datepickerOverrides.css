@@ -24,6 +24,11 @@
     .SingleDatePickerInput.SingleDatePickerInput_1 {
         border-radius: 0 5px 5px 0;
     }
+
+    .DateInput_input.DateInput_input_1,
+    .DateInput.DateInput_1 {
+        border-radius: 0 5px 5px 0;
+    }
 }
 
 /* input[value] {
@@ -36,13 +41,21 @@ input:placeholder-shown {
 
 .SingleDatePickerInput_calendarIcon.SingleDatePickerInput_calendarIcon_1 {
     outline: none;
+    padding: 0;
+    margin: 0 15px;
 }
 
 .SingleDatePickerInput_clearDate.SingleDatePickerInput_clearDate_1.SingleDatePickerInput_clearDate__default.SingleDatePickerInput_clearDate__default_2 {
-    top: unset;
-    transform: none;
+    /* top: 26px;
     outline: none;
-    margin: 0 5px 0 10px;
+    margin: 0 15px;
+    padding: 0; */
+
+    outline: none;
+    margin: 0 15px;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 .SingleDatePickerInput_clearDate.SingleDatePickerInput_clearDate_1.SingleDatePickerInput_clearDate__default.SingleDatePickerInput_clearDate__default_2:hover {
@@ -53,15 +66,4 @@ input:placeholder-shown {
     .SingleDatePickerInput_clearDate.SingleDatePickerInput_clearDate_1.SingleDatePickerInput_clearDate__default.SingleDatePickerInput_clearDate__default_2 {
         display: none;
     }
-
-    .SingleDatePickerInput.SingleDatePickerInput_1.SingleDatePickerInput__showClearDate.SingleDatePickerInput__showClearDate_2 {
-        justify-content: center;
-        height: 60px;
-        display: flex;
-        align-items: center;
-    }
-}
-
-.SingleDatePickerInput.SingleDatePickerInput_1.SingleDatePickerInput__showClearDate.SingleDatePickerInput__showClearDate_2 {
-    display: flex;
 }

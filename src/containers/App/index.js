@@ -203,7 +203,7 @@ class App extends React.Component {
         const hasResults = tickets.length > 0;
 
         return (
-            <div>
+            <div className={cx('container')}>
                 <div
                     className={cx({
                         form: true,

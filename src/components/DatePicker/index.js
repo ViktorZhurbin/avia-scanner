@@ -27,25 +27,24 @@ class DatePicker extends React.Component {
         const { date, placeholder } = this.props;
 
         return (
-            <div key={date}>
-                <SingleDatePicker
-                    date={date}
-                    id="date"
-                    onDateChange={this.onDateChange}
-                    focused={this.state.focused}
-                    onFocusChange={({ focused }) => this.setState({ focused })}
-                    required
-                    noBorder
-                    placeholder={placeholder}
-                    showClearDate={Boolean(date)}
-                    showDefaultInputIcon={!date}
-                    inputIconPosition={ICON_AFTER_POSITION}
-                    openDirection={OPEN_UP}
-                    withPortal
-                    hideKeyboardShortcutsPanel
-                    transitionDuration={100}
-                />
-            </div>
+            <SingleDatePicker
+                date={date}
+                id="date"
+                onDateChange={this.onDateChange}
+                focused={this.state.focused}
+                onFocusChange={({ focused }) => this.setState({ focused })}
+                required
+                noBorder
+                placeholder={placeholder}
+                showClearDate={Boolean(date)}
+                showDefaultInputIcon={!date}
+                inputIconPosition={ICON_AFTER_POSITION}
+                openDirection={OPEN_UP}
+                withPortal
+                hideKeyboardShortcutsPanel
+                transitionDuration={100}
+                numberOfMonths={1}
+            />
         );
     }
 }

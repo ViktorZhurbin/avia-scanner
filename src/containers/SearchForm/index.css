@@ -4,6 +4,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
 .innerContainer {
@@ -13,7 +15,6 @@
     box-sizing: border-box;
     margin: 0 auto;
     width: 100%;
-    max-width: var(--max-width);
     padding: 0 20px;
 }
 
@@ -53,10 +54,6 @@
 }
 
 @media (min-width: 500px) {
-    /* .innerContainer: {
-
-    } */
-
     .formContainer {
         padding-top: 0;
     }
@@ -75,6 +72,10 @@
     .formSubmit {
         width: 274px;
         height: 59px;
+    }
+
+    .dateSelect {
+        flex-basis: 33%;
     }
 }
 

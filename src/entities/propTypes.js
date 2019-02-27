@@ -7,7 +7,16 @@ const mixedObject = PropTypes.objectOf(
     ]),
 );
 
-export default PropTypes.shape({
+export const classNamesPropType = PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.bool,
+        ]),
+    )]);
+
+export const ticketPropType = PropTypes.shape({
     arrival: PropTypes.string,
     departure: PropTypes.string,
     origin: mixedObject,
