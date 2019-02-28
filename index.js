@@ -1,9 +1,9 @@
 const express = require('express');
-const tickets = require('./tickets');
-const currency = require('./currency');
+const path = require('path');
+
+const tickets = require('./server/tickets');
 
 const app = express();
-const port = 8080;
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -11,12 +11,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/api/createsession', (req, res) => tickets.createSession(req, res));
 app.get('/api/getTicketData/:sessionKey', (req, res) => tickets.fetchTickets(req, res));
 app.get('/api/mockData', (req, res) => tickets.mockData(req, res));
 
-app.get('/api/currencyRates', (req, res) => currency.fetchCurrencyRates(req, res));
-
+// const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}!`));

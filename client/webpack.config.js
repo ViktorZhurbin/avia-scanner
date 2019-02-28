@@ -2,7 +2,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-const outputDirectory = 'dist';
+const outputDirectory = 'build';
 
 module.exports = (env, argv) => ({
     mode: argv.mode,
@@ -79,7 +79,7 @@ module.exports = (env, argv) => ({
         port: 3000,
         open: false,
         proxy: {
-            '/api': 'http://localhost:8080',
+            '/api': 'http://localhost:5000',
         },
         historyApiFallback: true,
     },
