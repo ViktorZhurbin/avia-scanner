@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "browserlist": [
+    "last 2 versions",
+    "not < 1%",
+    "not ie 11"
+  ],
   "scripts": {
     "client": "webpack-dev-server --mode development",
     "server": "nodemon src/server/index.js",
