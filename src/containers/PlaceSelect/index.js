@@ -49,8 +49,8 @@ class PlaceSelect extends React.Component {
                     onKeyPress={() => this.handleKeyPress(place.code)}
                     onClick={() => this.handleSelect(place.code)}
                 >
-                    <strong className={cx('iataCode')}>{place.code}</strong>
                     <span className={cx('name')}>{place.name}</span>
+                    <strong className={cx('iataCode')}>{place.code}</strong>
                 </div>
             ))}
         </div>

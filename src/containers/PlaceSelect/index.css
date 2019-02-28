@@ -38,6 +38,9 @@
 }
 
 .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     list-style-type: none;
     font: var(--p2);
     line-height: 35px;
@@ -56,7 +59,7 @@
     color: var(--color-twilight);
 }
 
-.iataCode {
+.name {
     margin-right: 15px;
 }
 
