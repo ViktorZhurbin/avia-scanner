@@ -46,4 +46,5 @@ body {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
+    background-color: var(--color-white-background);
 }
