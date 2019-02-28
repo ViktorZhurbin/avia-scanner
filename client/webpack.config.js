@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const webpack = require('webpack');
 
 const outputDirectory = 'build';
 
@@ -19,17 +20,7 @@ module.exports = (env, argv) => ({
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            plugins: ['lodash'],
-                        },
-                    },
-                    {
-                        loader: 'eslint-loader',
-                    },
-                ],
+                use: ['babel-loader', 'eslint-loader'],
             },
             {
                 test: /\.html$/,
@@ -106,5 +97,7 @@ module.exports = (env, argv) => ({
             shorthands: true,
         }),
         new BundleAnalyzerPlugin(),
+        // Ignore all locale files of moment.js
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ],
 });

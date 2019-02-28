@@ -32,7 +32,8 @@ class App extends React.Component {
     async componentDidMount() {
         window.onpopstate = () => this.onUpdateState();
         const locale = getBrowserLocale();
-        moment.locale(locale);
+        const [lang] = locale.split('-');
+        moment.locale(lang);
         const currency = localeCurrency.getCurrency(locale);
         const rates = await fetchCurrencyRates(currency);
         const departure = moment().add(1, 'days');
