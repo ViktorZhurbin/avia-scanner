@@ -3,3 +3,4 @@ build/
 client/build/
 .DS_Store
 .vscode/
+client/stats.json

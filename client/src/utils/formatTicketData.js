@@ -4,7 +4,6 @@ import {
     sortBy,
     uniqBy,
     filter,
-    // find,
 } from 'lodash';
 
 const findObjectByValue = (array, searchKey, inputValue) => (

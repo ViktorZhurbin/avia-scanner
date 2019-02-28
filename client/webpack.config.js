@@ -1,6 +1,8 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 const outputDirectory = 'build';
 
@@ -17,7 +19,17 @@ module.exports = (env, argv) => ({
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader'],
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            plugins: ['lodash'],
+                        },
+                    },
+                    {
+                        loader: 'eslint-loader',
+                    },
+                ],
             },
             {
                 test: /\.html$/,
@@ -89,5 +101,7 @@ module.exports = (env, argv) => ({
             template: './public/index.html',
             filename: './index.html',
         }),
+        new LodashModuleReplacementPlugin(),
+        new BundleAnalyzerPlugin(),
     ],
 });

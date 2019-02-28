@@ -12,7 +12,8 @@
     "client": "webpack-dev-server --mode development",
     "server": "nodemon ../index.js",
     "dev": "concurrently 'npm run server' 'npm run client'",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "stats": "webpack --profile --json > stats.json"
   },
   "keywords": [],
   "author": "",
@@ -39,11 +40,13 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.4.7",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-lodash": "^3.3.4",
     "clean-webpack-plugin": "^1.0.1",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.0",
@@ -57,6 +60,7 @@
     "fs": "0.0.1-security",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "lodash-webpack-plugin": "^0.11.5",
     "mini-css-extract-plugin": "^0.5.0",
     "nodemon": "^1.18.10",
     "postcss-custom-properties": "^8.0.9",
@@ -67,6 +71,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "webpack": "^4.29.3",
+    "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
   }
