@@ -56,8 +56,8 @@ class App extends React.Component {
                 ...rest,
             }, () => {
                 this.onResetTicketData();
-                // this.fetchTickets(search);
-                this.fetchTickets();
+                this.fetchTickets(search);
+                // this.fetchTickets(); // for dev testing
             });
         } else {
             window.history.pushState('', '', '/');
@@ -108,8 +108,8 @@ class App extends React.Component {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
         window.history.pushState(searchObj, '', `search?${search}`);
-        // this.fetchTickets(search);
-        this.fetchTickets();
+        this.fetchTickets(search);
+        // this.fetchTickets(); // for dev testing
     };
 
     onInputChange = (event) => {
