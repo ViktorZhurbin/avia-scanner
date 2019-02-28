@@ -1,14 +1,24 @@
 .container {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: max-content;
+    max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
-@media (max-width: 892px) {
+.filters {
+    margin-right: 20px;
+    min-width: max-content;
+}
+
+@media (max-width: 768px) {
     .container {
         flex-direction: column;
-        width: 632px;
+    }
+
+    .filters {
+        margin-right: 0;
+        margin-bottom: 12px;
     }
 }

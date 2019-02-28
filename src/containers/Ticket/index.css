@@ -1,6 +1,7 @@
 .card {
     width: 100%;
-    min-width: 565px;
+    max-width: max-content;
+    min-width: var(--min-ticket-width);
     height: 150px;
     box-sizing: border-box;
     display: flex;
@@ -19,7 +20,7 @@
 }
 
 .left {
-    width: 206px;
+    min-width: max-content;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -30,7 +31,8 @@
 }
 
 .right {
-    width: 365px;
+    margin: 0 auto;
+    min-width: max-content;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -43,7 +43,7 @@
     align-items: center;
     padding-top: 20px;
     width: 100%;
-    max-width: 1070px;
+    max-width: 400px;
     min-height: 178px;
     margin: auto;
 }
@@ -69,6 +69,7 @@
     .formContainer {
         flex-direction: row;
         min-height: 80px;
+        max-width: 1070px;
 
         &.fullScreen {
             flex-direction: column;

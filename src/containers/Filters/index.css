@@ -1,10 +1,9 @@
 .container {
-    width: auto;
     border-radius: 5px;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
     background-color: var(--color-white);
     padding: 15px 0;
-    margin-right: 20px;
+    min-width: max-content;
 }
 
 .title {
@@ -26,7 +25,7 @@
     color: var(--color-twilight);
 }
 
-@media (max-width: 892px) {
+@media (max-width: 768px) {
     .container,
     .filters {
         display: flex;
@@ -35,10 +34,7 @@
     }
 
     .container {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 12px;
-        justify-content: flex-end;
+        min-width: var(--min-ticket-width);
     }
 
     .title {
