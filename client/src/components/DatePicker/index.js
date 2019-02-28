@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
 import { ICON_AFTER_POSITION, OPEN_UP } from 'react-dates/constants';
+import moment from 'moment';
+import 'moment/min/locales.min';
+
+import getBrowserLocale from '../../utils/getBrowserLocale';
 
 class DatePicker extends React.Component {
     static propTypes = {
@@ -17,6 +21,12 @@ class DatePicker extends React.Component {
 
     state = {
         focused: false,
+    }
+
+    componentDidMount() {
+        const locale = getBrowserLocale();
+        const [lang] = locale.split('-');
+        moment.locale(lang);
     }
 
     onDateChange = (date) => {
