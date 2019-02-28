@@ -101,7 +101,10 @@ module.exports = (env, argv) => ({
             template: './public/index.html',
             filename: './index.html',
         }),
-        new LodashModuleReplacementPlugin(),
+        new LodashModuleReplacementPlugin({
+            collections: true,
+            shorthands: true,
+        }),
         new BundleAnalyzerPlugin(),
     ],
 });
