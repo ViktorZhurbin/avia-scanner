@@ -13,6 +13,7 @@ module.exports = (env, argv) => ({
     output: {
         path: path.join(__dirname, outputDirectory),
         filename: '[name].[contenthash].js',
+        chunkFilename: '[name].[contenthash].js',
         publicPath: '/',
     },
     optimization: {

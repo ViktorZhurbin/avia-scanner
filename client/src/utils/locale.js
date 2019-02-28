@@ -1,4 +1,4 @@
-export default () => {
+export const getBrowserLocale = () => {
     let lang;
 
     if (navigator.languages && navigator.languages.length) {
@@ -16,4 +16,10 @@ export default () => {
     const [language, country] = lang.split('-');
 
     return `${language}-${country.toUpperCase()}`;
+};
+
+export const loadMoment = async () => {
+    const { default: moment } = await import(/* webpackChunkName: "moment" */ 'moment');
+
+    return moment;
 };

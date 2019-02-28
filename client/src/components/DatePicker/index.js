@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
 import { ICON_AFTER_POSITION, OPEN_UP } from 'react-dates/constants';
-import moment from 'moment';
 import 'moment/min/locales.min';
 
-import getBrowserLocale from '../../utils/getBrowserLocale';
+import { getBrowserLocale } from '../../utils/locale';
 
 class DatePicker extends React.Component {
     static propTypes = {
@@ -23,9 +22,10 @@ class DatePicker extends React.Component {
         focused: false,
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const locale = getBrowserLocale();
         const [lang] = locale.split('-');
+        const { default: moment } = await import(/* webpackChunkName: "moment" */ 'moment');
         moment.locale(lang);
     }
 

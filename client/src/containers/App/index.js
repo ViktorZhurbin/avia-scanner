@@ -10,7 +10,7 @@ import SearchForm from '../SearchForm';
 import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets, fetchCurrencyRates } from '../../utils/api';
-import getBrowserLocale from '../../utils/getBrowserLocale';
+import { getBrowserLocale } from '../../utils/locale';
 
 import styles from './index.css';
 
