@@ -9,7 +9,6 @@ const handleError = (error) => {
     return null;
 };
 
-// const baseUrl = 'http://localhost:5000';
 const api = {
     createSession: 'api/createsession',
     getTickets: 'api/getTicketData',
