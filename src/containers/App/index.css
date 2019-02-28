@@ -1,32 +1,16 @@
-body {
-    background-color: var(--color-white-background);
+.form,
+.results {
+    padding: 0 20px;
 }
 
-/* .form {
+.form {
     background-color: var(--color-blue-white);
-
-    height: 320px;
-    transition: height 1s cubic-bezier(0.23, 1, 0.32, 1);
-
-    &.formOnly {
-        height: 100vh;
-    }
-} */
+}
 
 .results {
+    background-color: var(--color-white-background);
     padding-top: 20px;
     padding-bottom: 40px;
     overflow: auto;
     position: relative;
 }
-
-/* @media (min-height: 500px) {
-    .form {
-        height: 305px;
-
-        &.formOnly {
-            height: 100vh;
-            display: flex;
-        }
-    }
-} */

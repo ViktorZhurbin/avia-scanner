@@ -6,7 +6,6 @@
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
-    background-color: var(--color-blue-white);
     height: auto;
     padding-bottom: 25px;
     transition: height 1s cubic-bezier(0.23, 1, 0.32, 1);
@@ -24,7 +23,6 @@
     box-sizing: border-box;
     margin: 0 auto;
     width: 100%;
-    padding: 0 20px;
 }
 
 .headerText {
