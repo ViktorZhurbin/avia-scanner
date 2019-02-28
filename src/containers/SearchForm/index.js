@@ -105,7 +105,7 @@ const SearchForm = (props) => {
 };
 
 SearchForm.propTypes = {
-    origin: PropTypes.string.isRequired,
+    origin: PropTypes.string,
     destination: PropTypes.string,
     places: PropTypes.arrayOf(
         PropTypes.shape({
@@ -127,6 +127,7 @@ SearchForm.defaultProps = {
     isLoading: false,
     fullScreen: true,
     selectedCurrency: null,
+    origin: null,
     destination: null,
     departure: null,
 };
