@@ -60,7 +60,7 @@
     margin-right: 15px;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 640px) {
     .triggerContainer {
         margin-right: 2px;
         margin-bottom: 0;

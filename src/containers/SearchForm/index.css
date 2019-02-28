@@ -67,7 +67,7 @@
     font: var(--h4);
 }
 
-@media (min-width: 500px) {
+@media (min-width: 640px) {
     .formContainer {
         flex-direction: row;
         min-height: 80px;
