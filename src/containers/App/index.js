@@ -221,6 +221,7 @@ class App extends React.Component {
                         onResetState={this.onResetState}
                         selectedCurrency={currency}
                         departure={departure}
+                        fullScreen={!hasResults}
                     />
                 </div>
                 {hasResults

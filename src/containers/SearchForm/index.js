@@ -26,10 +26,16 @@ const SearchForm = (props) => {
         isLoading,
         selectedCurrency,
         departure,
+        fullScreen,
     } = props;
 
     return (
-        <div className={cx('container')}>
+        <div
+            className={cx({
+                container: true,
+                fullScreen,
+            })}
+        >
             <div
                 className={cx({
                     isLoading,
@@ -42,7 +48,10 @@ const SearchForm = (props) => {
                     selectedCurrency={selectedCurrency}
                 />
                 <form
-                    className={cx('formContainer')}
+                    className={cx({
+                        formContainer: true,
+                        fullScreen,
+                    })}
                     onSubmit={onSubmit}
                     target="_self"
                 >
@@ -51,7 +60,12 @@ const SearchForm = (props) => {
                             ? 'Fetching tickets...'
                             : 'Flights and airline tickets'}
                     </div>
-                    <div className={cx('formInput')}>
+                    <div
+                        className={cx({
+                            formInput: true,
+                            fullScreen,
+                        })}
+                    >
                         <PlaceSelect
                             isFirst
                             id="origin"
@@ -77,7 +91,11 @@ const SearchForm = (props) => {
                     </div>
                     <div className={cx('formSubmit')}>
                         <Button isLoading={isLoading}>
-                            <div className={cx('buttonText')}>Find tickets</div>
+                            <div className={cx('buttonText')}>
+                                {fullScreen
+                                    ? 'Find tickets'
+                                    : 'Find'}
+                            </div>
                         </Button>
                     </div>
                 </form>
@@ -100,12 +118,14 @@ SearchForm.propTypes = {
     onDateSelect: PropTypes.func.isRequired,
     onResetState: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
+    fullScreen: PropTypes.bool,
     selectedCurrency: PropTypes.string,
     departure: PropTypes.object, // eslint-disable-line
 };
 
 SearchForm.defaultProps = {
     isLoading: false,
+    fullScreen: true,
     selectedCurrency: null,
     destination: null,
     departure: null,

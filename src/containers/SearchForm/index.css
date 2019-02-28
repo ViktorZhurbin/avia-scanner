@@ -6,6 +6,15 @@
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
+    background-color: var(--color-blue-white);
+    height: auto;
+    padding-bottom: 25px;
+    transition: height 1s cubic-bezier(0.23, 1, 0.32, 1);
+
+    &.fullScreen {
+        height: 100vh;
+        padding-bottom: 0;
+    }
 }
 
 .innerContainer {
@@ -19,10 +28,14 @@
 }
 
 .headerText {
-    text-align: center;
-    color: var(--color-white);
-    margin: 0 auto 30px;
-    font: var(--p0);
+    display: none;
+
+    &.fullScreen {
+        text-align: center;
+        color: var(--color-white);
+        margin: 0 auto 30px;
+        font: var(--p0);
+    }
 }
 
 .formContainer {
@@ -46,6 +59,7 @@
 
 .formSubmit {
     width: 100%;
+    max-width: 256px;
     height: 59px;
 }
 
@@ -55,7 +69,13 @@
 
 @media (min-width: 500px) {
     .formContainer {
-        padding-top: 0;
+        flex-direction: row;
+        min-height: 80px;
+
+        &.fullScreen {
+            flex-direction: column;
+            padding-top: 0;
+        }
     }
 
     .headerText {
@@ -66,12 +86,28 @@
     .formInput {
         flex-direction: row;
         width: 100%;
-        margin-bottom: 60px;
+        margin-bottom: 0;
+        flex-basis: 75%;
+        flex-grow: 1;
+
+        &.fullScreen {
+            margin-bottom: 60px;
+        }
     }
 
     .formSubmit {
-        width: 274px;
-        height: 59px;
+        flex-basis: 20%;
+        margin-left: 15px;
+        height: 60px;
+
+        &.fullScreen {
+            width: 274px;
+            height: 59px;
+        }
+    }
+
+    .buttonText {
+        padding: 9px 0;
     }
 
     .dateSelect {
