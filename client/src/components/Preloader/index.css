@@ -10,6 +10,8 @@
 
 .preloader {
     display: inline-block;
+    line-height: 32px;
+    padding: 9px 0;
 }
 
 .wheel {

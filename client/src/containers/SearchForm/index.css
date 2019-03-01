@@ -58,11 +58,13 @@
 .formSubmit {
     width: 100%;
     max-width: 256px;
-    min-height: 60px;
+    max-height: 60px;
 }
 
 .buttonText {
     font: var(--h4);
+    line-height: 34px;
+    padding: 9px 0;
 }
 
 @media (min-width: 640px) {
@@ -104,10 +106,6 @@
         }
     }
 
-    .buttonText {
-        padding: 9px 0;
-    }
-
     .dateSelect {
         flex-basis: 33%;
     }
@@ -116,7 +114,8 @@
 .isLoading {
     height: 4px;
     width: 100vw;
-    position: relative;
+    position: fixed;
+    top: 0;
     overflow: hidden;
     background-color: #ddd;
 
