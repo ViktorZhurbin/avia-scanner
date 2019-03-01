@@ -14,17 +14,15 @@ const SelectTrigger = (props) => {
         classNames,
     } = props;
 
-    const text = selectedItem || placeholder;
-
     return (
         <div
             className={cx({
                 ...classNames,
                 text: true,
-                placeholder: text.length === 0,
+                placeholder: !selectedItem,
             })}
         >
-            {text}
+            {selectedItem || placeholder}
         </div>
     );
 };
