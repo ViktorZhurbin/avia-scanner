@@ -7,8 +7,8 @@ const webpack = require('webpack');
 
 const outputDirectory = '../build';
 
-module.exports = () => ({
-    entry: ['../src/index.js'],
+module.exports = {
+    entry: ['./src/index.js'],
     output: {
         path: path.join(__dirname, outputDirectory),
         filename: '[name].[contenthash].js',
@@ -67,7 +67,7 @@ module.exports = () => ({
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: '../public/index.html',
+            template: './public/index.html',
             filename: 'index.html',
         }),
         new LodashModuleReplacementPlugin({
@@ -77,4 +77,4 @@ module.exports = () => ({
         // Ignore all locale files of moment.js
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ],
-});
+};
