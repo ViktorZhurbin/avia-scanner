@@ -72,4 +72,4 @@ Ticket.propTypes = {
 
 Ticket.defaultProps = {};
 
-export default Ticket;
+export default React.memo(Ticket);

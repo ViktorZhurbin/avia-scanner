@@ -32,4 +32,4 @@ NoResuts.propTypes = {
     onFilterReset: PropTypes.func.isRequired,
 };
 
-export default NoResuts;
+export default React.memo(NoResuts);

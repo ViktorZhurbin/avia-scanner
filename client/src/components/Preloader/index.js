@@ -6,17 +6,15 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-function Preloader({ className, size, color }) {
-    return (
-        <span className={cx('preloader', className)}>
-            <i className={cx('wheel', `color-${color}`, {
-                s: size === 's',
-                m: size === 'm',
-            })}
-            />
-        </span>
-    );
-}
+const Preloader = ({ className, size, color }) => (
+    <span className={cx('preloader', className)}>
+        <i className={cx('wheel', `color-${color}`, {
+            s: size === 's',
+            m: size === 'm',
+        })}
+        />
+    </span>
+);
 
 Preloader.propTypes = {
     size: PropTypes.oneOf(['s', 'm']),
@@ -35,4 +33,4 @@ Preloader.defaultProps = {
     className: '',
 };
 
-export default Preloader;
+export default React.memo(Preloader);

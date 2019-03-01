@@ -26,4 +26,4 @@ Route.propTypes = {
     dateString: PropTypes.string.isRequired,
 };
 
-export default Route;
+export default React.memo(Route);

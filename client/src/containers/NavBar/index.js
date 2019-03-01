@@ -38,4 +38,4 @@ NavBar.defaultProps = {
     selectedCurrency: null,
 };
 
-export default NavBar;
+export default React.memo(NavBar);

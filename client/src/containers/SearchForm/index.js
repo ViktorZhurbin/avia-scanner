@@ -122,4 +122,4 @@ SearchForm.defaultProps = {
     departure: null,
 };
 
-export default SearchForm;
+export default React.memo(SearchForm);

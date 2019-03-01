@@ -43,4 +43,4 @@ SelectTrigger.defaultProps = {
     children: null,
 };
 
-export default SelectTrigger;
+export default React.memo(SelectTrigger);

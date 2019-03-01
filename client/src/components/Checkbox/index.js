@@ -44,4 +44,4 @@ Checkbox.defaultProps = {
     onChange: null,
 };
 
-export default Checkbox;
+export default React.memo(Checkbox);

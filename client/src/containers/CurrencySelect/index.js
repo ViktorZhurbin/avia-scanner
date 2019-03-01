@@ -7,10 +7,11 @@ import Dropdown from '../../components/Dropdown';
 import styles from './index.css';
 
 import { currencyList } from '../../constants/mockData';
+import CurrencyRowItem from './CurrencyRowItem';
 
 const cx = cl.bind(styles);
 
-class CurrencySelect extends React.PureComponent {
+class CurrencySelect extends React.Component {
     static propTypes = {
         onSelect: PropTypes.func.isRequired,
         selectedCurrency: PropTypes.string,
@@ -20,10 +21,6 @@ class CurrencySelect extends React.PureComponent {
         selectedCurrency: null,
     }
 
-    onCurrencySelect = (currencyCode) => {
-        this.props.onSelect('currency', currencyCode);
-    }
-
     handleKeyPress = (event, currencyCode) => {
         if (event.key === 'Enter') {
             this.onCurrencySelect(currencyCode);
@@ -31,25 +28,18 @@ class CurrencySelect extends React.PureComponent {
     }
 
     renderDropdown = () => {
-        const { selectedCurrency } = this.props;
+        const { selectedCurrency, onSelect } = this.props;
 
         return (
             <div className={cx('currencyList')}>
-                {currencyList.map(({ code, name }, index) => (
-                    <div
-                        key={code}
-                        className={cx({
-                            currencyItem: true,
-                            isSelected: code === selectedCurrency,
-                        })}
-                        role="button"
-                        tabIndex={index + 1}
-                        onKeyPress={() => this.handleKeyPress(code)}
-                        onClick={() => this.onCurrencySelect(code)}
-                    >
-                        <strong className={cx('code')}>{code}</strong>
-                        <span className={cx('name')}>{name}</span>
-                    </div>
+                {currencyList.map((item, index) => (
+                    <CurrencyRowItem
+                        key={item.code}
+                        currency={item}
+                        index={index}
+                        onSelect={onSelect}
+                        selectedCurrency={selectedCurrency}
+                    />
                 ))}
             </div>
         );

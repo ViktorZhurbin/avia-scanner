@@ -18,4 +18,4 @@ MyCalendar.defaultProps = {
     value: null,
 };
 
-export default MyCalendar;
+export default React.memo(MyCalendar);

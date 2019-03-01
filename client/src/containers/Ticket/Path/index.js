@@ -30,4 +30,4 @@ Path.propTypes = {
     duration: PropTypes.number.isRequired,
 };
 
-export default Path;
+export default React.memo(Path);

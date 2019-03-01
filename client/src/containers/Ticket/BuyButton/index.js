@@ -31,4 +31,4 @@ BuyButton.propTypes = {
     link: PropTypes.string.isRequired,
 };
 
-export default BuyButton;
+export default React.memo(BuyButton);
