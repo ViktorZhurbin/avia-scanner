@@ -1,13 +1,9 @@
-import moment from 'moment';
-
-export const getFlightTimeDate = (dateString, locale) => {
-    const dateObject = new Date(dateString);
-    const [lang] = locale.split('-');
-    moment.locale(lang);
+export const getFlightTimeDate = (dateString) => {
+    const [date, time] = dateString.split('T');
 
     return {
-        time: moment(dateObject).format('HH:mm'),
-        date: moment(dateObject).format('D MMM YYYY, ddd'),
+        time,
+        date,
     };
 };
 

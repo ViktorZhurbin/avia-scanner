@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import '@babel/polyfill';
-import 'react-dates/initialize';
 
 import App from './containers/App';
 

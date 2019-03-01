@@ -1,5 +1,4 @@
 const unirest = require('unirest');
-const moment = require('moment');
 
 const mockTicketData = require('./mockTicketData');
 
@@ -15,7 +14,7 @@ module.exports = {
 
     createSession: (req, res) => {
         // console.log(req.query);
-        const today = moment().format('YYYY-MM-DD');
+        const [today] = new Date().toISOString().split('T');
         const {
             origin = 'SVO',
             destination = 'LHR',

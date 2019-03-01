@@ -1,7 +1,6 @@
 import React from 'react';
 import qs from 'query-string';
 import cl from 'classnames/bind';
-import moment from 'moment';
 import localeCurrency from 'locale-currency';
 
 import SearchResults from '../SearchResults';
@@ -10,7 +9,7 @@ import SearchForm from '../SearchForm';
 import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets, fetchCurrencyRates } from '../../utils/api';
-import { getBrowserLocale } from '../../utils/locale';
+import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
 
@@ -34,7 +33,7 @@ class App extends React.Component {
         const locale = getBrowserLocale();
         const currency = localeCurrency.getCurrency(locale);
         const rates = await fetchCurrencyRates(currency);
-        const departure = moment().add(1, 'days');
+        const departure = new Date();
         this.setState({
             locale,
             currency,
@@ -49,9 +48,8 @@ class App extends React.Component {
         const { search } = window.location;
         if (search.length > 0) {
             const { departure, ...rest } = qs.parse(search);
-            const departureDate = moment(departure);
             this.setState({
-                departure: departureDate,
+                departure,
                 ...rest,
             }, () => {
                 this.onResetTicketData();
@@ -148,14 +146,10 @@ class App extends React.Component {
             currency = null,
         } = this.state;
 
-        const departureDateString = departure
-            ? moment(departure).format('YYYY-MM-DD')
-            : null;
-
         const queryObject = {
             origin,
             destination,
-            departure: departureDateString,
+            departure,
             locale,
             currency,
         };

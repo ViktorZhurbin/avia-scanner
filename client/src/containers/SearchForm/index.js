@@ -9,9 +9,6 @@ import Button from '../../components/Button';
 
 import styles from './index.css';
 
-import 'react-dates/lib/css/_datepicker.css';
-import '../../custom/datepickerOverrides.css';
-
 const cx = cl.bind(styles);
 
 const SearchForm = (props) => {

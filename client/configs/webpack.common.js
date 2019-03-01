@@ -3,7 +3,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const webpack = require('webpack');
 
 const outputDirectory = '../build';
 
@@ -52,7 +51,7 @@ module.exports = {
                 ],
             },
             {
-                test: /(_datepicker|datepickerOverrides).css$/,
+                test: /(Calendar).css$/,
                 use: ['style-loader', 'css-loader'],
             },
             {
@@ -74,7 +73,5 @@ module.exports = {
             collections: true,
             shorthands: true,
         }),
-        // Ignore all locale files of moment.js
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ],
 };
