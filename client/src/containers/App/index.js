@@ -55,7 +55,7 @@ class App extends React.Component {
                 ...rest,
             }, () => {
                 this.onResetTicketData();
-                if (process.env.MODE === 'dev') {
+                if (process.env.NODE_ENV === 'development') {
                     this.fetchTickets(); // for dev testing on mock data
                 } else {
                     this.fetchTickets(search);
@@ -110,7 +110,7 @@ class App extends React.Component {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
         window.history.pushState(searchObj, '', `search?${search}`);
-        if (process.env.MODE === 'dev') {
+        if (process.env.NODE_ENV === 'development') {
             this.fetchTickets(); // for dev testing on mock data
         } else {
             this.fetchTickets(search);
