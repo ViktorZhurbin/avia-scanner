@@ -58,7 +58,7 @@
 .formSubmit {
     width: 100%;
     max-width: 256px;
-    height: 59px;
+    min-height: 60px;
 }
 
 .buttonText {
@@ -97,7 +97,6 @@
     .formSubmit {
         flex-basis: 20%;
         margin-left: 15px;
-        height: 60px;
 
         &.fullScreen {
             width: 274px;
