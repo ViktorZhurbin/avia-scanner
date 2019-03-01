@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     width: max-content;
     max-width: 100%;
@@ -8,17 +9,17 @@
 }
 
 .filters {
-    margin-right: 20px;
     min-width: max-content;
+    margin-bottom: 12px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .container {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .filters {
-        margin-right: 0;
-        margin-bottom: 12px;
+        margin-bottom: 0;
+        margin-right: 20px;
     }
 }
