@@ -46,7 +46,7 @@ class Dropdown extends React.Component {
         return (
             <CSSTransition
                 in={isOpen}
-                timeout={100}
+                timeout={10}
                 classNames="message"
                 unmountOnExit
             >
