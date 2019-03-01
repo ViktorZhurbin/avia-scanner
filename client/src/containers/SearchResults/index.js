@@ -12,7 +12,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-class SearchResults extends React.Component {
+class SearchResults extends React.PureComponent {
     static propTypes = {
         tickets: PropTypes.arrayOf(ticketPropType).isRequired,
         filteredTickets: PropTypes.arrayOf(ticketPropType).isRequired,

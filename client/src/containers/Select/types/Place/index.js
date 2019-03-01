@@ -8,7 +8,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class PlaceSelect extends React.Component {
+class PlaceSelect extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
         value: PropTypes.string,

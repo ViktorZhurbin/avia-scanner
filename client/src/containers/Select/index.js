@@ -17,7 +17,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class Select extends React.Component {
+class Select extends React.PureComponent {
     static propTypes = {
         type: PropTypes.string.isRequired,
         id: PropTypes.string,

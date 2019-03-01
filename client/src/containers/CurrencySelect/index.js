@@ -10,7 +10,7 @@ import { currencyList } from '../../constants/mockData';
 
 const cx = cl.bind(styles);
 
-class CurrencySelect extends React.Component {
+class CurrencySelect extends React.PureComponent {
     static propTypes = {
         onSelect: PropTypes.func.isRequired,
         selectedCurrency: PropTypes.string,

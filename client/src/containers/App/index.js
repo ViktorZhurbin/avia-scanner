@@ -15,7 +15,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class App extends React.Component {
+class App extends React.PureComponent {
     state = {
         origin: null,
         destination: null,

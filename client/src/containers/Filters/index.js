@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-class Filters extends React.Component {
+class Filters extends React.PureComponent {
     static propTypes = {
         stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
         selectedStops: PropTypes.objectOf(

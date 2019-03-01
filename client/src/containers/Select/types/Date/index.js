@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class DateSelect extends React.Component {
+class DateSelect extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
         value: PropTypes.string,
