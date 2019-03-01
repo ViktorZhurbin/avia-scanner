@@ -10,6 +10,10 @@ const outputDirectory = '../build';
 
 module.exports = merge(common, {
     mode: 'production',
+    alias: {
+        'react-dom$': 'react-dom/profiling',
+        'scheduler/tracing': 'scheduler/tracing-profiling',
+    },
     optimization: {
         splitChunks: {
             chunks: 'all',
