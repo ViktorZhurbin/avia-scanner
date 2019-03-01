@@ -1,3 +1,21 @@
+import dayjs from 'dayjs';
+
+import getBrowserLocale from './getBrowserLocale';
+
+export const getISODateString = date => (
+    (date && dayjs(date).isValid())
+        ? dayjs(date).format('YYYY-MM-DD')
+        : null
+);
+
+export const formatDateByBrowserLocale = (dateString) => {
+    const locale = getBrowserLocale();
+    const date = new Date(dateString);
+    return dayjs(date).isValid()
+        ? new Intl.DateTimeFormat(locale).format(date)
+        : null;
+};
+
 export const getFlightTimeDate = (dateString) => {
     const [date, time] = dateString.split('T');
 

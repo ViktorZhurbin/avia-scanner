@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import PlaceSelect from '../PlaceSelect';
+import Select from '../Select';
 import NavBar from '../NavBar';
-import DatePicker from '../../components/DatePicker';
 import Button from '../../components/Button';
 
 import styles from './index.css';
@@ -13,9 +12,8 @@ const cx = cl.bind(styles);
 
 const SearchForm = (props) => {
     const {
-        origin,
-        destination,
-        places,
+        originName,
+        destinationName,
         onSubmit,
         onPlaceSelect,
         onDateSelect,
@@ -63,28 +61,28 @@ const SearchForm = (props) => {
                             fullScreen,
                         })}
                     >
-                        <PlaceSelect
+                        <Select
                             isFirst
+                            type="place"
                             id="origin"
-                            itemList={places}
-                            iataCode={origin}
+                            value={originName}
                             onSelect={onPlaceSelect}
                             placeholder="From"
                         />
-                        <PlaceSelect
+                        <Select
+                            type="place"
                             id="destination"
-                            itemList={places}
-                            iataCode={destination}
+                            value={destinationName}
                             onSelect={onPlaceSelect}
                             placeholder="To"
                         />
-                        <div className={cx('dateSelect')}>
-                            <DatePicker
-                                handleChange={onDateSelect}
-                                date={departure}
-                                placeholder="Departure"
-                            />
-                        </div>
+                        <Select
+                            type="date"
+                            id="departure"
+                            value={departure}
+                            onSelect={onDateSelect}
+                            placeholder="Start Date"
+                        />
                     </div>
                     <div className={cx('formSubmit')}>
                         <Button isLoading={isLoading}>
@@ -102,14 +100,8 @@ const SearchForm = (props) => {
 };
 
 SearchForm.propTypes = {
-    origin: PropTypes.string,
-    destination: PropTypes.string,
-    places: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string,
-            code: PropTypes.string,
-        }),
-    ).isRequired,
+    originName: PropTypes.string,
+    destinationName: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
     onPlaceSelect: PropTypes.func.isRequired,
     onDateSelect: PropTypes.func.isRequired,
@@ -117,15 +109,15 @@ SearchForm.propTypes = {
     isLoading: PropTypes.bool,
     fullScreen: PropTypes.bool,
     selectedCurrency: PropTypes.string,
-    departure: PropTypes.object, // eslint-disable-line
+    departure: PropTypes.string,
 };
 
 SearchForm.defaultProps = {
     isLoading: false,
     fullScreen: true,
     selectedCurrency: null,
-    origin: null,
-    destination: null,
+    originName: null,
+    destinationName: null,
     departure: null,
 };
 

@@ -6,9 +6,9 @@ import localeCurrency from 'locale-currency';
 import SearchResults from '../SearchResults';
 import SearchForm from '../SearchForm';
 
-import { places } from '../../constants/mockData';
 import getUniqueByKey from '../../utils/objectHelpers';
 import { getFormattedTickets, fetchCurrencyRates } from '../../utils/api';
+import { getISODateString } from '../../utils/string';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
@@ -17,7 +17,7 @@ const cx = cl.bind(styles);
 
 class App extends React.Component {
     state = {
-        origin: places[0].code,
+        origin: null,
         destination: null,
         departure: null,
         tickets: [],
@@ -33,7 +33,7 @@ class App extends React.Component {
         const locale = getBrowserLocale();
         const currency = localeCurrency.getCurrency(locale);
         const rates = await fetchCurrencyRates(currency);
-        const departure = new Date();
+        const departure = getISODateString(new Date());
         this.setState({
             locale,
             currency,
@@ -47,9 +47,8 @@ class App extends React.Component {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            const { departure, ...rest } = qs.parse(search);
+            const { ...rest } = qs.parse(search);
             this.setState({
-                departure,
                 ...rest,
             }, () => {
                 this.onResetTicketData();
@@ -79,6 +78,7 @@ class App extends React.Component {
         this.setState({
             departure: null,
             destination: null,
+            origin: null,
         });
     }
 
@@ -123,17 +123,19 @@ class App extends React.Component {
         });
     };
 
-    onDateSelect = (key, date) => {
+    onDateSelect = (id, date) => {
         this.setState({
-            [key]: date,
+            [id]: date,
         });
     }
 
-    onPlaceSelect = (code, key) => {
-        const otherKey = key === 'origin' ? 'destination' : 'origin';
-        const iataCode = this.state[otherKey] === code ? null : code;
+    onPlaceSelect = (id, code, name) => {
+        const otherId = id === 'origin' ? 'destination' : 'origin';
+        const iataCode = this.state[otherId] === code ? null : code;
+        const cityName = this.state[`${otherId}Name`] === name ? null : name;
         this.setState(() => ({
-            [key]: iataCode,
+            [id]: iataCode,
+            [`${id}Name`]: cityName,
         }));
     }
 
@@ -186,8 +188,8 @@ class App extends React.Component {
 
     render() {
         const {
-            origin,
-            destination,
+            originName,
+            destinationName,
             locale,
             tickets,
             filteredTickets,
@@ -211,9 +213,8 @@ class App extends React.Component {
                 >
                     <SearchForm
                         isLoading={isLoading}
-                        origin={origin}
-                        destination={destination}
-                        places={places}
+                        originName={originName}
+                        destinationName={destinationName}
                         onSubmit={this.onSubmit}
                         onPlaceSelect={this.onPlaceSelect}
                         onDateSelect={this.onDateSelect}

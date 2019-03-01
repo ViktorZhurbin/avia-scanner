@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Dropdown from '../../components/Dropdown';
+import SelectTrigger from '../../components/SelectTrigger';
 
 import styles from './index.css';
 
@@ -18,6 +19,7 @@ class PlaceSelect extends React.Component {
         iataCode: PropTypes.string,
         placeholder: PropTypes.string,
         isFirst: PropTypes.bool,
+        children: PropTypes.node.isRequired,
     }
 
     static defaultProps = {
@@ -65,7 +67,6 @@ class PlaceSelect extends React.Component {
         } = this.props;
 
         const selectedItem = itemList.find(item => item.code === iataCode);
-        const triggerText = selectedItem ? selectedItem.name : placeholder;
 
         return (
             <div
@@ -74,14 +75,13 @@ class PlaceSelect extends React.Component {
                     isFirst,
                 })}
             >
-                <div
-                    className={cx({
-                        triggerText: true,
-                        placeholder: triggerText === placeholder,
-                    })}
-                >
-                    {triggerText}
-                </div>
+                <SelectTrigger
+                    text={selectedItem}
+                    placeholder={placeholder}
+                    classNames={{
+                        placeSelector: true,
+                    }}
+                />
             </div>
         );
     }
@@ -94,7 +94,7 @@ class PlaceSelect extends React.Component {
                 }}
                 trigger={this.renderTrigger()}
             >
-                {this.renderDropdown()}
+                {this.props.children}
             </Dropdown>
         );
     }
