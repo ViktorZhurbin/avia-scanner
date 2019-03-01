@@ -12,6 +12,7 @@ const SelectTrigger = (props) => {
         placeholder,
         selectedItem,
         classNames,
+        children,
     } = props;
 
     return (
@@ -23,6 +24,7 @@ const SelectTrigger = (props) => {
             })}
         >
             {selectedItem || placeholder}
+            {children}
         </div>
     );
 };
@@ -31,12 +33,14 @@ SelectTrigger.propTypes = {
     placeholder: PropTypes.string,
     selectedItem: PropTypes.string,
     classNames: classNamesPropType,
+    children: PropTypes.node,
 };
 
 SelectTrigger.defaultProps = {
     placeholder: '',
     selectedItem: '',
     classNames: null,
+    children: null,
 };
 
 export default SelectTrigger;

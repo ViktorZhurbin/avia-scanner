@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
+import SVGInline from 'react-svg-inline';
+
+import calendarIcon from '../../assets/calendar.svg';
+import clearDateIcon from '../../assets/close.svg';
 
 import Dropdown from '../../components/Dropdown';
 import SelectTrigger from '../../components/SelectTrigger';
@@ -25,11 +29,19 @@ class Select extends React.Component {
     }
 
     static defaultProps = {
+        id: null,
+        value: null,
         isFirst: false,
         isLast: false,
-        value: null,
-        id: null,
     }
+
+    handleClearDate = (event) => {
+        const { onSelect, id } = this.props;
+
+        event.stopPropagation();
+        onSelect(id, null);
+    }
+
 
     renderTrigger = () => {
         const {
@@ -56,9 +68,19 @@ class Select extends React.Component {
                     selectedItem={formatted}
                     placeholder={placeholder}
                     classNames={{
-                        type,
+                        date: type === 'date',
                     }}
-                />
+                >
+                    {type === 'date'
+                        ? (
+                            <SVGInline
+                                className={cx('icon')}
+                                svg={value ? clearDateIcon : calendarIcon}
+                                onClick={value ? this.handleClearDate : null}
+                            />
+                        )
+                        : null}
+                </SelectTrigger>
             </div>
         );
     }
@@ -71,7 +93,7 @@ class Select extends React.Component {
         return (
             <Dropdown
                 classNames={{
-                    placeSelect: true,
+                    select: true,
                 }}
                 trigger={this.renderTrigger()}
             >
