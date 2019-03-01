@@ -59,7 +59,6 @@ class App extends React.PureComponent {
                 }
             });
         } else {
-            window.history.pushState('', '', '/');
             this.onResetState();
         }
     }
@@ -74,6 +73,7 @@ class App extends React.PureComponent {
     }
 
     onResetState = () => {
+        window.history.pushState('', '', '/');
         this.onResetTicketData();
         this.setState({
             departure: null,

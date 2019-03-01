@@ -9,21 +9,18 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const NavBar = props => (
+const NavBar = ({ onResetState, selectedCurrency, onCurrencySelect }) => (
     <div className={cx('container')}>
         {/* eslint-disable-next-line */}
         <div
             className={cx('logo')}
-            onClick={() => {
-                window.history.pushState('', '', '/');
-                props.onResetState();
-            }}
+            onClick={onResetState}
         >
             <Logo />
         </div>
         <CurrencySelect
-            selectedCurrency={props.selectedCurrency}
-            onSelect={props.onCurrencySelect}
+            selectedCurrency={selectedCurrency}
+            onSelect={onCurrencySelect}
         />
     </div>
 );
