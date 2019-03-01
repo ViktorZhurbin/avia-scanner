@@ -77,6 +77,7 @@ const SearchForm = (props) => {
                             placeholder="To"
                         />
                         <Select
+                            isLast
                             type="date"
                             id="departure"
                             value={departure}

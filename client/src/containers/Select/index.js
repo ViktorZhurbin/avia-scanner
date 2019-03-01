@@ -21,10 +21,12 @@ class Select extends React.Component {
         onSelect: PropTypes.func.isRequired,
         placeholder: PropTypes.string.isRequired,
         isFirst: PropTypes.bool,
+        isLast: PropTypes.bool,
     }
 
     static defaultProps = {
         isFirst: false,
+        isLast: false,
         value: null,
         id: null,
     }
@@ -34,6 +36,7 @@ class Select extends React.Component {
             value,
             placeholder,
             isFirst,
+            isLast,
             type,
         } = this.props;
 
@@ -46,6 +49,7 @@ class Select extends React.Component {
                 className={cx({
                     triggerContainer: true,
                     isFirst,
+                    isLast,
                 })}
             >
                 <SelectTrigger

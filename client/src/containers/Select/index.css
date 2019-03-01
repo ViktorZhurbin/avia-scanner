@@ -9,6 +9,10 @@
     &.isFirst {
         border-radius: 5px 5px 0 0;
     }
+
+    &.isLast {
+        border-radius: 0 0 5px 5px;
+    }
 }
 
 @media (min-width: 640px) {
@@ -18,6 +22,10 @@
 
         &.isFirst {
             border-radius: 5px 0 0 5px;
+        }
+
+        &.isLast {
+            border-radius: 0 5px 5px 0;
         }
     }
 }
