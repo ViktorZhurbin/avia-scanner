@@ -7,7 +7,6 @@ import { getISODateString } from '../../../../utils/string';
 
 import styles from './index.css';
 
-
 const cx = cl.bind(styles);
 
 class DateSelect extends React.Component {
@@ -31,12 +30,15 @@ class DateSelect extends React.Component {
         const { value } = this.props;
 
         return (
-            <div className={cx('calendar')}>
-                <Calendar
-                    onDateSelect={this.handleSelect}
-                    date={value}
-                />
-            </div>
+            <React.Fragment>
+                <div className={cx('calendarModal')}>
+                    <Calendar
+                        onDateSelect={this.handleSelect}
+                        date={value}
+                    />
+                </div>
+                <div className={cx('modalOverlay')} />
+            </React.Fragment>
         );
     }
 }

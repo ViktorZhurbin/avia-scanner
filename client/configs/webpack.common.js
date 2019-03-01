@@ -51,7 +51,8 @@ module.exports = {
                 ],
             },
             {
-                test: /(Calendar).css$/,
+                test: /(Calendar|calendar).css$/,
+                include: /(node_modules|custom)/,
                 use: ['style-loader', 'css-loader'],
             },
             {
