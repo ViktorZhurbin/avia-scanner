@@ -16,7 +16,7 @@ const SearchForm = (props) => {
         destinationName,
         onSubmit,
         onPlaceSelect,
-        onDateSelect,
+        onSelect,
         onResetState,
         isLoading,
         selectedCurrency,
@@ -39,7 +39,7 @@ const SearchForm = (props) => {
             <div className={cx('innerContainer')}>
                 <NavBar
                     onResetState={onResetState}
-                    onCurrencySelect={onPlaceSelect}
+                    onCurrencySelect={onSelect}
                     selectedCurrency={selectedCurrency}
                 />
                 <form
@@ -81,7 +81,7 @@ const SearchForm = (props) => {
                             type="date"
                             id="departure"
                             value={departure}
-                            onSelect={onDateSelect}
+                            onSelect={onSelect}
                             placeholder="Start Date"
                         />
                     </div>
@@ -105,7 +105,7 @@ SearchForm.propTypes = {
     destinationName: PropTypes.string,
     onSubmit: PropTypes.func.isRequired,
     onPlaceSelect: PropTypes.func.isRequired,
-    onDateSelect: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
     onResetState: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,
     fullScreen: PropTypes.bool,

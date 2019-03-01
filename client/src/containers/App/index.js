@@ -123,7 +123,7 @@ class App extends React.Component {
         });
     };
 
-    onDateSelect = (id, date) => {
+    onSelect = (id, date) => {
         this.setState({
             [id]: date,
         });
@@ -217,7 +217,7 @@ class App extends React.Component {
                         destinationName={destinationName}
                         onSubmit={this.onSubmit}
                         onPlaceSelect={this.onPlaceSelect}
-                        onDateSelect={this.onDateSelect}
+                        onSelect={this.onSelect}
                         onResetState={this.onResetState}
                         selectedCurrency={currency}
                         departure={departure}

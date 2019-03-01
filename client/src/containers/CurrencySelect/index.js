@@ -21,7 +21,7 @@ class CurrencySelect extends React.Component {
     }
 
     onCurrencySelect = (currencyCode) => {
-        this.props.onSelect(currencyCode, 'currency');
+        this.props.onSelect('currency', currencyCode);
     }
 
     handleKeyPress = (event, currencyCode) => {
