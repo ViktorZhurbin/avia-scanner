@@ -9,11 +9,11 @@
     "not ie 11"
   ],
   "scripts": {
-    "client": "webpack-dev-server --env.MODE=dev --mode development",
+    "client": "webpack-dev-server --env.MODE=dev --config configs/webpack.dev.js",
     "server": "nodemon ../index.js",
     "dev": "concurrently 'npm run server' 'npm run client'",
-    "build": "webpack --env.MODE=prod --mode production",
-    "stats": "webpack --profile --json > stats.json"
+    "build": "webpack --env.MODE=prod --config configs/webpack.prod.js",
+    "build:stats": "webpack --config configs/webpack.prod.js --profile --json > stats.json"
   },
   "keywords": [],
   "author": "",
@@ -73,6 +73,7 @@
     "webpack": "^4.29.3",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   }
 }
