@@ -6,42 +6,56 @@ import styles from './index.css';
 
 const cx = classNames.bind(styles);
 
-const Checkbox = (props) => {
-    const {
-        id,
-        checked,
-        name,
-        onChange,
-    } = props;
+class Checkbox extends React.PureComponent {
+    static propTypes = {
+        id: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+        ]).isRequired,
+        checked: PropTypes.bool.isRequired,
+        name: PropTypes.string.isRequired,
+        onChange: PropTypes.func,
+        selectedStops: PropTypes.objectOf(
+            PropTypes.bool,
+        ).isRequired,
+    };
 
-    return (
-        <label className={cx('row')}> {/*eslint-disable-line*/}
-            <input
-                className={cx('input')}
-                id={id}
-                checked={checked}
-                name={name}
-                type="checkbox"
-                onChange={onChange}
-            />
-            <span className={cx('checkmark')} />
-            {name}
-        </label>
-    );
-};
+    static defaultProps = {
+        onChange: null,
+    };
 
-Checkbox.propTypes = {
-    id: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-    ]).isRequired,
-    checked: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
-};
+    onToggleFilter = () => {
+        const { onChange, selectedStops, id } = this.props;
 
-Checkbox.defaultProps = {
-    onChange: null,
-};
+        const selectedFilters = {
+            ...selectedStops,
+            [id]: !selectedStops[id],
+        };
+        onChange(selectedFilters);
+    }
 
-export default React.memo(Checkbox);
+    render() {
+        const {
+            id,
+            checked,
+            name,
+        } = this.props;
+
+        return (
+            <label className={cx('row')}> {/*eslint-disable-line*/}
+                <input
+                    className={cx('input')}
+                    id={id}
+                    checked={checked}
+                    name={name}
+                    type="checkbox"
+                    onChange={this.onToggleFilter}
+                />
+                <span className={cx('checkmark')} />
+                {name}
+            </label>
+        );
+    }
+}
+
+export default Checkbox;

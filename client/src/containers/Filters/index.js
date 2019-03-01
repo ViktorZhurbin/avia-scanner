@@ -28,8 +28,11 @@ class Filters extends React.PureComponent {
         onFilter(selectedFilters);
     }
 
-    onToggleAll = (isAllChecked) => {
-        const { onFilter, stopOptions } = this.props;
+    onToggleAll = () => {
+        const { onFilter, stopOptions, selectedStops } = this.props;
+
+        const selectedCount = Object.values(selectedStops).filter(item => Boolean(item));
+        const isAllChecked = selectedCount.length === stopOptions.length;
 
         const selectedFilters = {};
         stopOptions.forEach(
@@ -39,7 +42,7 @@ class Filters extends React.PureComponent {
     }
 
     render() {
-        const { stopOptions, selectedStops } = this.props;
+        const { stopOptions, selectedStops, onFilter } = this.props;
 
         const selectedCount = Object.values(selectedStops).filter(item => Boolean(item));
         const isAllChecked = selectedCount.length === stopOptions.length;
@@ -55,7 +58,8 @@ class Filters extends React.PureComponent {
                                 id="all"
                                 checked={isAllChecked}
                                 name="All"
-                                onChange={() => this.onToggleAll(isAllChecked)}
+                                selectedStops={selectedStops}
+                                onChange={this.onToggleAll}
                             />
                             {stopOptions.map((item) => {
                                 const isChecked = Boolean(selectedStops[item]);
@@ -64,11 +68,12 @@ class Filters extends React.PureComponent {
                                 return (
                                     <Checkbox
                                         key={item}
-                                        className={cx('filterItem')}
                                         id={item}
+                                        className={cx('filterItem')}
                                         checked={isChecked}
                                         name={name}
-                                        onChange={() => this.onToggleFilter(item)}
+                                        selectedStops={selectedStops}
+                                        onChange={onFilter}
                                     />
                                 );
                             })}

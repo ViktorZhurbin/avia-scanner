@@ -18,7 +18,9 @@ const cx = cl.bind(styles);
 class App extends React.PureComponent {
     state = {
         origin: null,
+        originName: null,
         destination: null,
+        destinationName: null,
         departure: null,
         tickets: [],
         filteredTickets: [],
