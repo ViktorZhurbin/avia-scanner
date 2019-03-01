@@ -7,103 +7,112 @@ const webpack = require('webpack');
 
 const outputDirectory = 'build';
 
-module.exports = (env, argv) => ({
-    mode: argv.mode,
-    entry: ['./src/index.js'],
-    output: {
-        path: path.join(__dirname, outputDirectory),
-        filename: '[name].[contenthash].js',
-        chunkFilename: '[name].[contenthash].js',
-        publicPath: '/',
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
+module.exports = (env, argv) => {
+    console.log('MODE: ', env.MODE);
+
+    return {
+        mode: argv.mode,
+        entry: ['./src/index.js'],
+        output: {
+            path: path.join(__dirname, outputDirectory),
+            filename: '[name].[contenthash].js',
+            chunkFilename: '[name].[contenthash].js',
+            publicPath: '/',
         },
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader'],
+        optimization: {
+            splitChunks: {
+                chunks: 'all',
             },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: { minimize: true },
-                    },
-                ],
-            },
-            {
-                test: /\.css$/,
-                exclude: /(node_modules|custom)/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: true,
-                            localIdentName: '[local]__[folder]--[hash:base64:5]',
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    use: ['babel-loader', 'eslint-loader'],
+                },
+                {
+                    test: /\.html$/,
+                    use: [
+                        {
+                            loader: 'html-loader',
+                            options: { minimize: true },
                         },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                    },
-                ],
-            },
-            {
-                test: /(_datepicker.css|datepickerOverrides.css)$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                ],
-            },
-            {
-                test: /\.svg$/,
-                use: ['raw-loader'],
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {},
-                    },
-                ],
-            },
-        ],
-    },
-    devtool: argv.mode === 'production' ? 'none' : 'eval-source-map',
-    devServer: {
-        port: 3000,
-        open: false,
-        proxy: {
-            '/api': 'http://localhost:5000',
+                    ],
+                },
+                {
+                    test: /\.css$/,
+                    exclude: /(node_modules|custom)/,
+                    use: [
+                        {
+                            loader: 'style-loader',
+                        },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                modules: true,
+                                localIdentName: '[local]__[folder]--[hash:base64:5]',
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                        },
+                    ],
+                },
+                {
+                    test: /(_datepicker.css|datepickerOverrides.css)$/,
+                    use: [
+                        {
+                            loader: 'style-loader',
+                        },
+                        {
+                            loader: 'css-loader',
+                        },
+                    ],
+                },
+                {
+                    test: /\.svg$/,
+                    use: ['raw-loader'],
+                },
+                {
+                    test: /\.(png|jpg|gif)$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {},
+                        },
+                    ],
+                },
+            ],
         },
-        historyApiFallback: true,
-    },
-    plugins: [
-        new CleanWebpackPlugin([outputDirectory]),
-        new HtmlWebPackPlugin({
-            template: './public/index.html',
-            filename: './index.html',
-        }),
-        new LodashModuleReplacementPlugin({
-            collections: true,
-            shorthands: true,
-        }),
-        // new BundleAnalyzerPlugin(),
-        // Ignore all locale files of moment.js
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    ],
-});
+        devtool: argv.mode === 'production' ? 'none' : 'eval-source-map',
+        devServer: {
+            port: 3000,
+            open: false,
+            proxy: {
+                '/api': 'http://localhost:5000',
+            },
+            historyApiFallback: true,
+        },
+        plugins: [
+            new CleanWebpackPlugin([outputDirectory]),
+            new HtmlWebPackPlugin({
+                template: './public/index.html',
+                filename: './index.html',
+            }),
+            new LodashModuleReplacementPlugin({
+                collections: true,
+                shorthands: true,
+            }),
+            // new BundleAnalyzerPlugin(),
+            // Ignore all locale files of moment.js
+            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+            new webpack.DefinePlugin({
+                'process.env': {
+                    MODE: JSON.stringify(env.MODE),
+                },
+            }),
+        ],
+    };
+};

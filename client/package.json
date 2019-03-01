@@ -9,10 +9,10 @@
     "not ie 11"
   ],
   "scripts": {
-    "client": "webpack-dev-server --mode development",
+    "client": "webpack-dev-server --env.MODE=dev --mode development",
     "server": "nodemon ../index.js",
     "dev": "concurrently 'npm run server' 'npm run client'",
-    "build": "webpack --mode production",
+    "build": "webpack --env.MODE=prod --mode production",
     "stats": "webpack --profile --json > stats.json"
   },
   "keywords": [],

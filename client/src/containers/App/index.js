@@ -55,8 +55,11 @@ class App extends React.Component {
                 ...rest,
             }, () => {
                 this.onResetTicketData();
-                this.fetchTickets(search);
-                // this.fetchTickets(); // for dev testing
+                if (process.env.MODE === 'dev') {
+                    this.fetchTickets(); // for dev testing on mock data
+                } else {
+                    this.fetchTickets(search);
+                }
             });
         } else {
             window.history.pushState('', '', '/');
@@ -107,8 +110,11 @@ class App extends React.Component {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
         window.history.pushState(searchObj, '', `search?${search}`);
-        this.fetchTickets(search);
-        // this.fetchTickets(); // for dev testing
+        if (process.env.MODE === 'dev') {
+            this.fetchTickets(); // for dev testing on mock data
+        } else {
+            this.fetchTickets(search);
+        }
     };
 
     onInputChange = (event) => {
