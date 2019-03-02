@@ -4,14 +4,12 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
-const outputDirectory = '../build';
-
 module.exports = {
     entry: ['./src/index.js'],
     output: {
-        path: path.join(__dirname, outputDirectory),
-        filename: '[name].[contenthash].js',
-        chunkFilename: '[name].[contenthash].js',
+        path: path.join(__dirname, '../build'),
+        filename: '[name].[contenthash].build.js',
+        chunkFilename: '[name].[contenthash].build.js',
         publicPath: '/',
     },
     module: {
@@ -67,8 +65,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: './public/index.html',
-            filename: 'index.html',
+            template: 'public/index.html',
         }),
         new LodashModuleReplacementPlugin({
             collections: true,
