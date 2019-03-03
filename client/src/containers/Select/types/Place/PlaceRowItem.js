@@ -43,7 +43,6 @@ class PlaceRowItem extends React.PureComponent {
 
         return (
             <div
-                key={place.code}
                 className={cx('item')}
                 role="button"
                 tabIndex={index + 1}

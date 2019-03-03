@@ -39,7 +39,7 @@ class PlaceSelect extends React.PureComponent {
             <div className={cx('itemList')}>
                 {places.map((item, index) => (
                     <PlaceRowItem
-                        key={item}
+                        key={item.code}
                         id={id}
                         place={item}
                         index={index}
