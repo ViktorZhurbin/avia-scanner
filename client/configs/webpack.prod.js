@@ -9,6 +9,7 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
     mode: 'production',
+    devtool: 'eval-source-map',
     optimization: {
         splitChunks: {
             chunks: 'all',
