@@ -54,14 +54,18 @@ module.exports = {
         unirest.get(reqUrl)
             .header('X-RapidAPI-Key', apiKey)
             .end((result) => {
-                // console.log(result.status, result.headers, result.body);
-                const formatted = result.body && formatTicketData(result.body);
-                res.json({
-                    status: result.status,
-                    ok: result.ok,
-                    headers: result.headers,
-                    body: formatted,
-                });
+                if (result) {
+                    const { status, ok, headers, body } = result;
+                    // console.log(status, headers, body);
+                    const formatted = body && tickets.format(body);
+
+                    res.json({
+                        status: status,
+                        ok: ok,
+                        headers: headers,
+                        body: formatted,
+                    });
+                }
             });
     },
 };

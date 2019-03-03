@@ -45,6 +45,18 @@ class App extends React.PureComponent {
         });
     }
 
+
+    onSubmit = (event) => {
+        event.preventDefault();
+        const { searchObj, search } = this.getSearchQuery();
+        window.history.pushState(searchObj, '', `search?${search}`);
+        if (process.env.NODE_ENV === 'development') {
+            this.fetchTickets(search); // for dev testing on mock data
+        } else {
+            this.fetchTickets(search);
+        }
+    };
+
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
@@ -102,17 +114,6 @@ class App extends React.PureComponent {
             rates,
         });
     }
-
-    onSubmit = (event) => {
-        event.preventDefault();
-        const { searchObj, search } = this.getSearchQuery();
-        window.history.pushState(searchObj, '', `search?${search}`);
-        if (process.env.NODE_ENV === 'development') {
-            this.fetchTickets(); // for dev testing on mock data
-        } else {
-            this.fetchTickets(search);
-        }
-    };
 
     onInputChange = (event) => {
         const inputValue = event.target.value;
