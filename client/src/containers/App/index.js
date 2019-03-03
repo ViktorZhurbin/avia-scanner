@@ -158,10 +158,11 @@ class App extends React.PureComponent {
             locale,
             currency,
         };
+        const queryString = qs.stringify(queryObject);
 
         return {
             searchObj: queryObject,
-            search: qs.stringify(queryObject),
+            search: `?${queryString}`,
         };
     };
 
