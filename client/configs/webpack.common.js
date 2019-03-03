@@ -11,6 +11,11 @@ module.exports = {
         path: path.join(__dirname, '../build'),
         publicPath: '/',
     },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+        },
+    },
     module: {
         rules: [
             {
