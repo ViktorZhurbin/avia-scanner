@@ -13,7 +13,9 @@ export default () => {
         lang = navigator.language;
     }
 
-    const [language, country] = lang.split('-');
+    const localeData = lang.split('-');
+    const language = localeData[0];
+    const country = localeData.length > 1 ? localeData[1] : localeData[0].toUpperCase();
 
-    return `${language}-${country.toUpperCase()}`;
+    return `${language}-${country}`;
 };
