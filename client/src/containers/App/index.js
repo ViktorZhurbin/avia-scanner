@@ -3,7 +3,6 @@ import qs from 'query-string';
 import cl from 'classnames/bind';
 import localeCurrency from 'locale-currency';
 
-import SearchResults from '../SearchResults';
 import SearchForm from '../SearchForm';
 
 import { fetchTickets, fetchCurrencyRates } from '../../utils/api';
@@ -12,6 +11,7 @@ import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
 
+const SearchResults = React.lazy(() => import('../SearchResults'));
 const cx = cl.bind(styles);
 
 class App extends React.PureComponent {
@@ -66,7 +66,7 @@ class App extends React.PureComponent {
             }, () => {
                 this.onResetTicketData();
                 if (process.env.NODE_ENV === 'development') {
-                    this.fetchTickets(); // for dev testing on mock data
+                    this.fetchTickets(search); // for dev testing on mock data
                 } else {
                     this.fetchTickets(search);
                 }
@@ -226,19 +226,21 @@ class App extends React.PureComponent {
                 </div>
                 {hasResults
                     ? (
-                        <div className={cx('results')}>
-                            <SearchResults
-                                rates={rates}
-                                tickets={tickets}
-                                filteredTickets={filteredTickets}
-                                stopOptions={stopOptions}
-                                selectedStops={selectedStops}
-                                onFilterByStops={this.onFilterByStops}
-                                onResetFilters={this.onResetFilters}
-                                locale={locale}
-                                currency={currency}
-                            />
-                        </div>
+                        <React.Suspense fallback={<div>Loading...</div>}>
+                            <div className={cx('results')}>
+                                <SearchResults
+                                    rates={rates}
+                                    tickets={tickets}
+                                    filteredTickets={filteredTickets}
+                                    stopOptions={stopOptions}
+                                    selectedStops={selectedStops}
+                                    onFilterByStops={this.onFilterByStops}
+                                    onResetFilters={this.onResetFilters}
+                                    locale={locale}
+                                    currency={currency}
+                                />
+                            </div>
+                        </React.Suspense>
                     )
                     : null}
             </div>
