@@ -8,6 +8,12 @@ export const getISODateString = date => (
         : null
 );
 
+export const getISODatStringOfTodayPlusNdays = (days) => {
+    const date = dayjs().add(days, 'day');
+
+    return getISODateString(date);
+};
+
 export const formatDateByBrowserLocale = (dateString) => {
     const locale = getBrowserLocale();
     const date = new Date(dateString);

@@ -7,7 +7,7 @@ import SearchForm from '../SearchForm';
 import SearchResults from '../SearchResults';
 
 import { fetchTickets, fetchCurrencyRates } from '../../utils/api';
-import { getISODateString } from '../../utils/string';
+import { getISODatStringOfTodayPlusNdays } from '../../utils/string';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 import { places } from '../../constants/mockData';
 
@@ -17,8 +17,8 @@ const cx = cl.bind(styles);
 
 class App extends React.PureComponent {
     state = {
-        origin: null,
-        destination: null,
+        origin: places[0],
+        destination: places[2],
         departure: null,
         tickets: [],
         filteredTickets: [],
@@ -33,7 +33,7 @@ class App extends React.PureComponent {
         const locale = getBrowserLocale();
         const currency = localeCurrency.getCurrency(locale);
         const rates = await fetchCurrencyRates(currency);
-        const departure = getISODateString(new Date());
+        const departure = getISODatStringOfTodayPlusNdays(14);
         this.setState({
             locale,
             currency,
