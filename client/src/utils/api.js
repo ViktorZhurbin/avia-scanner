@@ -14,15 +14,9 @@ const api = {
     currencyRates: '/api/currencyRates',
 };
 
-const getURI = (...args) => {
-    const string = `${[...args].join('/')}`;
-
-    return window.encodeURI(string);
-};
-
 export const createApiSession = async (query) => {
-    const apiURI = getURI(api.createSession);
-    const encodedURI = window.encodeURI(apiURI + query);
+    const apiURI = window.encodeURI(api.createSession);
+    const encodedURI = window.encodeURI(`${apiURI}/${query}`);
     const { data } = await axios.get(encodedURI).catch(handleError);
 
     const sessionKey = data && data.sessionKey;
@@ -31,14 +25,14 @@ export const createApiSession = async (query) => {
 
 export const fetchTickets = async (query = '') => {
     if (query.length === 0) {
-        const encodedURI = getURI(api.mockData);
+        const encodedURI = window.encodeURI(api.mockData);
         const { data } = await axios.get(encodedURI).catch(handleError);
 
         return data && data.body;
     }
 
     const sessionKey = await createApiSession(query);
-    const encodedURI = getURI(api.getTickets, sessionKey);
+    const encodedURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
     const { data } = await axios.get(encodedURI).catch(handleError);
     const tickets = data && data.ok && data.body;
 

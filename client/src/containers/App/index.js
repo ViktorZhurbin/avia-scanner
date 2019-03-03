@@ -94,9 +94,9 @@ class App extends React.PureComponent {
         window.history.pushState('', '', '/');
         this.onResetTicketData();
         this.setState({
-            origin: null,
-            destination: null,
-            departure: null,
+            // origin: null,
+            // destination: null,
+            // departure: null,
             isLoading: false,
         });
     }
