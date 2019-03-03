@@ -60,9 +60,10 @@ class App extends React.PureComponent {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            const { ...rest } = qs.parse(search);
+            const query = qs.parse(search);
+            // console.log(query);
             this.setState({
-                ...rest,
+                ...query,
             }, () => {
                 this.onResetTicketData();
                 if (process.env.NODE_ENV === 'development') {
