@@ -1,7 +1,5 @@
 import axios from 'axios';
-// import qs from 'query-string';
 
-import formatTickets from './formatTicketData';
 import hardcodedCurrencyFallback from '../constants/fallbackData';
 
 const handleError = (error) => {
@@ -73,10 +71,4 @@ export const fetchTickets = async (query = '') => {
     const tickets = data && data.ok && data.body;
 
     return tickets;
-};
-
-export const getFormattedTickets = async (query) => {
-    const tickets = await fetchTickets(query);
-
-    return formatTickets(tickets);
 };
