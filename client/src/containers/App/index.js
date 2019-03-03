@@ -2,6 +2,7 @@ import React from 'react';
 import qs from 'query-string';
 import cl from 'classnames/bind';
 import localeCurrency from 'locale-currency';
+import axios from 'axios';
 
 import SearchForm from '../SearchForm';
 import SearchResults from '../SearchResults';
@@ -14,6 +15,8 @@ import { places } from '../../constants/mockData';
 import styles from './index.css';
 
 const cx = cl.bind(styles);
+
+const source = axios.CancelToken.source();
 
 class App extends React.PureComponent {
     state = {
@@ -44,6 +47,10 @@ class App extends React.PureComponent {
         });
     }
 
+    componentWillUnmount() {
+        source.cancel();
+    }
+
     getLocationByCode = code => (
         places.find(item => item.code === code)
     )
@@ -52,11 +59,11 @@ class App extends React.PureComponent {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
         window.history.pushState(searchObj, '', `${search}`);
-        if (process.env.NODE_ENV === 'development') {
-            this.fetchTickets(search); // for dev testing on mock data
-        } else {
-            this.fetchTickets(search);
-        }
+        // if (process.env.NODE_ENV === 'development') {
+        //     this.fetchTickets(); // for dev testing on mock data
+        // } else {
+        this.fetchTickets(search);
+        // }
     };
 
     onUpdateState = () => {
@@ -70,11 +77,11 @@ class App extends React.PureComponent {
                 ...rest,
             }, () => {
                 this.onResetTicketData();
-                if (process.env.NODE_ENV === 'development') {
-                    this.fetchTickets(search); // for dev testing on mock data
-                } else {
-                    this.fetchTickets(search);
-                }
+                // if (process.env.NODE_ENV === 'development') {
+                this.fetchTickets(search); // for dev testing on mock data
+                // } else {
+                //     this.fetchTickets(search);
+                // }
             });
         } else {
             this.onResetState();
@@ -92,6 +99,7 @@ class App extends React.PureComponent {
 
     onResetState = () => {
         window.history.pushState('', '', '/');
+        source.cancel();
         this.onResetTicketData();
         this.setState({
             // origin: null,
@@ -105,7 +113,11 @@ class App extends React.PureComponent {
         const { currency } = this.state;
 
         this.setState({ isLoading: true });
-        const { allTickets, stopOptions, filteredTickets } = await fetchTickets(query);
+        const {
+            allTickets,
+            stopOptions,
+            filteredTickets,
+        } = await fetchTickets(query, source.token);
         const selectedStops = {
             [stopOptions[0]]: true,
         };
