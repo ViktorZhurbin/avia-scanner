@@ -21,10 +21,10 @@ const getURI = (...args) => {
 };
 
 export const createApiSession = async (query) => {
-    const encodedURI = getURI(api.createSession, query);
-    // console.log('encodedURI', encodedURI);
-
+    const apiURI = getURI(api.createSession);
+    const encodedURI = window.encodeURI(apiURI + query);
     const { data } = await axios.get(encodedURI).catch(handleError);
+
     const sessionKey = data && data.sessionKey;
     return sessionKey;
 };
