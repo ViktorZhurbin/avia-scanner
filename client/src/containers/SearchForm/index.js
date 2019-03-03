@@ -12,8 +12,8 @@ const cx = cl.bind(styles);
 
 const SearchForm = (props) => {
     const {
-        originName,
-        destinationName,
+        origin,
+        destination,
         onSubmit,
         onPlaceSelect,
         onSelect,
@@ -65,14 +65,14 @@ const SearchForm = (props) => {
                             isFirst
                             type="place"
                             id="origin"
-                            value={originName}
+                            value={origin}
                             onSelect={onPlaceSelect}
                             placeholder="From"
                         />
                         <Select
                             type="place"
                             id="destination"
-                            value={destinationName}
+                            value={destination}
                             onSelect={onPlaceSelect}
                             placeholder="To"
                         />
@@ -101,8 +101,8 @@ const SearchForm = (props) => {
 };
 
 SearchForm.propTypes = {
-    originName: PropTypes.string,
-    destinationName: PropTypes.string,
+    origin: PropTypes.objectOf(PropTypes.string),
+    destination: PropTypes.objectOf(PropTypes.string),
     onSubmit: PropTypes.func.isRequired,
     onPlaceSelect: PropTypes.func.isRequired,
     onSelect: PropTypes.func.isRequired,
@@ -117,8 +117,8 @@ SearchForm.defaultProps = {
     isLoading: false,
     fullScreen: true,
     selectedCurrency: null,
-    originName: null,
-    destinationName: null,
+    origin: null,
+    destination: null,
     departure: null,
 };
 

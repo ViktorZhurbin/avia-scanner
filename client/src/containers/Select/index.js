@@ -21,7 +21,10 @@ class Select extends React.PureComponent {
     static propTypes = {
         type: PropTypes.string.isRequired,
         id: PropTypes.string,
-        value: PropTypes.string,
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.objectOf(PropTypes.string),
+        ]),
         onSelect: PropTypes.func.isRequired,
         placeholder: PropTypes.string.isRequired,
         isFirst: PropTypes.bool,
@@ -54,7 +57,7 @@ class Select extends React.PureComponent {
 
         const formatted = (value && type === 'date')
             ? formatDateByBrowserLocale(value)
-            : value;
+            : value && value.name;
 
         return (
             <div

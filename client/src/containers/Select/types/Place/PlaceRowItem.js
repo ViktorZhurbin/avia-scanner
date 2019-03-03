@@ -25,7 +25,7 @@ class PlaceRowItem extends React.PureComponent {
     onSelect = () => {
         const { place, onSelect, id } = this.props;
 
-        onSelect(id, place.code, place.name);
+        onSelect(id, place);
     }
 
     onKeyPress = (event) => {
@@ -48,7 +48,7 @@ class PlaceRowItem extends React.PureComponent {
                 tabIndex={index + 1}
                 onKeyPress={this.onKeyPress}
                 onClick={this.onSelect}
-                selected={selectedPlace === place.name}
+                selected={selectedPlace === place.code}
             >
                 <span className={cx('name')}>{place.name}</span>
                 <strong className={cx('iataCode')}>{place.code}</strong>

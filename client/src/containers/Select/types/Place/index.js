@@ -12,24 +12,12 @@ const cx = cl.bind(styles);
 class PlaceSelect extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
-        value: PropTypes.string,
+        value: PropTypes.objectOf(PropTypes.string),
         onSelect: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
         value: null,
-    }
-
-    handleSelect = (iataCode, cityName) => {
-        const { onSelect, id } = this.props;
-
-        onSelect(id, iataCode, cityName);
-    }
-
-    handleKeyPress = (event, iataCode, cityName) => {
-        if (event.key === 'Enter') {
-            this.handleSelect(iataCode, cityName);
-        }
     }
 
     render() {
@@ -43,7 +31,7 @@ class PlaceSelect extends React.PureComponent {
                         id={id}
                         place={item}
                         index={index}
-                        selectedPlace={value}
+                        selectedPlace={value && value.code}
                         onSelect={onSelect}
                     />
                 ))}

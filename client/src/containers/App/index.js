@@ -17,9 +17,7 @@ const cx = cl.bind(styles);
 class App extends React.PureComponent {
     state = {
         origin: null,
-        originName: null,
         destination: null,
-        destinationName: null,
         departure: null,
         tickets: [],
         filteredTickets: [],
@@ -90,9 +88,9 @@ class App extends React.PureComponent {
         window.history.pushState('', '', '/');
         this.onResetTicketData();
         this.setState({
-            departure: null,
-            destination: null,
             origin: null,
+            destination: null,
+            departure: null,
         });
     }
 
@@ -130,13 +128,11 @@ class App extends React.PureComponent {
         });
     }
 
-    onPlaceSelect = (id, code, name) => {
+    onPlaceSelect = (id, place) => {
         const otherId = id === 'origin' ? 'destination' : 'origin';
-        const iataCode = this.state[otherId] === code ? null : code;
-        const cityName = this.state[`${otherId}Name`] === name ? null : name;
+        const location = this.state[otherId] === place ? null : place;
         this.setState(() => ({
-            [id]: iataCode,
-            [`${id}Name`]: cityName,
+            [id]: location,
         }));
     }
 
@@ -150,8 +146,8 @@ class App extends React.PureComponent {
         } = this.state;
 
         const queryObject = {
-            origin,
-            destination,
+            origin: origin && origin.code,
+            destination: destination && destination.code,
             departure,
             locale,
             currency,
@@ -189,8 +185,8 @@ class App extends React.PureComponent {
 
     render() {
         const {
-            originName,
-            destinationName,
+            origin,
+            destination,
             locale,
             tickets,
             filteredTickets,
@@ -214,8 +210,8 @@ class App extends React.PureComponent {
                 >
                     <SearchForm
                         isLoading={isLoading}
-                        originName={originName}
-                        destinationName={destinationName}
+                        origin={origin}
+                        destination={destination}
                         onSubmit={this.onSubmit}
                         onPlaceSelect={this.onPlaceSelect}
                         onSelect={this.onSelect}
