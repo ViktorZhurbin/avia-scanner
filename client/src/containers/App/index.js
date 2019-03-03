@@ -8,6 +8,7 @@ import SearchForm from '../SearchForm';
 import { fetchTickets, fetchCurrencyRates } from '../../utils/api';
 import { getISODateString } from '../../utils/string';
 import getBrowserLocale from '../../utils/getBrowserLocale';
+import { places } from '../../constants/mockData';
 
 import styles from './index.css';
 
@@ -43,6 +44,9 @@ class App extends React.PureComponent {
         });
     }
 
+    getLocationByCode = code => (
+        places.find(item => item.code === code)
+    )
 
     onSubmit = (event) => {
         event.preventDefault();
@@ -58,10 +62,12 @@ class App extends React.PureComponent {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            const query = qs.parse(search);
+            const { origin, destination, ...rest } = qs.parse(search);
             // console.log(query);
             this.setState({
-                ...query,
+                origin: this.getLocationByCode(origin),
+                destination: this.getLocationByCode(destination),
+                ...rest,
             }, () => {
                 this.onResetTicketData();
                 if (process.env.NODE_ENV === 'development') {
