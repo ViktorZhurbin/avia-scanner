@@ -4,6 +4,7 @@ import cl from 'classnames/bind';
 import localeCurrency from 'locale-currency';
 
 import SearchForm from '../SearchForm';
+import SearchResults from '../SearchResults';
 
 import { fetchTickets, fetchCurrencyRates } from '../../utils/api';
 import { getISODateString } from '../../utils/string';
@@ -12,7 +13,6 @@ import { places } from '../../constants/mockData';
 
 import styles from './index.css';
 
-const SearchResults = React.lazy(() => import('../SearchResults'));
 const cx = cl.bind(styles);
 
 class App extends React.PureComponent {
@@ -231,21 +231,19 @@ class App extends React.PureComponent {
                 </div>
                 {hasResults
                     ? (
-                        <React.Suspense fallback={<div>Loading...</div>}>
-                            <div className={cx('results')}>
-                                <SearchResults
-                                    rates={rates}
-                                    tickets={tickets}
-                                    filteredTickets={filteredTickets}
-                                    stopOptions={stopOptions}
-                                    selectedStops={selectedStops}
-                                    onFilterByStops={this.onFilterByStops}
-                                    onResetFilters={this.onResetFilters}
-                                    locale={locale}
-                                    currency={currency}
-                                />
-                            </div>
-                        </React.Suspense>
+                        <div className={cx('results')}>
+                            <SearchResults
+                                rates={rates}
+                                tickets={tickets}
+                                filteredTickets={filteredTickets}
+                                stopOptions={stopOptions}
+                                selectedStops={selectedStops}
+                                onFilterByStops={this.onFilterByStops}
+                                onResetFilters={this.onResetFilters}
+                                locale={locale}
+                                currency={currency}
+                            />
+                        </div>
                     )
                     : null}
             </div>

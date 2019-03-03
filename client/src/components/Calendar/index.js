@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Calendar = React.lazy(() => import('react-calendar'));
+import Calendar from 'react-calendar';
 
 const MyCalendar = ({ onDateSelect, value }) => (
-    <React.Suspense fallback={<div>Loading...</div>}>
-        <Calendar
-            onChange={onDateSelect}
-            date={value}
-        />
-    </React.Suspense>
+    <Calendar
+        onChange={onDateSelect}
+        date={value}
+    />
 );
 
 MyCalendar.propTypes = {
