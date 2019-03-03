@@ -6,9 +6,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: ['./src/index.js'],
     output: {
+        filename: '[contenthash].[name].build.js',
+        chunkFilename: '[contenthash].[name].build.js',
         path: path.join(__dirname, '../build'),
-        filename: '[name].[contenthash].build.js',
-        chunkFilename: '[name].[contenthash].build.js',
         publicPath: '/',
     },
     module: {
