@@ -6,8 +6,7 @@ import localeCurrency from 'locale-currency';
 import SearchResults from '../SearchResults';
 import SearchForm from '../SearchForm';
 
-import getUniqueByKey from '../../utils/objectHelpers';
-import { getFormattedTickets, fetchCurrencyRates } from '../../utils/api';
+import { fetchTickets, fetchCurrencyRates } from '../../utils/api';
 import { getISODateString } from '../../utils/string';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 
@@ -88,16 +87,14 @@ class App extends React.PureComponent {
         const { currency } = this.state;
 
         this.setState({ isLoading: true });
-        const tickets = await getFormattedTickets(query);
-        const stopOptions = getUniqueByKey(tickets, 'stops');
+        const { allTickets, stopOptions, filteredTickets } = await fetchTickets(query);
         const selectedStops = {
             [stopOptions[0]]: true,
         };
-        const filteredTickets = this.filterTickets(tickets, [stopOptions[0]]);
         const rates = await fetchCurrencyRates(currency);
 
         this.setState({
-            tickets,
+            tickets: allTickets,
             filteredTickets,
             stopOptions,
             selectedStops,
@@ -176,7 +173,7 @@ class App extends React.PureComponent {
         });
     }
 
-    filterTickets = (tickets, stops) => (
+    filterByStops = (tickets, stops) => (
         tickets.filter(ticket => (
             stops.includes(ticket.stops)
         ))
