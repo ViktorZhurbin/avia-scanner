@@ -7,8 +7,8 @@ module.exports = {
     entry: ['./src/index.js'],
     output: {
         path: path.join(__dirname, '../build'),
-        filename: '[name].[contenthash].build.js',
-        chunkFilename: '[name].[contenthash].build.js',
+        filename: '[contenthash].[name].build.js',
+        chunkFilename: '[contenthash].[name].build.js',
         publicPath: '/',
     },
     module: {
