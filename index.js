@@ -17,6 +17,6 @@ app.get('/api/createsession', (req, res) => tickets.createSession(req, res));
 app.get('/api/getTicketData/:sessionKey', (req, res) => tickets.fetchTickets(req, res));
 app.get('/api/mockData', (req, res) => tickets.mockData(req, res));
 
-// const port = process.env.PORT || 5000;
-const port = 5000;
+const port = process.env.PORT || 5000;
+// const port = 5000;
 app.listen(port, () => console.log(`Listening on port ${port}!`));
