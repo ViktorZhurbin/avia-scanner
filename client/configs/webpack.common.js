@@ -2,7 +2,6 @@
 
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
     entry: ['./src/index.js'],
@@ -66,10 +65,6 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             template: 'public/index.html',
-        }),
-        new LodashModuleReplacementPlugin({
-            collections: true,
-            shorthands: true,
         }),
     ],
 };
