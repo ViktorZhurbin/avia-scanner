@@ -1,8 +1,6 @@
 // const unirest = require('unirest');
 const https = require('https');
 
-// const currencyFallback = require('../constants/fallbackData');
-
 module.exports = {
     convertCurrency: (amount, fromCurrency, toCurrency, cb) => {
         const apiKey = '91ba9cf6354f4e83126b';

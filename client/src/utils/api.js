@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import hardcodedCurrencyFallback from '../constants/fallbackData';
+import { currencyRates } from '../constants/mockData';
 
 const handleError = (error) => {
     console.warn(error); // eslint-disable-line
@@ -23,6 +23,7 @@ const getURI = (...args) => {
 export const createApiSession = async (query) => {
     const apiURI = getURI(api.createSession);
     const encodedURI = window.encodeURI(apiURI + query);
+    // console.log(encodedURI);
     const { data } = await axios.get(encodedURI).catch(handleError);
 
     const sessionKey = data && data.sessionKey;
@@ -69,7 +70,7 @@ export const fetchCurrencyRates = async (base) => {
             return null;
         });
     } else {
-        hardcodedCurrencyFallback(base);
+        currencyRates(base);
     }
 
     return rates;
