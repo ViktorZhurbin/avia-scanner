@@ -51,7 +51,7 @@ class App extends React.PureComponent {
     onSubmit = (event) => {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
-        window.history.pushState(searchObj, '', `search?${search}`);
+        window.history.pushState(searchObj, '', `search${search}`);
         if (process.env.NODE_ENV === 'development') {
             this.fetchTickets(search); // for dev testing on mock data
         } else {
@@ -97,6 +97,7 @@ class App extends React.PureComponent {
             origin: null,
             destination: null,
             departure: null,
+            isLoading: false,
         });
     }
 
