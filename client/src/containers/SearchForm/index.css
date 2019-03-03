@@ -71,7 +71,7 @@
     .formContainer {
         flex-direction: row;
         min-height: 80px;
-        max-width: 1070px;
+        max-width: var(--max-width);
 
         &.fullScreen {
             flex-direction: column;
