@@ -12,11 +12,6 @@
     "lint": "eslint server/ index.js",
     "heroku-postbuild": "cd client && npm install --dev && npm run build"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  },
   "dependencies": {
     "express": "^4.16.4",
     "lodash": "^4.17.11",
