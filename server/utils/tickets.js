@@ -84,12 +84,12 @@ module.exports = {
             .value();
 
         const stopOptions = getArrayOfUniqueKeys(allTickets, 'stops');
-        const filteredTickets = _.filter(allTickets, ({ stops }) => stops === stopOptions[0])
+        const filteredTickets = _.filter(allTickets, ({ stops }) => stops === stopOptions[0]);
 
         return {
             allTickets,
             filteredTickets,
             stopOptions,
         };
-    }
+    },
 };

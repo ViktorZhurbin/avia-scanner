@@ -16,14 +16,14 @@ module.exports = {
     },
 
     createSession: (req, res) => {
-        // console.log(req.query);
-        const [today] = new Date().toISOString().split('T');
+        // console.log('creteSession query', req.query);
+
         const {
-            origin = 'SVO',
-            destination = 'LHR',
-            departure = today,
-            locale = 'en-US',
-            currency = 'USD',
+            origin,
+            destination,
+            departure,
+            locale,
+            currency,
         } = req.query;
 
         const [, country] = locale.split('-');
@@ -39,32 +39,42 @@ module.exports = {
             .send(`outboundDate=${departure}`)
             .send('adults=1')
             .end((result) => {
+                console.log(result.body);
                 // console.log(result.status, result.ok, result.headers.location);
                 const sessionUrl = result.headers.location;
-                const key = sessionUrl && sessionUrl.split('/').pop();
-                res.json({ sessionKey: key });
+                const sessionKey = sessionUrl && sessionUrl.split('/').pop();
+                console.log('sessionKey', sessionKey);
+                res.json({ sessionKey });
             });
     },
 
     fetchTickets: (req, res) => {
+        console.log('fetchTickets');
         const key = req.params.sessionKey;
-        // console.log(key);
+        console.log('sessionKey', key);
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;
-        // console.log(reqUrl);
+        console.log(reqUrl);
         unirest.get(reqUrl)
             .header('X-RapidAPI-Key', apiKey)
             .end((result) => {
                 if (result) {
-                    const { status, ok, headers, body } = result;
+                    const {
+                        status,
+                        ok,
+                        headers,
+                        body,
+                    } = result;
                     // console.log(status, headers, body);
                     const formatted = body && tickets.format(body);
 
                     res.json({
-                        status: status,
-                        ok: ok,
-                        headers: headers,
+                        status,
+                        ok,
+                        headers,
                         body: formatted,
                     });
+                } else {
+                    console.log('NO RESULT');
                 }
             });
     },

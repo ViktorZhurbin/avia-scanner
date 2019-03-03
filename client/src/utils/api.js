@@ -21,10 +21,28 @@ const getURI = (...args) => {
 };
 
 export const createApiSession = async (query) => {
-    const encodedURI = getURI(api.createSession);
-    const { data } = await axios.get(`${encodedURI}?${query}`).catch(handleError);
+    const encodedURI = getURI(api.createSession, query);
+    // console.log('encodedURI', encodedURI);
+
+    const { data } = await axios.get(encodedURI).catch(handleError);
     const sessionKey = data && data.sessionKey;
     return sessionKey;
+};
+
+export const fetchTickets = async (query = '') => {
+    if (query.length === 0) {
+        const encodedURI = getURI(api.mockData);
+        const { data } = await axios.get(encodedURI).catch(handleError);
+
+        return data && data.body;
+    }
+
+    const sessionKey = await createApiSession(query);
+    const encodedURI = getURI(api.getTickets, sessionKey);
+    const { data } = await axios.get(encodedURI).catch(handleError);
+    const tickets = data && data.ok && data.body;
+
+    return tickets;
 };
 
 export const fetchCurrencyRates = async (base) => {
@@ -55,20 +73,4 @@ export const fetchCurrencyRates = async (base) => {
     }
 
     return rates;
-};
-
-export const fetchTickets = async (query = '') => {
-    if (query.length === 0) {
-        const encodedURI = getURI(api.mockData);
-        const { data } = await axios.get(encodedURI).catch(handleError);
-
-        return data && data.body;
-    }
-
-    const sessionKey = await createApiSession(query);
-    const encodedURI = getURI(api.getTickets, sessionKey);
-    const { data } = await axios.get(encodedURI).catch(handleError);
-    const tickets = data && data.ok && data.body;
-
-    return tickets;
 };
