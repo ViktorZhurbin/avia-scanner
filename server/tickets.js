@@ -15,8 +15,7 @@ module.exports = {
     },
 
     createSession: (req, res) => {
-        // console.log('creteSession query', req.query);
-
+        console.log('creteSession query', req.query);
         const {
             origin,
             destination,
@@ -25,7 +24,7 @@ module.exports = {
             currency,
         } = req.query;
 
-        const [, country] = locale.split('-');
+        const [, country] = locale && locale.split('-');
 
         unirest.post(`${baseUrl}/v1.0`)
             .header('X-RapidAPI-Key', apiKey)

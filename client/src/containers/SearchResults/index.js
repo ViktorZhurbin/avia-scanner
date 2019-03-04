@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { connect } from 'react-redux';
 
 import Filters from '../Filters';
 import Ticket from '../Ticket';
 import NoResuts from '../../components/NoResults';
 
-import { fetchCurrencyRates } from '../../utils/api';
 import { ticketPropType } from '../../entities/propTypes';
 
 import styles from './index.css';
@@ -17,10 +17,12 @@ class SearchResults extends React.PureComponent {
     static propTypes = {
         locale: PropTypes.string,
         currency: PropTypes.string,
+        hasTickets: PropTypes.bool,
         ticketData: PropTypes.shape({
             allTickets: PropTypes.arrayOf(ticketPropType),
             filteredTickets: PropTypes.arrayOf(ticketPropType),
             stopOptions: PropTypes.arrayOf(PropTypes.number),
+            currencyRates: PropTypes.objectOf(PropTypes.number),
         }),
     };
 
@@ -28,37 +30,41 @@ class SearchResults extends React.PureComponent {
         locale: null,
         currency: null,
         ticketData: {},
+        hasTickets: false,
     }
 
     state = {
-        allTickets: [],
         filteredTickets: [],
-        stopOptions: [],
         selectedStops: {},
-        rates: {},
     }
 
-    async componentDidMount() {
-        const { currency, ticketData } = this.props;
-        const { allTickets, filteredTickets, stopOptions } = ticketData;
+    componentDidMount() {
+        this.onUpdateState();
+    }
 
-        const rates = await fetchCurrencyRates(currency);
+    componentDidUpdate(prevProps) {
+        if (prevProps.ticketData !== this.props.ticketData) {
+            this.onUpdateState();
+        }
+    }
+
+    onUpdateState = async () => {
+        const { ticketData } = this.props;
+        const { filteredTickets, stopOptions } = ticketData;
+
         const selectedStops = {
             [stopOptions[0]]: true,
         };
         this.setState({
-            rates,
-            allTickets,
             filteredTickets,
-            stopOptions,
             selectedStops,
         });
     }
 
     onFilterByStops = (selectedStops) => {
-        const { allTickets } = this.state;
+        const { ticketData } = this.props;
 
-        const filteredTickets = allTickets.filter(({ stops }) => (
+        const filteredTickets = ticketData.allTickets.filter(({ stops }) => (
             selectedStops[stops]
         ));
         this.setState(() => ({
@@ -68,7 +74,7 @@ class SearchResults extends React.PureComponent {
     }
 
     onResetFilters = () => {
-        const { stopOptions } = this.state;
+        const { stopOptions } = this.props.ticketData;
 
         this.onFilterByStops({ [stopOptions[0]]: true });
     }
@@ -76,14 +82,12 @@ class SearchResults extends React.PureComponent {
     render() {
         const { locale, currency } = this.props;
         const {
-            allTickets,
             filteredTickets,
-            stopOptions,
             selectedStops,
-            rates,
         } = this.state;
+        const { ticketData, hasTickets } = this.props;
+        const { stopOptions, allTickets, currencyRates } = ticketData;
 
-        const hasTickets = allTickets && allTickets.length > 0;
         const hasFilteredTickets = hasTickets
             && (filteredTickets && filteredTickets.length > 0);
 
@@ -116,7 +120,7 @@ class SearchResults extends React.PureComponent {
                                         locale={locale}
                                         currency={currency}
                                         ticket={ticket}
-                                        rates={rates}
+                                        rates={currencyRates}
                                     />
                                 ))}
                             </div>
@@ -127,4 +131,11 @@ class SearchResults extends React.PureComponent {
     }
 }
 
-export default SearchResults;
+const mapStateToProps = ({ tickets }) => ({
+    ticketData: tickets.ticketData,
+    hasTickets: tickets.hasTickets,
+    currency: tickets.currency,
+    locale: tickets.locale,
+});
+
+export default connect(mapStateToProps, null)(SearchResults);

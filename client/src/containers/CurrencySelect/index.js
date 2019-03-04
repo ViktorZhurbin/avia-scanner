@@ -1,34 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
+import { connect } from 'react-redux';
 
 import Dropdown from '../../components/Dropdown';
+import CurrencyRowItem from './CurrencyRowItem';
+import { setCurrency } from '../../state/tickets/ticketsActions';
+import { currencyList } from '../../constants/mockData';
 
 import styles from './index.css';
 
-import { currencyList } from '../../constants/mockData';
-import CurrencyRowItem from './CurrencyRowItem';
 
 const cx = cl.bind(styles);
 
 class CurrencySelect extends React.Component {
     static propTypes = {
-        onSelect: PropTypes.func.isRequired,
-        selectedCurrency: PropTypes.string,
-    }
-
-    static defaultProps = {
-        selectedCurrency: null,
-    }
-
-    handleKeyPress = (event, currencyCode) => {
-        if (event.key === 'Enter') {
-            this.onCurrencySelect(currencyCode);
-        }
+        selectedCurrency: PropTypes.string.isRequired,
+        setUpCurrency: PropTypes.func.isRequired,
     }
 
     renderDropdown = () => {
-        const { selectedCurrency, onSelect } = this.props;
+        const { selectedCurrency, setUpCurrency } = this.props;
 
         return (
             <div className={cx('currencyList')}>
@@ -37,13 +29,13 @@ class CurrencySelect extends React.Component {
                         key={item.code}
                         currency={item}
                         index={index}
-                        onSelect={onSelect}
+                        setCurrency={setUpCurrency}
                         selectedCurrency={selectedCurrency}
                     />
                 ))}
             </div>
         );
-    }
+    };
 
     renderTrigger = () => {
         const { selectedCurrency } = this.props;
@@ -66,4 +58,12 @@ class CurrencySelect extends React.Component {
     }
 }
 
-export default CurrencySelect;
+const mapStateToProps = ({ tickets }) => ({
+    selectedCurrency: tickets.currency,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setUpCurrency: currency => dispatch(setCurrency(currency)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelect);

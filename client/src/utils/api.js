@@ -1,4 +1,7 @@
-import { currencyRates } from '../constants/mockData';
+import qs from 'query-string';
+
+import { requestTickets, receivedTickets } from '../state/tickets/ticketsActions';
+import { currencyRates as mockCurrencyRates } from '../constants/mockData';
 
 const handleError = (error) => {
     console.warn(error); // eslint-disable-line
@@ -10,32 +13,6 @@ const api = {
     getTickets: 'api/getTicketData',
     mockData: 'api/mockData',
     currencyRates: '/api/currencyRates',
-};
-
-export const createApiSession = async (query) => {
-    const apiURI = window.encodeURI(api.createSession);
-    const encodedURI = window.encodeURI(`${apiURI}/${query}`);
-    const response = await fetch(encodedURI).catch(handleError);
-    const data = await response.json();
-
-    return data && data.sessionKey;
-};
-
-export const fetchTickets = async (query = '', cancelToken = null) => {
-    if (query.length === 0) {
-        const encodedURI = window.encodeURI(api.mockData);
-        const response = await fetch(encodedURI).catch(handleError);
-        const data = await response.json();
-
-        return data && data.body;
-    }
-
-    const sessionKey = await createApiSession(query, cancelToken);
-    const encodedURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
-    const response = await fetch(encodedURI).catch(handleError);
-    const data = await response.json();
-
-    return data && data.ok && data.body;
 };
 
 export const fetchCurrencyRates = async (base) => {
@@ -64,8 +41,45 @@ export const fetchCurrencyRates = async (base) => {
             return null;
         });
     } else {
-        currencyRates(base);
+        mockCurrencyRates(base);
     }
 
     return rates;
+};
+
+export const createApiSession = async (query) => {
+    const apiURI = window.encodeURI(api.createSession);
+    const encodedURI = window.encodeURI(`${apiURI}/${query}`);
+    const response = await fetch(encodedURI).catch(handleError);
+    const data = await response.json();
+
+    return data && data.sessionKey;
+};
+
+export const fetchTickets = (query = '') => {
+    console.log('fetching');
+    return async (dispatch) => {
+        dispatch(requestTickets());
+        if (query.length === 0) {
+            const encodedURI = window.encodeURI(api.mockData);
+            const response = await fetch(encodedURI).catch(handleError);
+            const data = await response.json();
+            const tickets = data && data.body;
+            const currencyRates = mockCurrencyRates('USD');
+            dispatch(receivedTickets({ ...tickets, currencyRates }));
+        }
+
+        const sessionKey = await createApiSession(query);
+
+        const encodedURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
+        const response = await fetch(encodedURI).catch(handleError);
+        const data = await response.json();
+        const tickets = data && data.body;
+
+        const { currency } = qs.parse(query);
+        const currencyRates = await fetchCurrencyRates(currency);
+
+
+        dispatch(receivedTickets({ ...tickets, currencyRates }));
+    };
 };

@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
+import { connect } from 'react-redux';
 import localeCurrency from 'locale-currency';
 
 import SearchForm from '../SearchForm';
 import Loader from '../../components/Loader';
-import { fetchTickets } from '../../utils/api';
+import { setLocale, setCurrency } from '../../state/tickets/ticketsActions';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
@@ -14,82 +16,68 @@ const cx = cl.bind(styles);
 
 
 class App extends React.PureComponent {
-    state = {
-        ticketData: {},
+    static propTypes = {
+        hasTickets: PropTypes.bool.isRequired,
+        locale: PropTypes.string,
+        currency: PropTypes.string,
+        setUpLocale: PropTypes.func.isRequired,
+        setUpCurrency: PropTypes.func.isRequired,
+    }
+
+    static defaultProps = {
         locale: null,
         currency: null,
     }
 
     componentDidMount() {
         const locale = getBrowserLocale();
+        this.props.setUpLocale(locale);
         const currency = localeCurrency.getCurrency(locale);
-        this.setState({
-            locale,
-            currency,
-        });
-    }
-
-    onResetState = () => {
-        window.history.pushState('', '', '/');
-        this.setState({
-            isLoading: false,
-            ticketData: {},
-        });
-    }
-
-    fetchTickets = async (query = '') => {
-        this.setState({ isLoading: true });
-        const ticketData = await fetchTickets(query);
-
-        this.setState({
-            ticketData,
-            isLoading: false,
-        });
+        this.props.setUpCurrency(currency);
     }
 
     render() {
-        const {
-            locale,
-            isLoading,
-            currency,
-            ticketData,
-        } = this.state;
-
-        const hasResults = ticketData && ticketData.allTickets && ticketData.allTickets.length > 0;
+        const { hasTickets, locale, currency } = this.props;
 
         return (
-            <div className={cx('container')}>
-                <div
-                    className={cx({
-                        form: true,
-                        formOnly: !hasResults,
-                    })}
-                >
-                    <SearchForm
-                        locale={locale}
-                        currency={currency}
-                        isLoading={isLoading}
-                        fullScreen={!hasResults}
-                        fetchTickets={this.fetchTickets}
-                        onResetState={this.onResetState}
-                    />
-                </div>
-                {hasResults
-                    ? (
-                        <React.Suspense fallback={<Loader />}>
-                            <div className={cx('results')}>
-                                <SearchResults
-                                    ticketData={ticketData}
-                                    locale={locale}
-                                    currency={currency}
-                                />
-                            </div>
-                        </React.Suspense>
-                    )
-                    : null}
-            </div>
+            locale && currency
+                ? (
+                    <div className={cx('container')}>
+                        <div
+                            className={cx({
+                                form: true,
+                                formOnly: !hasTickets,
+                            })}
+                        >
+                            <SearchForm
+                                fullScreen={!hasTickets}
+                            />
+                        </div>
+                        {hasTickets
+                            ? (
+                                <React.Suspense fallback={<Loader />}>
+                                    <div className={cx('results')}>
+                                        <SearchResults />
+                                    </div>
+                                </React.Suspense>
+                            )
+                            : null}
+                    </div>
+                )
+                : <Loader />
         );
     }
 }
 
-export default App;
+const mapStateToProps = ({ tickets }) => ({
+    hasTickets: tickets.hasTickets,
+    locale: tickets.locale,
+    currency: tickets.currency,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setUpLocale: locale => dispatch(setLocale(locale)),
+    setUpCurrency: currency => dispatch(setCurrency(currency)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

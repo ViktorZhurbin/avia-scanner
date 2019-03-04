@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const NavBar = ({ onResetState, selectedCurrency, onCurrencySelect }) => (
+const NavBar = ({ onResetState }) => (
     <div className={cx('container')}>
         {/* eslint-disable-next-line */}
         <div
@@ -18,21 +18,12 @@ const NavBar = ({ onResetState, selectedCurrency, onCurrencySelect }) => (
         >
             <Logo />
         </div>
-        <CurrencySelect
-            selectedCurrency={selectedCurrency}
-            onSelect={onCurrencySelect}
-        />
+        <CurrencySelect />
     </div>
 );
 
 NavBar.propTypes = {
     onResetState: PropTypes.func.isRequired,
-    onCurrencySelect: PropTypes.func.isRequired,
-    selectedCurrency: PropTypes.string,
-};
-
-NavBar.defaultProps = {
-    selectedCurrency: null,
 };
 
 export default React.memo(NavBar);

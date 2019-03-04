@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
 import cl from 'classnames/bind';
+import { connect } from 'react-redux';
 
+import { fetchTickets } from '../../utils/api';
+import { resetTickets } from '../../state/tickets/ticketsActions';
 import Select from '../Select';
 import NavBar from '../NavBar';
 import Button from '../../components/Button';
@@ -15,16 +18,15 @@ const cx = cl.bind(styles);
 
 class SearchForm extends React.PureComponent {
     static propTypes = {
-        isLoading: PropTypes.bool,
+        getTickets: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired,
         fullScreen: PropTypes.bool,
         locale: PropTypes.string,
         currency: PropTypes.string,
-        fetchTickets: PropTypes.func.isRequired,
-        onResetState: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
-        isLoading: false,
+        // isLoading: false,
         fullScreen: true,
         currency: null,
         locale: null,
@@ -50,26 +52,32 @@ class SearchForm extends React.PureComponent {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
         window.history.pushState(searchObj, '', search);
-        this.props.fetchTickets(search);
+        this.props.getTickets(search);
     };
 
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
             const { origin, destination, ...rest } = qs.parse(search);
+            this.props.getTickets(search);
             // console.log(query);
             this.setState({
                 origin: this.getLocationByCode(origin),
                 destination: this.getLocationByCode(destination),
                 ...rest,
-            }, () => this.props.fetchTickets(search));
+            });
         } else {
             this.setState({
                 // origin: null,
                 // destination: null,
                 // departure: null,
-            }, () => this.props.onResetState());
+            }, () => this.onResetState());
         }
+    }
+
+    onResetState = () => {
+        window.history.pushState('', '', '/');
+        resetTickets();
     }
 
     onInputChange = (event) => {
@@ -127,9 +135,7 @@ class SearchForm extends React.PureComponent {
 
     render() {
         const {
-            onResetState,
             isLoading,
-            currency,
             fullScreen,
         } = this.props;
 
@@ -153,9 +159,7 @@ class SearchForm extends React.PureComponent {
                 />
                 <div className={cx('innerContainer')}>
                     <NavBar
-                        onResetState={onResetState}
-                        onCurrencySelect={this.onSelect}
-                        selectedCurrency={currency}
+                        onResetState={this.onResetState}
                     />
                     <form
                         className={cx({
@@ -216,4 +220,13 @@ class SearchForm extends React.PureComponent {
     }
 }
 
-export default SearchForm;
+const mapStateToProps = ({ tickets }) => ({
+    isLoading: tickets.isLoading,
+    currency: tickets.currency,
+});
+
+const mapDispatchToProps = {
+    getTickets: fetchTickets,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

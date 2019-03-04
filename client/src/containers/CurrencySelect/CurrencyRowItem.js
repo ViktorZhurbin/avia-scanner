@@ -8,23 +8,18 @@ const cx = cl.bind(styles);
 
 class CurrencyRowItem extends React.PureComponent {
     static propTypes = {
-        onSelect: PropTypes.func.isRequired,
-        selectedCurrency: PropTypes.string,
+        selectedCurrency: PropTypes.string.isRequired,
         currency: PropTypes.shape({
             code: PropTypes.string,
             name: PropTypes.string,
         }).isRequired,
         index: PropTypes.number.isRequired,
-    }
-
-    static defaultProps = {
-        selectedCurrency: null,
+        setCurrency: PropTypes.func.isRequired,
     }
 
     onSelect = () => {
-        const { currency, onSelect } = this.props;
-
-        onSelect('currency', currency.code);
+        const { currency } = this.props;
+        this.props.setCurrency(currency.code);
     }
 
     onKeyPress = (event) => {
