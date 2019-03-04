@@ -31,10 +31,6 @@ class App extends React.PureComponent {
         });
     }
 
-    componentWillUnmount() {
-        source.cancel();
-    }
-
     onResetState = () => {
         window.history.pushState('', '', '/');
         source.cancel();

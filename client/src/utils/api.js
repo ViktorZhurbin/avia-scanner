@@ -4,7 +4,7 @@ import { currencyRates } from '../constants/mockData';
 
 const handleError = (error) => {
     if (axios.isCancel(error)) {
-        console.log('Request canceled', error.message); // eslint-disable-line
+        console.log('Request canceled by user'); // eslint-disable-line
     } else {
         console.warn(error); // eslint-disable-line
     }
