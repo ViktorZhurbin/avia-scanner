@@ -1,14 +1,7 @@
-import axios from 'axios';
-
 import { currencyRates } from '../constants/mockData';
 
 const handleError = (error) => {
-    if (axios.isCancel(error)) {
-        console.log('Request cancelled by user', error.message); // eslint-disable-line
-    } else {
-        console.warn(error); // eslint-disable-line
-    }
-
+    console.warn(error); // eslint-disable-line
     return null;
 };
 
@@ -22,27 +15,27 @@ const api = {
 export const createApiSession = async (query) => {
     const apiURI = window.encodeURI(api.createSession);
     const encodedURI = window.encodeURI(`${apiURI}/${query}`);
-    const { data } = await axios.get(encodedURI).catch(handleError);
+    const response = await fetch(encodedURI).catch(handleError);
+    const data = await response.json();
 
-    const sessionKey = data && data.sessionKey;
-    return sessionKey;
+    return data && data.sessionKey;
 };
 
 export const fetchTickets = async (query = '', cancelToken = null) => {
     if (query.length === 0) {
         const encodedURI = window.encodeURI(api.mockData);
-        const { data } = await axios.get(encodedURI).catch(handleError);
+        const response = await fetch(encodedURI).catch(handleError);
+        const data = await response.json();
 
         return data && data.body;
     }
 
     const sessionKey = await createApiSession(query, cancelToken);
     const encodedURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
-    const response = await axios.get(encodedURI).catch(handleError);
-    const data = response && response.data;
-    const tickets = data && data.ok && data.body;
+    const response = await fetch(encodedURI).catch(handleError);
+    const data = await response.json();
 
-    return tickets;
+    return data && data.ok && data.body;
 };
 
 export const fetchCurrencyRates = async (base) => {
@@ -59,10 +52,12 @@ export const fetchCurrencyRates = async (base) => {
 
     const url = `${curBaseUrl}apiKey=${apiKey}&q=${queryOne},${queryTwo}&compact=ultra`;
     const encodedURI = encodeURI(url);
-    const response = await axios.get(encodedURI).catch(handleError);
+    const response = await fetch(encodedURI).catch(handleError);
+    const data = await response.json();
+
     const rates = {};
     if (response) {
-        Object.entries(response.data).map(([key, value]) => {
+        Object.entries(data).map(([key, value]) => {
             const [baseCurrency, currency] = key.split('_');
             rates[currency] = value;
             rates[baseCurrency] = 1;

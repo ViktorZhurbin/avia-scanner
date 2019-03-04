@@ -38,11 +38,11 @@ module.exports = {
             .send(`outboundDate=${departure}`)
             .send('adults=1')
             .end((result) => {
-                console.log(result.body);
+                // console.log(result.body);
                 // console.log(result.status, result.ok, result.headers.location);
                 const sessionUrl = result.headers.location;
                 const sessionKey = sessionUrl && sessionUrl.split('/').pop();
-                console.log('sessionKey', sessionKey);
+                // console.log('sessionKey', sessionKey);
                 res.json({ sessionKey });
             });
     },
@@ -50,9 +50,9 @@ module.exports = {
     fetchTickets: (req, res) => {
         console.log('fetchTickets');
         const key = req.params.sessionKey;
-        console.log('sessionKey', key);
+        // console.log('sessionKey', key);
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;
-        console.log(reqUrl);
+        // console.log(reqUrl);
         unirest.get(reqUrl)
             .header('X-RapidAPI-Key', apiKey)
             .end((result) => {
