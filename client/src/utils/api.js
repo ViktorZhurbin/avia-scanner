@@ -56,9 +56,8 @@ export const createApiSession = async (query) => {
     return data && data.sessionKey;
 };
 
-export const fetchTickets = (query = '') => {
-    console.log('fetching');
-    return async (dispatch) => {
+export const fetchTickets = (query = '') => (
+    async (dispatch) => {
         dispatch(requestTickets());
         if (query.length === 0) {
             const encodedURI = window.encodeURI(api.mockData);
@@ -81,5 +80,5 @@ export const fetchTickets = (query = '') => {
 
 
         dispatch(receivedTickets({ ...tickets, currencyRates }));
-    };
-};
+    }
+);
