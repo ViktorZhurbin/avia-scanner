@@ -223,6 +223,7 @@ class SearchForm extends React.PureComponent {
 const mapStateToProps = ({ tickets }) => ({
     isLoading: tickets.isLoading,
     currency: tickets.currency,
+    locale: tickets.locale,
 });
 
 const mapDispatchToProps = {
