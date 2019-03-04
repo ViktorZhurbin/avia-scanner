@@ -1,7 +1,6 @@
 import React from 'react';
 import cl from 'classnames/bind';
 import localeCurrency from 'locale-currency';
-import axios from 'axios';
 
 import SearchForm from '../SearchForm';
 import SearchResults from '../SearchResults';
@@ -13,7 +12,6 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const source = axios.CancelToken.source();
 
 class App extends React.PureComponent {
     state = {
@@ -33,7 +31,6 @@ class App extends React.PureComponent {
 
     onResetState = () => {
         window.history.pushState('', '', '/');
-        source.cancel();
         this.setState({
             isLoading: false,
             ticketData: {},
@@ -42,7 +39,7 @@ class App extends React.PureComponent {
 
     fetchTickets = async (query = '') => {
         this.setState({ isLoading: true });
-        const ticketData = await fetchTickets(query, source.token);
+        const ticketData = await fetchTickets(query);
 
         this.setState({
             ticketData,

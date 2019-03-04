@@ -4,7 +4,7 @@ import { currencyRates } from '../constants/mockData';
 
 const handleError = (error) => {
     if (axios.isCancel(error)) {
-        console.log('Request canceled by user'); // eslint-disable-line
+        console.log('Request cancelled by user', error.message); // eslint-disable-line
     } else {
         console.warn(error); // eslint-disable-line
     }
@@ -31,18 +31,15 @@ export const createApiSession = async (query) => {
 export const fetchTickets = async (query = '', cancelToken = null) => {
     if (query.length === 0) {
         const encodedURI = window.encodeURI(api.mockData);
-        const { data } = await axios.get(encodedURI, {
-            cancelToken,
-        }).catch(handleError);
+        const { data } = await axios.get(encodedURI).catch(handleError);
 
         return data && data.body;
     }
 
-    const sessionKey = await createApiSession(query);
+    const sessionKey = await createApiSession(query, cancelToken);
     const encodedURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
-    const { data } = await axios.get(encodedURI, {
-        cancelToken,
-    }).catch(handleError);
+    const response = await axios.get(encodedURI).catch(handleError);
+    const data = response && response.data;
     const tickets = data && data.ok && data.body;
 
     return tickets;

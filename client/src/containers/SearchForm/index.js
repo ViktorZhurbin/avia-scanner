@@ -49,7 +49,7 @@ class SearchForm extends React.PureComponent {
     onSubmit = (event) => {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
-        window.history.pushState(searchObj, '', `${search}`);
+        window.history.pushState(searchObj, '', search);
         this.props.fetchTickets(search);
     };
 
@@ -62,7 +62,7 @@ class SearchForm extends React.PureComponent {
                 origin: this.getLocationByCode(origin),
                 destination: this.getLocationByCode(destination),
                 ...rest,
-            }, () => this.props.fetchTickets());
+            }, () => this.props.fetchTickets(search));
         } else {
             this.setState({
                 // origin: null,
