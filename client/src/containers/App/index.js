@@ -7,7 +7,7 @@ import axios from 'axios';
 import SearchForm from '../SearchForm';
 import SearchResults from '../SearchResults';
 
-import { fetchTickets, fetchCurrencyRates } from '../../utils/api';
+import { fetchTickets } from '../../utils/api';
 import { getISODatStringOfTodayPlusNdays } from '../../utils/string';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 import { places } from '../../constants/mockData';
@@ -23,24 +23,19 @@ class App extends React.PureComponent {
         origin: places[0],
         destination: places[2],
         departure: null,
-        tickets: [],
-        filteredTickets: [],
-        stopOptions: [],
-        selectedStops: {},
+        ticketData: {},
         locale: null,
         currency: null,
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         window.onpopstate = () => this.onUpdateState();
         const locale = getBrowserLocale();
         const currency = localeCurrency.getCurrency(locale);
-        const rates = await fetchCurrencyRates(currency);
         const departure = getISODatStringOfTodayPlusNdays(14);
         this.setState({
             locale,
             currency,
-            rates,
             departure,
         }, () => {
             this.onUpdateState();
@@ -59,11 +54,7 @@ class App extends React.PureComponent {
         event.preventDefault();
         const { searchObj, search } = this.getSearchQuery();
         window.history.pushState(searchObj, '', `${search}`);
-        // if (process.env.NODE_ENV === 'development') {
-        //     this.fetchTickets(); // for dev testing on mock data
-        // } else {
         this.fetchTickets(search);
-        // }
     };
 
     onUpdateState = () => {
@@ -75,61 +66,31 @@ class App extends React.PureComponent {
                 origin: this.getLocationByCode(origin),
                 destination: this.getLocationByCode(destination),
                 ...rest,
-            }, () => {
-                this.onResetTicketData();
-                // if (process.env.NODE_ENV === 'development') {
-                this.fetchTickets(search); // for dev testing on mock data
-                // } else {
-                //     this.fetchTickets(search);
-                // }
-            });
+            }, () => this.fetchTickets(search));
         } else {
             this.onResetState();
         }
     }
 
-    onResetTicketData = () => {
-        this.setState({
-            tickets: [],
-            filteredTickets: [],
-            stopOptions: [],
-            selectedStops: {},
-        });
-    }
-
     onResetState = () => {
         window.history.pushState('', '', '/');
         source.cancel();
-        this.onResetTicketData();
         this.setState({
             // origin: null,
             // destination: null,
             // departure: null,
             isLoading: false,
+            ticketData: {},
         });
     }
 
     fetchTickets = async (query = '') => {
-        const { currency } = this.state;
-
         this.setState({ isLoading: true });
-        const {
-            allTickets,
-            stopOptions,
-            filteredTickets,
-        } = await fetchTickets(query, source.token);
-        const selectedStops = {
-            [stopOptions[0]]: true,
-        };
-        const rates = await fetchCurrencyRates(currency);
+        const ticketData = await fetchTickets(query, source.token);
 
         this.setState({
-            tickets: allTickets,
-            filteredTickets,
-            stopOptions,
-            selectedStops,
+            ticketData,
             isLoading: false,
-            rates,
         });
     }
 
@@ -179,46 +140,18 @@ class App extends React.PureComponent {
         };
     };
 
-    onFilterByStops = (newSelectedStops) => {
-        const { tickets } = this.state;
-
-        const filteredTickets = tickets.filter(({ stops }) => (
-            newSelectedStops[stops]
-        ));
-        this.setState({
-            filteredTickets,
-            selectedStops: newSelectedStops,
-        });
-    }
-
-    filterByStops = (tickets, stops) => (
-        tickets.filter(ticket => (
-            stops.includes(ticket.stops)
-        ))
-    );
-
-    onResetFilters = () => {
-        const { stopOptions } = this.state;
-
-        this.onFilterByStops({ [stopOptions[0]]: true });
-    }
-
     render() {
         const {
             origin,
             destination,
+            departure,
             locale,
-            tickets,
-            filteredTickets,
-            stopOptions,
-            selectedStops,
             isLoading,
             currency,
-            rates,
-            departure,
+            ticketData,
         } = this.state;
 
-        const hasResults = tickets.length > 0;
+        const hasResults = ticketData && ticketData.allTickets && ticketData.allTickets.length > 0;
 
         return (
             <div className={cx('container')}>
@@ -245,13 +178,7 @@ class App extends React.PureComponent {
                     ? (
                         <div className={cx('results')}>
                             <SearchResults
-                                rates={rates}
-                                tickets={tickets}
-                                filteredTickets={filteredTickets}
-                                stopOptions={stopOptions}
-                                selectedStops={selectedStops}
-                                onFilterByStops={this.onFilterByStops}
-                                onResetFilters={this.onResetFilters}
+                                ticketData={ticketData}
                                 locale={locale}
                                 currency={currency}
                             />
