@@ -3,13 +3,13 @@ import cl from 'classnames/bind';
 import localeCurrency from 'locale-currency';
 
 import SearchForm from '../SearchForm';
-import SearchResults from '../SearchResults';
-
+import Loader from '../../components/Loader';
 import { fetchTickets } from '../../utils/api';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 
 import styles from './index.css';
 
+const SearchResults = React.lazy(() => import('../SearchResults'));
 const cx = cl.bind(styles);
 
 
@@ -76,13 +76,15 @@ class App extends React.PureComponent {
                 </div>
                 {hasResults
                     ? (
-                        <div className={cx('results')}>
-                            <SearchResults
-                                ticketData={ticketData}
-                                locale={locale}
-                                currency={currency}
-                            />
-                        </div>
+                        <React.Suspense fallback={<Loader />}>
+                            <div className={cx('results')}>
+                                <SearchResults
+                                    ticketData={ticketData}
+                                    locale={locale}
+                                    currency={currency}
+                                />
+                            </div>
+                        </React.Suspense>
                     )
                     : null}
             </div>
