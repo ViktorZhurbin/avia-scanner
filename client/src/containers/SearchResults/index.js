@@ -61,10 +61,10 @@ class SearchResults extends React.PureComponent {
         const filteredTickets = allTickets.filter(({ stops }) => (
             selectedStops[stops]
         ));
-        this.setState({
+        this.setState(() => ({
             filteredTickets,
             selectedStops,
-        });
+        }));
     }
 
     onResetFilters = () => {
