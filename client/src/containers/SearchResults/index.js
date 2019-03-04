@@ -127,4 +127,4 @@ class SearchResults extends React.PureComponent {
     }
 }
 
-export default React.memo(SearchResults);
+export default SearchResults;
