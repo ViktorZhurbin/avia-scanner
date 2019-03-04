@@ -23,8 +23,8 @@ export const formatDateByBrowserLocale = (dateString) => {
 };
 
 export const getFlightTimeDate = (dateString) => {
-    const formatted = dayjs(dateString).format('YYYY-MM-DD HH:mm');
-    const [date, time] = formatted.split(' ');
+    const formatted = dayjs(dateString).format('DD MMM YYYY, ddd[@]HH:mm');
+    const [date, time] = formatted.split('@');
 
     return {
         time,
