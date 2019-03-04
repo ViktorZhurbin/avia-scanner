@@ -8,10 +8,9 @@ const apiKey = '166e56093cmsh7cb5c98216f8318p11d2eejsn8fe0d9372517';
 
 module.exports = {
     mockData: (req, res) => {
-        const formatted = tickets.format(mockTicketData);
 
         res.json({
-            body: formatted,
+            body: mockTicketData,
         });
     },
 
