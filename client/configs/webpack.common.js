@@ -11,6 +11,11 @@ module.exports = {
         path: path.join(__dirname, '../build'),
         publicPath: '/',
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
