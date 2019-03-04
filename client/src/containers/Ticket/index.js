@@ -8,7 +8,6 @@ import Path from './Path';
 
 import { formatPrice } from '../../utils/string';
 import { ticketPropType } from '../../entities/propTypes';
-import genericLogo from '../../assets/generic-logo.png';
 
 import styles from './index.css';
 
@@ -37,7 +36,7 @@ const Ticket = ({
         <div className={cx('card')}>
             <div className={cx('left')}>
                 <img
-                    src={carrier.ImageUrl || genericLogo}
+                    src={carrier.ImageUrl}
                     alt="Carrier Logo"
                     className={cx('carrierLogo')}
                 />
