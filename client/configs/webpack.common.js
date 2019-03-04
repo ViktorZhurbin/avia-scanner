@@ -17,11 +17,11 @@ module.exports = {
         },
     },
     resolve: {
-        alias: {
-            react: 'preact-compat',
-            'react-dom': 'preact-compat',
-            '@': path.resolve(__dirname, 'src'),
-        },
+        // alias: {
+        //     react: 'preact-compat',
+        //     'react-dom': 'preact-compat',
+        //     '@': path.resolve(__dirname, 'src'),
+        // },
     },
     module: {
         rules: [
