@@ -23,7 +23,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 ticketData: action.ticketData,
                 isLoading: false,
-                hasTickets: true,
+                hasTickets: action.ticketData && action.ticketData.allTickets
+                    && action.ticketData.allTickets.length > 0,
             };
         case RESET_STATE:
             return { initialState };
