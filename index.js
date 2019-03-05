@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', expressStaticGzip(
+app.use(expressStaticGzip(
     path.join(__dirname, 'client/build'), {
         index: false,
         enableBrotli: true,
