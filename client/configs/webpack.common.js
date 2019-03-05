@@ -2,26 +2,22 @@
 
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
+
+console.log(path.join(__dirname, '../build/'));
 
 module.exports = {
     entry: ['./src/index.js'],
     output: {
         filename: '[contenthash].[name].build.js',
         chunkFilename: '[contenthash].[name].build.js',
-        path: path.join(__dirname, '../build'),
+        path: path.join(__dirname, '../build/'),
         publicPath: '/',
     },
     optimization: {
         splitChunks: {
             chunks: 'all',
         },
-    },
-    resolve: {
-        // alias: {
-        //     react: 'preact-compat',
-        //     'react-dom': 'preact-compat',
-        //     '@': path.resolve(__dirname, 'src'),
-        // },
     },
     module: {
         rules: [
@@ -77,6 +73,12 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             template: 'public/index.html',
+        }),
+        new BrotliPlugin({
+            asset: '[path].br[query]',
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8,
         }),
     ],
 };

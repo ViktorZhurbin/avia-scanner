@@ -12,14 +12,13 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(expressStaticGzip(
+console.log(path.join(__dirname, 'client/build'));
+
+app.use('/', expressStaticGzip(
     path.join(__dirname, 'client/build'), {
-        index: false,
+        // index: false,
         enableBrotli: true,
         orderPreference: ['br'],
-        setHeaders: (res) => {
-            res.setHeader("Cache-Control", "public, max-age=31536000");
-        }
     }));
 
 app.get('/api/createsession', (req, res) => tickets.createSession(req, res));
