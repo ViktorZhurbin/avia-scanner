@@ -43,12 +43,13 @@ class PlaceRowItem extends React.PureComponent {
 
         return (
             <div
-                className={cx('item')}
+                className={cx('item', {
+                    isSelected: selectedPlace === place.code,
+                })}
                 role="button"
                 tabIndex={index + 1}
                 onKeyPress={this.onKeyPress}
                 onClick={this.onSelect}
-                selected={selectedPlace === place.code}
             >
                 <span className={cx('name')}>{place.name}</span>
                 <strong className={cx('iataCode')}>{place.code}</strong>

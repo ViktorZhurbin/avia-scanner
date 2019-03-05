@@ -20,15 +20,15 @@
     cursor: pointer;
     padding: 0 15px;
     outline: none;
+    color: var(--color-twilight);
+
+    &.isSelected {
+        color: var(--color-blue);
+    }
 
     &:hover {
         background-color: var(--color-blue-light-background);
     }
-}
-
-.iataCode,
-.name {
-    color: var(--color-twilight);
 }
 
 .name {
