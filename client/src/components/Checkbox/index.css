@@ -4,6 +4,8 @@
     display: flex;
     align-items: center;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
     cursor: pointer;
     user-select: none;
     font: var(--p3);
