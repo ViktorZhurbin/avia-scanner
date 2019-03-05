@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const expressStaticGzip = require('express-static-gzip');
 
 const tickets = require('./server/tickets');
@@ -12,7 +13,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', expressStaticGzip(
-    'client/build', {
+    path.join(__dirname, 'client/build'), {
         index: false,
         enableBrotli: true,
         orderPreference: ['br'],
