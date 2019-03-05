@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');
+const expressStaticGzip = require('express-static-gzip');
 
 const tickets = require('./server/tickets');
 
@@ -11,7 +11,15 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use('/', expressStaticGzip(
+    'client/build', {
+        index: false,
+        enableBrotli: true,
+        orderPreference: ['br'],
+        setHeaders: (res) => {
+            res.setHeader("Cache-Control", "public, max-age=31536000");
+        }
+    }));
 
 app.get('/api/createsession', (req, res) => tickets.createSession(req, res));
 app.get('/api/getTicketData/:sessionKey', (req, res) => tickets.fetchTickets(req, res));
