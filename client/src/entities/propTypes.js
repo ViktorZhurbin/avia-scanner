@@ -45,3 +45,11 @@ export const placePropType = PropTypes.shape({
     code: PropTypes.string,
     name: PropTypes.string,
 });
+
+export const searchPropType = PropTypes.shape({
+    locale: PropTypes.string,
+    currency: PropTypes.string,
+    origin: placePropType,
+    destination: placePropType,
+    departure: PropTypes.string,
+});

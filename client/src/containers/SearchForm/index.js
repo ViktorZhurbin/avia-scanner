@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { fetchTickets } from '../../utils/api';
 import { resetTickets } from '../../state/tickets/ticketsActions';
 import { resetSearch } from '../../state/search/searchActions';
-import { placePropType } from '../../entities/propTypes';
+import { searchPropType } from '../../entities/propTypes';
 
 import Select from '../Select';
 import NavBar from '../NavBar';
@@ -24,20 +24,12 @@ class SearchForm extends React.PureComponent {
         resetTicketData: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired,
         fullScreen: PropTypes.bool,
-        locale: PropTypes.string,
-        currency: PropTypes.string,
-        origin: placePropType,
-        destination: placePropType,
-        departure: PropTypes.string,
+        search: searchPropType,
     };
 
     static defaultProps = {
         fullScreen: true,
-        currency: null,
-        locale: null,
-        origin: null,
-        destination: null,
-        departure: null,
+        search: {},
     };
 
     componentDidMount() {
@@ -47,9 +39,9 @@ class SearchForm extends React.PureComponent {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { searchObj, search } = this.getSearchQuery();
-        window.history.pushState(searchObj, '', search);
-        this.props.getTickets(search);
+        const { queryObject, queryString } = this.getSearchQuery();
+        window.history.pushState(queryObject, '', queryString);
+        this.props.getTickets(queryString);
     };
 
     onUpdateState = () => {
@@ -68,26 +60,18 @@ class SearchForm extends React.PureComponent {
     }
 
     getSearchQuery = () => {
-        const {
-            locale = null,
-            currency = null,
-            origin = {},
-            destination = {},
-            departure = null,
-        } = this.props;
+        const { origin, destination, ...rest } = this.props.search;
 
         const queryObject = {
-            origin: origin && origin.code,
-            destination: destination && destination.code,
-            departure,
-            locale,
-            currency,
+            origin: origin.code,
+            destination: destination.code,
+            ...rest,
         };
-        const queryString = qs.stringify(queryObject);
+        const queryString = `?${qs.stringify(queryObject)}`;
 
         return {
-            searchObj: queryObject,
-            search: `?${queryString}`,
+            queryObject,
+            queryString,
         };
     };
 
@@ -95,9 +79,7 @@ class SearchForm extends React.PureComponent {
         const {
             isLoading,
             fullScreen,
-            origin,
-            destination,
-            departure,
+            search,
         } = this.props;
 
         return (
@@ -139,14 +121,14 @@ class SearchForm extends React.PureComponent {
                                 isFirst
                                 type="place"
                                 id="origin"
-                                value={origin}
+                                value={search.origin}
                                 onSelect={this.onPlaceSelect}
                                 placeholder="From"
                             />
                             <Select
                                 type="place"
                                 id="destination"
-                                value={destination}
+                                value={search.destination}
                                 onSelect={this.onPlaceSelect}
                                 placeholder="To"
                             />
@@ -154,7 +136,7 @@ class SearchForm extends React.PureComponent {
                                 isLast
                                 type="date"
                                 id="departure"
-                                value={departure}
+                                value={search.departure}
                                 placeholder="Start Date"
                             />
                         </div>
@@ -176,11 +158,7 @@ class SearchForm extends React.PureComponent {
 
 const mapStateToProps = ({ tickets, search }) => ({
     isLoading: tickets.isLoading,
-    currency: search.currency,
-    locale: search.locale,
-    origin: search.origin,
-    destination: search.destination,
-    departure: search.departure,
+    search,
 });
 
 const mapDispatchToProps = dispatch => ({
