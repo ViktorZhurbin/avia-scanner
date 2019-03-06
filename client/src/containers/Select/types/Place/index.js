@@ -13,7 +13,6 @@ class PlaceSelect extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
         value: PropTypes.objectOf(PropTypes.string),
-        onSelect: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -21,7 +20,7 @@ class PlaceSelect extends React.PureComponent {
     }
 
     render() {
-        const { value, onSelect, id } = this.props;
+        const { value, id } = this.props;
 
         return (
             <div className={cx('itemList')}>
@@ -32,7 +31,6 @@ class PlaceSelect extends React.PureComponent {
                         place={item}
                         index={index}
                         selectedPlace={value && value.code}
-                        onSelect={onSelect}
                     />
                 ))}
             </div>

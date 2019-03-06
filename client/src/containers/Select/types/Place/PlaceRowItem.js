@@ -1,31 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
+import { connect } from 'react-redux';
 
+import { setOrigin, setDestination } from '../../../../state/search/searchActions';
+import { placePropType } from '../../../../entities/propTypes';
 import styles from './index.css';
 
 const cx = cl.bind(styles);
 
 class PlaceRowItem extends React.PureComponent {
     static propTypes = {
-        onSelect: PropTypes.func.isRequired,
-        selectedPlace: PropTypes.string,
-        place: PropTypes.shape({
-            code: PropTypes.string,
-            name: PropTypes.string,
-        }).isRequired,
+        setUpOrigin: PropTypes.func.isRequired,
+        setUpDestination: PropTypes.func.isRequired,
+        selectedPlaceList: PropTypes.objectOf(placePropType).isRequired,
+        place: placePropType.isRequired,
         index: PropTypes.number.isRequired,
         id: PropTypes.string.isRequired,
     }
 
-    static defaultProps = {
-        selectedPlace: null,
-    }
-
     onSelect = () => {
-        const { place, onSelect, id } = this.props;
-
-        onSelect(id, place);
+        const {
+            id,
+            place,
+            setUpOrigin,
+            setUpDestination,
+        } = this.props;
+        const onSelect = id === 'origin' ? setUpOrigin : setUpDestination;
+        onSelect(place);
     }
 
     onKeyPress = (event) => {
@@ -36,15 +38,21 @@ class PlaceRowItem extends React.PureComponent {
 
     render() {
         const {
+            id,
             place,
             index,
-            selectedPlace,
+            selectedPlaceList,
         } = this.props;
+
+        const selectedPlace = selectedPlaceList[id];
+        const otherId = id === 'origin' ? 'destination' : 'origin';
+        const otherSelectedPlace = selectedPlaceList[otherId];
 
         return (
             <div
                 className={cx('item', {
-                    isSelected: selectedPlace === place.code,
+                    isSelected: selectedPlace.code === place.code,
+                    isDisabled: otherSelectedPlace.code === place.code,
                 })}
                 role="button"
                 tabIndex={index + 1}
@@ -58,4 +66,16 @@ class PlaceRowItem extends React.PureComponent {
     }
 }
 
-export default PlaceRowItem;
+const mapStateToProps = ({ search }) => ({
+    selectedPlaceList: {
+        origin: search.origin || {},
+        destination: search.destination || {},
+    },
+});
+
+const mapDispatchToProps = dispatch => ({
+    setUpOrigin: origin => dispatch(setOrigin(origin)),
+    setUpDestination: destination => dispatch(setDestination(destination)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceRowItem);

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Dropdown from '../../components/Dropdown';
 import CurrencyRowItem from './CurrencyRowItem';
-import { setCurrency } from '../../state/tickets/ticketsActions';
+import { setCurrency } from '../../state/search/searchActions';
 import { currencyList } from '../../constants/mockData';
 
 import styles from './index.css';
@@ -58,8 +58,8 @@ class CurrencySelect extends React.Component {
     }
 }
 
-const mapStateToProps = ({ tickets }) => ({
-    selectedCurrency: tickets.currency,
+const mapStateToProps = ({ search }) => ({
+    selectedCurrency: search.currency,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -40,3 +40,8 @@ export const ticketPropType = PropTypes.shape({
         link: PropTypes.string,
     }),
 });
+
+export const placePropType = PropTypes.shape({
+    code: PropTypes.string,
+    name: PropTypes.string,
+});

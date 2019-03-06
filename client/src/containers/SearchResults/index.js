@@ -131,11 +131,11 @@ class SearchResults extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ tickets }) => ({
+const mapStateToProps = ({ tickets, search }) => ({
     ticketData: tickets.ticketData,
     hasTickets: tickets.hasTickets,
-    currency: tickets.currency,
-    locale: tickets.locale,
+    currency: search.currency,
+    locale: search.locale,
 });
 
 export default connect(mapStateToProps, null)(SearchResults);

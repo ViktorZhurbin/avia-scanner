@@ -6,11 +6,12 @@ import { connect } from 'react-redux';
 
 import { fetchTickets } from '../../utils/api';
 import { resetTickets } from '../../state/tickets/ticketsActions';
+import { resetSearch } from '../../state/search/searchActions';
+import { placePropType } from '../../entities/propTypes';
+
 import Select from '../Select';
 import NavBar from '../NavBar';
 import Button from '../../components/Button';
-import { places } from '../../constants/mockData';
-import { getISODatStringOfTodayPlusNdays } from '../../utils/string';
 
 import styles from './index.css';
 
@@ -19,33 +20,29 @@ const cx = cl.bind(styles);
 class SearchForm extends React.PureComponent {
     static propTypes = {
         getTickets: PropTypes.func.isRequired,
+        setInitialSearch: PropTypes.func.isRequired,
+        resetTicketData: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired,
         fullScreen: PropTypes.bool,
         locale: PropTypes.string,
         currency: PropTypes.string,
+        origin: placePropType,
+        destination: placePropType,
+        departure: PropTypes.string,
     };
 
     static defaultProps = {
-        // isLoading: false,
         fullScreen: true,
         currency: null,
         locale: null,
-    };
-
-    state = {
-        origin: places[0],
-        destination: places[2],
+        origin: null,
+        destination: null,
         departure: null,
-    }
+    };
 
     componentDidMount() {
         window.onpopstate = () => this.onUpdateState();
-        const departure = getISODatStringOfTodayPlusNdays(14);
-        this.setState({
-            departure,
-        }, () => {
-            this.onUpdateState();
-        });
+        this.onUpdateState();
     }
 
     onSubmit = (event) => {
@@ -58,64 +55,25 @@ class SearchForm extends React.PureComponent {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            const { origin, destination, ...rest } = qs.parse(search);
             this.props.getTickets(search);
-            // console.log(query);
-            this.setState({
-                origin: this.getLocationByCode(origin),
-                destination: this.getLocationByCode(destination),
-                ...rest,
-            });
         } else {
-            this.setState({
-                // origin: null,
-                // destination: null,
-                // departure: null,
-            }, () => this.onResetState());
+            this.onResetState();
         }
     }
 
     onResetState = () => {
         window.history.pushState('', '', '/');
-        resetTickets();
+        this.props.setInitialSearch();
+        this.props.resetTicketData();
     }
-
-    onInputChange = (event) => {
-        const inputValue = event.target.value;
-        const stateField = event.target.id;
-        this.setState({
-            [stateField]: inputValue,
-        });
-    };
-
-    onSelect = (id, date) => {
-        this.setState({
-            [id]: date,
-        });
-    }
-
-    onPlaceSelect = (id, place) => {
-        const otherId = id === 'origin' ? 'destination' : 'origin';
-        const location = this.state[otherId] === place ? null : place;
-        this.setState(() => ({
-            [id]: location,
-        }));
-    }
-
-    getLocationByCode = code => (
-        places.find(item => item.code === code)
-    )
 
     getSearchQuery = () => {
         const {
-            origin = null,
-            destination = null,
-            departure = null,
-        } = this.state;
-
-        const {
             locale = null,
             currency = null,
+            origin = {},
+            destination = {},
+            departure = null,
         } = this.props;
 
         const queryObject = {
@@ -137,13 +95,10 @@ class SearchForm extends React.PureComponent {
         const {
             isLoading,
             fullScreen,
-        } = this.props;
-
-        const {
             origin,
             destination,
             departure,
-        } = this.state;
+        } = this.props;
 
         return (
             <div
@@ -200,7 +155,6 @@ class SearchForm extends React.PureComponent {
                                 type="date"
                                 id="departure"
                                 value={departure}
-                                onSelect={this.onSelect}
                                 placeholder="Start Date"
                             />
                         </div>
@@ -220,14 +174,19 @@ class SearchForm extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ tickets }) => ({
+const mapStateToProps = ({ tickets, search }) => ({
     isLoading: tickets.isLoading,
-    currency: tickets.currency,
-    locale: tickets.locale,
+    currency: search.currency,
+    locale: search.locale,
+    origin: search.origin,
+    destination: search.destination,
+    departure: search.departure,
 });
 
-const mapDispatchToProps = {
-    getTickets: fetchTickets,
-};
+const mapDispatchToProps = dispatch => ({
+    getTickets: query => fetchTickets(query)(dispatch),
+    resetTicketData: () => dispatch(resetTickets()),
+    setInitialSearch: () => dispatch(resetSearch()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

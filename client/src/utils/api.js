@@ -1,6 +1,6 @@
 import qs from 'query-string';
 
-import { requestTickets, receivedTickets } from '../state/tickets/ticketsActions';
+import { requestTickets, receiveTickets } from '../state/tickets/ticketsActions';
 import { currencyRates as mockCurrencyRates } from '../constants/mockData';
 
 const handleError = (error) => {
@@ -65,7 +65,9 @@ export const fetchTickets = (query = '') => (
             const data = await response.json();
             const tickets = data && data.body;
             const currencyRates = mockCurrencyRates('USD');
-            dispatch(receivedTickets({ ...tickets, currencyRates }));
+
+            dispatch(receiveTickets({ ...tickets, currencyRates }));
+            return;
         }
 
         const sessionKey = await createApiSession(query);
@@ -78,7 +80,6 @@ export const fetchTickets = (query = '') => (
         const { currency } = qs.parse(query);
         const currencyRates = await fetchCurrencyRates(currency);
 
-
-        dispatch(receivedTickets({ ...tickets, currencyRates }));
+        dispatch(receiveTickets({ ...tickets, currencyRates }));
     }
 );

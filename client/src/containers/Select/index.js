@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import SVGInline from 'react-svg-inline';
+import { connect } from 'react-redux';
 
+import { setDeparture } from '../../state/search/searchActions';
 import calendarIcon from '../../assets/calendar.svg';
 import clearDateIcon from '../../assets/close.svg';
 
@@ -25,10 +27,10 @@ class Select extends React.PureComponent {
             PropTypes.string,
             PropTypes.objectOf(PropTypes.string),
         ]),
-        onSelect: PropTypes.func.isRequired,
         placeholder: PropTypes.string.isRequired,
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
+        setUpDeparture: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -39,10 +41,10 @@ class Select extends React.PureComponent {
     }
 
     handleClearDate = (event) => {
-        const { onSelect, id } = this.props;
+        const { setUpDeparture } = this.props;
 
         event.stopPropagation();
-        onSelect(id, null);
+        setUpDeparture(null);
     }
 
 
@@ -106,4 +108,12 @@ class Select extends React.PureComponent {
     }
 }
 
-export default Select;
+const mapStateToProps = ({ search }) => ({
+    departure: search.departure,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setUpDeparture: departure => dispatch(setDeparture(departure)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Select);

@@ -47,7 +47,7 @@ module.exports = {
     },
 
     fetchTickets: (req, res) => {
-        console.log('fetchTickets');
+        console.log('fetchingTickets');
         const key = req.params.sessionKey;
         // console.log('sessionKey', key);
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;

@@ -3,8 +3,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-// console.log(path.join(__dirname, '../build/'));
-
 module.exports = {
     entry: ['./src/index.js'],
     output: {

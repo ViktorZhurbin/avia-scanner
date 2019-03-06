@@ -11,9 +11,8 @@ const cx = cl.bind(styles);
 
 class DateSelect extends React.PureComponent {
     static propTypes = {
-        id: PropTypes.string.isRequired,
         value: PropTypes.string,
-        onSelect: PropTypes.func.isRequired,
+        setUpDeparture: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -21,9 +20,9 @@ class DateSelect extends React.PureComponent {
     }
 
     handleSelect = (date) => {
-        const { onSelect, id } = this.props;
+        const { setUpDeparture } = this.props;
 
-        onSelect(id, getISODateString(date));
+        setUpDeparture(getISODateString(date));
     }
 
     render() {

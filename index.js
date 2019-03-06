@@ -12,8 +12,6 @@ app.use((req, res, next) => {
     next();
 });
 
-console.log(path.join(__dirname, 'client/build'));
-
 app.use('/', expressStaticGzip(
     path.join(__dirname, 'client/build'), {
         // index: false,
