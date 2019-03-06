@@ -2,9 +2,8 @@
 
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
 
-console.log(path.join(__dirname, '../build/'));
+// console.log(path.join(__dirname, '../build/'));
 
 module.exports = {
     entry: ['./src/index.js'],
@@ -73,12 +72,6 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             template: 'public/index.html',
-        }),
-        new BrotliPlugin({
-            asset: '[path].br[query]',
-            test: /\.js$|\.css$|\.html$/,
-            threshold: 10240,
-            minRatio: 0.8,
         }),
     ],
 };
