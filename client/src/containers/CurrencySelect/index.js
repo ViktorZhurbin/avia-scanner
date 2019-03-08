@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import Dropdown from '../../components/Dropdown';
-import CurrencyRowItem from './CurrencyRowItem';
+import DropdownSelect from '../../components/DropdownSelect';
 import { setCurrency } from '../../state/search/searchActions';
 import { currencyList } from '../../constants/mockData';
 
@@ -19,41 +18,41 @@ class CurrencySelect extends React.PureComponent {
         setUpCurrency: PropTypes.func.isRequired,
     }
 
-    renderDropdown = () => {
-        const { selectedCurrency, setUpCurrency } = this.props;
-
-        return (
-            <div className={cx('currencyList')}>
-                {currencyList.map((item, index) => (
-                    <CurrencyRowItem
-                        key={item.code}
-                        currency={item}
-                        index={index}
-                        setCurrency={setUpCurrency}
-                        selectedCurrency={selectedCurrency}
-                    />
-                ))}
-            </div>
-        );
-    };
-
     renderTrigger = () => {
         const { selectedCurrency } = this.props;
 
         return (
             <div className={cx('triggerContainer')}>
-                <span className={cx('triggerText')}>{selectedCurrency}</span>
+                <span className={cx('triggerText')}>
+                    {selectedCurrency}
+                </span>
             </div>
         );
     }
 
+    renderItem = item => (
+        <React.Fragment>
+            <strong className={cx('code')}>
+                {item.code}
+            </strong>
+            <span className={cx('name')}>
+                {item.name}
+            </span>
+        </React.Fragment>
+    )
+
     render() {
+        const { selectedCurrency, setUpCurrency } = this.props;
+
         return (
-            <Dropdown
+            <DropdownSelect
+                selectedItem={selectedCurrency}
+                onSelect={setUpCurrency}
+                itemList={currencyList}
+                classNames={{ currencyList: true }}
+                renderItem={this.renderItem}
                 trigger={this.renderTrigger()}
-            >
-                {this.renderDropdown()}
-            </Dropdown>
+            />
         );
     }
 }

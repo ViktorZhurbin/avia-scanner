@@ -18,7 +18,7 @@ class Dropdown extends React.PureComponent {
     }
 
     static defaultProps = {
-        classNames: '',
+        classNames: null,
     }
 
     state = {
