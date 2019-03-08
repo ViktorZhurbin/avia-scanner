@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import { getISODateString } from '../../utils/string';
 import Loader from '../Loader';
 import Dropdown from '../Dropdown';
 import { classNamesPropType } from '../../entities/propTypes';
@@ -14,25 +13,32 @@ const cx = cl.bind(styles);
 
 class DatePicker extends React.PureComponent {
     static propTypes = {
-        value: PropTypes.string,
         trigger: PropTypes.node.isRequired,
         onSelect: PropTypes.func.isRequired,
         classNames: classNamesPropType,
     }
 
     static defaultProps = {
-        value: null,
         classNames: null,
     }
 
-    handleSelect = (date) => {
+    state = {
+        date: new Date(),
+    }
+
+    handleDateSelect = (date) => {
         const { onSelect } = this.props;
 
-        onSelect(getISODateString(date));
+        this.setState({
+            date,
+        }, () => onSelect(date));
     }
 
     render() {
-        const { value, trigger, classNames } = this.props;
+        const {
+            trigger,
+            classNames,
+        } = this.props;
 
         return (
             <Dropdown
@@ -43,8 +49,8 @@ class DatePicker extends React.PureComponent {
                     <React.Fragment>
                         <div className={cx('calendarModal')}>
                             <Calendar
-                                onDateSelect={this.handleSelect}
-                                date={value}
+                                value={this.state.date}
+                                onChange={this.handleDateSelect}
                             />
                         </div>
                         <div className={cx('modalOverlay')} />
@@ -55,9 +61,5 @@ class DatePicker extends React.PureComponent {
         );
     }
 }
-
-// const mapDispatchToProps = dispatch => ({
-//     setUpDeparture: departure => dispatch(setDeparture(departure)),
-// });
 
 export default DatePicker;

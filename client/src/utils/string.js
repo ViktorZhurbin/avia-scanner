@@ -2,16 +2,16 @@ import dayjs from 'dayjs';
 
 import getBrowserLocale from './getBrowserLocale';
 
-export const getISODateString = date => (
+export const dateToIsoString = date => (
     (date && dayjs(date).isValid())
         ? dayjs(date).format('YYYY-MM-DD')
         : null
 );
 
-export const getISODatStringOfTodayPlusNdays = (days) => {
+export const getTodayPlusNDaysIsoString = (days) => {
     const date = dayjs().add(days, 'day');
 
-    return getISODateString(date);
+    return dateToIsoString(date);
 };
 
 export const formatDateByBrowserLocale = (dateString) => {

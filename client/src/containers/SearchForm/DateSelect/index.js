@@ -7,17 +7,15 @@ import { connect } from 'react-redux';
 import { setDeparture } from '../../../state/search/searchActions';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
-
-import { formatDateByBrowserLocale } from '../../../utils/string';
+import { formatDateByBrowserLocale, dateToIsoString } from '../../../utils/string';
 
 import styles from '../index.css';
 import DatePicker from '../../../components/DatePicker';
 
 const cx = cl.bind(styles);
 
-class SearchSelect extends React.PureComponent {
+class DateSelect extends React.PureComponent {
     static propTypes = {
-        departure: PropTypes.string,
         value: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.objectOf(PropTypes.string),
@@ -29,7 +27,6 @@ class SearchSelect extends React.PureComponent {
     }
 
     static defaultProps = {
-        departure: null,
         value: null,
         isFirst: false,
         isLast: false,
@@ -42,6 +39,10 @@ class SearchSelect extends React.PureComponent {
         setUpDeparture(null);
     }
 
+    handleSetDate = (date) => {
+        const { setUpDeparture } = this.props;
+        setUpDeparture(dateToIsoString(date));
+    }
 
     renderTrigger = () => {
         const {
@@ -80,12 +81,9 @@ class SearchSelect extends React.PureComponent {
     }
 
     render() {
-        const { setUpDeparture, departure } = this.props;
-
         return (
             <DatePicker
-                onSelect={setUpDeparture}
-                value={departure}
+                onSelect={this.handleSetDate}
                 trigger={this.renderTrigger()}
                 classNames={{ formSelect: true }}
             />
@@ -93,12 +91,8 @@ class SearchSelect extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ search }) => ({
-    departure: search.departure,
-});
-
 const mapDispatchToProps = dispatch => ({
     setUpDeparture: departure => dispatch(setDeparture(departure)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchSelect);
+export default connect(null, mapDispatchToProps)(DateSelect);

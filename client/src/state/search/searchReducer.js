@@ -1,6 +1,6 @@
 import localeCurrency from 'locale-currency';
 
-import { getISODatStringOfTodayPlusNdays } from '../../utils/string';
+import { getTodayPlusNDaysIsoString } from '../../utils/string';
 import { places } from '../../constants/mockData';
 import getBrowserLocale from '../../utils/getBrowserLocale';
 
@@ -21,7 +21,7 @@ const initialState = {
     locale: getBrowserLocale(),
     origin: places[0],
     destination: places[1],
-    departure: getISODatStringOfTodayPlusNdays(14),
+    departure: getTodayPlusNDaysIsoString(14),
 };
 
 const reducer = (state = initialState, action) => {
