@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import DropdownSelect from '../../../components/DropdownSelect';
+import Select from '../../../components/Select';
 import { places } from '../../../constants/mockData';
 import { setOrigin, setDestination } from '../../../state/search/searchActions';
 import { codeNamePropType } from '../../../entities/propTypes';
@@ -80,7 +80,7 @@ class PlaceSelect extends React.PureComponent {
         const otherSelectedPlace = this.props[otherId].value;
 
         return (
-            <DropdownSelect
+            <Select
                 trigger={this.renderTrigger()}
                 itemList={places}
                 renderItem={this.renderItem}

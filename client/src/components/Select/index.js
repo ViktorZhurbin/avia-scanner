@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class DropdownSelect extends React.PureComponent {
+class Select extends React.PureComponent {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
         itemList: PropTypes.array, // eslint-disable-line
@@ -84,4 +84,4 @@ class DropdownSelect extends React.PureComponent {
     }
 }
 
-export default DropdownSelect;
+export default Select;

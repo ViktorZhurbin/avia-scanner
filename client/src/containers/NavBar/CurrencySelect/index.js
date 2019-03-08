@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import DropdownSelect from '../../components/DropdownSelect';
-import { setCurrency } from '../../state/search/searchActions';
-import { currencyList } from '../../constants/mockData';
+import Select from '../../../components/Select';
+import { setCurrency } from '../../../state/search/searchActions';
+import { currencyList } from '../../../constants/mockData';
 
 import styles from './index.css';
 
@@ -48,7 +48,7 @@ class CurrencySelect extends React.PureComponent {
         const { selectedCurrency, setUpCurrency } = this.props;
 
         return (
-            <DropdownSelect
+            <Select
                 trigger={this.renderTrigger()}
                 itemList={currencyList}
                 renderItem={this.renderItem}
