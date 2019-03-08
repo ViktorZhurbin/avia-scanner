@@ -9,7 +9,10 @@ const reducer = {
     search: searchReducer,
 };
 
-const middleware = [...getDefaultMiddleware(), logger];
+let middleware = [...getDefaultMiddleware()];
+if (process.env.NODE_ENV !== 'production') {
+    middleware = [...middleware, logger];
+}
 
 const store = configureStore({
     reducer,
