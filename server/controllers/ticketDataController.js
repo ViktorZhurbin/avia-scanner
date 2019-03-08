@@ -38,7 +38,6 @@ module.exports = {
             .send('adults=1')
             .end((result) => {
                 // console.log(result.body);
-                // console.log(result.status, result.ok, result.headers.location);
                 const sessionUrl = result.headers.location;
                 const sessionKey = sessionUrl && sessionUrl.split('/').pop();
                 // console.log('sessionKey', sessionKey);
