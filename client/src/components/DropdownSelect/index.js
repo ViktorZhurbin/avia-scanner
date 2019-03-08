@@ -57,7 +57,7 @@ class DropdownSelect extends React.PureComponent {
                         <RowItem
                             key={item.code}
                             className={classNames}
-                            item={item}
+                            value={item}
                             index={index}
                             onSelect={onSelect}
                             isSelected={isSelected}

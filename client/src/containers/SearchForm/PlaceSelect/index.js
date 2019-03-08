@@ -92,7 +92,7 @@ class PlaceSelect extends React.PureComponent {
                 renderItem={this.renderItem}
                 selectedItem={value}
                 disabledItem={otherSelectedPlace}
-                onSelect={this.onSelect}
+                onSelect={this.onSelect()}
                 classNames={{ formSelect: true }}
             />
         );

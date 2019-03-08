@@ -8,7 +8,7 @@ const cx = cl.bind(styles);
 
 class RowItem extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape({
+        value: PropTypes.shape({
             code: PropTypes.string,
             name: PropTypes.string,
         }).isRequired,
@@ -25,9 +25,9 @@ class RowItem extends React.PureComponent {
     }
 
     onSelect = () => {
-        const { item, onSelect } = this.props;
+        const { value, onSelect } = this.props;
 
-        onSelect(item);
+        onSelect(value);
     }
 
     onKeyPress = (event) => {
@@ -38,7 +38,7 @@ class RowItem extends React.PureComponent {
 
     render() {
         const {
-            item,
+            value,
             index,
             children,
             isSelected,
@@ -47,7 +47,7 @@ class RowItem extends React.PureComponent {
 
         return (
             <div
-                key={item.code}
+                key={value.code}
                 className={cx({
                     item: true,
                     isSelected,
