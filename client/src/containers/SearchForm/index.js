@@ -61,11 +61,17 @@ class SearchForm extends React.PureComponent {
     }
 
     getSearchQuery = () => {
-        const { origin, destination, ...rest } = this.props.search;
+        const {
+            origin,
+            destination,
+            currency,
+            ...rest
+        } = this.props.search;
 
         const queryObject = {
             origin: origin.code,
             destination: destination.code,
+            currency: currency.code,
             ...rest,
         };
         const queryString = `?${qs.stringify(queryObject)}`;
