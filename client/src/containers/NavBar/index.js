@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Logo from '../../components/Logo';
-import CurrencySelect from '../CurrencySelect';
+import CurrencySelect from './CurrencySelect';
 
 import styles from './index.css';
 
