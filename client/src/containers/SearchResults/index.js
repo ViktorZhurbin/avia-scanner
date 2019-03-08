@@ -16,7 +16,10 @@ const cx = classNames.bind(styles);
 class SearchResults extends React.PureComponent {
     static propTypes = {
         locale: PropTypes.string,
-        currency: PropTypes.string,
+        currency: PropTypes.shape({
+            code: PropTypes.string,
+            name: PropTypes.string,
+        }),
         hasTickets: PropTypes.bool,
         ticketData: PropTypes.shape({
             allTickets: PropTypes.arrayOf(ticketPropType),

@@ -14,7 +14,10 @@ import {
 } from './searchActions';
 
 const initialState = {
-    currency: localeCurrency.getCurrency(getBrowserLocale()),
+    currency: {
+        code: localeCurrency.getCurrency(getBrowserLocale()),
+        name: '',
+    },
     locale: getBrowserLocale(),
     origin: places[0],
     destination: places[1],

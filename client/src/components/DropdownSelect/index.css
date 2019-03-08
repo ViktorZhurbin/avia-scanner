@@ -1,4 +1,4 @@
-.itemList {
+.itemList.currency {
     position: absolute;
     top: 100%;
     right: 0;
@@ -10,21 +10,32 @@
     border-radius: 5px;
 }
 
+.itemList.formSelect {
+    width: 100%;
+    position: absolute;
+    top: 68px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 15px 0;
+    background: white;
+    border-radius: 0 0 5px 5px;
+    overflow-y: auto;
+}
+
 .item {
-    display: flex;
-    list-style-type: none;
-    font: var(--p2);
-    line-height: 35px;
-    text-align: left;
-    cursor: pointer;
-    padding: 0 20px;
     color: var(--color-twilight);
 
     &.isSelected {
         color: var(--color-blue);
     }
+
+    &.isDisabled {
+        color: var(--color-metal);
+        pointer-events: none;
+    }
 }
 
-.item:hover {
-    background-color: var(--color-blue-light-background);
+@media (min-width: 640px) {
+    .itemList.formSelect {
+        width: calc(100% - 2px);
+    }
 }

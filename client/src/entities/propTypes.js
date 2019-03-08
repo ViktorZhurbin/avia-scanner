@@ -39,15 +39,15 @@ export const ticketPropType = PropTypes.shape({
     }),
 });
 
-export const placePropType = PropTypes.shape({
+export const codeNamePropType = PropTypes.shape({
     code: PropTypes.string,
     name: PropTypes.string,
 });
 
 export const searchPropType = PropTypes.shape({
     locale: PropTypes.string,
-    currency: PropTypes.string,
-    origin: placePropType,
-    destination: placePropType,
+    currency: codeNamePropType,
+    origin: codeNamePropType,
+    destination: codeNamePropType,
     departure: PropTypes.string,
 });

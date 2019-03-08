@@ -9,7 +9,8 @@ import { resetTickets } from '../../state/tickets/ticketsActions';
 import { resetSearch } from '../../state/search/searchActions';
 import { searchPropType } from '../../entities/propTypes';
 
-import SearchSelect from '../SearchSelect';
+import DateSelect from './DateSelect';
+import PlaceSelect from './PlaceSelect';
 import NavBar from '../NavBar';
 import Button from '../../components/Button';
 
@@ -106,7 +107,12 @@ class SearchForm extends React.PureComponent {
                         onSubmit={this.onSubmit}
                         target="_self"
                     >
-                        <div className={cx('headerText')}>
+                        <div
+                            className={cx({
+                                headerText: true,
+                                fullScreen,
+                            })}
+                        >
                             {isLoading
                                 ? 'Fetching tickets...'
                                 : 'Flights and airline tickets'}
@@ -117,22 +123,18 @@ class SearchForm extends React.PureComponent {
                                 fullScreen,
                             })}
                         >
-                            <SearchSelect
+                            <PlaceSelect
                                 isFirst
-                                type="place"
                                 id="origin"
                                 value={search.origin}
-                                onSelect={this.onPlaceSelect}
                                 placeholder="From"
                             />
-                            <SearchSelect
-                                type="place"
+                            <PlaceSelect
                                 id="destination"
                                 value={search.destination}
-                                onSelect={this.onPlaceSelect}
                                 placeholder="To"
                             />
-                            <SearchSelect
+                            <DateSelect
                                 isLast
                                 type="date"
                                 id="departure"

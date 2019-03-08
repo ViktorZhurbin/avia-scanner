@@ -14,7 +14,10 @@ const cx = cl.bind(styles);
 
 class CurrencySelect extends React.PureComponent {
     static propTypes = {
-        selectedCurrency: PropTypes.string.isRequired,
+        selectedCurrency: PropTypes.shape({
+            name: PropTypes.string,
+            code: PropTypes.string,
+        }).isRequired,
         setUpCurrency: PropTypes.func.isRequired,
     }
 
@@ -24,21 +27,21 @@ class CurrencySelect extends React.PureComponent {
         return (
             <div className={cx('triggerContainer')}>
                 <span className={cx('triggerText')}>
-                    {selectedCurrency}
+                    {selectedCurrency.code}
                 </span>
             </div>
         );
     }
 
     renderItem = item => (
-        <React.Fragment>
+        <div className={cx('item')}>
             <strong className={cx('code')}>
                 {item.code}
             </strong>
             <span className={cx('name')}>
                 {item.name}
             </span>
-        </React.Fragment>
+        </div>
     )
 
     render() {
@@ -46,12 +49,14 @@ class CurrencySelect extends React.PureComponent {
 
         return (
             <DropdownSelect
+                trigger={this.renderTrigger()}
+                itemList={currencyList}
+                renderItem={this.renderItem}
                 selectedItem={selectedCurrency}
                 onSelect={setUpCurrency}
-                itemList={currencyList}
-                classNames={{ currencyList: true }}
-                renderItem={this.renderItem}
-                trigger={this.renderTrigger()}
+                classNames={{
+                    currency: true,
+                }}
             />
         );
     }

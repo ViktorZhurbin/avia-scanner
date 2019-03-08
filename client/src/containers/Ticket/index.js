@@ -30,7 +30,7 @@ const Ticket = ({
         duration,
     } = ticket;
 
-    const price = formatPrice(offer.price, currency, rates, locale);
+    const price = formatPrice(offer.price, currency.code, rates, locale);
 
     return (
         <div className={cx('card')}>
@@ -65,7 +65,10 @@ const Ticket = ({
 Ticket.propTypes = {
     ticket: ticketPropType.isRequired,
     locale: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
+    currency: PropTypes.shape({
+        code: PropTypes.string,
+        name: PropTypes.string,
+    }).isRequired,
     rates: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 

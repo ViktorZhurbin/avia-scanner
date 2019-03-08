@@ -6,7 +6,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class CurrencyRowItem extends React.PureComponent {
+class RowItem extends React.PureComponent {
     static propTypes = {
         item: PropTypes.shape({
             code: PropTypes.string,
@@ -14,13 +14,20 @@ class CurrencyRowItem extends React.PureComponent {
         }).isRequired,
         index: PropTypes.number.isRequired,
         onSelect: PropTypes.func.isRequired,
-        selectedItem: PropTypes.string.isRequired,
         children: PropTypes.node.isRequired,
+        isSelected: PropTypes.bool,
+        isDisabled: PropTypes.bool,
+    }
+
+    static defaultProps = {
+        isSelected: false,
+        isDisabled: false,
     }
 
     onSelect = () => {
-        const { item } = this.props;
-        this.props.onSelect(item.code);
+        const { item, onSelect } = this.props;
+
+        onSelect(item);
     }
 
     onKeyPress = (event) => {
@@ -34,14 +41,17 @@ class CurrencyRowItem extends React.PureComponent {
             item,
             index,
             children,
-            selectedItem,
+            isSelected,
+            isDisabled,
         } = this.props;
+
         return (
             <div
                 key={item.code}
                 className={cx({
                     item: true,
-                    isSelected: item.code === selectedItem,
+                    isSelected,
+                    isDisabled,
                 })}
                 role="button"
                 tabIndex={index + 1}
@@ -49,15 +59,9 @@ class CurrencyRowItem extends React.PureComponent {
                 onClick={this.onSelect}
             >
                 {children}
-                {/* <strong className={cx('code')}>
-                    {item.code}
-                </strong>
-                <span className={cx('name')}>
-                    {item.name}
-                </span> */}
             </div>
         );
     }
 }
 
-export default CurrencyRowItem;
+export default RowItem;
