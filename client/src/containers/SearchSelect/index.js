@@ -19,7 +19,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class Select extends React.PureComponent {
+class SearchSelect extends React.PureComponent {
     static propTypes = {
         type: PropTypes.string.isRequired,
         id: PropTypes.string,
@@ -116,4 +116,4 @@ const mapDispatchToProps = dispatch => ({
     setUpDeparture: departure => dispatch(setDeparture(departure)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Select);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSelect);

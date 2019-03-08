@@ -13,7 +13,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class CurrencySelect extends React.Component {
+class CurrencySelect extends React.PureComponent {
     static propTypes = {
         selectedCurrency: PropTypes.string.isRequired,
         setUpCurrency: PropTypes.func.isRequired,

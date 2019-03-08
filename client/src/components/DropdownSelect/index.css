@@ -1,0 +1,30 @@
+.itemList {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    width: var(--width);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 15px 0;
+    background: white;
+    border-radius: 5px;
+}
+
+.item {
+    display: flex;
+    list-style-type: none;
+    font: var(--p2);
+    line-height: 35px;
+    text-align: left;
+    cursor: pointer;
+    padding: 0 20px;
+    color: var(--color-twilight);
+
+    &.isSelected {
+        color: var(--color-blue);
+    }
+}
+
+.item:hover {
+    background-color: var(--color-blue-light-background);
+}

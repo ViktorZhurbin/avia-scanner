@@ -9,7 +9,7 @@ import { resetTickets } from '../../state/tickets/ticketsActions';
 import { resetSearch } from '../../state/search/searchActions';
 import { searchPropType } from '../../entities/propTypes';
 
-import Select from '../Select';
+import SearchSelect from '../SearchSelect';
 import NavBar from '../NavBar';
 import Button from '../../components/Button';
 
@@ -117,7 +117,7 @@ class SearchForm extends React.PureComponent {
                                 fullScreen,
                             })}
                         >
-                            <Select
+                            <SearchSelect
                                 isFirst
                                 type="place"
                                 id="origin"
@@ -125,14 +125,14 @@ class SearchForm extends React.PureComponent {
                                 onSelect={this.onPlaceSelect}
                                 placeholder="From"
                             />
-                            <Select
+                            <SearchSelect
                                 type="place"
                                 id="destination"
                                 value={search.destination}
                                 onSelect={this.onPlaceSelect}
                                 placeholder="To"
                             />
-                            <Select
+                            <SearchSelect
                                 isLast
                                 type="date"
                                 id="departure"

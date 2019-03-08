@@ -9,6 +9,7 @@ const mixedObject = PropTypes.objectOf(
 
 export const classNamesPropType = PropTypes.oneOfType([
     PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
     PropTypes.objectOf(
         PropTypes.oneOfType([
             PropTypes.string,
