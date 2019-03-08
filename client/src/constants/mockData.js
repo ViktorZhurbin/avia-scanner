@@ -1,15 +1,23 @@
 export const places = [
     {
-        code: 'LHR',
-        name: 'London',
+        code: 'TXL',
+        name: 'Berlin',
     },
     {
-        code: 'CDG',
-        name: 'Paris',
-    },
-    {
-        code: 'SVO',
+        code: 'DME',
         name: 'Moscow',
+    },
+    {
+        code: 'DUB',
+        name: 'Dublin',
+    },
+    {
+        code: 'HEL',
+        name: 'Helsinki',
+    },
+    {
+        code: 'TBS',
+        name: 'Tbilisi',
     },
 ];
 
