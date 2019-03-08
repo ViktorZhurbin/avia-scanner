@@ -36,10 +36,6 @@
     }
 }
 
-.name {
-    margin-right: 15px;
-}
-
 @media (min-width: 640px) {
     .itemList {
         width: calc(100% - 2px);
