@@ -1,7 +1,7 @@
 const unirest = require('unirest');
 
-const mockTicketData = require('./mockTicketData');
-const tickets = require('./utils/tickets');
+const mockTicketData = require('../helpers/mockTicketData');
+const tickets = require('../helpers/tickets');
 
 const baseUrl = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing';
 const apiKey = '166e56093cmsh7cb5c98216f8318p11d2eejsn8fe0d9372517';
