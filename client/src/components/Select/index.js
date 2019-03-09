@@ -12,7 +12,7 @@ const cx = cl.bind(styles);
 class Select extends React.PureComponent {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
-        itemList: PropTypes.array, // eslint-disable-line
+        itemList: PropTypes.arrayOf(codeNamePropType).isRequired,
         renderItem: PropTypes.func.isRequired,
         selectedItem: codeNamePropType,
         disabledItem: codeNamePropType,

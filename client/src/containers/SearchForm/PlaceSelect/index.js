@@ -14,22 +14,20 @@ const cx = cl.bind(styles);
 
 class PlaceSelect extends React.PureComponent {
     static propTypes = {
-        id: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
         value: codeNamePropType,
+        onSelect: PropTypes.func.isRequired,
         placeholder: PropTypes.string.isRequired,
-        origin: PropTypes.shape({
+        disabledItem: PropTypes.shape({
             value: codeNamePropType,
             onSelect: PropTypes.func,
-        }).isRequired,
-        destination: PropTypes.shape({
-            value: codeNamePropType,
-            onSelect: PropTypes.func,
-        }).isRequired,
+        }),
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
     }
 
     static defaultProps = {
+        disabledItem: {},
         value: null,
         isFirst: false,
         isLast: false,
@@ -72,12 +70,10 @@ class PlaceSelect extends React.PureComponent {
 
     render() {
         const {
-            id,
             value,
+            onSelect,
+            disabledItem,
         } = this.props;
-
-        const otherId = id === 'origin' ? 'destination' : 'origin';
-        const otherSelectedPlace = this.props[otherId].value;
 
         return (
             <Select
@@ -85,30 +81,28 @@ class PlaceSelect extends React.PureComponent {
                 itemList={places}
                 renderItem={this.renderItem}
                 selectedItem={value}
-                disabledItem={otherSelectedPlace}
-                onSelect={this.props[id].onSelect}
+                disabledItem={disabledItem}
+                onSelect={onSelect}
                 classNames={{ formSelect: true }}
             />
         );
     }
 }
 
-const mapStateToProps = ({ search }) => ({
-    origin: {
-        value: search.origin || {},
-    },
-    destination: {
-        value: search.destination || {},
-    },
+const mapStateToProps = ({ search }, ownProps) => ({
+    disabledItem: ownProps.id === 'origin'
+        ? search.destination
+        : search.origin,
 });
 
-const mapDispatchToProps = dispatch => ({
-    origin: {
-        onSelect: value => dispatch(setOrigin(value)),
-    },
-    destination: {
-        onSelect: value => dispatch(setDestination(value)),
-    },
-});
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const action = ownProps.id === 'origin'
+        ? setOrigin
+        : setDestination;
+
+    return {
+        onSelect: value => dispatch(action(value)),
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaceSelect);
