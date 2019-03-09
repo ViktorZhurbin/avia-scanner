@@ -90,8 +90,7 @@ class SearchForm extends React.PureComponent {
 
         return (
             <div
-                className={cx({
-                    container: true,
+                className={cx('container', {
                     fullScreen,
                 })}
             >
@@ -105,16 +104,14 @@ class SearchForm extends React.PureComponent {
                         onResetState={this.onResetState}
                     />
                     <form
-                        className={cx({
-                            formContainer: true,
+                        className={cx('formContainer', {
                             fullScreen,
                         })}
                         onSubmit={this.onSubmit}
                         target="_self"
                     >
                         <div
-                            className={cx({
-                                headerText: true,
+                            className={cx('headerText', {
                                 fullScreen,
                             })}
                         >
@@ -123,8 +120,7 @@ class SearchForm extends React.PureComponent {
                                 : 'Flights and airline tickets'}
                         </div>
                         <div
-                            className={cx({
-                                formInput: true,
+                            className={cx('formInput', {
                                 fullScreen,
                             })}
                         >

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import cl from 'classnames/bind';
 
 import Checkbox from '../../components/Checkbox';
 import { inflectStopsEn } from '../../utils/inflection';
 
 import styles from './index.css';
 
-const cx = classNames.bind(styles);
+const cx = cl.bind(styles);
 
 class Filters extends React.PureComponent {
     static propTypes = {

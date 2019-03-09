@@ -7,12 +7,15 @@ const mixedObject = PropTypes.objectOf(
     ]),
 );
 
-export const classNamesPropType = PropTypes.objectOf(
-    PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.bool,
-    ]),
-);
+export const classNamesPropType = PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.objectOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.bool,
+        ]),
+    ),
+]);
 
 export const ticketPropType = PropTypes.shape({
     arrival: PropTypes.string,

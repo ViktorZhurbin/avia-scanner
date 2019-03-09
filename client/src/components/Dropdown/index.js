@@ -68,10 +68,7 @@ class Dropdown extends React.PureComponent {
 
         return (
             <div
-                className={cx({
-                    ...classNames,
-                    container: true,
-                })}
+                className={cx('container', ...classNames)}
                 role="button"
                 data-toggle="dropdown"
                 tabIndex="0"

@@ -56,16 +56,13 @@ class DateSelect extends React.PureComponent {
 
         return (
             <div
-                className={cx({
-                    triggerContainer: true,
+                className={cx('triggerContainer', {
                     isFirst,
                     isLast,
                 })}
             >
                 <div
-                    className={cx({
-                        triggerText: true,
-                        dateTrigger: true,
+                    className={cx('triggerText', 'dateTrigger', {
                         placeholder: !formatted,
                     })}
                 >
@@ -85,7 +82,7 @@ class DateSelect extends React.PureComponent {
             <DatePicker
                 onSelect={this.handleSetDate}
                 trigger={this.renderTrigger()}
-                classNames={{ formSelect: true }}
+                classNames={['formSelect']}
             />
         );
     }

@@ -43,15 +43,13 @@ class PlaceSelect extends React.PureComponent {
 
         return (
             <div
-                className={cx({
-                    triggerContainer: true,
+                className={cx('triggerContainer', {
                     isFirst,
                     isLast,
                 })}
             >
                 <div
-                    className={cx({
-                        triggerText: true,
+                    className={cx('triggerText', {
                         placeholder: !value,
                     })}
                 >
@@ -83,7 +81,7 @@ class PlaceSelect extends React.PureComponent {
                 selectedItem={value}
                 disabledItem={disabledItem}
                 onSelect={onSelect}
-                classNames={{ formSelect: true }}
+                classNames={['formSelect']}
             />
         );
     }

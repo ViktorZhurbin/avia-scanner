@@ -22,8 +22,7 @@ class App extends React.PureComponent {
         return (
             <div className={cx('container')}>
                 <div
-                    className={cx({
-                        form: true,
+                    className={cx('form', {
                         formOnly: !hasTickets,
                     })}
                 >

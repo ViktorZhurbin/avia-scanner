@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import Filters from '../Filters';
@@ -11,7 +11,7 @@ import { ticketPropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
-const cx = classNames.bind(styles);
+const cx = cl.bind(styles);
 
 class SearchResults extends React.PureComponent {
     static propTypes = {
@@ -88,11 +88,7 @@ class SearchResults extends React.PureComponent {
 
         return (
             <div className={cx('container')}>
-                <div
-                    className={cx({
-                        filters: true,
-                    })}
-                >
+                <div className={cx('filters')}>
                     <Filters
                         stopOptions={stopOptions}
                         selectedStops={selectedStops}

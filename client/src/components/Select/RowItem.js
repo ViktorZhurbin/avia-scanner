@@ -46,8 +46,7 @@ class RowItem extends React.PureComponent {
         return (
             <div
                 key={value.code}
-                className={cx({
-                    item: true,
+                className={cx('item', {
                     isSelected,
                     isDisabled,
                 })}

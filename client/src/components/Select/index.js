@@ -38,10 +38,7 @@ class Select extends React.PureComponent {
 
         return (
             <div
-                className={cx({
-                    itemList: true,
-                    ...classNames,
-                })}
+                className={cx('itemList', ...classNames)}
             >
                 {itemList.map((item, index) => {
                     const isDisabled = (item && item.code) === (disabledItem && disabledItem.code);

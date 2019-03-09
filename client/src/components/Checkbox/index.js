@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import cl from 'classnames/bind';
 
 import styles from './index.css';
 
-const cx = classNames.bind(styles);
+const cx = cl.bind(styles);
 
 class Checkbox extends React.PureComponent {
     static propTypes = {

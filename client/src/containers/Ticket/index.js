@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import BuyButton from './BuyButton';
@@ -12,7 +12,7 @@ import { ticketPropType, codeNamePropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
-const cx = classNames.bind(styles);
+const cx = cl.bind(styles);
 
 const Ticket = ({
     ticket,
