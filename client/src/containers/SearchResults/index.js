@@ -7,7 +7,7 @@ import Filters from '../Filters';
 import Ticket from '../Ticket';
 import NoResuts from '../../components/NoResults';
 
-import { ticketPropType, codeNamePropType } from '../../entities/propTypes';
+import { ticketPropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
@@ -15,8 +15,6 @@ const cx = classNames.bind(styles);
 
 class SearchResults extends React.PureComponent {
     static propTypes = {
-        locale: PropTypes.string,
-        currency: codeNamePropType,
         hasTickets: PropTypes.bool,
         ticketData: PropTypes.shape({
             allTickets: PropTypes.arrayOf(ticketPropType),
@@ -27,8 +25,6 @@ class SearchResults extends React.PureComponent {
     };
 
     static defaultProps = {
-        locale: null,
-        currency: null,
         ticketData: {},
         hasTickets: false,
     }
@@ -80,7 +76,6 @@ class SearchResults extends React.PureComponent {
     }
 
     render() {
-        const { locale, currency } = this.props;
         const {
             filteredTickets,
             selectedStops,
@@ -117,8 +112,6 @@ class SearchResults extends React.PureComponent {
                                 {filteredTickets.map(ticket => (
                                     <Ticket
                                         key={ticket.id}
-                                        locale={locale}
-                                        currency={currency}
                                         ticket={ticket}
                                         rates={currencyRates}
                                     />
@@ -131,11 +124,8 @@ class SearchResults extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ tickets, search }) => ({
+const mapStateToProps = ({ tickets }) => ({
     ticketData: tickets.ticketData,
-    hasTickets: tickets.hasTickets,
-    currency: search.currency,
-    locale: search.locale,
 });
 
 export default connect(mapStateToProps, null)(SearchResults);

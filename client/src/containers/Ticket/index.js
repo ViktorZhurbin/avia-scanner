@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { connect } from 'react-redux';
 
 import BuyButton from './BuyButton';
 import Route from './Route';
@@ -24,7 +25,6 @@ const Ticket = ({
         destination,
         departure,
         arrival,
-        // stops,
         offer,
         carrier,
         duration,
@@ -71,4 +71,9 @@ Ticket.propTypes = {
 
 Ticket.defaultProps = {};
 
-export default React.memo(Ticket);
+const mapStateToProps = ({ search }) => ({
+    currency: search.currency,
+    locale: search.locale,
+});
+
+export default React.memo(connect(mapStateToProps, null)(Ticket));

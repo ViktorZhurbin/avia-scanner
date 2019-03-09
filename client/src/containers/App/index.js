@@ -35,7 +35,7 @@ class App extends React.PureComponent {
                     ? (
                         <React.Suspense fallback={<Loader />}>
                             <div className={cx('results')}>
-                                <SearchResults />
+                                <SearchResults hasTickets={hasTickets} />
                             </div>
                         </React.Suspense>
                     )
