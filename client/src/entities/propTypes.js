@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const mixedObject = PropTypes.objectOf(
+const numberStringObject = PropTypes.objectOf(
     PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -8,6 +8,7 @@ const mixedObject = PropTypes.objectOf(
 );
 
 export const classNamesPropType = PropTypes.oneOfType([
+    PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.objectOf(
         PropTypes.oneOfType([
@@ -20,13 +21,13 @@ export const classNamesPropType = PropTypes.oneOfType([
 export const ticketPropType = PropTypes.shape({
     arrival: PropTypes.string,
     departure: PropTypes.string,
-    origin: mixedObject,
-    destination: mixedObject,
+    origin: numberStringObject,
+    destination: numberStringObject,
     directionality: PropTypes.string,
     direction: PropTypes.number,
-    carrier: mixedObject,
+    carrier: numberStringObject,
     carriers: PropTypes.arrayOf(PropTypes.number),
-    flightNumbers: PropTypes.arrayOf(mixedObject),
+    flightNumbers: PropTypes.arrayOf(numberStringObject),
     operatingCarriers: PropTypes.arrayOf(
         PropTypes.number,
     ),

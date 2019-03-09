@@ -11,7 +11,9 @@ const cx = cl.bind(styles);
 
 class Filters extends React.PureComponent {
     static propTypes = {
-        stopOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
+        stopOptions: PropTypes.arrayOf(
+            PropTypes.number,
+        ).isRequired,
         selectedStops: PropTypes.objectOf(
             PropTypes.bool,
         ).isRequired,

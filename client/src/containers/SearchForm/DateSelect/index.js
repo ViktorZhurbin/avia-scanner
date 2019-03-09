@@ -16,10 +16,7 @@ const cx = cl.bind(styles);
 
 class DateSelect extends React.PureComponent {
     static propTypes = {
-        value: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.objectOf(PropTypes.string),
-        ]),
+        value: PropTypes.string,
         placeholder: PropTypes.string.isRequired,
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
