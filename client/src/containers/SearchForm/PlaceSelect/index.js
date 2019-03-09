@@ -105,4 +105,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlaceSelect);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(PlaceSelect);
