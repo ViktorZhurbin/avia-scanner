@@ -22,13 +22,36 @@ export const formatDateByBrowserLocale = (dateString) => {
         : null;
 };
 
-export const getFlightTimeDate = (dateString) => {
-    const formatted = dayjs(dateString).format('DD MMM YYYY, ddd[@]HH:mm');
+export const getFlightTimeDate = (dateString, locale) => {
+    const formatted = dayjs(dateString).format('DD MMM YYYY[@]HH:mm');
     const [date, time] = formatted.split('@');
+
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        weekday: 'short',
+    };
+    const formatter = new Intl.DateTimeFormat(locale, options);
+    const formattedParts = formatter.formatToParts(new Date(date));
+
+    const dateObj = {};
+    formattedParts.forEach(({ type, value }) => {
+        dateObj[type] = value;
+    });
+
+    const {
+        year,
+        month,
+        day,
+        weekday,
+    } = dateObj;
+
+    const resultDate = `${year} ${month} ${day}, ${weekday}`;
 
     return {
         time,
-        date,
+        date: resultDate,
     };
 };
 
