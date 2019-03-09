@@ -10,7 +10,7 @@ export const setLocale = createAction('search/setLocale');
 export const setOrigin = createAction('search/setOrigin');
 export const setDestination = createAction('search/setDestination');
 export const setDeparture = createAction('search/setDeparture');
-export const resetSearch = createAction('search/resetSearch');
+export const resetSearch = createAction('search/reset');
 
 const initialState = {
     currency: {
