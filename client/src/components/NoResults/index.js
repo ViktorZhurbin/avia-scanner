@@ -15,7 +15,6 @@ const NoResuts = ({ ticketsCount, onFilterReset }) => (
             but none of them matches current filter settings`}
         </div>
         <div className={cx('resetButton')}>
-            {/* eslint-disable-next-line */}
             <Button
                 onClick={onFilterReset}
             >

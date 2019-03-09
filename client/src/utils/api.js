@@ -1,7 +1,7 @@
 import qs from 'query-string';
 
 const handleError = (error) => {
-    console.warn(error); // eslint-disable-line
+    console.warn(error); // eslint-disable-line no-console
     return null;
 };
 

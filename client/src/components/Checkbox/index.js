@@ -42,7 +42,8 @@ class Checkbox extends React.PureComponent {
         } = this.props;
 
         return (
-            <label className={cx('row')}> {/*eslint-disable-line*/}
+            // eslint-disable-next-line jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for
+            <label className={cx('row')}>
                 <input
                     className={cx('input')}
                     id={id}
