@@ -142,10 +142,9 @@ class SearchForm extends React.PureComponent {
                             />
                             <DateSelect
                                 isLast
-                                type="date"
                                 id="departure"
                                 value={search.departure}
-                                placeholder="Start Date"
+                                placeholder="Depart"
                             />
                         </div>
                         <div className={cx('formSubmit')}>
