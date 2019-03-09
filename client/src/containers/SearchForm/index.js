@@ -4,8 +4,7 @@ import qs from 'query-string';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import { fetchTickets } from '../../utils/api';
-import { resetTickets } from '../../state/tickets';
+import { resetTickets, fetchTicketData } from '../../state/tickets';
 import { resetSearch } from '../../state/search';
 import { searchPropType } from '../../entities/propTypes';
 
@@ -169,7 +168,7 @@ const mapStateToProps = ({ tickets, search }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getTickets: query => fetchTickets(query)(dispatch),
+    getTickets: query => dispatch(fetchTicketData(query)),
     resetTicketData: () => dispatch(resetTickets()),
     setInitialSearch: () => dispatch(resetSearch()),
 });

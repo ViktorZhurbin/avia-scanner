@@ -1,8 +1,20 @@
 import { createReducer, createAction } from 'redux-starter-kit';
+import { fetchTickets } from '../utils/api';
 
-export const requestTickets = createAction('tickets/request');
+export const setLoading = createAction('tickets/loading');
 export const receiveTickets = createAction('tickets/receive');
 export const resetTickets = createAction('tickets/reset');
+
+export const fetchTicketData = query => (
+    (dispatch) => {
+        dispatch(setLoading(true));
+        fetchTickets(query).then(
+            ticketData => dispatch(receiveTickets(ticketData)),
+        ).then(
+            () => dispatch(setLoading(false)),
+        );
+    }
+);
 
 const initialState = {
     isLoading: false,
@@ -11,13 +23,12 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-    [requestTickets]: state => ({
+    [setLoading]: (state, { payload }) => ({
         ...state,
-        isLoading: true,
+        isLoading: payload,
     }),
     [receiveTickets]: (state, { payload }) => ({
         ...state,
-        isLoading: false,
         ticketData: payload,
         hasTickets: payload && payload.allTickets
             && payload.allTickets.length > 0,
