@@ -4,7 +4,7 @@ import cl from 'classnames/bind';
 import SVGInline from 'react-svg-inline';
 import { connect } from 'react-redux';
 
-import { setDeparture } from '../../../state/search/searchActions';
+import { setDeparture } from '../../../state/search';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
 import { formatDateByBrowserLocale, dateToIsoString } from '../../../utils/string';

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Select from '../../../components/Select';
 import { places } from '../../../constants/mockData';
-import { setOrigin, setDestination } from '../../../state/search/searchActions';
+import { setOrigin, setDestination } from '../../../state/search';
 import { codeNamePropType } from '../../../entities/propTypes';
 
 import styles from '../index.css';

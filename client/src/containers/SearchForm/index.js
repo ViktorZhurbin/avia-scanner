@@ -5,8 +5,8 @@ import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import { fetchTickets } from '../../utils/api';
-import { resetTickets } from '../../state/tickets/ticketsActions';
-import { resetSearch } from '../../state/search/searchActions';
+import { resetTickets } from '../../state/tickets';
+import { resetSearch } from '../../state/search';
 import { searchPropType } from '../../entities/propTypes';
 
 import DateSelect from './DateSelect';

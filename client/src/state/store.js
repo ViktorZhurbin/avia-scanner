@@ -1,8 +1,8 @@
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
 import { logger } from 'redux-logger';
 
-import ticketsReducer from './tickets/ticketsReducer';
-import searchReducer from './search/searchReducer';
+import ticketsReducer from './tickets';
+import searchReducer from './search';
 
 const reducer = {
     tickets: ticketsReducer,

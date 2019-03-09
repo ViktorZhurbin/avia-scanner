@@ -1,6 +1,6 @@
 import qs from 'query-string';
 
-import { requestTickets, receiveTickets } from '../state/tickets/ticketsActions';
+import { requestTickets, receiveTickets } from '../state/tickets';
 
 const handleError = (error) => {
     console.warn(error); // eslint-disable-line
