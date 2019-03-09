@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Select from '../../../components/Select';
 import { setCurrency } from '../../../state/search/searchActions';
 import { currencyList } from '../../../constants/mockData';
+import { codeNamePropType } from '../../../entities/propTypes';
 
 import styles from './index.css';
 
@@ -14,10 +15,7 @@ const cx = cl.bind(styles);
 
 class CurrencySelect extends React.PureComponent {
     static propTypes = {
-        selectedCurrency: PropTypes.shape({
-            name: PropTypes.string,
-            code: PropTypes.string,
-        }).isRequired,
+        selectedCurrency: codeNamePropType.isRequired,
         setUpCurrency: PropTypes.func.isRequired,
     }
 

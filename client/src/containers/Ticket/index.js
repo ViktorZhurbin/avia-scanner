@@ -7,7 +7,7 @@ import Route from './Route';
 import Path from './Path';
 
 import { formatPrice } from '../../utils/string';
-import { ticketPropType } from '../../entities/propTypes';
+import { ticketPropType, codeNamePropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
@@ -65,10 +65,7 @@ const Ticket = ({
 Ticket.propTypes = {
     ticket: ticketPropType.isRequired,
     locale: PropTypes.string.isRequired,
-    currency: PropTypes.shape({
-        code: PropTypes.string,
-        name: PropTypes.string,
-    }).isRequired,
+    currency: codeNamePropType.isRequired,
     rates: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 

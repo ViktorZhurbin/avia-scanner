@@ -7,7 +7,7 @@ import Filters from '../Filters';
 import Ticket from '../Ticket';
 import NoResuts from '../../components/NoResults';
 
-import { ticketPropType } from '../../entities/propTypes';
+import { ticketPropType, codeNamePropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
@@ -16,10 +16,7 @@ const cx = classNames.bind(styles);
 class SearchResults extends React.PureComponent {
     static propTypes = {
         locale: PropTypes.string,
-        currency: PropTypes.shape({
-            code: PropTypes.string,
-            name: PropTypes.string,
-        }),
+        currency: codeNamePropType,
         hasTickets: PropTypes.bool,
         ticketData: PropTypes.shape({
             allTickets: PropTypes.arrayOf(ticketPropType),

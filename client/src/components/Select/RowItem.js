@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
+import { codeNamePropType } from '../../entities/propTypes';
 import styles from './index.css';
 
 const cx = cl.bind(styles);
 
 class RowItem extends React.PureComponent {
     static propTypes = {
-        value: PropTypes.shape({
-            code: PropTypes.string,
-            name: PropTypes.string,
-        }).isRequired,
+        value: codeNamePropType.isRequired,
         index: PropTypes.number.isRequired,
         onSelect: PropTypes.func.isRequired,
         children: PropTypes.node.isRequired,
