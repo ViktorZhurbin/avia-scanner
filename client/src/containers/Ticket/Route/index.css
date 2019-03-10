@@ -11,7 +11,7 @@
 }
 
 .time {
-    font: var(--h3);
+    font: 28px/40px 'Open Sans', sans-serif;
     color: var(--color-twilight);
 }
 
