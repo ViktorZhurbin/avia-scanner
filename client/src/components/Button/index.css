@@ -8,7 +8,7 @@
     width: 100%;
     border-radius: 5px;
     color: var(--color-white);
-    font: var(--p0);
+    font: var(--h5);
     background-color: var(--color-orange);
     box-shadow: 0 1px 0 0 var(--color-orange-dark), 0 2px 2px 0 rgba(0, 0, 0, 0.1);
     cursor: pointer;

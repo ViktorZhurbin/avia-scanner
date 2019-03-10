@@ -59,7 +59,8 @@
 }
 
 .buttonText {
-    font: var(--p0);
+    font: var(--p1);
+    font-size: 20px;
     line-height: 34px;
     padding: 9px 0;
 }

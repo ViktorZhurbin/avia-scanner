@@ -6,13 +6,14 @@
     --h2: 500 32px/45px 'Rubik', sans-serif;
     --h3: 500 28px/40px 'Rubik', sans-serif;
     --h4: 500 22px/35px 'Rubik', sans-serif;
+    --h5: 500 18px/24px 'Rubik', sans-serif;
 
     /* Paragraph text */
-    --p0: 500 18px/24px 'Rubik', sans-serif;
+    --p0: 18px/24px 'Open Sans', sans-serif;
     --p1: 16px/22px 'Open Sans', sans-serif;
-    --p2: 14px 'Open Sans', sans-serif;
+    --p2: 14px/20px 'Open Sans', sans-serif;
     --p3: 12px/18px 'Open Sans', sans-serif;
-    --p4: 10px 'Open Sans', sans-serif;
+    --p4: 10px/16px 'Open Sans', sans-serif;
 
     /* Colors */
     --color-white: #fff;
