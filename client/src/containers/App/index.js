@@ -1,40 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import SearchForm from '../SearchForm';
 import Loader from '../../components/Loader';
-import styles from './index.css';
-
-const cx = cl.bind(styles);
 
 const SearchResultsPromise = import(/* webpackChunkName: "SearchResults" */ '../SearchResults');
 const SearchResults = React.lazy(() => SearchResultsPromise);
 
 const App = ({ hasTickets }) => (
-    <div className={cx('container')}>
-        <div
-            className={cx('form', {
-                formOnly: !hasTickets,
-            })}
-        >
-            <SearchForm
-                fullScreen={!hasTickets}
-            />
-        </div>
+    <React.Fragment>
+        <SearchForm
+            fullScreen={!hasTickets}
+        />
         {hasTickets
             ? (
                 <React.Suspense fallback={<Loader />}>
-                    <div className={cx('results')}>
-                        <SearchResults
-                            hasTickets={hasTickets}
-                        />
-                    </div>
+                    <SearchResults
+                        hasTickets={hasTickets}
+                    />
                 </React.Suspense>
             )
             : null}
-    </div>
+    </React.Fragment>
 );
 
 App.propTypes = {
