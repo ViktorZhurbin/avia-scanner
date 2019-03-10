@@ -1,7 +1,7 @@
 import { createReducer, createAction } from 'redux-starter-kit';
 import { fetchTickets } from '../utils/api';
 
-export const setLoading = createAction('tickets/loading');
+export const setLoading = createAction('tickets/setLoading');
 export const receiveTickets = createAction('tickets/receive');
 export const resetTickets = createAction('tickets/reset');
 

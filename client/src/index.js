@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import '@babel/polyfill';
 
-import store from './state/store';
+import store from './store';
 import App from './containers/App';
 
 import 'react-calendar/dist/Calendar.css';

@@ -4,8 +4,8 @@ import qs from 'query-string';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import { resetTickets, fetchTicketData } from '../../state/tickets';
-import { resetSearch } from '../../state/search';
+import { resetTickets, fetchTicketData } from '../../store/tickets';
+import { resetSearch } from '../../store/search';
 import { searchPropType } from '../../entities/propTypes';
 
 import DateSelect from './DateSelect';
