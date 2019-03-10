@@ -5,7 +5,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-const Loader = () => (
+const Loading = () => (
     <div className={cx('loader')}>
         <span className={cx('loaderBall', 'one')} />
         <span className={cx('loaderBall', 'two')} />
@@ -13,4 +13,4 @@ const Loader = () => (
     </div>
 );
 
-export default React.memo(Loader);
+export default React.memo(Loading);

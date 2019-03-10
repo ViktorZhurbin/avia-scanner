@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import Loader from '../Loader';
+import Loading from '../Loading';
 import Dropdown from '../Dropdown';
 import { classNamesPropType } from '../../entities/propTypes';
 
@@ -47,7 +47,7 @@ class DatePicker extends React.PureComponent {
                 classNames={classNames}
                 trigger={trigger}
             >
-                <React.Suspense fallback={<Loader />}>
+                <React.Suspense fallback={<Loading />}>
                     <div className={cx('calendarModal')}>
                         <Calendar
                             value={this.state.date}

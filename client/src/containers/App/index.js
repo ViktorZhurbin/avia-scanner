@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SearchForm from '../SearchForm';
-import Loader from '../../components/Loader';
+import Loading from '../../components/Loading';
 
 const SearchResultsPromise = import(/* webpackChunkName: "SearchResults" */ '../SearchResults');
 const SearchResults = React.lazy(() => SearchResultsPromise);
@@ -9,7 +9,7 @@ const SearchResults = React.lazy(() => SearchResultsPromise);
 const App = () => (
     <React.Fragment>
         <SearchForm />
-        <React.Suspense fallback={<Loader />}>
+        <React.Suspense fallback={<Loading />}>
             <SearchResults />
         </React.Suspense>
     </React.Fragment>
