@@ -11,41 +11,41 @@ import styles from './index.css';
 const SearchResults = React.lazy(() => import('../SearchResults'));
 const cx = cl.bind(styles);
 
-class App extends React.PureComponent {
-    static propTypes = {
-        hasTickets: PropTypes.bool.isRequired,
-    }
+const App = ({ hasTickets }) => (
+    <div className={cx('container')}>
+        <div
+            className={cx('form', {
+                formOnly: !hasTickets,
+            })}
+        >
+            <SearchForm
+                fullScreen={!hasTickets}
+            />
+        </div>
+        {hasTickets
+            ? (
+                <React.Suspense fallback={<Loader />}>
+                    <div className={cx('results')}>
+                        <SearchResults
+                            hasTickets={hasTickets}
+                        />
+                    </div>
+                </React.Suspense>
+            )
+            : null}
+    </div>
+);
 
-    render() {
-        const { hasTickets } = this.props;
-
-        return (
-            <div className={cx('container')}>
-                <div
-                    className={cx('form', {
-                        formOnly: !hasTickets,
-                    })}
-                >
-                    <SearchForm
-                        fullScreen={!hasTickets}
-                    />
-                </div>
-                {hasTickets
-                    ? (
-                        <React.Suspense fallback={<Loader />}>
-                            <div className={cx('results')}>
-                                <SearchResults hasTickets={hasTickets} />
-                            </div>
-                        </React.Suspense>
-                    )
-                    : null}
-            </div>
-        );
-    }
-}
+App.propTypes = {
+    hasTickets: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = ({ tickets }) => ({
     hasTickets: tickets.hasTickets,
 });
 
-export default connect(mapStateToProps)(App);
+export default React.memo(
+    connect(
+        mapStateToProps,
+    )(App),
+);
