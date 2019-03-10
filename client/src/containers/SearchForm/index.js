@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import qs from 'query-string';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import { resetTickets, fetchTicketData } from '../../store/tickets';
 import { resetSearch } from '../../store/search';
-import { searchPropType } from '../../entities/propTypes';
 
-import DateSelect from './DateSelect';
-import PlaceSelect from './PlaceSelect';
 import NavBar from '../NavBar';
-import Button from '../../components/Button';
+import MainForm from '../MainForm';
 
 import styles from './index.css';
 
-const cx = cl.bind(styles);
+export const cx = cl.bind(styles);
+
 
 class SearchForm extends React.PureComponent {
     static propTypes = {
@@ -24,25 +21,16 @@ class SearchForm extends React.PureComponent {
         resetTicketData: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired,
         hasTickets: PropTypes.bool,
-        search: searchPropType,
     };
 
     static defaultProps = {
         hasTickets: false,
-        search: {},
     };
 
     componentDidMount() {
         window.onpopstate = () => this.onUpdateState();
         this.onUpdateState();
     }
-
-    onSubmit = (event) => {
-        event.preventDefault();
-        const { queryObject, queryString } = this.getSearchQuery();
-        window.history.pushState(queryObject, '', queryString);
-        this.props.getTickets();
-    };
 
     onUpdateState = () => {
         const { search } = window.location;
@@ -59,33 +47,15 @@ class SearchForm extends React.PureComponent {
         this.props.resetTicketData();
     }
 
-    getSearchQuery = () => {
-        const {
-            origin,
-            destination,
-            currency,
-            ...rest
-        } = this.props.search;
-
-        const queryObject = {
-            origin: origin.code,
-            destination: destination.code,
-            currency: currency.code,
-            ...rest,
-        };
-        const queryString = `?${qs.stringify(queryObject)}`;
-
-        return {
-            queryObject,
-            queryString,
-        };
+    onSubmit = ({ queryObject, queryString }) => {
+        window.history.pushState(queryObject, '', queryString);
+        this.props.getTickets(queryString);
     };
 
     render() {
         const {
             isLoading,
             hasTickets,
-            search,
         } = this.props;
 
         return (
@@ -95,55 +65,20 @@ class SearchForm extends React.PureComponent {
                     <NavBar
                         onResetState={this.onResetState}
                     />
-                    <form
-                        className={cx('form', { hasTickets })}
+                    <MainForm
                         onSubmit={this.onSubmit}
-                        target="_self"
-                    >
-                        <div className={cx('header', { hasTickets })}>
-                            {isLoading
-                                ? 'Fetching tickets...'
-                                : 'Flights and airline tickets'}
-                        </div>
-                        <div className={cx('input', { hasTickets })}>
-                            <PlaceSelect
-                                isFirst
-                                id="origin"
-                                value={search.origin}
-                                placeholder="From"
-                            />
-                            <PlaceSelect
-                                id="destination"
-                                value={search.destination}
-                                placeholder="To"
-                            />
-                            <DateSelect
-                                isLast
-                                id="departure"
-                                value={search.departure}
-                                placeholder="Depart"
-                            />
-                        </div>
-                        <div className={cx('button')}>
-                            <Button isLoading={isLoading}>
-                                <div className={cx('buttonText')}>
-                                    {hasTickets
-                                        ? 'Find'
-                                        : 'Find tickets'}
-                                </div>
-                            </Button>
-                        </div>
-                    </form>
+                        isLoading={isLoading}
+                        hasTickets={hasTickets}
+                    />
                 </div>
             </div>
         );
     }
 }
 
-const mapStateToProps = ({ tickets, search }) => ({
+const mapStateToProps = ({ tickets }) => ({
     isLoading: tickets.isLoading,
     hasTickets: tickets.hasTickets,
-    search,
 });
 
 const mapDispatchToProps = dispatch => ({

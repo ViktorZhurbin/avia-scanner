@@ -4,13 +4,13 @@ import cl from 'classnames/bind';
 import SVGInline from 'react-svg-inline';
 import { connect } from 'react-redux';
 
-import { setDeparture } from '../../../store/search';
+import DatePicker from '../../../components/DatePicker';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
+import { setDeparture } from '../../../store/search';
 import { formatDateByBrowserLocale, dateToIsoString } from '../../../utils/string';
 
 import styles from '../index.css';
-import DatePicker from '../../../components/DatePicker';
 
 const cx = cl.bind(styles);
 
