@@ -87,41 +87,46 @@ class SearchResults extends React.PureComponent {
             && (filteredTickets && filteredTickets.length > 0);
 
         return (
-            <div className={cx('container')}>
-                <div className={cx('filters')}>
-                    <Filters
-                        stopOptions={stopOptions}
-                        selectedStops={selectedStops}
-                        onFilter={this.onFilterByStops}
-                    />
-                </div>
-                {
-                    hasTickets && !hasFilteredTickets
-                        ? (
-                            <NoResuts
-                                ticketsCount={allTickets.length}
-                                onFilterReset={this.onResetFilters}
+            hasTickets
+                ? (
+                    <div className={cx('container')}>
+                        <div className={cx('filters')}>
+                            <Filters
+                                stopOptions={stopOptions}
+                                selectedStops={selectedStops}
+                                onFilter={this.onFilterByStops}
                             />
-                        )
-                        : (
-                            <div>
-                                {filteredTickets.map(ticket => (
-                                    <Ticket
-                                        key={ticket.id}
-                                        ticket={ticket}
-                                        rates={currencyRates}
+                        </div>
+                        {
+                            hasTickets && !hasFilteredTickets
+                                ? (
+                                    <NoResuts
+                                        ticketsCount={allTickets.length}
+                                        onFilterReset={this.onResetFilters}
                                     />
-                                ))}
-                            </div>
-                        )
-                }
-            </div>
+                                )
+                                : (
+                                    <div>
+                                        {filteredTickets.map(ticket => (
+                                            <Ticket
+                                                key={ticket.id}
+                                                ticket={ticket}
+                                                rates={currencyRates}
+                                            />
+                                        ))}
+                                    </div>
+                                )
+                        }
+                    </div>
+                )
+                : null
         );
     }
 }
 
 const mapStateToProps = ({ tickets }) => ({
     ticketData: tickets.ticketData,
+    hasTickets: tickets.hasTickets,
 });
 
 export default connect(mapStateToProps, null)(SearchResults);
