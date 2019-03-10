@@ -35,11 +35,16 @@ class SearchResults extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.onUpdateState();
+        if (this.props.hasTickets) {
+            this.onUpdateState();
+        }
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.ticketData !== this.props.ticketData) {
+        const { ticketData, hasTickets } = this.props;
+
+        if (hasTickets
+            && prevProps.ticketData !== ticketData) {
             this.onUpdateState();
         }
     }
