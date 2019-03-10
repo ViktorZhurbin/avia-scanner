@@ -4,8 +4,7 @@ import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import Filters from '../Filters';
-import Ticket from '../Ticket';
-import NoResuts from '../../components/NoResults';
+import TicketList from '../TicketList';
 
 import { ticketPropType } from '../../entities/propTypes';
 
@@ -74,7 +73,7 @@ class SearchResults extends React.PureComponent {
         }));
     }
 
-    onResetFilters = () => {
+    onFilterReset = () => {
         const { stopOptions } = this.props.ticketData;
 
         this.onFilterByStops({ [stopOptions[0]]: true });
@@ -88,9 +87,6 @@ class SearchResults extends React.PureComponent {
         const { ticketData, hasTickets } = this.props;
         const { stopOptions, allTickets, currencyRates } = ticketData;
 
-        const hasFilteredTickets = hasTickets
-            && (filteredTickets && filteredTickets.length > 0);
-
         return (
             hasTickets
                 ? (
@@ -102,26 +98,13 @@ class SearchResults extends React.PureComponent {
                                 onFilter={this.onFilterByStops}
                             />
                         </div>
-                        {
-                            hasTickets && !hasFilteredTickets
-                                ? (
-                                    <NoResuts
-                                        ticketsCount={allTickets.length}
-                                        onFilterReset={this.onResetFilters}
-                                    />
-                                )
-                                : (
-                                    <div>
-                                        {filteredTickets.map(ticket => (
-                                            <Ticket
-                                                key={ticket.id}
-                                                ticket={ticket}
-                                                rates={currencyRates}
-                                            />
-                                        ))}
-                                    </div>
-                                )
-                        }
+                        <TicketList
+                            currencyRates={currencyRates}
+                            hasTickets={hasTickets}
+                            filteredTickets={filteredTickets}
+                            allTicketsCount={allTickets.length}
+                            onFilterReset={this.onFilterReset}
+                        />
                     </div>
                 )
                 : null
