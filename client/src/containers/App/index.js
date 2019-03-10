@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 
 import SearchForm from '../SearchForm';
 import Loader from '../../components/Loader';
-
 import styles from './index.css';
 
-const SearchResults = React.lazy(() => import(/* webpackChunkName: "SearchResults" */ '../SearchResults'));
 const cx = cl.bind(styles);
+
+const SearchResultsPromise = import(/* webpackChunkName: "SearchResults" */ '../SearchResults');
+const SearchResults = React.lazy(() => SearchResultsPromise);
 
 const App = ({ hasTickets }) => (
     <div className={cx('container')}>

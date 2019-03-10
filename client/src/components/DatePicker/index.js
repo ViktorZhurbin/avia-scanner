@@ -8,8 +8,10 @@ import { classNamesPropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
-const Calendar = React.lazy(() => import(/* webpackChunkName: "calendar" */ 'react-calendar'));
 const cx = cl.bind(styles);
+
+const CalendarPromise = import(/* webpackChunkName: "calendar" */ 'react-calendar');
+const Calendar = React.lazy(() => CalendarPromise);
 
 class DatePicker extends React.PureComponent {
     static propTypes = {
@@ -46,15 +48,13 @@ class DatePicker extends React.PureComponent {
                 trigger={trigger}
             >
                 <React.Suspense fallback={<Loader />}>
-                    <React.Fragment>
-                        <div className={cx('calendarModal')}>
-                            <Calendar
-                                value={this.state.date}
-                                onChange={this.handleDateSelect}
-                            />
-                        </div>
-                        <div className={cx('modalOverlay')} />
-                    </React.Fragment>
+                    <div className={cx('calendarModal')}>
+                        <Calendar
+                            value={this.state.date}
+                            onChange={this.handleDateSelect}
+                        />
+                    </div>
+                    <div className={cx('modalOverlay')} />
                 </React.Suspense>
             </Dropdown>
 
