@@ -55,28 +55,30 @@ class Filters extends React.PureComponent {
                     <div className={cx('container')}>
                         <div className={cx('title')}>Number of stops</div>
                         <div className={cx('filters')}>
-                            <Checkbox
-                                className={cx('filterItem')}
-                                id="all"
-                                checked={isAllChecked}
-                                name="All"
-                                selectedStops={selectedStops}
-                                onChange={this.onToggleAll}
-                            />
+                            <div className={cx('filterItem')}>
+                                <Checkbox
+                                    id="all"
+                                    checked={isAllChecked}
+                                    name="All"
+                                    selectedStops={selectedStops}
+                                    onChange={this.onToggleAll}
+                                />
+                            </div>
                             {stopOptions.map((item) => {
                                 const isChecked = Boolean(selectedStops[item]);
                                 const name = inflectStopsEn(item);
 
                                 return (
-                                    <Checkbox
-                                        key={item}
-                                        id={item}
-                                        className={cx('filterItem')}
-                                        checked={isChecked}
-                                        name={name}
-                                        selectedStops={selectedStops}
-                                        onChange={onFilter}
-                                    />
+                                    <div className={cx('filterItem')}>
+                                        <Checkbox
+                                            key={item}
+                                            id={item}
+                                            checked={isChecked}
+                                            name={name}
+                                            selectedStops={selectedStops}
+                                            onChange={onFilter}
+                                        />
+                                    </div>
                                 );
                             })}
                         </div>

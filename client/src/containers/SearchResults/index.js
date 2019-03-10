@@ -91,13 +91,11 @@ class SearchResults extends React.PureComponent {
             hasTickets
                 ? (
                     <div className={cx('container')}>
-                        <div className={cx('filters')}>
-                            <Filters
-                                stopOptions={stopOptions}
-                                selectedStops={selectedStops}
-                                onFilter={this.onFilterByStops}
-                            />
-                        </div>
+                        <Filters
+                            stopOptions={stopOptions}
+                            selectedStops={selectedStops}
+                            onFilter={this.onFilterByStops}
+                        />
                         <TicketList
                             currencyRates={currencyRates}
                             hasTickets={hasTickets}

@@ -1,8 +1,8 @@
 .container {
     width: 100%;
-    min-width: 611px;
+    max-width: var(--min-ticket-width);
     min-height: 140px;
-    padding: 25px;
+    padding: 15px 25px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
