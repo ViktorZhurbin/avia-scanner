@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { resetTickets, fetchTicketData } from '../../store/tickets';
 import { resetSearch } from '../../store/search';
 
+import LoadingBar from '../../components/LoadingBar';
 import NavBar from '../NavBar';
 import MainForm from '../MainForm';
 
@@ -61,7 +62,9 @@ class SearchForm extends React.PureComponent {
         return (
             <div className={cx('container', { hasTickets })}>
                 <div className={cx('innerContainer', { hasTickets })}>
-                    <div className={cx({ isLoading })} />
+                    <LoadingBar
+                        isLoading={isLoading}
+                    />
                     <NavBar
                         onResetState={this.onResetState}
                     />
