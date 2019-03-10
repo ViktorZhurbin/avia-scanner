@@ -47,7 +47,7 @@ export const getFlightTimeDate = (dateString, locale) => {
         weekday,
     } = dateObj;
 
-    const resultDate = `${year} ${month} ${day}, ${weekday}`;
+    const resultDate = `${day} ${month} ${year}, ${weekday}`;
 
     return {
         time,
