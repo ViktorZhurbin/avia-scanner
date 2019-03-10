@@ -1,69 +1,65 @@
 .container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: var(--color-blue-white);
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 20px 25px;
-    height: auto;
-    transition: height 1s cubic-bezier(0.23, 1, 0.32, 1);
+    height: 100vh;
+    transition: height 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
-    &.fullScreen {
-        height: 100vh;
-        padding-bottom: 0;
+    &.hasTickets {
+        height: 368px;
     }
 }
 
 .innerContainer {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     box-sizing: border-box;
     margin: 0 auto;
+    padding: 0 20px;
     width: 100%;
+    max-width: var(--max-width);
 }
 
-.headerText {
-    display: none;
-
-    &.fullScreen {
-        display: block;
-        text-align: center;
-        color: var(--color-white);
-        margin: 0 auto 30px;
-        font: var(--p0);
-    }
-}
-
-.formContainer {
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
     width: 100%;
     max-width: 400px;
-    min-height: 178px;
     margin: auto;
+
+    &.hasTickets {
+        padding: 20px 0;
+    }
 }
 
-.formInput {
+.header {
+    display: block;
+    text-align: center;
+    color: var(--color-white);
+    margin: 0 auto 30px;
+    font: var(--h3);
+
+    &.hasTickets {
+        display: none;
+    }
+}
+
+.input {
     display: flex;
     width: 100%;
     flex-direction: column;
     margin-bottom: 35px;
 }
 
-.formSubmit {
+.button {
     width: 100%;
     max-width: 256px;
     max-height: 60px;
 }
 
 .buttonText {
-    font: var(--h4);
+    font: var(--p0);
     line-height: 34px;
     padding: 9px 0;
 }
@@ -130,53 +126,39 @@
 }
 
 @media (min-width: 640px) {
-    .formContainer {
-        flex-direction: row;
-        min-height: 80px;
+    .container {
+        &.hasTickets {
+            height: 175px;
+        }
+    }
+
+    .form {
         max-width: var(--max-width);
 
-        &.fullScreen {
-            flex-direction: column;
-            padding-top: 0;
+        &.hasTickets {
+            flex-direction: row;
         }
     }
 
-    .headerText {
-        display: none;
-
-        &.fullScreen {
-            display: block;
-            text-align: center;
-            color: var(--color-white);
-            font: var(--h1);
-            margin-bottom: 30px;
-        }
+    .header {
+        font: var(--h2);
     }
 
-    .formInput {
+    .input {
         flex-direction: row;
         width: 100%;
-        margin-bottom: 0;
+        margin-bottom: 60px;
         flex-basis: 75%;
         flex-grow: 1;
 
-        &.fullScreen {
-            margin-bottom: 60px;
+        &.hasTickets {
+            margin-bottom: 0;
         }
     }
 
-    .formSubmit {
+    .button {
         flex-basis: 20%;
         margin-left: 15px;
-
-        &.fullScreen {
-            width: 274px;
-            height: 59px;
-        }
-    }
-
-    .dateSelect {
-        flex-basis: 33%;
     }
 
     .triggerContainer {

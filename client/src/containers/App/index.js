@@ -10,9 +10,7 @@ const SearchResults = React.lazy(() => SearchResultsPromise);
 
 const App = ({ hasTickets }) => (
     <React.Fragment>
-        <SearchForm
-            fullScreen={!hasTickets}
-        />
+        <SearchForm />
         {hasTickets
             ? (
                 <React.Suspense fallback={<Loader />}>

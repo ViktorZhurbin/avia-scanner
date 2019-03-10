@@ -23,12 +23,12 @@ class SearchForm extends React.PureComponent {
         setInitialSearch: PropTypes.func.isRequired,
         resetTicketData: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired,
-        fullScreen: PropTypes.bool,
+        hasTickets: PropTypes.bool,
         search: searchPropType,
     };
 
     static defaultProps = {
-        fullScreen: true,
+        hasTickets: false,
         search: {},
     };
 
@@ -41,13 +41,13 @@ class SearchForm extends React.PureComponent {
         event.preventDefault();
         const { queryObject, queryString } = this.getSearchQuery();
         window.history.pushState(queryObject, '', queryString);
-        this.props.getTickets(queryString);
+        this.props.getTickets();
     };
 
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            this.props.getTickets(search);
+            this.props.getTickets();
         } else {
             this.onResetState();
         }
@@ -84,46 +84,28 @@ class SearchForm extends React.PureComponent {
     render() {
         const {
             isLoading,
-            fullScreen,
+            hasTickets,
             search,
         } = this.props;
 
         return (
-            <div
-                className={cx('container', {
-                    fullScreen,
-                })}
-            >
-                <div
-                    className={cx({
-                        isLoading,
-                    })}
-                />
-                <div className={cx('innerContainer')}>
+            <div className={cx('container', { hasTickets })}>
+                <div className={cx('innerContainer', { hasTickets })}>
+                    <div className={cx({ isLoading })} />
                     <NavBar
                         onResetState={this.onResetState}
                     />
                     <form
-                        className={cx('formContainer', {
-                            fullScreen,
-                        })}
+                        className={cx('form', { hasTickets })}
                         onSubmit={this.onSubmit}
                         target="_self"
                     >
-                        <div
-                            className={cx('headerText', {
-                                fullScreen,
-                            })}
-                        >
+                        <div className={cx('header', { hasTickets })}>
                             {isLoading
                                 ? 'Fetching tickets...'
                                 : 'Flights and airline tickets'}
                         </div>
-                        <div
-                            className={cx('formInput', {
-                                fullScreen,
-                            })}
-                        >
+                        <div className={cx('input', { hasTickets })}>
                             <PlaceSelect
                                 isFirst
                                 id="origin"
@@ -142,12 +124,12 @@ class SearchForm extends React.PureComponent {
                                 placeholder="Depart"
                             />
                         </div>
-                        <div className={cx('formSubmit')}>
+                        <div className={cx('button')}>
                             <Button isLoading={isLoading}>
                                 <div className={cx('buttonText')}>
-                                    {fullScreen
-                                        ? 'Find tickets'
-                                        : 'Find'}
+                                    {hasTickets
+                                        ? 'Find'
+                                        : 'Find tickets'}
                                 </div>
                             </Button>
                         </div>
@@ -160,6 +142,7 @@ class SearchForm extends React.PureComponent {
 
 const mapStateToProps = ({ tickets, search }) => ({
     isLoading: tickets.isLoading,
+    hasTickets: tickets.hasTickets,
     search,
 });
 
