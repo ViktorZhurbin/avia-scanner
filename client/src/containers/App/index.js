@@ -8,7 +8,7 @@ import Loader from '../../components/Loader';
 
 import styles from './index.css';
 
-const SearchResults = React.lazy(() => import('../SearchResults'));
+const SearchResults = React.lazy(() => import(/* webpackChunkName: "SearchResults" */ '../SearchResults'));
 const cx = cl.bind(styles);
 
 const App = ({ hasTickets }) => (

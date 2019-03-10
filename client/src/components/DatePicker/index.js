@@ -8,7 +8,7 @@ import { classNamesPropType } from '../../entities/propTypes';
 
 import styles from './index.css';
 
-const Calendar = React.lazy(() => import('react-calendar'));
+const Calendar = React.lazy(() => import(/* webpackChunkName: "calendar" */ 'react-calendar'));
 const cx = cl.bind(styles);
 
 class DatePicker extends React.PureComponent {
