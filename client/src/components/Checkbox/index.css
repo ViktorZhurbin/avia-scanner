@@ -9,10 +9,6 @@
     user-select: none;
     font: var(--p3);
     color: var(--color-twilight);
-
-    &:hover {
-        background-color: var(--color-metal-light-background);
-    }
 }
 
 .input {
