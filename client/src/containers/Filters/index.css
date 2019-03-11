@@ -26,8 +26,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
     color: var(--color-twilight);
-    margin-bottom: 0;
-    margin-right: 15px;
+    margin-bottom: 11px;
 }
 
 .filterItem {
@@ -54,6 +53,11 @@
 
     .filters {
         justify-content: space-around;
+    }
+
+    .title {
+        margin-bottom: 0;
+        margin-right: 15px;
     }
 }
 
