@@ -69,9 +69,11 @@ class Filters extends React.PureComponent {
                                 const name = inflectStopsEn(item);
 
                                 return (
-                                    <div className={cx('filterItem')}>
+                                    <div
+                                        className={cx('filterItem')}
+                                        key={item}
+                                    >
                                         <Checkbox
-                                            key={item}
                                             id={item}
                                             checked={isChecked}
                                             name={name}
