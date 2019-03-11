@@ -34,7 +34,7 @@ const Ticket = ({
 
     return (
         <div className={cx('card')}>
-            <div className={cx('left')}>
+            <div className={cx('price')}>
                 <img
                     src={carrier.ImageUrl}
                     alt="Carrier Logo"
@@ -45,7 +45,7 @@ const Ticket = ({
                     link={offer.link}
                 />
             </div>
-            <div className={cx('right')}>
+            <div className={cx('details')}>
                 <Route
                     location={origin.Name}
                     dateString={departure}

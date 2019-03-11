@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    max-width: var(--min-ticket-width);
+    max-width: var(--max-ticket-width);
     min-height: 140px;
     padding: 15px 25px;
     box-sizing: border-box;

@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cl from 'classnames/bind';
 
 import Ticket from '../Ticket';
 import NoResults from '../../components/NoResults';
 import { ticketPropType } from '../../entities/propTypes';
+
+import styles from './index.css';
+
+const cx = cl.bind(styles);
 
 const TicketList = (props) => {
     const {
@@ -23,7 +28,7 @@ const TicketList = (props) => {
                 />
             )
             : (
-                <div>
+                <div className={cx('container')}>
                     {filteredTickets.map(ticket => (
                         <Ticket
                             key={ticket.id}

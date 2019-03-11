@@ -1,20 +1,40 @@
 .buttonWrapper {
     width: 100%;
-    max-width: 165px;
-    height: 48px;
-}
-
-.buyText,
-.priceText {
-    margin: 0 auto;
-    font: var(--p1);
-}
-
-.buyText {
-    font-weight: 600;
+    max-width: 100px;
+    height: 36px;
 }
 
 .buttonLink {
     text-decoration: none;
     outline: none;
+}
+
+.buttonTextWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 10px;
+    font: var(--p2);
+}
+
+@media (min-width: 571px) {
+    .buttonWrapper {
+        max-width: 165px;
+        height: 48px;
+    }
+
+    .buttonTextWrap {
+        flex-direction: column;
+        padding: 0;
+        font: var(--p1);
+    }
+
+    .buyText,
+    .priceText {
+        margin: 0 auto;
+    }
+
+    .buyText {
+        font-weight: 600;
+    }
 }

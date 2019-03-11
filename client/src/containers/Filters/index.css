@@ -47,7 +47,7 @@
     }
 
     .container {
-        max-width: var(--min-ticket-width);
+        max-width: var(--max-ticket-width);
         align-items: center;
     }
 

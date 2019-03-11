@@ -1,13 +1,15 @@
 .flightInfo {
-    width: 105px;
-}
+    width: 100%;
 
-.flightInfo:first-child {
-    text-align: left;
-}
+    &:first-child {
+        text-align: left;
+        margin-right: 10px;
+    }
 
-.flightInfo:last-child {
-    text-align: right;
+    &:last-child {
+        text-align: right;
+        margin-left: 10px;
+    }
 }
 
 .time {
