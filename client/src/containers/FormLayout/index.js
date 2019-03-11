@@ -15,7 +15,7 @@ import styles from './index.css';
 export const cx = cl.bind(styles);
 
 
-class SearchForm extends React.PureComponent {
+class FormLayout extends React.PureComponent {
     static propTypes = {
         getTickets: PropTypes.func.isRequired,
         setInitialSearch: PropTypes.func.isRequired,
@@ -90,4 +90,4 @@ const mapDispatchToProps = dispatch => ({
     setInitialSearch: () => dispatch(resetSearch()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FormLayout);

@@ -12,7 +12,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class SearchResults extends React.PureComponent {
+class ResultsLayout extends React.PureComponent {
     static propTypes = {
         hasTickets: PropTypes.bool,
         ticketData: PropTypes.shape({
@@ -115,4 +115,4 @@ const mapStateToProps = ({ tickets }) => ({
     hasTickets: tickets.hasTickets,
 });
 
-export default connect(mapStateToProps, null)(SearchResults);
+export default connect(mapStateToProps, null)(ResultsLayout);

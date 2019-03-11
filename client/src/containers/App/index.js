@@ -1,16 +1,16 @@
 import React from 'react';
 
-import SearchForm from '../SearchForm';
+import FormLayout from '../FormLayout';
 import Loading from '../../components/Loading';
 
-const SearchResultsPromise = import(/* webpackChunkName: "SearchResults" */ '../SearchResults');
-const SearchResults = React.lazy(() => SearchResultsPromise);
+const ResultsLayoutPromise = import(/* webpackChunkName: "ResultsLayout" */ '../ResultsLayout');
+const ResultsLayout = React.lazy(() => ResultsLayoutPromise);
 
 const App = () => (
     <React.Fragment>
-        <SearchForm />
+        <FormLayout />
         <React.Suspense fallback={<Loading />}>
-            <SearchResults />
+            <ResultsLayout />
         </React.Suspense>
     </React.Fragment>
 );
