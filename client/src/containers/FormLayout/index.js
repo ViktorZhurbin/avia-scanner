@@ -36,7 +36,7 @@ class FormLayout extends React.PureComponent {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            this.props.getTickets();
+            this.props.getTickets(search);
         } else {
             this.onResetState();
         }
