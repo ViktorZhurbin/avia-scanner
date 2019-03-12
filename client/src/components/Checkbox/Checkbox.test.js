@@ -3,15 +3,19 @@ import renderer from 'react-test-renderer';
 
 import Checkbox from './index';
 
-it('Checkbox renders correctly', () => {
-    const component = renderer.create(
-        <Checkbox
-            id={0}
-            checked
-            name="checkbox"
-            selectedStops={{ 0: true, 1: false }}
-        />,
-    );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+const props = {
+    id: 0,
+    checked: false,
+    name: 'checkbox',
+    selectedStops: { 0: true, 1: false },
+};
+
+describe('Render Checkbox', () => {
+    it('render correctly with required and default props', () => {
+        const component = renderer.create(
+            <Checkbox {...props} />,
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

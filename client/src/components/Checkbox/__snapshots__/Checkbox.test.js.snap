@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox renders correctly 1`] = `
+exports[`Render Checkbox render correctly with required and default props 1`] = `
 <label
   className="row"
 >
   <input
-    checked={true}
+    checked={false}
     className="input"
     id={0}
     name="checkbox"
