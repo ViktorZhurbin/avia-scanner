@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Button render correctly with Preloader 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="submit"
+>
+  <span
+    className="preloader"
+  >
+    <i
+      className="wheel color-white s"
+    />
+  </span>
+</button>
+`;
+
+exports[`Render Button render correctly with node children 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="submit"
+>
+  <div>
+    Book
+  </div>
+  <div>
+    $156
+  </div>
+</button>
+`;
+
+exports[`Render Button render correctly with text children 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="submit"
+>
+  Find
+</button>
+`;
