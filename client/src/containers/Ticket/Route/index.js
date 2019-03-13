@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import { getFlightTimeDate } from '../../../utils/string';
+import { getFlightTimeDate } from '../../../utils/dateTime';
 
 import styles from './index.css';
 

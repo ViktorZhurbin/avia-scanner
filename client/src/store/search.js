@@ -1,7 +1,7 @@
 import { createAction, createReducer } from 'redux-starter-kit';
 import localeCurrency from 'locale-currency';
 
-import { getTodayPlusNDaysIsoString } from '../utils/string';
+import { getTodayPlusNDaysIsoString } from '../utils/dateTime';
 import { places } from '../constants/mockData';
 import getBrowserLocale from '../utils/getBrowserLocale';
 

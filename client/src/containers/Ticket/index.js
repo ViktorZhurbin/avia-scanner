@@ -7,7 +7,7 @@ import BuyButton from './BuyButton';
 import Route from './Route';
 import Path from './Path';
 
-import { formatPrice } from '../../utils/string';
+import { formatPrice, convertPrice } from '../../utils/string';
 import { ticketPropType, codeNamePropType } from '../../entities/propTypes';
 
 import styles from './index.css';
@@ -30,7 +30,8 @@ const Ticket = ({
         duration,
     } = ticket;
 
-    const price = formatPrice(offer.price, currency.code, rates, locale);
+    const convertedPrice = convertPrice(offer.price, currency.code, rates);
+    const formattedPrice = formatPrice(convertedPrice, currency.code, locale);
 
     return (
         <div className={cx('card')}>
@@ -41,7 +42,7 @@ const Ticket = ({
                     className={cx('carrierLogo')}
                 />
                 <BuyButton
-                    price={price}
+                    price={formattedPrice}
                     link={offer.link}
                 />
             </div>

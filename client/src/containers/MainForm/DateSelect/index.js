@@ -8,7 +8,8 @@ import DatePicker from '../../../components/DatePicker';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
 import { setDeparture } from '../../../store/search';
-import { formatDateByBrowserLocale, dateToIsoString } from '../../../utils/string';
+import { formatDateByLocale, dateToIsoString } from '../../../utils/dateTime';
+import getBrowserLocale from '../../../utils/getBrowserLocale';
 
 import styles from '../index.css';
 
@@ -49,7 +50,8 @@ class DateSelect extends React.PureComponent {
             isLast,
         } = this.props;
 
-        const formatted = value && formatDateByBrowserLocale(value);
+        const locale = getBrowserLocale();
+        const formatted = value && formatDateByLocale(value, locale);
 
         return (
             <div
