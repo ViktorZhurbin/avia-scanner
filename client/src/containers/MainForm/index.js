@@ -34,18 +34,15 @@ class MainForm extends React.Component {
             ...rest
         } = this.props.search;
 
-        const queryObject = {
+        const searchObject = {
             origin: origin.code,
             destination: destination.code,
             currency: currency.code,
             ...rest,
         };
-        const queryString = `?${qs.stringify(queryObject)}`;
+        const searchString = `?${qs.stringify(searchObject, { sort: false })}`;
 
-        return {
-            queryObject,
-            queryString,
-        };
+        return searchString;
     };
 
     onSubmit = (event) => {

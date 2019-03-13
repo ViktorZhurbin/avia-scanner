@@ -53,9 +53,9 @@ class FormLayout extends React.PureComponent {
         this.props.resetTicketData();
     }
 
-    onSubmit = ({ queryObject, queryString }) => {
-        window.history.pushState(queryObject, '', queryString);
-        this.props.getTickets(queryString);
+    onSubmit = (searchQuery) => {
+        window.history.pushState({ searchQuery }, '', searchQuery);
+        this.props.getTickets(searchQuery);
     };
 
     render() {
