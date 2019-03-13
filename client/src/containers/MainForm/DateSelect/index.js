@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import DatePicker from '../../../components/DatePicker';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
-import { setDeparture } from '../../../store/search';
+import { setDeparture } from '../../../store/searchQuery/actions';
 import { formatDateByLocale, dateToIsoString } from '../../../utils/dateTime';
 import getBrowserLocale from '../../../utils/getBrowserLocale';
 

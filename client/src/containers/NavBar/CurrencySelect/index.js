@@ -4,7 +4,7 @@ import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import Select from '../../../components/Select';
-import { setCurrency } from '../../../store/search';
+import { setCurrency } from '../../../store/searchQuery/actions';
 import { currencyList } from '../../../constants/mockData';
 import { codeNamePropType } from '../../../entities/propTypes';
 

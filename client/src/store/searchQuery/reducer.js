@@ -1,18 +1,20 @@
-import { createAction, createReducer } from 'redux-starter-kit';
+import { createReducer } from 'redux-starter-kit';
 import localeCurrency from 'locale-currency';
 import qs from 'query-string';
 
-import { getTodayPlusNDaysIsoString } from '../utils/dateTime';
-import getBrowserLocale from '../utils/getBrowserLocale';
-import { places } from '../constants/mockData';
+import { getTodayPlusNDaysIsoString } from '../../utils/dateTime';
+import getBrowserLocale from '../../utils/getBrowserLocale';
+import { places } from '../../constants/mockData';
 
-export const setCurrency = createAction('search/setCurrency');
-export const setLocale = createAction('search/setLocale');
-export const setOrigin = createAction('search/setOrigin');
-export const setDestination = createAction('search/setDestination');
-export const setDeparture = createAction('search/setDeparture');
-export const setFormInput = createAction('search/setFormInput');
-export const resetSearch = createAction('search/reset');
+import {
+    setCurrency,
+    setLocale,
+    setOrigin,
+    setDestination,
+    setDeparture,
+    setFormInput,
+    resetSearch,
+} from './actions';
 
 const initialState = {
     currency: {

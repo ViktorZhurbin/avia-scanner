@@ -1,15 +1,18 @@
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
 import { logger } from 'redux-logger';
+import { createLogicMiddleware } from 'redux-logic';
 
-import ticketsReducer from './tickets';
-import searchReducer from './search';
+import ticketsReducer from './ticketData/reducer';
+import searchReducer from './searchQuery/reducer';
+import { requestTicketsLogic } from './ticketData/logic';
 
 const reducer = {
     tickets: ticketsReducer,
     search: searchReducer,
 };
 
-let middleware = [...getDefaultMiddleware()];
+const arrLogic = [requestTicketsLogic];
+let middleware = [...getDefaultMiddleware(), createLogicMiddleware(arrLogic)];
 if (process.env.NODE_ENV !== 'production') {
     middleware = [...middleware, logger];
 }
