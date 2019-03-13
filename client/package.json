@@ -20,7 +20,7 @@
     "lint-fix": "npm run lint:js -- --fix && npm run lint:css -- --fix",
     "lint:js": "eslint src/",
     "lint:css": "stylelint 'src/**/*.css'",
-    "test": "jest"
+    "test": "NODE_ICU_DATA=node_modules/full-icu jest"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -54,6 +54,7 @@
     "dayjs": "^1.8.8",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
+    "full-icu": "^1.2.1",
     "locale-currency": "0.0.2",
     "prop-types": "^15.7.2",
     "query-string": "^6.2.0",
