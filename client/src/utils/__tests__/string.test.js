@@ -35,18 +35,18 @@ describe('Test convertPrice util', () => {
 });
 
 describe('Test formatPrice util', () => {
-    it('format RUB', () => {
+    it('format RUB in ru-RU locale', () => {
         const value = formatPrice(1000, 'RUB', 'ru-RU');
-        expect(value).toEqual('RUB 1,000');
+        expect(value).toEqual('1 000 ₽');
     });
 
-    it('format USD', () => {
+    it('format USD in en-US locale', () => {
         const value = formatPrice(1000, 'USD', 'en-US');
         expect(value).toEqual('$1,000');
     });
 
-    it('format EUR', () => {
+    it('format EUR in de-DE locale', () => {
         const value = formatPrice(1000, 'EUR', 'de-DE');
-        expect(value).toEqual('€1,000');
+        expect(value).toEqual('1.000 €');
     });
 });
