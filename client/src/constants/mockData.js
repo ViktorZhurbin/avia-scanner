@@ -49,7 +49,7 @@ export const currencyRates = (baseCurrency) => {
             RUB: 70,
         },
         RUB: {
-            USD: 0.015,
+            USD: 0.016666667,
             EUR: 0.013,
             RUB: 1,
         },
