@@ -4,7 +4,10 @@ import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
 import { resetTickets, fetchTicketData } from '../../store/tickets';
-import { resetSearch } from '../../store/search';
+import {
+    resetSearch,
+    setFormInput,
+} from '../../store/search';
 
 import LoadingBar from '../../components/LoadingBar';
 import NavBar from '../NavBar';
@@ -18,8 +21,9 @@ export const cx = cl.bind(styles);
 class FormLayout extends React.PureComponent {
     static propTypes = {
         getTickets: PropTypes.func.isRequired,
-        setInitialSearch: PropTypes.func.isRequired,
+        resetSearch: PropTypes.func.isRequired,
         resetTicketData: PropTypes.func.isRequired,
+        setUpFormInput: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired,
         hasTickets: PropTypes.bool,
     };
@@ -36,6 +40,7 @@ class FormLayout extends React.PureComponent {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
+            this.props.setUpFormInput(search);
             this.props.getTickets(search);
         } else {
             this.onResetState();
@@ -44,7 +49,7 @@ class FormLayout extends React.PureComponent {
 
     onResetState = () => {
         window.history.pushState('', '', '/');
-        this.props.setInitialSearch();
+        this.props.resetSearch();
         this.props.resetTicketData();
     }
 
@@ -87,7 +92,8 @@ const mapStateToProps = ({ tickets }) => ({
 const mapDispatchToProps = dispatch => ({
     getTickets: query => dispatch(fetchTicketData(query)),
     resetTicketData: () => dispatch(resetTickets()),
-    setInitialSearch: () => dispatch(resetSearch()),
+    resetSearch: () => dispatch(resetSearch()),
+    setUpFormInput: search => dispatch(setFormInput(search)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormLayout);

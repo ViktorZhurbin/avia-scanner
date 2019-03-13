@@ -1,15 +1,17 @@
 import { createAction, createReducer } from 'redux-starter-kit';
 import localeCurrency from 'locale-currency';
+import qs from 'query-string';
 
 import { getTodayPlusNDaysIsoString } from '../utils/dateTime';
-import { places } from '../constants/mockData';
 import getBrowserLocale from '../utils/getBrowserLocale';
+import { places } from '../constants/mockData';
 
 export const setCurrency = createAction('search/setCurrency');
 export const setLocale = createAction('search/setLocale');
 export const setOrigin = createAction('search/setOrigin');
 export const setDestination = createAction('search/setDestination');
 export const setDeparture = createAction('search/setDeparture');
+export const setFormInput = createAction('search/setFormInput');
 export const resetSearch = createAction('search/reset');
 
 const initialState = {
@@ -18,8 +20,8 @@ const initialState = {
         name: '',
     },
     locale: getBrowserLocale(),
-    origin: places[0],
-    destination: places[1],
+    origin: {},
+    destination: {},
     departure: getTodayPlusNDaysIsoString(14),
 };
 
@@ -44,6 +46,18 @@ const reducer = createReducer(initialState, {
         ...state,
         departure: payload,
     }),
+    [setFormInput]: (state, { payload }) => {
+        const { origin, destination, departure } = qs.parse(payload);
+        const originPlace = places.find(({ code }) => code === origin);
+        const destinationPlace = places.find(({ code }) => code === destination);
+
+        return {
+            ...state,
+            origin: originPlace,
+            destination: destinationPlace,
+            departure,
+        };
+    },
     [resetSearch]: () => initialState,
 });
 
