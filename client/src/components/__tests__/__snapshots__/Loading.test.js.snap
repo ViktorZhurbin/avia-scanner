@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Loading render correctly 1`] = `
+<div
+  className="loader"
+>
+  <span
+    className="loaderBall one"
+  />
+  <span
+    className="loaderBall two"
+  />
+  <span
+    className="loaderBall three"
+  />
+</div>
+`;

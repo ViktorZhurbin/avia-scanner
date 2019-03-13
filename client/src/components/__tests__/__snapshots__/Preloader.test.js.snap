@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Preloader render correctly 1`] = `
+<span
+  className="preloader"
+>
+  <i
+    className="wheel color-white s"
+  />
+</span>
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Checkbox from '../src/components/Checkbox';
+import Checkbox from '../Checkbox';
 
 const props = {
     id: 0,

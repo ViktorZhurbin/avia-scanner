@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Button from '../src/components/Button';
-import Preloader from '../src/components/Preloader';
+import Button from '../Button';
+import Preloader from '../Preloader';
 
 describe('Render Button', () => {
     it('render correctly with text children', () => {
