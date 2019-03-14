@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import SVGInline from 'react-svg-inline';
-import { connect } from 'react-redux';
 
 import DatePicker from '../../../components/DatePicker';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
-import { setDeparture } from '../../../store/searchQuery/actions';
 import { formatDateByLocale, dateToIsoString } from '../../../utils/dateTime';
 import getBrowserLocale from '../../../utils/getBrowserLocale';
 
@@ -21,7 +19,7 @@ class DateSelect extends React.PureComponent {
         placeholder: PropTypes.string.isRequired,
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
-        setUpDeparture: PropTypes.func.isRequired,
+        onSelect: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -31,15 +29,15 @@ class DateSelect extends React.PureComponent {
     }
 
     handleClearDate = (event) => {
-        const { setUpDeparture } = this.props;
+        const { onSelect } = this.props;
 
         event.stopPropagation();
-        setUpDeparture(null);
+        onSelect(null);
     }
 
     handleSetDate = (date) => {
-        const { setUpDeparture } = this.props;
-        setUpDeparture(dateToIsoString(date));
+        const { onSelect } = this.props;
+        onSelect(dateToIsoString(date));
     }
 
     renderTrigger = () => {
@@ -87,8 +85,4 @@ class DateSelect extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    setUpDeparture: departure => dispatch(setDeparture(departure)),
-});
-
-export default connect(null, mapDispatchToProps)(DateSelect);
+export default DateSelect;

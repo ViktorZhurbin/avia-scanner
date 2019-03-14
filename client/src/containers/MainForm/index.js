@@ -4,6 +4,11 @@ import qs from 'query-string';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
+import {
+    setOrigin,
+    setDestination,
+    setDeparture,
+} from '../../store/searchQuery/actions';
 import Button from '../../components/Button';
 import DateSelect from './DateSelect';
 import PlaceSelect from './PlaceSelect';
@@ -19,6 +24,9 @@ class MainForm extends React.Component {
         isLoading: PropTypes.bool.isRequired,
         hasTickets: PropTypes.bool,
         search: searchPropType,
+        setUpOrigin: PropTypes.func.isRequired,
+        setUpDestination: PropTypes.func.isRequired,
+        setUpDeparture: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -56,6 +64,9 @@ class MainForm extends React.Component {
             hasTickets,
             isLoading,
             search,
+            setUpOrigin,
+            setUpDestination,
+            setUpDeparture,
         } = this.props;
 
         return (
@@ -71,21 +82,23 @@ class MainForm extends React.Component {
                 </div>
                 <div className={cx('input', { hasTickets })}>
                     <PlaceSelect
-                        isFirst
-                        id="origin"
-                        value={search.origin}
                         placeholder="From"
+                        value={search.origin}
+                        onSelect={setUpOrigin}
+                        disabledItem={search.destination}
+                        isFirst
                     />
                     <PlaceSelect
-                        id="destination"
-                        value={search.destination}
                         placeholder="To"
+                        value={search.destination}
+                        onSelect={setUpDestination}
+                        disabledItem={search.origin}
                     />
                     <DateSelect
-                        isLast
-                        id="departure"
-                        value={search.departure}
                         placeholder="Depart"
+                        value={search.departure}
+                        onSelect={setUpDeparture}
+                        isLast
                     />
                 </div>
                 <div className={cx('button')}>
@@ -106,4 +119,13 @@ const mapStateToProps = ({ search }) => ({
     search,
 });
 
-export default connect(mapStateToProps)(MainForm);
+const mapDispatchToProps = dispatch => ({
+    setUpOrigin: value => dispatch(setOrigin(value)),
+    setUpDestination: value => dispatch(setDestination(value)),
+    setUpDeparture: value => dispatch(setDeparture(value)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(MainForm);

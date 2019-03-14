@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
 import Select from '../../../components/Select';
 import { places } from '../../../constants/mockData';
-import { setOrigin, setDestination } from '../../../store/searchQuery/actions';
 import { codeNamePropType } from '../../../entities/propTypes';
 
 import styles from '../index.css';
@@ -14,14 +12,10 @@ const cx = cl.bind(styles);
 
 class PlaceSelect extends React.PureComponent {
     static propTypes = {
-        id: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
         value: codeNamePropType,
         onSelect: PropTypes.func.isRequired,
         placeholder: PropTypes.string.isRequired,
-        disabledItem: PropTypes.shape({
-            value: codeNamePropType,
-            onSelect: PropTypes.func,
-        }),
+        disabledItem: codeNamePropType,
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
     }
@@ -87,23 +81,4 @@ class PlaceSelect extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ search }, ownProps) => ({
-    disabledItem: ownProps.id === 'origin'
-        ? search.destination
-        : search.origin,
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    const action = ownProps.id === 'origin'
-        ? setOrigin
-        : setDestination;
-
-    return {
-        onSelect: value => dispatch(action(value)),
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(PlaceSelect);
+export default PlaceSelect;
