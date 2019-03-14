@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import qs from 'query-string';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
@@ -13,6 +12,7 @@ import Button from '../../components/Button';
 import DateSelect from './DateSelect';
 import PlaceSelect from './PlaceSelect';
 import { searchPropType } from '../../entities/propTypes';
+import { validateQueryString, getQueryStringFromSearch } from '../../utils/string';
 
 import styles from './index.css';
 
@@ -34,29 +34,24 @@ class MainForm extends React.Component {
         search: {},
     };
 
-    getSearchQuery = () => {
-        const {
-            origin,
-            destination,
-            currency,
-            ...rest
-        } = this.props.search;
-
-        const searchObject = {
-            origin: origin.code,
-            destination: destination.code,
-            currency: currency.code,
-            ...rest,
-        };
-        const searchString = `?${qs.stringify(searchObject, { sort: false })}`;
-
-        return searchString;
-    };
+    state = {
+        highlightedFields: [],
+    }
 
     onSubmit = (event) => {
         event.preventDefault();
-        const searchQuery = this.getSearchQuery();
-        this.props.onSubmit(searchQuery);
+        const { search } = this.props;
+        const queryString = getQueryStringFromSearch(search);
+        const { isValid, missingValues } = validateQueryString(queryString);
+        if (isValid) {
+            this.props.onSubmit(queryString);
+        } else {
+            this.setState({
+                highlightedFields: missingValues,
+            }, () => setTimeout(() => {
+                this.setState({ highlightedFields: [] });
+            }, 1000));
+        }
     };
 
     render() {
@@ -68,6 +63,7 @@ class MainForm extends React.Component {
             setUpDestination,
             setUpDeparture,
         } = this.props;
+        const { highlightedFields } = this.state;
 
         return (
             <form
@@ -87,18 +83,21 @@ class MainForm extends React.Component {
                         onSelect={setUpOrigin}
                         disabledItem={search.destination}
                         isFirst
+                        isHighlighted={highlightedFields.includes('origin')}
                     />
                     <PlaceSelect
                         placeholder="To"
                         value={search.destination}
                         onSelect={setUpDestination}
                         disabledItem={search.origin}
+                        isHighlighted={highlightedFields.includes('destination')}
                     />
                     <DateSelect
                         placeholder="Depart"
                         value={search.departure}
                         onSelect={setUpDeparture}
                         isLast
+                        isHighlighted={highlightedFields.includes('departure')}
                     />
                 </div>
                 <div className={cx('button')}>

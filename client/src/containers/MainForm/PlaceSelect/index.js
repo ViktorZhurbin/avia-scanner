@@ -18,6 +18,7 @@ class PlaceSelect extends React.PureComponent {
         disabledItem: codeNamePropType,
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
+        isHighlighted: PropTypes.bool,
     }
 
     static defaultProps = {
@@ -25,6 +26,7 @@ class PlaceSelect extends React.PureComponent {
         value: null,
         isFirst: false,
         isLast: false,
+        isHighlighted: false,
     }
 
     renderTrigger = () => {
@@ -33,6 +35,7 @@ class PlaceSelect extends React.PureComponent {
             placeholder,
             isFirst,
             isLast,
+            isHighlighted,
         } = this.props;
 
         return (
@@ -40,6 +43,7 @@ class PlaceSelect extends React.PureComponent {
                 className={cx('triggerContainer', {
                     isFirst,
                     isLast,
+                    isHighlighted,
                 })}
             >
                 <div

@@ -51,6 +51,8 @@
     margin-right: 0;
     height: 60px;
     cursor: pointer;
+    box-shadow: none;
+    transition: box-shadow 0.3s ease-in-out;
 
     &.isFirst {
         border-radius: 5px 5px 0 0;
@@ -58,6 +60,10 @@
 
     &.isLast {
         border-radius: 0 0 5px 5px;
+    }
+
+    &.isHighlighted {
+        box-shadow: 0 0 2px 2px red;
     }
 }
 

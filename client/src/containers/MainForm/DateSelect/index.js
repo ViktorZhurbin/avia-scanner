@@ -20,12 +20,14 @@ class DateSelect extends React.PureComponent {
         isFirst: PropTypes.bool,
         isLast: PropTypes.bool,
         onSelect: PropTypes.func.isRequired,
+        isHighlighted: PropTypes.bool,
     }
 
     static defaultProps = {
         value: null,
         isFirst: false,
         isLast: false,
+        isHighlighted: false,
     }
 
     handleClearDate = (event) => {
@@ -46,6 +48,7 @@ class DateSelect extends React.PureComponent {
             placeholder,
             isFirst,
             isLast,
+            isHighlighted,
         } = this.props;
 
         const locale = getBrowserLocale();
@@ -56,6 +59,7 @@ class DateSelect extends React.PureComponent {
                 className={cx('triggerContainer', {
                     isFirst,
                     isLast,
+                    isHighlighted,
                 })}
             >
                 <div

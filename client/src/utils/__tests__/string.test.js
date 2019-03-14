@@ -2,6 +2,7 @@ import {
     formatPrice,
     convertPrice,
     getDuration,
+    validateQueryString,
 } from '../string';
 import { currencyRates } from '../../constants/mockData';
 
@@ -48,5 +49,28 @@ describe('Test formatPrice util', () => {
     it('format EUR in de-DE locale', () => {
         const value = formatPrice(1000, 'EUR', 'de-DE');
         expect(value).toEqual('1.000 €');
+    });
+});
+
+describe('Test validateQueryString util with correct query string', () => {
+    const query = '?origin=DME&destination=DUB&currency=USD&locale=en-US&departure=2019-03-28';
+    const { isValid, missingValues } = validateQueryString(query);
+    it('check isValid', () => {
+        expect(isValid).toBeTruthy();
+    });
+    it('check missingValues', () => {
+        expect(missingValues).toHaveLength(0);
+    });
+});
+
+describe('Test validateQueryString util with bad query string', () => {
+    const query = '?origin=&destination=&currency=USD&locale=en-US';
+    const valuesToBeMissing = ['origin', 'destination', 'departure'];
+    const { isValid, missingValues } = validateQueryString(query);
+    it('check isValid', () => {
+        expect(isValid).toBeFalsy();
+    });
+    it('check missingValues', () => {
+        expect(missingValues).toEqual(valuesToBeMissing);
     });
 });

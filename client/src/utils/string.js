@@ -29,13 +29,36 @@ export const getDuration = (minutes) => {
     return `${format(hours, 'h ')}${format(min, 'm')}`;
 };
 
-export const validateQuery = (query) => {
-    const queryObject = qs.parse(query);
-    const requiredKeys = ['origin', 'destination', 'departure', 'currency', 'locale'];
-    if (Object.keys(queryObject).length !== requiredKeys.length) {
-        return false;
-    }
-    const testValues = requiredKeys.map(item => queryObject[item] && queryObject[item].length > 0);
+export const getQueryStringFromSearch = (search) => {
+    const {
+        origin,
+        destination,
+        currency,
+        ...rest
+    } = search;
 
-    return testValues.length === requiredKeys.length;
+    const queryObject = {
+        origin: origin.code,
+        destination: destination.code,
+        currency: currency.code,
+        ...rest,
+    };
+    const queryString = `?${qs.stringify(queryObject, { sort: false })}`;
+
+    return queryString;
+};
+
+export const validateQueryString = (queryString) => {
+    const queryObject = qs.parse(queryString);
+    const requiredKeys = ['origin', 'destination', 'departure', 'currency', 'locale'];
+    const missingValues = requiredKeys.filter(
+        item => !queryObject[item] || queryObject[item].length === 0,
+    );
+
+    const isValid = missingValues.length === 0;
+
+    return {
+        isValid,
+        missingValues,
+    };
 };
