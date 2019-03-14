@@ -38,7 +38,10 @@ class Select extends React.PureComponent {
 
         return (
             <div
-                className={cx('itemList', ...classNames)}
+                className={cx({
+                    itemList: true,
+                    ...classNames,
+                })}
             >
                 {itemList.map((item, index) => {
                     const isDisabled = (item && item.code) === (disabledItem && disabledItem.code);
@@ -66,7 +69,7 @@ class Select extends React.PureComponent {
         const { trigger, classNames } = this.props;
         return (
             <Dropdown
-                classNames={classNames}
+                classNames={{ ...classNames }}
                 trigger={trigger}
             >
                 {this.renderDropdown()}

@@ -52,7 +52,7 @@ class CurrencySelect extends React.PureComponent {
                 renderItem={this.renderItem}
                 selectedItem={selectedCurrency}
                 onSelect={setUpCurrency}
-                classNames={['currency']}
+                classNames={{ currency: true }}
             />
         );
     }

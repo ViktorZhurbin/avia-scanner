@@ -44,7 +44,7 @@ class DatePicker extends React.PureComponent {
 
         return (
             <Dropdown
-                classNames={classNames}
+                classNames={{ ...classNames }}
                 trigger={trigger}
             >
                 <React.Suspense fallback={<Loading />}>
