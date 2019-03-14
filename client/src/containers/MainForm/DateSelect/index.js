@@ -81,7 +81,7 @@ class DateSelect extends React.PureComponent {
             <DatePicker
                 onSelect={this.handleSetDate}
                 trigger={this.renderTrigger()}
-                classNames={['formSelect']}
+                classNames={{ formSelect: true }}
             />
         );
     }
