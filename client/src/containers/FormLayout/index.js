@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import { resetTickets, requestTickets } from '../../store/ticketData/actions';
-import {
-    resetSearch,
-    setFormInput,
-} from '../../store/searchQuery/actions';
+import { resetTickets, requestTickets, requestTicketsCancel } from '../../store/ticketData/actions';
+import { resetSearch, setFormInput } from '../../store/searchQuery/actions';
 
 import LoadingBar from '../../components/LoadingBar';
 import NavBar from '../NavBar';
@@ -17,10 +14,10 @@ import styles from './index.css';
 
 export const cx = cl.bind(styles);
 
-
 class FormLayout extends React.PureComponent {
     static propTypes = {
         getTickets: PropTypes.func.isRequired,
+        getTicketsCancel: PropTypes.func.isRequired,
         resetSearch: PropTypes.func.isRequired,
         resetTicketData: PropTypes.func.isRequired,
         setUpFormInput: PropTypes.func.isRequired,
@@ -49,6 +46,7 @@ class FormLayout extends React.PureComponent {
 
     onResetState = () => {
         window.history.pushState('', '', '/');
+        this.props.getTicketsCancel();
         this.props.resetSearch();
         this.props.resetTicketData();
     }
@@ -91,6 +89,7 @@ const mapStateToProps = ({ tickets }) => ({
 
 const mapDispatchToProps = dispatch => ({
     getTickets: query => dispatch(requestTickets(query)),
+    getTicketsCancel: () => dispatch(requestTicketsCancel()),
     resetTicketData: () => dispatch(resetTickets()),
     resetSearch: () => dispatch(resetSearch()),
     setUpFormInput: search => dispatch(setFormInput(search)),

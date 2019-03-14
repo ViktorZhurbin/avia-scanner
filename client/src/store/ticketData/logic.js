@@ -6,11 +6,13 @@ import {
     requestTickets,
     requestTicketsSuccess,
     requestTicketsFail,
+    requestTicketsCancel,
 } from './actions';
 
 // eslint-disable-next-line import/prefer-default-export
 export const requestTicketsLogic = createLogic({
     type: requestTickets,
+    cancelType: requestTicketsCancel,
     throttle: 1000,
     latest: true,
 
