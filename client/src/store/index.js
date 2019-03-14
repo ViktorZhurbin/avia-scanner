@@ -12,9 +12,13 @@ const reducer = {
 };
 
 const arrLogic = [requestTicketsLogic];
-let middleware = [...getDefaultMiddleware(), createLogicMiddleware(arrLogic)];
+const logicMiddleware = createLogicMiddleware(arrLogic);
+
+const [immutableStateInvariant, serializableStateInvariant] = getDefaultMiddleware();
+
+let middleware = [logicMiddleware];
 if (process.env.NODE_ENV !== 'production') {
-    middleware = [...middleware, logger];
+    middleware = [...middleware, logger, immutableStateInvariant, serializableStateInvariant];
 }
 
 const store = configureStore({
