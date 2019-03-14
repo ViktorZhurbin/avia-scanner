@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 export const formatPrice = (price, currencyCode, locale) => {
     const formatter = new Intl.NumberFormat(locale, {
         style: 'currency',
@@ -25,4 +27,15 @@ export const getDuration = (minutes) => {
     );
 
     return `${format(hours, 'h ')}${format(min, 'm')}`;
+};
+
+export const validateQuery = (query) => {
+    const queryObject = qs.parse(query);
+    const requiredKeys = ['origin', 'destination', 'departure', 'currency', 'locale'];
+    if (Object.keys(queryObject).length !== requiredKeys.length) {
+        return false;
+    }
+    const testValues = requiredKeys.map(item => queryObject[item] && queryObject[item].length > 0);
+
+    return testValues.length === requiredKeys.length;
 };
