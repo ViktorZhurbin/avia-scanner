@@ -40,8 +40,8 @@ class FormLayout extends React.PureComponent {
     onUpdateState = () => {
         const { search } = window.location;
         if (search.length > 0) {
-            this.props.setUpFormInput(search);
             this.props.getTickets(search);
+            this.props.setUpFormInput(search);
         } else {
             this.onResetState();
         }
@@ -54,8 +54,8 @@ class FormLayout extends React.PureComponent {
     }
 
     onSubmit = (searchQuery) => {
-        window.history.pushState({ searchQuery }, '', searchQuery);
         this.props.getTickets(searchQuery);
+        window.history.pushState({ searchQuery }, '', searchQuery);
     };
 
     render() {

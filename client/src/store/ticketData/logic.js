@@ -10,7 +10,7 @@ import {
 // eslint-disable-next-line import/prefer-default-export
 export const requestTicketsLogic = createLogic({
     type: requestTickets,
-    debounce: 500,
+    throttle: 1000,
     latest: true,
 
     validate({ action }, allow, reject) {
