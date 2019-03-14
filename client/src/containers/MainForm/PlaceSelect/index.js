@@ -44,7 +44,7 @@ class PlaceSelect extends React.PureComponent {
             >
                 <div
                     className={cx('triggerText', {
-                        placeholder: !value,
+                        placeholder: !value.name,
                     })}
                 >
                     {value.name || placeholder}
