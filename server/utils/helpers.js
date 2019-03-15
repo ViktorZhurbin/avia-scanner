@@ -25,7 +25,12 @@ const self = module.exports = {
             arrival,
         } = ticket;
 
-        return [originStation, departure, destinationStation, arrival].filter(item => Boolean(item)).join('-');
+        return [
+            originStation,
+            departure,
+            destinationStation,
+            arrival,
+        ].filter(item => Boolean(item)).join('-');
     },
 
     getLocation: (places, placeId) => {
