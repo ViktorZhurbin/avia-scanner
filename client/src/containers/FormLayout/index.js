@@ -9,6 +9,7 @@ import { resetSearch, setFormInput } from '../../store/searchQuery/actions';
 import LoadingBar from '../../components/LoadingBar';
 import NavBar from '../NavBar';
 import MainForm from '../MainForm';
+import { setLastSearchCookie, getLastSearchCookie } from '../../utils/cookie';
 
 import styles from './index.css';
 
@@ -47,11 +48,17 @@ class FormLayout extends React.PureComponent {
     onResetState = () => {
         window.history.pushState('', '', '/');
         this.props.getTicketsCancel();
-        this.props.resetSearch();
         this.props.resetTicketData();
+        const lastSearchQuery = getLastSearchCookie();
+        if (lastSearchQuery) {
+            this.props.setUpFormInput(lastSearchQuery);
+        } else {
+            this.props.resetSearch();
+        }
     }
 
     onSubmit = (searchQuery) => {
+        setLastSearchCookie(searchQuery);
         this.props.getTickets(searchQuery);
         window.history.pushState({ searchQuery }, '', searchQuery);
     };

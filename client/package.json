@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "browser-cookies": "^1.2.0",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.8",
     "enzyme": "^3.9.0",
