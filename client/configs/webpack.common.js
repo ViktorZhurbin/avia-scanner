@@ -1,10 +1,17 @@
 /* eslint import/no-extraneous-dependencies: ['error', {'devDependencies': true}] */
 
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: ['./src/index.js'],
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: 'public/index.html',
+        }),
+        new webpack.HashedModuleIdsPlugin(),
+    ],
     output: {
         filename: '[contenthash].[name].build.js',
         chunkFilename: '[contenthash].[name].build.js',
@@ -12,6 +19,7 @@ module.exports = {
         publicPath: '/',
     },
     optimization: {
+        runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all',
         },
@@ -67,9 +75,4 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: 'public/index.html',
-        }),
-    ],
 };
