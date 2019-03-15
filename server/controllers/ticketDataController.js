@@ -1,7 +1,7 @@
 const unirest = require('unirest');
 
 const mockTicketData = require('../mockData/ticketData');
-const tickets = require('../helpers/tickets');
+const { formatTickets } = require('../utils/formatTickets');
 
 const baseUrl = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing';
 const apiKey = '166e56093cmsh7cb5c98216f8318p11d2eejsn8fe0d9372517';
@@ -40,7 +40,7 @@ module.exports = {
                 // console.log(result.body);
                 const sessionUrl = result.headers.location;
                 const sessionKey = sessionUrl && sessionUrl.split('/').pop();
-                // console.log('sessionKey', sessionKey);
+                console.log('sessionKey', sessionKey);
                 res.json({ sessionKey });
             });
     },
@@ -62,7 +62,7 @@ module.exports = {
                         body,
                     } = result;
                     // console.log(status, headers, body);
-                    const formatted = body && tickets.format(body);
+                    const formatted = body && formatTickets(body);
 
                     res.json({
                         status,
