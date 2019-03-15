@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const { mockRates } = require('../mockData/currencyRates');
+const { handleError } = require('../utils/api');
 
 const apiKey = '91ba9cf6354f4e83126b';
 const baseUrl = 'https://free.currencyconverterapi.com/api/v6/convert?';
@@ -21,7 +22,7 @@ module.exports = {
 
         let rates = {};
         try {
-            const response = await axios.get(url);
+            const response = await axios.get(url).catch(handleError);
             // console.log(response.statusText, response.data);
             Object.entries(response.data).map(([key, value]) => {
                 const [baseCurrency, currency] = key.split('_');
@@ -29,7 +30,7 @@ module.exports = {
                 rates[baseCurrency] = 1;
             });
         } catch (error) {
-            console.log(error);
+            console.warn(error);
             rates = mockRates(base);
         }
 
