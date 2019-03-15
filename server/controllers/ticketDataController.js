@@ -15,7 +15,7 @@ module.exports = {
     },
 
     createSession: (req, res) => {
-        console.log('creteSession query', req.query);
+        console.log('creteSession\n', req.query);
         const {
             origin,
             destination,
@@ -46,7 +46,7 @@ module.exports = {
     },
 
     fetchTickets: (req, res) => {
-        console.log('fetchingTickets');
+        console.log('fetchTickets');
         const key = req.params.sessionKey;
         // console.log('sessionKey', key);
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;
