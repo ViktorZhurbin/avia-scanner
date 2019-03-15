@@ -18,7 +18,9 @@
     "lint-fix": "npm run lint:js -- --fix && npm run lint:css -- --fix",
     "lint:js": "eslint src/",
     "lint:css": "stylelint 'src/**/*.css'",
-    "test": "NODE_ICU_DATA=node_modules/full-icu jest --config=jest.config.json"
+    "test:server": "cd .. && npm test",
+    "test:client": "NODE_ICU_DATA=node_modules/full-icu jest --config=jest.config.json",
+    "test": "npm run test:client && npm run test:server"
   },
   "husky": {
     "hooks": {
