@@ -1,9 +1,11 @@
 const _ = require('lodash');
 
 const self = module.exports = {
-    findObjectByValue: (array, searchKey, inputValue) => (
-        array.find(item => item[searchKey] === inputValue)
-    ),
+    findObjectByValue: (array, testKey, testValue) => {
+        const result = array.find(item => item[testKey] === testValue)
+
+        return result ? result : null;
+    },
 
     getPrice: (array, searchKey, inputValue) => {
         const obj = self.findObjectByValue(array, searchKey, inputValue);
