@@ -1,6 +1,6 @@
 ### AviaScanner
 
-A flight search & booking app based on Aviasales test [task](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales) and Skyscanner API.
+Flight search & booking app based on Aviasales test [task](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales) and Skyscanner API.
 
 [Demo on Heroku](https://avia-scanner.herokuapp.com/)
 
