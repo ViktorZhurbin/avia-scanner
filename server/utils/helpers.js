@@ -7,8 +7,8 @@ const self = module.exports = {
         return result ? result : null;
     },
 
-    getPrice: (array, searchKey, inputValue) => {
-        const obj = self.findObjectByValue(array, searchKey, inputValue);
+    getPrice: (array, testKey, testValue) => {
+        const obj = self.findObjectByValue(array, testKey, testValue);
 
         const options = obj && obj.PricingOptions[0];
         const price = options ? options.Price : null;
