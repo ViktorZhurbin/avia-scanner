@@ -15,8 +15,8 @@ module.exports = {
         });
     },
 
-    createSession: async (req, res) => {
-        console.log('creating session\n', req.query);
+    createSession: async (req, res, next) => {
+        console.log('creating session with query:\n', req.query);
         const {
             origin,
             destination,
@@ -48,23 +48,24 @@ module.exports = {
 
         try {
             const { headers } = await axios(`${baseUrl}/v1.0`, options).catch(handleError);
-            const sessionUrl = headers && headers.location;
-            const sessionKey = sessionUrl && sessionUrl.split('/').pop();
+            const { location } = headers;
+            const sessionKey = location && location.split('/').pop();
 
             res.json({
-                sessionKey,
+                body: sessionKey,
             });
+
         } catch (error) {
-            console.warn(error);
+            // console.log(error);
+            next(error);
         }
     },
 
-    fetchTickets: async (req, res) => {
-        console.log('fetchTickets');
+    fetchTickets: async (req, res, next) => {
+        console.log('fetching tickets');
         const key = req.params.sessionKey;
-        console.log('sessionKey', key);
+        console.log('session key OK:', Boolean(key));
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;
-        console.log(reqUrl);
 
         try {
             const { data } = await axios.get(reqUrl, {
@@ -76,7 +77,8 @@ module.exports = {
                 body: data && formatTickets(data),
             });
         } catch (error) {
-            console.warn(error);
+            // console.log(error);
+            next(error);
         }
     },
 };

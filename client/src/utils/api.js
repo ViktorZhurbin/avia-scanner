@@ -1,9 +1,5 @@
 import qs from 'query-string';
-
-const handleError = (error) => {
-    console.warn(error); // eslint-disable-line no-console
-    return null;
-};
+import axios from 'axios';
 
 const api = {
     createSession: 'api/createsession',
@@ -13,40 +9,45 @@ const api = {
 };
 
 const fetchCurrencyRates = async (base) => {
-    const currencyURI = window.encodeURI(`${api.getCurrencyRates}/${base}`);
-    const currencyResponse = await fetch(currencyURI).catch(handleError);
-    const currencyData = await currencyResponse.json();
+    const encodedURI = window.encodeURI(`${api.getCurrencyRates}/${base}`);
+    const { data } = await axios(encodedURI);
 
-    return currencyData && currencyData.body;
+    return data && data.body;
 };
 
 export const createApiSession = async (query) => {
-    const apiURI = window.encodeURI(api.createSession);
-    const encodedURI = window.encodeURI(`${apiURI}/${query}`);
-    const response = await fetch(encodedURI).catch(handleError);
-    const data = await response.json();
+    const encodedURI = window.encodeURI(`${api.createSession}/${query}`);
+    const { data } = await axios(encodedURI);
 
-    return data && data.sessionKey;
+    return data && data.body;
 };
 
-export const fetchTickets = async (query = '') => {
+export const fetchMockTicketData = async () => {
+    const { data } = await axios(api.mockData);
+
+    return { ...data && data.body };
+};
+
+export const fetchTickets = async (query) => {
     if (query.length === 0) {
-        const encodedURI = window.encodeURI(api.mockData);
-        const response = await fetch(encodedURI).catch(handleError);
-        const data = await response.json();
-        const ticketData = data && data.body;
+        const mockData = fetchMockTicketData();
 
-        return { ...ticketData };
+        return mockData;
     }
+    try {
+        const sessionKey = await createApiSession(query);
+        if (!sessionKey) {
+            throw new Error('session key error');
+        }
+        const { currency } = qs.parse(query);
+        const currencyRates = await fetchCurrencyRates(currency);
 
-    const sessionKey = await createApiSession(query);
-    const { currency } = qs.parse(query);
-    const currencyRates = await fetchCurrencyRates(currency);
+        const ticketsURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
+        const { data } = await axios(ticketsURI);
+        const tickets = data && data.body;
 
-    const ticketsURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
-    const ticketsResponse = await fetch(ticketsURI).catch(handleError);
-    const ticketsData = await ticketsResponse.json();
-    const tickets = ticketsData && ticketsData.body;
-
-    return { ...tickets, currencyRates };
+        return { ...tickets, currencyRates };
+    } catch (error) {
+        throw error;
+    }
 };

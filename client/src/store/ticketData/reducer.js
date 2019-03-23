@@ -3,6 +3,7 @@ import { createReducer } from 'redux-starter-kit';
 import {
     requestTickets,
     requestTicketsSuccess,
+    requestTicketsCancel,
     resetTickets,
 } from './actions';
 
@@ -24,6 +25,11 @@ const reducer = createReducer(initialState, {
         ticketData: payload,
         hasTickets: payload && payload.allTickets
             && payload.allTickets.length > 0,
+    }),
+
+    [requestTicketsCancel]: state => ({
+        ...state,
+        isLoading: false,
     }),
 
     [resetTickets]: () => initialState,

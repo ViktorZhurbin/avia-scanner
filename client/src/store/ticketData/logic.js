@@ -33,6 +33,7 @@ export const requestTicketsLogic = createLogic({
             .catch((err) => {
                 console.error(err); // eslint-disable-line no-console
                 dispatch(requestTicketsFail());
+                dispatch(requestTicketsCancel());
             })
             .then(() => done());
     },
