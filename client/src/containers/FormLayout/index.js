@@ -19,8 +19,8 @@ class FormLayout extends React.PureComponent {
     static propTypes = {
         getTickets: PropTypes.func.isRequired,
         getTicketsCancel: PropTypes.func.isRequired,
-        resetSearch: PropTypes.func.isRequired,
-        resetTicketData: PropTypes.func.isRequired,
+        resetSearchQuery: PropTypes.func.isRequired,
+        resetTickets: PropTypes.func.isRequired,
         setUpFormInput: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired,
         hasTickets: PropTypes.bool,
@@ -36,24 +36,34 @@ class FormLayout extends React.PureComponent {
     }
 
     onUpdateState = () => {
+        const { getTickets, setUpFormInput } = this.props;
         const { search } = window.location;
         if (search.length > 0) {
-            this.props.getTickets(search);
-            this.props.setUpFormInput(search);
+            getTickets(search);
+            setUpFormInput(search);
         } else {
             this.onResetState();
         }
     }
 
     onResetState = () => {
+        const {
+            isLoading,
+            getTicketsCancel,
+            resetTickets,
+            setUpFormInput,
+            resetSearchQuery,
+        } = this.props;
         window.history.pushState('', '', '/');
-        this.props.getTicketsCancel();
-        this.props.resetTicketData();
+        if (isLoading) {
+            getTicketsCancel();
+        }
+        resetTickets();
         const lastSearchQuery = getLastSearchCookie();
         if (lastSearchQuery) {
-            this.props.setUpFormInput(lastSearchQuery);
+            setUpFormInput(lastSearchQuery);
         } else {
-            this.props.resetSearch();
+            resetSearchQuery();
         }
     }
 
@@ -97,8 +107,8 @@ const mapStateToProps = ({ tickets }) => ({
 const mapDispatchToProps = dispatch => ({
     getTickets: query => dispatch(request(query)),
     getTicketsCancel: () => dispatch(requestCancel()),
-    resetTicketData: () => dispatch(reset()),
-    resetSearch: () => dispatch(resetSearch()),
+    resetTickets: () => dispatch(reset()),
+    resetSearchQuery: () => dispatch(resetSearch()),
     setUpFormInput: search => dispatch(setFormInput(search)),
 });
 
