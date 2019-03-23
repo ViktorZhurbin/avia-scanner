@@ -38,7 +38,6 @@
     "url": "git+https://github.com/ViktorZhurbin/avia-scanner.git"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
     "axios": "^0.18.0",
     "browser-cookies": "^1.2.0",
     "classnames": "^2.2.6",
@@ -64,6 +63,7 @@
     "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.4.9",
