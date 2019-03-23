@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import { connect } from 'react-redux';
 
-import { resetTickets, requestTickets, requestTicketsCancel } from '../../store/ticketData/actions';
+import { reset, request, requestCancel } from '../../store/ticketData/actions';
 import { resetSearch, setFormInput } from '../../store/searchQuery/actions';
 
 import LoadingBar from '../../components/LoadingBar';
@@ -95,9 +95,9 @@ const mapStateToProps = ({ tickets }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getTickets: query => dispatch(requestTickets(query)),
-    getTicketsCancel: () => dispatch(requestTicketsCancel()),
-    resetTicketData: () => dispatch(resetTickets()),
+    getTickets: query => dispatch(request(query)),
+    getTicketsCancel: () => dispatch(requestCancel()),
+    resetTicketData: () => dispatch(reset()),
     resetSearch: () => dispatch(resetSearch()),
     setUpFormInput: search => dispatch(setFormInput(search)),
 });

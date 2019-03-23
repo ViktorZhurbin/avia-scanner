@@ -1,10 +1,10 @@
 import { createReducer } from 'redux-starter-kit';
 
 import {
-    requestTickets,
-    requestTicketsSuccess,
-    requestTicketsCancel,
-    resetTickets,
+    request,
+    requestSuccess,
+    requestCancel,
+    reset,
 } from './actions';
 
 const initialState = {
@@ -14,12 +14,12 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-    [requestTickets]: state => ({
+    [request]: state => ({
         ...state,
         isLoading: true,
     }),
 
-    [requestTicketsSuccess]: (state, { payload }) => ({
+    [requestSuccess]: (state, { payload }) => ({
         ...state,
         isLoading: false,
         ticketData: payload,
@@ -27,12 +27,12 @@ const reducer = createReducer(initialState, {
             && payload.allTickets.length > 0,
     }),
 
-    [requestTicketsCancel]: state => ({
+    [requestCancel]: state => ({
         ...state,
         isLoading: false,
     }),
 
-    [resetTickets]: () => initialState,
+    [reset]: () => initialState,
 });
 
 export default reducer;

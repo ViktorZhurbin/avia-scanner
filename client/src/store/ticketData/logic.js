@@ -3,16 +3,16 @@ import { createLogic } from 'redux-logic';
 import { fetchTickets } from '../../utils/api';
 import { validateQueryString } from '../../utils/string';
 import {
-    requestTickets,
-    requestTicketsSuccess,
-    requestTicketsFail,
-    requestTicketsCancel,
+    request,
+    requestSuccess,
+    requestFail,
+    requestCancel,
 } from './actions';
 
 // eslint-disable-next-line import/prefer-default-export
 export const requestTicketsLogic = createLogic({
-    type: requestTickets,
-    cancelType: requestTicketsCancel,
+    type: request,
+    cancelType: requestCancel,
     throttle: 1000,
     latest: true,
 
@@ -28,12 +28,11 @@ export const requestTicketsLogic = createLogic({
     process({ action }, dispatch, done) {
         fetchTickets(action.payload)
             .then(ticketData => (
-                dispatch(requestTicketsSuccess(ticketData))
+                dispatch(requestSuccess(ticketData))
             ))
-            .catch((err) => {
-                console.error(err); // eslint-disable-line no-console
-                dispatch(requestTicketsFail());
-                dispatch(requestTicketsCancel());
+            .catch(() => {
+                dispatch(requestFail());
+                dispatch(requestCancel());
             })
             .then(() => done());
     },
