@@ -5,6 +5,7 @@ import { createLogicMiddleware } from 'redux-logic';
 import ticketsReducer from './ticketData/reducer';
 import searchReducer from './searchQuery/reducer';
 import { requestTicketsLogic } from './ticketData/logic';
+import { fetchTickets } from '../utils/api';
 
 const reducer = {
     tickets: ticketsReducer,
@@ -12,7 +13,10 @@ const reducer = {
 };
 
 const arrLogic = [requestTicketsLogic];
-const logicMiddleware = createLogicMiddleware(arrLogic);
+const injectedDeps = {
+    getTickets: fetchTickets,
+};
+const logicMiddleware = createLogicMiddleware(arrLogic, injectedDeps);
 
 const [immutableStateInvariant, serializableStateInvariant] = getDefaultMiddleware();
 

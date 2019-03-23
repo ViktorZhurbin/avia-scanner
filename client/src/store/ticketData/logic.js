@@ -1,7 +1,5 @@
 import { createLogic } from 'redux-logic';
 
-import { fetchTickets } from '../../utils/api';
-import { validateQueryString } from '../../utils/string';
 import {
     request,
     requestSuccess,
@@ -16,17 +14,8 @@ export const requestTicketsLogic = createLogic({
     throttle: 1000,
     latest: true,
 
-    validate({ action }, allow, reject) {
-        const { isValid } = validateQueryString(action.payload);
-        if (isValid) {
-            allow(action);
-        } else {
-            reject();
-        }
-    },
-
-    process({ action }, dispatch, done) {
-        fetchTickets(action.payload)
+    process({ getTickets, action }, dispatch, done) {
+        getTickets(action.payload)
             .then(ticketData => (
                 dispatch(requestSuccess(ticketData))
             ))
