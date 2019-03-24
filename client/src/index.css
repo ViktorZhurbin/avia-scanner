@@ -2,11 +2,11 @@
 
 :root {
     /* Headers */
-    --h1: 500 36px/50px 'Rubik', sans-serif;
-    --h2: 500 32px/45px 'Rubik', sans-serif;
-    --h3: 500 28px/40px 'Rubik', sans-serif;
-    --h4: 500 22px/35px 'Rubik', sans-serif;
-    --h5: 500 18px/24px 'Rubik', sans-serif;
+    --h1: 600 40px/46px 'Open Sans', sans-serif;
+    --h2: 600 34px/40px 'Open Sans', sans-serif;
+    --h3: 600 28px/34px 'Open Sans', sans-serif;
+    --h4: 600 22px/28px 'Open Sans', sans-serif;
+    --h5: 600 16px/22px 'Open Sans', sans-serif;
 
     /* Paragraph text */
     --p0: 18px/24px 'Open Sans', sans-serif;
