@@ -1,3 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render NoResults render correctly 1`] = `ShallowWrapper {}`;
+exports[`Render NoResults render correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="text"
+  >
+    We found 10 tickets
+            but none of them matches current filter settings
+  </div>
+  <div
+    className="resetButton"
+  >
+    <Component
+      onClick={[Function]}
+    >
+      <span
+        className="buttonText"
+      >
+        Reset Filters
+      </span>
+    </Component>
+  </div>
+</div>
+`;

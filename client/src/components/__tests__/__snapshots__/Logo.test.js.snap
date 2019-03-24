@@ -1,3 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Logo render correctly 1`] = `ShallowWrapper {}`;
+exports[`Render Logo render correctly 1`] = `
+<div
+  className="container"
+>
+  <SVGInline
+    classSuffix="-svg"
+    cleanup={Array []}
+    cleanupExceptions={Array []}
+    component="span"
+    svg="test-file-stub"
+  />
+</div>
+`;

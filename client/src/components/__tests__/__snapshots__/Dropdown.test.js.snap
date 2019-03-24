@@ -1,3 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Dropdown render correctly dropdown component 1`] = `ShallowWrapper {}`;
+exports[`Render Dropdown render correctly dropdown component 1`] = `
+<Dropdown
+  classNames={null}
+  onSelect={[Function]}
+  trigger={<div />}
+>
+  <ul>
+    <li>
+      One
+    </li>
+    <li>
+      Two
+    </li>
+  </ul>
+</Dropdown>
+`;

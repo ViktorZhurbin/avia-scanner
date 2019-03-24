@@ -1,3 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Select render correctly 1`] = `ShallowWrapper {}`;
+exports[`Render Select render correctly 1`] = `
+<ReactOutsideEvent
+  classNames={Object {}}
+  trigger={<div />}
+>
+  <div
+    className="itemList"
+  >
+    <RowItem
+      className={null}
+      index={0}
+      isDisabled={false}
+      isSelected={true}
+      key="TXL"
+      onSelect={[Function]}
+      value={
+        Object {
+          "code": "TXL",
+          "name": "Berlin",
+        }
+      }
+    >
+      <div />
+    </RowItem>
+    <RowItem
+      className={null}
+      index={1}
+      isDisabled={true}
+      isSelected={false}
+      key="DME"
+      onSelect={[Function]}
+      value={
+        Object {
+          "code": "DME",
+          "name": "Moscow",
+        }
+      }
+    >
+      <div />
+    </RowItem>
+    <RowItem
+      className={null}
+      index={2}
+      isDisabled={false}
+      isSelected={false}
+      key="DUB"
+      onSelect={[Function]}
+      value={
+        Object {
+          "code": "DUB",
+          "name": "Dublin",
+        }
+      }
+    >
+      <div />
+    </RowItem>
+    <RowItem
+      className={null}
+      index={3}
+      isDisabled={false}
+      isSelected={false}
+      key="HEL"
+      onSelect={[Function]}
+      value={
+        Object {
+          "code": "HEL",
+          "name": "Helsinki",
+        }
+      }
+    >
+      <div />
+    </RowItem>
+    <RowItem
+      className={null}
+      index={4}
+      isDisabled={false}
+      isSelected={false}
+      key="TBS"
+      onSelect={[Function]}
+      value={
+        Object {
+          "code": "TBS",
+          "name": "Tbilisi",
+        }
+      }
+    >
+      <div />
+    </RowItem>
+  </div>
+</ReactOutsideEvent>
+`;
