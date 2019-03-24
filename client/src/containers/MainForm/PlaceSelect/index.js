@@ -48,10 +48,10 @@ class PlaceSelect extends React.PureComponent {
             >
                 <div
                     className={cx('triggerText', {
-                        placeholder: !value.name,
+                        placeholder: !(value && value.name),
                     })}
                 >
-                    {value.name || placeholder}
+                    {(value && value.name) || placeholder}
                 </div>
             </div>
         );
