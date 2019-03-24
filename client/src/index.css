@@ -3,6 +3,7 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
+    font-display: auto;
     src:
         local('Open Sans Regular'),
         local('OpenSans-Regular'),
@@ -15,6 +16,7 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
+    font-display: auto;
     src:
         local('Open Sans SemiBold'),
         local('OpenSans-SemiBold'),
