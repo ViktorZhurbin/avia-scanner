@@ -100,7 +100,8 @@
     height: 60px;
     width: 100%;
     box-sizing: border-box;
-    font: 200 19px/42px 'Arial', sans-serif;
+    font: var(--p0);
+    line-height: 42px;
     margin: 0;
     user-select: none;
     padding: 9px 18px;
