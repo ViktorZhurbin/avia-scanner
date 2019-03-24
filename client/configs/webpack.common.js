@@ -70,8 +70,8 @@ module.exports = {
                 use: ['raw-loader'],
             },
             {
-                test: /\.(png|jpg|gif)$/,
-                use: ['file-loader'],
+                test: /\.(png|jpg|gif|woff|woff2|ttf)$/,
+                use: ['url-loader'],
             },
         ],
     },
