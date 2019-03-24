@@ -1,5 +1,4 @@
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
-import { logger } from 'redux-logger';
 import { createLogicMiddleware } from 'redux-logic';
 
 import ticketsReducer from './ticketData/reducer';
@@ -22,6 +21,7 @@ const [immutableStateInvariant, serializableStateInvariant] = getDefaultMiddlewa
 
 let middleware = [logicMiddleware];
 if (process.env.NODE_ENV !== 'production') {
+    const { logger } = require('redux-logger'); // eslint-disable-line global-require
     middleware = [...middleware, logger, immutableStateInvariant, serializableStateInvariant];
 }
 
