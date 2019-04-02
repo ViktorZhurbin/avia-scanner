@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Checkbox from '../../components/Checkbox';
-import { inflectStopsEn } from '../../utils/inflection';
+import inflectStops from '../../utils/inflection';
 
 import styles from './index.css';
 
@@ -66,7 +66,7 @@ class Filters extends React.PureComponent {
                             </div>
                             {stopOptions.map((item) => {
                                 const isChecked = Boolean(selectedStops[item]);
-                                const name = inflectStopsEn(item);
+                                const name = inflectStops(item);
 
                                 return (
                                     <div
