@@ -40,11 +40,11 @@ class MainForm extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        const { search } = this.props;
+        const { search, onSubmit } = this.props;
         const queryString = getQueryStringFromSearch(search);
         const { isValid, missingValues } = validateQueryString(queryString);
         if (isValid) {
-            this.props.onSubmit(queryString);
+            onSubmit(queryString);
         } else {
             this.setState({
                 highlightedFields: missingValues,

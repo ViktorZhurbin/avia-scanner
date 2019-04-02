@@ -34,7 +34,9 @@ class ResultsLayout extends React.PureComponent {
     }
 
     componentDidMount() {
-        if (this.props.hasTickets) {
+        const { hasTickets } = this.props;
+
+        if (hasTickets) {
             this.onUpdateState();
         }
     }
@@ -74,7 +76,7 @@ class ResultsLayout extends React.PureComponent {
     }
 
     onFilterReset = () => {
-        const { stopOptions } = this.props.ticketData;
+        const { ticketData: { stopOptions } = [] } = this.props;
 
         this.onFilterByStops({ [stopOptions[0]]: true });
     }

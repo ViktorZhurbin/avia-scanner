@@ -68,8 +68,9 @@ class FormLayout extends React.PureComponent {
     }
 
     onSubmit = (searchQuery) => {
+        const { getTickets } = this.props;
         setLastSearchCookie(searchQuery);
-        this.props.getTickets(searchQuery);
+        getTickets(searchQuery);
         window.history.pushState({ searchQuery }, '', searchQuery);
     };
 
