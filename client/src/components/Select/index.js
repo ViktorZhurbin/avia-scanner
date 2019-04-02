@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class Select extends React.PureComponent {
+class Select extends React.Component {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
         itemList: PropTypes.arrayOf(codeNamePropType).isRequired,

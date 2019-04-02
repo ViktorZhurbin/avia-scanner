@@ -10,7 +10,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class Dropdown extends React.PureComponent {
+class Dropdown extends React.Component {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
         children: PropTypes.node.isRequired,

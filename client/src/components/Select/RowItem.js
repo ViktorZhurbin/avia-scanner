@@ -7,7 +7,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class RowItem extends React.PureComponent {
+class RowItem extends React.Component {
     static propTypes = {
         value: codeNamePropType.isRequired,
         index: PropTypes.number.isRequired,

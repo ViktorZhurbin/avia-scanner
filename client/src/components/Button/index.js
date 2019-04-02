@@ -35,4 +35,4 @@ Button.defaultProps = {
     isLoading: false,
 };
 
-export default React.memo(Button);
+export default Button;

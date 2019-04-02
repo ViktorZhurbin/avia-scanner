@@ -13,7 +13,7 @@ const cx = cl.bind(styles);
 const CalendarPromise = import(/* webpackChunkName: "calendar" */ 'react-calendar');
 const Calendar = React.lazy(() => CalendarPromise);
 
-class DatePicker extends React.PureComponent {
+class DatePicker extends React.Component {
     static propTypes = {
         trigger: PropTypes.node.isRequired,
         onSelect: PropTypes.func.isRequired,
