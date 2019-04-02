@@ -12,7 +12,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class ResultsLayout extends React.PureComponent {
+class ResultsLayout extends React.Component {
     static propTypes = {
         hasTickets: PropTypes.bool,
         ticketData: PropTypes.shape({

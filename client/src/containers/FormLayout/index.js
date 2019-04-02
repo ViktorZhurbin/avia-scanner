@@ -15,7 +15,7 @@ import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class FormLayout extends React.PureComponent {
+class FormLayout extends React.Component {
     static propTypes = {
         getTickets: PropTypes.func.isRequired,
         getTicketsCancel: PropTypes.func.isRequired,
