@@ -16,7 +16,7 @@ import { validateQueryString, getQueryStringFromSearch } from '../../utils/strin
 
 import styles from './index.css';
 
-export const cx = cl.bind(styles);
+const cx = cl.bind(styles);
 
 class MainForm extends React.Component {
     static propTypes = {

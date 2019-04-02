@@ -13,7 +13,7 @@ import { setLastSearchCookie, getLastSearchCookie } from '../../utils/cookie';
 
 import styles from './index.css';
 
-export const cx = cl.bind(styles);
+const cx = cl.bind(styles);
 
 class FormLayout extends React.PureComponent {
     static propTypes = {
