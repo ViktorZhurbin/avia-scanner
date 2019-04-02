@@ -7,8 +7,7 @@ import {
     requestCancel,
 } from './actions';
 
-// eslint-disable-next-line import/prefer-default-export
-export const requestTicketsLogic = createLogic({
+export default createLogic({
     type: request,
     cancelType: requestCancel,
     throttle: 1000,

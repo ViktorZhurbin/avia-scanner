@@ -1,6 +1,6 @@
 import { createMockStore } from 'redux-logic-test';
 
-import { requestTicketsLogic } from '../ticketData/logic';
+import requestTicketsLogic from '../ticketData/logic';
 import reducer from '../ticketData/reducer';
 import {
     request,

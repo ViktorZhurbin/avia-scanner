@@ -42,7 +42,7 @@ class Checkbox extends React.PureComponent {
         } = this.props;
 
         return (
-            // eslint-disable-next-line jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for
+            /* eslint-disable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */
             <label className={cx('row')}>
                 <input
                     className={cx('input')}
@@ -55,6 +55,7 @@ class Checkbox extends React.PureComponent {
                 <span className={cx('checkmark')} />
                 {name}
             </label>
+            /* eslint-enable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */
         );
     }
 }

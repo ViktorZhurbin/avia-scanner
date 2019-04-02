@@ -3,7 +3,7 @@ import { createLogicMiddleware } from 'redux-logic';
 
 import ticketsReducer from './ticketData/reducer';
 import searchReducer from './searchQuery/reducer';
-import { requestTicketsLogic } from './ticketData/logic';
+import requestTicketsLogic from './ticketData/logic';
 import { fetchTickets } from '../utils/api';
 
 const reducer = {
@@ -21,7 +21,9 @@ const [immutableStateInvariant, serializableStateInvariant] = getDefaultMiddlewa
 
 let middleware = [logicMiddleware];
 if (process.env.NODE_ENV !== 'production') {
-    const { logger } = require('redux-logger'); // eslint-disable-line global-require
+    /* eslint-disable global-require */
+    const { logger } = require('redux-logger');
+    /* eslint-enable global-require */
     middleware = [...middleware, logger, immutableStateInvariant, serializableStateInvariant];
 }
 
