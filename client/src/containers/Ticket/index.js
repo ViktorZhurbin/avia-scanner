@@ -72,9 +72,9 @@ Ticket.propTypes = {
 
 Ticket.defaultProps = {};
 
-const mapStateToProps = ({ search }) => ({
-    currency: search.currency,
-    locale: search.locale,
+const mapStateToProps = ({ search: { currency, locale } }) => ({
+    currency,
+    locale,
 });
 
 export default React.memo(connect(mapStateToProps, null)(Ticket));

@@ -15,17 +15,17 @@ const cx = cl.bind(styles);
 
 class CurrencySelect extends React.PureComponent {
     static propTypes = {
-        selectedCurrency: codeNamePropType.isRequired,
+        currency: codeNamePropType.isRequired,
         setUpCurrency: PropTypes.func.isRequired,
     }
 
     renderTrigger = () => {
-        const { selectedCurrency } = this.props;
+        const { currency } = this.props;
 
         return (
             <div className={cx('triggerContainer')}>
                 <span className={cx('triggerText')}>
-                    {selectedCurrency.code}
+                    {currency.code}
                 </span>
             </div>
         );
@@ -43,14 +43,14 @@ class CurrencySelect extends React.PureComponent {
     )
 
     render() {
-        const { selectedCurrency, setUpCurrency } = this.props;
+        const { currency, setUpCurrency } = this.props;
 
         return (
             <Select
                 trigger={this.renderTrigger()}
                 itemList={currencyList}
                 renderItem={this.renderItem}
-                selectedItem={selectedCurrency}
+                selectedItem={currency}
                 onSelect={setUpCurrency}
                 classNames={{ currency: true }}
             />
@@ -58,8 +58,8 @@ class CurrencySelect extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ search }) => ({
-    selectedCurrency: search.currency,
+const mapStateToProps = ({ search: { currency } }) => ({
+    currency,
 });
 
 const mapDispatchToProps = dispatch => ({
