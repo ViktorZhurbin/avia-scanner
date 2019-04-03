@@ -13,7 +13,8 @@ exports[`Render NoResults render correctly 1`] = `
   <div
     className="resetButton"
   >
-    <Component
+    <Button
+      isLoading={false}
       onClick={[Function]}
     >
       <span
@@ -21,7 +22,7 @@ exports[`Render NoResults render correctly 1`] = `
       >
         Reset Filters
       </span>
-    </Component>
+    </Button>
   </div>
 </div>
 `;
