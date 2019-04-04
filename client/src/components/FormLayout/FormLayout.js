@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
-import { reset, request, requestCancel } from '../../store/ticketData/actions';
-import { resetSearch, setFormInput } from '../../store/searchQuery/actions';
-
-import LoadingBar from '../../components/LoadingBar';
-import NavBar from '../NavBar';
-import MainForm from '../MainForm';
+import LoadingBar from '../LoadingBar';
+import NavBar from '../../containers/NavBar';
+import MainForm from '../../containers/MainForm';
 import { setLastSearchCookie, getLastSearchCookie } from '../../utils/cookie';
 
-import styles from './index.css';
+import styles from './FormLayout.css';
 
 const cx = cl.bind(styles);
 
@@ -100,20 +96,4 @@ class FormLayout extends React.Component {
     }
 }
 
-const mapStateToProps = ({ tickets }) => ({
-    isLoading: tickets.isLoading,
-    hasTickets: tickets.hasTickets,
-});
-
-const mapDispatchToProps = dispatch => ({
-    getTickets: query => dispatch(request(query)),
-    getTicketsCancel: () => dispatch(requestCancel()),
-    resetTickets: () => dispatch(reset()),
-    resetSearchQuery: () => dispatch(resetSearch()),
-    setUpFormInput: search => dispatch(setFormInput(search)),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(FormLayout);
+export default FormLayout;

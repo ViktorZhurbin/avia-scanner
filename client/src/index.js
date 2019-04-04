@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 
 import store from './store';
-import App from './containers/App';
+import App from './components/App';
 
 import 'react-calendar/dist/Calendar.css';
 import './custom/calendar.css';

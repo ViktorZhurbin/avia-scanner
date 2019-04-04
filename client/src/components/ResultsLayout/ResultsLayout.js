@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
-import Filters from '../Filters';
-import TicketList from '../TicketList';
+import Filters from '../../containers/Filters';
+import TicketList from '../../containers/TicketList';
 
-import styles from './index.css';
+import styles from './ResultsLayout.css';
 
 const cx = cl.bind(styles);
 
@@ -25,10 +24,4 @@ ResultsLayout.propTypes = {
     hasTickets: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({ tickets }) => ({
-    hasTickets: tickets.hasTickets,
-});
-
-export default connect(
-    mapStateToProps,
-)(ResultsLayout);
+export default ResultsLayout;
