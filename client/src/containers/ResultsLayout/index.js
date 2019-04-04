@@ -6,57 +6,30 @@ import { connect } from 'react-redux';
 import Filters from '../Filters';
 import TicketList from '../TicketList';
 
-import { ticketPropType } from '../../entities/propTypes';
-import getFilteredTickets from '../../store/ticketData/selectors';
+import { getFilteredTickets } from '../../store/ticketData/selectors';
 
 import styles from './index.css';
 
 const cx = cl.bind(styles);
 
-class ResultsLayout extends React.Component {
-    static propTypes = {
-        hasTickets: PropTypes.bool,
-        filteredTickets: PropTypes.arrayOf(ticketPropType),
-        ticketData: PropTypes.shape({
-            allTickets: PropTypes.arrayOf(ticketPropType),
-            filteredTickets: PropTypes.arrayOf(ticketPropType),
-            stopOptions: PropTypes.arrayOf(PropTypes.number),
-            currencyRates: PropTypes.objectOf(PropTypes.number),
-        }),
-    };
+const ResultsLayout = ({ hasTickets }) => (
+    hasTickets
+        ? (
+            <div className={cx('container')}>
+                <Filters />
+                <TicketList />
+            </div>
+        )
+        : null
+);
 
-    static defaultProps = {
-        ticketData: {},
-        filteredTickets: [],
-        hasTickets: false,
-    }
+ResultsLayout.propTypes = {
+    hasTickets: PropTypes.bool,
+};
 
-    render() {
-        const {
-            ticketData,
-            hasTickets,
-            filteredTickets,
-        } = this.props;
-        const { allTickets, currencyRates } = ticketData;
-
-        return (
-            hasTickets
-                ? (
-                    <div className={cx('container')}>
-                        <Filters />
-                        <TicketList
-                            currencyRates={currencyRates}
-                            hasTickets={hasTickets}
-                            filteredTickets={filteredTickets}
-                            allTicketsCount={allTickets.length}
-                            onFilterReset={this.onFilterReset}
-                        />
-                    </div>
-                )
-                : null
-        );
-    }
-}
+ResultsLayout.defaultProps = {
+    hasTickets: false,
+};
 
 const mapStateToProps = ({ tickets }) => ({
     ticketData: tickets.ticketData,

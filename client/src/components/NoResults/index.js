@@ -16,7 +16,7 @@ class NoResuts extends React.PureComponent {
             PropTypes.number,
         ).isRequired,
         setUpStops: PropTypes.func.isRequired,
-        ticketsCount: PropTypes.number.isRequired,
+        count: PropTypes.number.isRequired,
     }
 
     onFilterReset = () => {
@@ -29,12 +29,12 @@ class NoResuts extends React.PureComponent {
     }
 
     render() {
-        const { ticketsCount } = this.props;
+        const { count } = this.props;
 
         return (
             <div className={cx('container')}>
                 <div className={cx('text')}>
-                    {`We found ${ticketsCount} tickets
+                    {`We found ${count} tickets
             but none of them matches current filter settings`}
                 </div>
                 <div className={cx('resetButton')}>

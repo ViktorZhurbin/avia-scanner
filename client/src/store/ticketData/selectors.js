@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 const getAllTickets = tickets => tickets.ticketData.allTickets;
 const getSelectedStops = tickets => tickets.selectedStops;
 
-export default createSelector(
+export const getFilteredTickets = createSelector(
     [getAllTickets, getSelectedStops],
     (allTickets, selectedStops) => {
         const filteredTickets = allTickets
@@ -14,4 +14,9 @@ export default createSelector(
 
         return filteredTickets;
     },
+);
+
+export const getAllTicketsCount = createSelector(
+    [getAllTickets],
+    allTickets => allTickets.length,
 );
