@@ -113,4 +113,7 @@ const mapDispatchToProps = dispatch => ({
     setUpFormInput: search => dispatch(setFormInput(search)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormLayout);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(FormLayout);

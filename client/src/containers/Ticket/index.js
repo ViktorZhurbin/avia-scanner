@@ -77,4 +77,8 @@ const mapStateToProps = ({ search: { currency, locale } }) => ({
     locale,
 });
 
-export default React.memo(connect(mapStateToProps, null)(Ticket));
+export default React.memo(
+    connect(
+        mapStateToProps,
+    )(Ticket),
+);

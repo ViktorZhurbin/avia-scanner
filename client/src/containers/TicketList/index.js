@@ -60,4 +60,6 @@ const mapStateToProps = ({ tickets }) => ({
     filteredTickets: getFilteredTickets(tickets),
 });
 
-export default connect(mapStateToProps, null)(TicketList);
+export default connect(
+    mapStateToProps,
+)(TicketList);

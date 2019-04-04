@@ -66,4 +66,7 @@ const mapDispatchToProps = dispatch => ({
     setUpCurrency: currency => dispatch(setCurrency(currency)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelect);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(CurrencySelect);
