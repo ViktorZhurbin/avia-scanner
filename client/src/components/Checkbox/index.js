@@ -15,9 +15,6 @@ class Checkbox extends React.PureComponent {
         checked: PropTypes.bool.isRequired,
         name: PropTypes.string.isRequired,
         onChange: PropTypes.func,
-        selectedStops: PropTypes.objectOf(
-            PropTypes.bool,
-        ).isRequired,
     };
 
     static defaultProps = {
@@ -25,13 +22,8 @@ class Checkbox extends React.PureComponent {
     };
 
     onToggleFilter = () => {
-        const { onChange, selectedStops, id } = this.props;
-
-        const selectedFilters = {
-            ...selectedStops,
-            [id]: !selectedStops[id],
-        };
-        onChange(selectedFilters);
+        const { onChange, id } = this.props;
+        onChange(id);
     }
 
     render() {

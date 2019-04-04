@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
+import { connect } from 'react-redux';
 
 import Checkbox from '../../components/Checkbox';
 import inflectStops from '../../utils/inflection';
+import { setStops } from '../../store/ticketData/actions';
 
 import styles from './index.css';
 
@@ -17,21 +19,25 @@ class Filters extends React.PureComponent {
         selectedStops: PropTypes.objectOf(
             PropTypes.bool,
         ).isRequired,
-        onFilter: PropTypes.func.isRequired,
+        setUpStops: PropTypes.func.isRequired,
     }
 
     onToggleFilter = (key) => {
-        const { onFilter, selectedStops } = this.props;
+        const { selectedStops, setUpStops } = this.props;
 
         const selectedFilters = {
             ...selectedStops,
             [key]: !selectedStops[key],
         };
-        onFilter(selectedFilters);
+        setUpStops(selectedFilters);
     }
 
     onToggleAll = () => {
-        const { onFilter, stopOptions, selectedStops } = this.props;
+        const {
+            stopOptions,
+            selectedStops,
+            setUpStops,
+        } = this.props;
 
         const selectedCount = Object.values(selectedStops).filter(item => Boolean(item));
         const isAllChecked = selectedCount.length === stopOptions.length;
@@ -40,11 +46,11 @@ class Filters extends React.PureComponent {
         stopOptions.forEach(
             (key) => { selectedFilters[key] = !isAllChecked; },
         );
-        onFilter(selectedFilters);
+        setUpStops(selectedFilters);
     }
 
     render() {
-        const { stopOptions, selectedStops, onFilter } = this.props;
+        const { stopOptions, selectedStops } = this.props;
 
         const selectedCount = Object.values(selectedStops).filter(item => Boolean(item));
         const isAllChecked = selectedCount.length === stopOptions.length;
@@ -78,7 +84,7 @@ class Filters extends React.PureComponent {
                                             checked={isChecked}
                                             name={name}
                                             selectedStops={selectedStops}
-                                            onChange={onFilter}
+                                            onChange={this.onToggleFilter}
                                         />
                                     </div>
                                 );
@@ -91,4 +97,16 @@ class Filters extends React.PureComponent {
     }
 }
 
-export default Filters;
+const mapDispatchToProps = dispatch => ({
+    setUpStops: value => dispatch(setStops(value)),
+});
+
+const mapStateToProps = ({ tickets }) => ({
+    selectedStops: tickets.selectedStops,
+    stopOptions: tickets.ticketData.stopOptions,
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Filters);

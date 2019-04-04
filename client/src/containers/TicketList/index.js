@@ -16,7 +16,6 @@ const TicketList = (props) => {
         hasTickets,
         filteredTickets,
         allTicketsCount,
-        onFilterReset,
     } = props;
 
     return (
@@ -24,7 +23,6 @@ const TicketList = (props) => {
             ? (
                 <NoResults
                     ticketsCount={allTicketsCount}
-                    onFilterReset={onFilterReset}
                 />
             )
             : (
@@ -46,7 +44,6 @@ TicketList.propTypes = {
     currencyRates: PropTypes.objectOf(PropTypes.number),
     hasTickets: PropTypes.bool.isRequired,
     allTicketsCount: PropTypes.number.isRequired,
-    onFilterReset: PropTypes.func.isRequired,
 };
 
 TicketList.defaultProps = {

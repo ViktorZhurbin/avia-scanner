@@ -5,3 +5,5 @@ export const requestSuccess = createAction('tickets/requestSuccess');
 export const requestFail = createAction('tickets/requestFail');
 export const requestCancel = createAction('tickets/requestCancel');
 export const reset = createAction('tickets/reset');
+export const selectStop = createAction('tickets/selectStop');
+export const setStops = createAction('tickets/setStops');

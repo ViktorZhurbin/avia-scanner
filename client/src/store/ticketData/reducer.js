@@ -5,12 +5,15 @@ import {
     requestSuccess,
     requestCancel,
     reset,
+    selectStop,
+    setStops,
 } from './actions';
 
 const initialState = {
     isLoading: false,
     ticketData: {},
     hasTickets: false,
+    selectedStops: {},
 };
 
 const reducer = createReducer(initialState, {
@@ -25,11 +28,27 @@ const reducer = createReducer(initialState, {
         ticketData: payload,
         hasTickets: payload && payload.allTickets
             && payload.allTickets.length > 0,
+        selectedStops: {
+            [payload.stopOptions[0]]: true,
+        },
     }),
 
     [requestCancel]: state => ({
         ...state,
         isLoading: false,
+    }),
+
+    [selectStop]: (state, { payload }) => ({
+        ...state,
+        selectedStops: {
+            ...state.selectedStops,
+            [payload]: !state.selectedStops[payload],
+        },
+    }),
+
+    [setStops]: (state, { payload }) => ({
+        ...state,
+        selectedStops: payload,
     }),
 
     [reset]: () => initialState,

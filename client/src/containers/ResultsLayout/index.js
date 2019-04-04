@@ -7,6 +7,7 @@ import Filters from '../Filters';
 import TicketList from '../TicketList';
 
 import { ticketPropType } from '../../entities/propTypes';
+import getFilteredTickets from '../../store/ticketData/selectors';
 
 import styles from './index.css';
 
@@ -15,6 +16,7 @@ const cx = cl.bind(styles);
 class ResultsLayout extends React.Component {
     static propTypes = {
         hasTickets: PropTypes.bool,
+        filteredTickets: PropTypes.arrayOf(ticketPropType),
         ticketData: PropTypes.shape({
             allTickets: PropTypes.arrayOf(ticketPropType),
             filteredTickets: PropTypes.arrayOf(ticketPropType),
@@ -25,79 +27,23 @@ class ResultsLayout extends React.Component {
 
     static defaultProps = {
         ticketData: {},
-        hasTickets: false,
-    }
-
-    state = {
         filteredTickets: [],
-        selectedStops: {},
-    }
-
-    componentDidMount() {
-        const { hasTickets } = this.props;
-
-        if (hasTickets) {
-            this.onUpdateState();
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-        const { ticketData, hasTickets } = this.props;
-
-        if (hasTickets
-            && prevProps.ticketData !== ticketData) {
-            this.onUpdateState();
-        }
-    }
-
-    onUpdateState = async () => {
-        const { ticketData } = this.props;
-        const { filteredTickets, stopOptions } = ticketData;
-
-        const selectedStops = {
-            [stopOptions[0]]: true,
-        };
-        this.setState({
-            filteredTickets,
-            selectedStops,
-        });
-    }
-
-    onFilterByStops = (selectedStops) => {
-        const { ticketData } = this.props;
-
-        const filteredTickets = ticketData.allTickets.filter(({ stops }) => (
-            selectedStops[stops]
-        ));
-        this.setState(() => ({
-            filteredTickets,
-            selectedStops,
-        }));
-    }
-
-    onFilterReset = () => {
-        const { ticketData: { stopOptions } = [] } = this.props;
-
-        this.onFilterByStops({ [stopOptions[0]]: true });
+        hasTickets: false,
     }
 
     render() {
         const {
+            ticketData,
+            hasTickets,
             filteredTickets,
-            selectedStops,
-        } = this.state;
-        const { ticketData, hasTickets } = this.props;
-        const { stopOptions, allTickets, currencyRates } = ticketData;
+        } = this.props;
+        const { allTickets, currencyRates } = ticketData;
 
         return (
             hasTickets
                 ? (
                     <div className={cx('container')}>
-                        <Filters
-                            stopOptions={stopOptions}
-                            selectedStops={selectedStops}
-                            onFilter={this.onFilterByStops}
-                        />
+                        <Filters />
                         <TicketList
                             currencyRates={currencyRates}
                             hasTickets={hasTickets}
@@ -115,6 +61,7 @@ class ResultsLayout extends React.Component {
 const mapStateToProps = ({ tickets }) => ({
     ticketData: tickets.ticketData,
     hasTickets: tickets.hasTickets,
+    filteredTickets: getFilteredTickets(tickets),
 });
 
 export default connect(mapStateToProps, null)(ResultsLayout);
