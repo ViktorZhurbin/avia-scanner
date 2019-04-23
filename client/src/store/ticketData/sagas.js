@@ -5,7 +5,6 @@ import {
     request,
     requestSuccess,
     requestFail,
-    requestCancel,
 } from './actions';
 
 function* fetchTicketData(action) {
@@ -14,7 +13,6 @@ function* fetchTicketData(action) {
         yield put(requestSuccess(ticketData));
     } catch (err) {
         yield put(requestFail());
-        yield put(requestCancel());
     }
 }
 

@@ -30,6 +30,8 @@ export const fetchMockTicketData = async () => {
     return { ...data && data.body };
 };
 
+export const ticketRequestController = new AbortController();
+
 export const fetchTickets = async (query) => {
     if (query.length === 0) {
         const mockData = fetchMockTicketData();
@@ -45,7 +47,8 @@ export const fetchTickets = async (query) => {
         const currencyRates = await fetchCurrencyRates(currency);
 
         const ticketsURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
-        const response = await fetch(ticketsURI);
+        const { signal } = ticketRequestController;
+        const response = await fetch(ticketsURI, { signal });
         const data = await response.json();
         const tickets = data && data.body;
 

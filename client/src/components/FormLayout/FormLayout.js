@@ -6,6 +6,7 @@ import LoadingBar from '../LoadingBar';
 import NavBar from '../../containers/NavBar';
 import MainForm from '../../containers/MainForm';
 import { setLastSearchCookie, getLastSearchCookie } from '../../utils/cookie';
+import { ticketRequestController } from '../../utils/api';
 
 import styles from './FormLayout.css';
 
@@ -52,6 +53,7 @@ class FormLayout extends React.Component {
         } = this.props;
         window.history.pushState('', '', '/');
         if (isLoading) {
+            ticketRequestController.abort();
             getTicketsCancel();
         }
         resetTickets();
