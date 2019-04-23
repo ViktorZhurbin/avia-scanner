@@ -1,4 +1,9 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import {
+    call,
+    put,
+    takeLatest,
+    delay,
+} from 'redux-saga/effects';
 
 import { fetchTickets } from '../../utils/api';
 import {
@@ -8,12 +13,20 @@ import {
 } from './actions';
 
 function* fetchTicketData(action) {
-    try {
-        const ticketData = yield call(fetchTickets, action.payload);
-        yield put(requestSuccess(ticketData));
-    } catch (err) {
-        yield put(requestFail());
+    for (let i = 1; i <= 5; i += 1) {
+        try {
+            const ticketData = yield call(fetchTickets, action.payload);
+            yield put(requestSuccess(ticketData));
+        } catch (err) {
+            if (i < 5) {
+                yield call(delay, 1000);
+            } else {
+                yield put(requestFail());
+            }
+        }
     }
+
+    throw new Error('API request failed');
 }
 
 function* ticketDataSaga() {
