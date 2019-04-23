@@ -10,23 +10,33 @@ import {
     request,
     requestSuccess,
     requestFail,
+    requestCancel,
+    requestRetry,
 } from './actions';
 
-function* fetchTicketData(action) {
+function* fetchTicketDataApi(query) {
     for (let i = 1; i <= 5; i += 1) {
         try {
-            const ticketData = yield call(fetchTickets, action.payload);
-            yield put(requestSuccess(ticketData));
-        } catch (err) {
+            const ticketData = yield call(fetchTickets, query);
+            return ticketData;
+        } catch (error) {
             if (i < 5) {
-                yield call(delay, 1000);
+                yield put(requestRetry(error));
+                yield delay(2000);
             } else {
                 yield put(requestFail());
+                yield put(requestCancel());
             }
         }
     }
 
     throw new Error('API request failed');
+}
+
+function* fetchTicketData({ payload }) {
+    yield delay(500);
+    const ticketData = yield call(fetchTicketDataApi, payload);
+    yield put(requestSuccess(ticketData));
 }
 
 function* ticketDataSaga() {
