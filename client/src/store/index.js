@@ -1,25 +1,20 @@
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
-import { createLogicMiddleware } from 'redux-logic';
+import createSagaMiddleware from 'redux-saga';
 
 import ticketsReducer from './ticketData/reducer';
 import searchReducer from './searchQuery/reducer';
-import requestTicketsLogic from './ticketData/logic';
-import { fetchTickets } from '../utils/api';
+import ticketDataSaga from './ticketData/sagas';
 
 const reducer = {
     tickets: ticketsReducer,
     search: searchReducer,
 };
 
-const arrLogic = [requestTicketsLogic];
-const injectedDeps = {
-    getTickets: fetchTickets,
-};
-const logicMiddleware = createLogicMiddleware(arrLogic, injectedDeps);
+const sagaMiddleware = createSagaMiddleware();
 
 const [immutableStateInvariant, serializableStateInvariant] = getDefaultMiddleware();
 
-let middleware = [logicMiddleware];
+let middleware = [sagaMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     /* eslint-disable global-require */
     const { logger } = require('redux-logger');
@@ -32,5 +27,7 @@ const store = configureStore({
     middleware,
     devTools: process.env.NODE_ENV !== 'production',
 });
+
+sagaMiddleware.run(ticketDataSaga);
 
 export default store;
