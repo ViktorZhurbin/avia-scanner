@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
-import Select from '../../../components/Select';
-import { setCurrency } from '../../../store/searchQuery/actions';
-import { currencyList } from '../../../constants/mockData';
-import { codeNamePropType } from '../../../entities/propTypes';
+import Select from '../Select';
+import { currencyList } from '../../constants/mockData';
+import { codeNamePropType } from '../../entities/propTypes';
 
-import styles from './index.css';
-
+import styles from './CurrencySelect.css';
 
 const cx = cl.bind(styles);
 
@@ -58,15 +55,4 @@ class CurrencySelect extends React.PureComponent {
     }
 }
 
-const mapStateToProps = ({ search: { currency } }) => ({
-    currency,
-});
-
-const mapDispatchToProps = dispatch => ({
-    setUpCurrency: currency => dispatch(setCurrency(currency)),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(CurrencySelect);
+export default CurrencySelect;

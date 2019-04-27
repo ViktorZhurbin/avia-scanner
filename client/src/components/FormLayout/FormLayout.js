@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import LoadingBar from '../LoadingBar';
-import NavBar from '../../containers/NavBar';
-import MainForm from '../../containers/MainForm';
+import NavBar from '../NavBar';
+import MainForm from '../MainForm';
 import { setLastSearchCookie, getLastSearchCookie } from '../../utils/cookie';
 import { ticketRequestController } from '../../utils/api';
 
