@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import Filters from '../../containers/Filters';
+import Filters from '../Filters';
 import TicketList from '../../containers/TicketList';
 
 import styles from './ResultsLayout.css';

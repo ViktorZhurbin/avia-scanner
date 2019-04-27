@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
-import Checkbox from '../../components/Checkbox';
+import Checkbox from '../Checkbox';
 import inflectStops from '../../utils/inflection';
-import { setStops } from '../../store/ticketData/actions';
 
-import styles from './index.css';
+import styles from './Filters.css';
 
 const cx = cl.bind(styles);
 
@@ -97,16 +95,4 @@ class Filters extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    setUpStops: value => dispatch(setStops(value)),
-});
-
-const mapStateToProps = ({ tickets }) => ({
-    selectedStops: tickets.selectedStops,
-    stopOptions: tickets.ticketData.stopOptions,
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Filters);
+export default Filters;
