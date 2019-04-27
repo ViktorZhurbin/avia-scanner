@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import Select from '../../../components/Select';
+import Select from '../../Select';
 import { places } from '../../../constants/mockData';
 import { codeNamePropType } from '../../../entities/propTypes';
 
-import styles from '../index.css';
+import styles from '../MainForm.css';
 
 const cx = cl.bind(styles);
 

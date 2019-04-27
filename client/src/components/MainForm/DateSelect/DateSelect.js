@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 import SVGInline from 'react-svg-inline';
 
-import DatePicker from '../../../components/DatePicker';
+import DatePicker from '../../DatePicker';
 import calendarIcon from '../../../assets/calendar.svg';
 import clearDateIcon from '../../../assets/close.svg';
 import { formatDateByLocale, dateToIsoString } from '../../../utils/dateTime';
 import getBrowserLocale from '../../../utils/getBrowserLocale';
 
-import styles from '../index.css';
+import styles from '../MainForm.css';
 
 const cx = cl.bind(styles);
 

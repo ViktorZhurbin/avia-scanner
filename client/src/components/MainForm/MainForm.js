@@ -1,20 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
-import {
-    setOrigin,
-    setDestination,
-    setDeparture,
-} from '../../store/searchQuery/actions';
-import Button from '../../components/Button';
+import Button from '../Button';
 import DateSelect from './DateSelect';
-import PlaceSelect from './PlaceSelect';
+import PlaceSelect from './PlaceSelect/PlaceSelect';
 import { searchPropType } from '../../entities/propTypes';
 import { validateQueryString, getQueryStringFromSearch } from '../../utils/string';
 
-import styles from './index.css';
+import styles from './MainForm.css';
 
 const cx = cl.bind(styles);
 
@@ -114,17 +108,4 @@ class MainForm extends React.Component {
     }
 }
 
-const mapStateToProps = ({ search }) => ({
-    search,
-});
-
-const mapDispatchToProps = dispatch => ({
-    setUpOrigin: value => dispatch(setOrigin(value)),
-    setUpDestination: value => dispatch(setDestination(value)),
-    setUpDeparture: value => dispatch(setDeparture(value)),
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(MainForm);
+export default MainForm;
