@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
 import BuyButton from './BuyButton';
-import Route from './Route';
+import Route from './Route/Route';
 import Path from './Path';
 
 import { formatPrice, convertPrice } from '../../utils/string';
 import { ticketPropType, codeNamePropType } from '../../entities/propTypes';
 
-import styles from './index.css';
+import styles from './Ticket.css';
 
 const cx = cl.bind(styles);
 
@@ -72,13 +71,4 @@ Ticket.propTypes = {
 
 Ticket.defaultProps = {};
 
-const mapStateToProps = ({ search: { currency, locale } }) => ({
-    currency,
-    locale,
-});
-
-export default React.memo(
-    connect(
-        mapStateToProps,
-    )(Ticket),
-);
+export default Ticket;

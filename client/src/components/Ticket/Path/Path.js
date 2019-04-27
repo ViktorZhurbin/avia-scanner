@@ -6,7 +6,7 @@ import cl from 'classnames/bind';
 import { getDuration } from '../../../utils/string';
 import planeSVG from '../../../assets/plane.svg';
 
-import styles from './index.css';
+import styles from './Path.css';
 
 const cx = cl.bind(styles);
 

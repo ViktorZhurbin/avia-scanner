@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import { connect } from 'react-redux';
 
 import Ticket from '../Ticket';
-import NoResults from '../../components/NoResults';
+import NoResults from '../NoResults';
 import { ticketPropType } from '../../entities/propTypes';
-import { getFilteredTickets, getAllTicketsCount } from '../../store/ticketData/selectors';
 
-import styles from './index.css';
+import styles from './TicketList.css';
 
 const cx = cl.bind(styles);
 
@@ -53,13 +51,4 @@ TicketList.defaultProps = {
     currencyRates: {},
 };
 
-const mapStateToProps = ({ tickets }) => ({
-    hasTickets: tickets.hasTickets,
-    currencyRates: tickets.ticketData.currencyRates,
-    allTicketsCount: getAllTicketsCount(tickets),
-    filteredTickets: getFilteredTickets(tickets),
-});
-
-export default connect(
-    mapStateToProps,
-)(TicketList);
+export default TicketList;

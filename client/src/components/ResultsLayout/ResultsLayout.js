@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Filters from '../Filters';
-import TicketList from '../../containers/TicketList';
+import TicketList from '../TicketList';
 
 import styles from './ResultsLayout.css';
 

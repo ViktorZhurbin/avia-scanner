@@ -4,7 +4,7 @@ import cl from 'classnames/bind';
 
 import { getFlightTimeDate } from '../../../utils/dateTime';
 
-import styles from './index.css';
+import styles from './Route.css';
 
 const cx = cl.bind(styles);
 

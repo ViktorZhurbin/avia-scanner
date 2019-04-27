@@ -4,7 +4,7 @@ import cl from 'classnames/bind';
 
 import Button from '../Button';
 import DateSelect from './DateSelect';
-import PlaceSelect from './PlaceSelect/PlaceSelect';
+import PlaceSelect from './PlaceSelect';
 import { searchPropType } from '../../entities/propTypes';
 import { validateQueryString, getQueryStringFromSearch } from '../../utils/string';
 

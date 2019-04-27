@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import Button from '../../../components/Button';
+import Button from '../../Button';
 
-import styles from './index.css';
+import styles from './BuyButton.css';
 
 const cx = cl.bind(styles);
 
