@@ -21,19 +21,6 @@
     overflow-y: auto;
 }
 
-.item {
-    color: var(--color-twilight);
-
-    &.isSelected {
-        color: var(--color-blue);
-    }
-
-    &.isDisabled {
-        color: var(--color-metal);
-        pointer-events: none;
-    }
-}
-
 @media (min-width: 640px) {
     .itemList.formSelect {
         width: calc(100% - 2px);

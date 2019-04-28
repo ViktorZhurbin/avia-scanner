@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
-import { codeNamePropType } from '../../entities/propTypes';
-import styles from './index.css';
+import { codeNamePropType } from '../../../entities/propTypes';
+import styles from './RowItem.css';
 
 const cx = cl.bind(styles);
 

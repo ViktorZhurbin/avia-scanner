@@ -1,0 +1,12 @@
+.item {
+    color: var(--color-twilight);
+
+    &.isSelected {
+        color: var(--color-blue);
+    }
+
+    &.isDisabled {
+        color: var(--color-metal);
+        pointer-events: none;
+    }
+}
