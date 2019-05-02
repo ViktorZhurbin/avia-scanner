@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
@@ -13,53 +13,45 @@ const cx = cl.bind(styles);
 const CalendarPromise = import(/* webpackChunkName: "calendar" */ 'react-calendar');
 const Calendar = React.lazy(() => CalendarPromise);
 
-class DatePicker extends React.Component {
-    static propTypes = {
-        trigger: PropTypes.node.isRequired,
-        onSelect: PropTypes.func.isRequired,
-        classNames: classNamesPropType,
-    }
+const DatePicker = ({
+    trigger,
+    onSelect,
+    classNames,
+}) => {
+    const [date, setDate] = useState(new Date());
 
-    static defaultProps = {
-        classNames: null,
-    }
+    const handleDateSelect = (newDate) => {
+        setDate(newDate);
+        onSelect(newDate);
+    };
 
-    state = {
-        date: new Date(),
-    }
+    return (
+        <Dropdown
+            classNames={{ ...classNames }}
+            trigger={trigger}
+        >
+            <React.Suspense fallback={<Loading />}>
+                <div className={cx('calendarModal')}>
+                    <Calendar
+                        value={date}
+                        onChange={handleDateSelect}
+                    />
+                </div>
+                <div className={cx('modalOverlay')} />
+            </React.Suspense>
+        </Dropdown>
 
-    handleDateSelect = (date) => {
-        const { onSelect } = this.props;
+    );
+};
 
-        this.setState({
-            date,
-        }, () => onSelect(date));
-    }
+DatePicker.propTypes = {
+    trigger: PropTypes.node.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    classNames: classNamesPropType,
+};
 
-    render() {
-        const {
-            trigger,
-            classNames,
-        } = this.props;
-
-        return (
-            <Dropdown
-                classNames={{ ...classNames }}
-                trigger={trigger}
-            >
-                <React.Suspense fallback={<Loading />}>
-                    <div className={cx('calendarModal')}>
-                        <Calendar
-                            value={this.state.date}
-                            onChange={this.handleDateSelect}
-                        />
-                    </div>
-                    <div className={cx('modalOverlay')} />
-                </React.Suspense>
-            </Dropdown>
-
-        );
-    }
-}
+DatePicker.defaultProps = {
+    classNames: null,
+};
 
 export default DatePicker;
