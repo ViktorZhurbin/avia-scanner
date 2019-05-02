@@ -10,49 +10,48 @@ import styles from './CurrencySelect.css';
 
 const cx = cl.bind(styles);
 
-class CurrencySelect extends React.PureComponent {
-    static propTypes = {
-        currency: codeNamePropType.isRequired,
-        setUpCurrency: PropTypes.func.isRequired,
-    }
+const renderItem = currency => (
+    <div className={cx('item')}>
+        <strong className={cx('code')}>
+            {currency.code}
+        </strong>
+        <span className={cx('name')}>
+            {currency.name}
+        </span>
+    </div>
+);
 
-    renderTrigger = () => {
-        const { currency } = this.props;
 
-        return (
-            <div className={cx('triggerContainer')}>
-                <span className={cx('triggerText')}>
-                    {currency.code}
-                </span>
-            </div>
-        );
-    }
+const DropdownTrigger = ({ currencyCode }) => (
+    <div className={cx('triggerContainer')}>
+        <span className={cx('triggerText')}>
+            {currencyCode}
+        </span>
+    </div>
+);
 
-    renderItem = item => (
-        <div className={cx('item')}>
-            <strong className={cx('code')}>
-                {item.code}
-            </strong>
-            <span className={cx('name')}>
-                {item.name}
-            </span>
-        </div>
-    )
-
-    render() {
-        const { currency, setUpCurrency } = this.props;
-
-        return (
-            <Select
-                trigger={this.renderTrigger()}
-                itemList={currencyList}
-                renderItem={this.renderItem}
-                selectedItem={currency}
-                onSelect={setUpCurrency}
-                classNames={{ currency: true }}
+const CurrencySelect = ({ currency, setUpCurrency }) => (
+    <Select
+        trigger={(
+            <DropdownTrigger
+                currencyCode={currency.code}
             />
-        );
-    }
-}
+        )}
+        itemList={currencyList}
+        renderItem={renderItem}
+        selectedItem={currency}
+        onSelect={setUpCurrency}
+        classNames={{ currency: true }}
+    />
+);
+
+CurrencySelect.propTypes = {
+    currency: codeNamePropType.isRequired,
+    setUpCurrency: PropTypes.func.isRequired,
+};
+
+DropdownTrigger.propTypes = {
+    currencyCode: PropTypes.string.isRequired,
+};
 
 export default CurrencySelect;
