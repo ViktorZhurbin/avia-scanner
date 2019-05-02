@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
-import SVGInline from 'react-svg-inline';
 
 import DatePicker from '../../DatePicker';
-import calendarIcon from '../../../assets/calendar.svg';
-import clearDateIcon from '../../../assets/close.svg';
+import CalendarIcon from '../../../assets/calendar.svg';
+import ClearDateIcon from '../../../assets/close.svg';
 import { formatDateByLocale, dateToIsoString } from '../../../utils/dateTime';
 import getBrowserLocale from '../../../utils/getBrowserLocale';
 
@@ -68,11 +67,16 @@ class DateSelect extends React.PureComponent {
                     })}
                 >
                     {formatted || placeholder}
-                    <SVGInline
-                        className={cx('dateIcon')}
-                        svg={formatted ? clearDateIcon : calendarIcon}
-                        onClick={formatted ? this.handleClearDate : null}
-                    />
+                    <div className={cx('dateIcon')}>
+                        {formatted
+                            ? (
+                                <ClearDateIcon
+                                    onClick={this.handleClearDate}
+                                />
+                            )
+                            : <CalendarIcon />
+                        }
+                    </div>
                 </div>
             </div>
         );

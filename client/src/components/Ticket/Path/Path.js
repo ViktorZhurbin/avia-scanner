@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SVGInline from 'react-svg-inline';
 import cl from 'classnames/bind';
 
 import { getDuration } from '../../../utils/string';
-import planeSVG from '../../../assets/plane.svg';
+import PlaneIcon from '../../../assets/plane.svg';
 
 import styles from './Path.css';
 
@@ -21,7 +20,7 @@ const Path = ({ duration }) => (
             )}
         <div className={cx('bottom')}>
             <div className={cx('line')} />
-            <SVGInline svg={planeSVG} />
+            <PlaneIcon />
         </div>
     </div>
 );
