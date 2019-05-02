@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
-import ReactOutsideEvent from 'react-outside-event';
+import OutsideClickHandler from 'react-outside-click-handler';
 import cl from 'classnames/bind';
 
 import { classNamesPropType } from '../../entities/propTypes';
@@ -10,88 +10,69 @@ import styles from './Dropdown.css';
 
 const cx = cl.bind(styles);
 
-class Dropdown extends React.Component {
-    static propTypes = {
-        trigger: PropTypes.node.isRequired,
-        children: PropTypes.node.isRequired,
-        classNames: classNamesPropType,
-    }
+const Dropdown = ({
+    trigger,
+    children,
+    classNames,
+}) => {
+    const [isOpen, setDropdownState] = useState(false);
 
-    static defaultProps = {
-        classNames: null,
-    }
+    const toggleDropdown = () => setDropdownState(!isOpen);
 
-    state = {
-        isOpen: false,
-    }
+    const onOutsideClick = () => setDropdownState(false);
 
-    onToggle = () => {
-        const { isOpen } = this.state;
-
-        this.setState(() => ({
-            isOpen: !isOpen,
-        }));
-    }
-
-    onOutsideEvent = () => {
-        this.setState(() => ({
-            isOpen: false,
-        }));
-    }
-
-    renderDropdown = () => {
-        const { isOpen } = this.state;
-        const { children } = this.props;
-
-        return (
-            <CSSTransition
-                in={isOpen}
-                timeout={10}
-                classNames="message"
-                unmountOnExit
-            >
-                <div className={cx('dropdown')}>
-                    {children}
-                </div>
-            </CSSTransition>
-        );
-    }
-
-    handleKeyPress = (event) => {
+    const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            this.onToggle();
+            toggleDropdown();
         }
-    }
+    };
 
-    render() {
-        const { trigger, classNames } = this.props;
-
-        return (
-            <div
-                className={cx({
-                    container: true,
-                    ...classNames,
-                })}
-                role="button"
-                data-toggle="dropdown"
-                tabIndex="0"
-                onClick={this.onToggle}
-                onKeyPress={this.handleKeyPress}
+    return (
+        <div
+            className={cx({
+                container: true,
+                ...classNames,
+            })}
+            role="button"
+            tabIndex="0"
+            onClick={toggleDropdown}
+            onKeyPress={handleKeyPress}
+        >
+            <OutsideClickHandler
+                onOutsideClick={onOutsideClick}
             >
                 <div
                     className={cx('trigger')}
                     role="button"
-                    data-toggle="dropdown"
                     tabIndex="0"
-                    onClick={this.onToggle}
-                    onKeyPress={this.handleKeyPress}
+                    onClick={toggleDropdown}
+                    onKeyPress={handleKeyPress}
                 >
                     {trigger}
                 </div>
-                {this.renderDropdown()}
-            </div>
-        );
-    }
-}
+                <CSSTransition
+                    in={isOpen}
+                    timeout={10}
+                    classNames="message"
+                    unmountOnExit
+                >
+                    <div className={cx('dropdown')}>
+                        {children}
+                    </div>
+                </CSSTransition>
+            </OutsideClickHandler>
+        </div>
+    );
+};
 
-export default ReactOutsideEvent(Dropdown, ['click']);
+Dropdown.propTypes = {
+    trigger: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
+    classNames: classNamesPropType,
+};
+
+Dropdown.defaultProps = {
+    classNames: null,
+};
+
+export default Dropdown;
