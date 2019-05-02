@@ -10,34 +10,22 @@ import styles from './Select.css';
 
 const cx = cl.bind(styles);
 
-class Select extends React.Component {
-    static propTypes = {
-        trigger: PropTypes.node.isRequired,
-        itemList: PropTypes.arrayOf(codeNamePropType).isRequired,
-        renderItem: PropTypes.func.isRequired,
-        selectedItem: codeNamePropType,
-        disabledItem: codeNamePropType,
-        onSelect: PropTypes.func.isRequired,
-        classNames: classNamesPropType,
-    }
+const Select = (props) => {
+    const {
+        trigger,
+        classNames,
+        selectedItem,
+        disabledItem,
+        onSelect,
+        itemList,
+        renderItem,
+    } = props;
 
-    static defaultProps = {
-        classNames: null,
-        disabledItem: null,
-        selectedItem: null,
-    }
-
-    renderDropdown = () => {
-        const {
-            selectedItem,
-            disabledItem,
-            onSelect,
-            itemList,
-            renderItem,
-            classNames,
-        } = this.props;
-
-        return (
+    return (
+        <Dropdown
+            classNames={{ ...classNames }}
+            trigger={trigger}
+        >
             <div
                 className={cx({
                     itemList: true,
@@ -54,7 +42,7 @@ class Select extends React.Component {
                             className={classNames}
                             value={item}
                             index={index}
-                            onSelect={onSelect}
+                            handleSelect={onSelect}
                             isSelected={isSelected}
                             isDisabled={isDisabled}
                         >
@@ -63,20 +51,24 @@ class Select extends React.Component {
                     );
                 })}
             </div>
-        );
-    };
+        </Dropdown>
+    );
+};
 
-    render() {
-        const { trigger, classNames } = this.props;
-        return (
-            <Dropdown
-                classNames={{ ...classNames }}
-                trigger={trigger}
-            >
-                {this.renderDropdown()}
-            </Dropdown>
-        );
-    }
-}
+Select.propTypes = {
+    trigger: PropTypes.node.isRequired,
+    itemList: PropTypes.arrayOf(codeNamePropType).isRequired,
+    renderItem: PropTypes.func.isRequired,
+    selectedItem: codeNamePropType,
+    disabledItem: codeNamePropType,
+    onSelect: PropTypes.func.isRequired,
+    classNames: classNamesPropType,
+};
+
+Select.defaultProps = {
+    classNames: null,
+    disabledItem: null,
+    selectedItem: null,
+};
 
 export default Select;

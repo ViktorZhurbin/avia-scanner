@@ -7,58 +7,53 @@ import styles from './RowItem.css';
 
 const cx = cl.bind(styles);
 
-class RowItem extends React.Component {
-    static propTypes = {
-        value: codeNamePropType.isRequired,
-        index: PropTypes.number.isRequired,
-        onSelect: PropTypes.func.isRequired,
-        children: PropTypes.node.isRequired,
-        isSelected: PropTypes.bool,
-        isDisabled: PropTypes.bool,
-    }
+const RowItem = ({
+    value,
+    handleSelect,
+    index,
+    children,
+    isSelected,
+    isDisabled,
+}) => {
+    const onSelect = () => {
+        handleSelect(value);
+    };
 
-    static defaultProps = {
-        isSelected: false,
-        isDisabled: false,
-    }
-
-    onSelect = () => {
-        const { value, onSelect } = this.props;
-
-        onSelect(value);
-    }
-
-    onKeyPress = (event) => {
+    const onKeyPress = (event) => {
         if (event.key === 'Enter') {
-            this.onSelect();
+            onSelect();
         }
-    }
+    };
 
-    render() {
-        const {
-            value,
-            index,
-            children,
-            isSelected,
-            isDisabled,
-        } = this.props;
+    return (
+        <div
+            key={value.code}
+            className={cx('item', {
+                isSelected,
+                isDisabled,
+            })}
+            role="button"
+            tabIndex={index + 1}
+            onKeyPress={onKeyPress}
+            onClick={onSelect}
+        >
+            {children}
+        </div>
+    );
+};
 
-        return (
-            <div
-                key={value.code}
-                className={cx('item', {
-                    isSelected,
-                    isDisabled,
-                })}
-                role="button"
-                tabIndex={index + 1}
-                onKeyPress={this.onKeyPress}
-                onClick={this.onSelect}
-            >
-                {children}
-            </div>
-        );
-    }
-}
+RowItem.propTypes = {
+    value: codeNamePropType.isRequired,
+    index: PropTypes.number.isRequired,
+    handleSelect: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+    isSelected: PropTypes.bool,
+    isDisabled: PropTypes.bool,
+};
+
+RowItem.defaultProps = {
+    isSelected: false,
+    isDisabled: false,
+};
 
 export default RowItem;

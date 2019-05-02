@@ -6,50 +6,46 @@ import styles from './Checkbox.css';
 
 const cx = cl.bind(styles);
 
-class Checkbox extends React.PureComponent {
-    static propTypes = {
-        id: PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string,
-        ]).isRequired,
-        checked: PropTypes.bool.isRequired,
-        name: PropTypes.string.isRequired,
-        onChange: PropTypes.func,
-    };
-
-    static defaultProps = {
-        onChange: null,
-    };
-
-    onToggleFilter = () => {
-        const { onChange, id } = this.props;
+const Checkbox = ({
+    id,
+    name,
+    checked,
+    onChange,
+}) => {
+    const onToggleFilter = () => {
         onChange(id);
-    }
+    };
 
-    render() {
-        const {
-            id,
-            checked,
-            name,
-        } = this.props;
+    return (
+        /* eslint-disable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */
+        <label className={cx('row')}>
+            <input
+                className={cx('input')}
+                id={id}
+                checked={checked}
+                name={name}
+                type="checkbox"
+                onChange={onToggleFilter}
+            />
+            <span className={cx('checkmark')} />
+            {name}
+        </label>
+        /* eslint-enable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */
+    );
+};
 
-        return (
-            /* eslint-disable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */
-            <label className={cx('row')}>
-                <input
-                    className={cx('input')}
-                    id={id}
-                    checked={checked}
-                    name={name}
-                    type="checkbox"
-                    onChange={this.onToggleFilter}
-                />
-                <span className={cx('checkmark')} />
-                {name}
-            </label>
-            /* eslint-enable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */
-        );
-    }
-}
+Checkbox.propTypes = {
+    id: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]).isRequired,
+    checked: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+};
 
-export default Checkbox;
+Checkbox.defaultProps = {
+    onChange: null,
+};
+
+export default React.memo(Checkbox);
