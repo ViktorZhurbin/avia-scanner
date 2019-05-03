@@ -1,18 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Dropdown render correctly dropdown component 1`] = `
-<Dropdown
-  classNames={null}
-  onSelect={[Function]}
-  trigger={<div />}
+<div
+  className="container"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  role="button"
+  tabIndex="0"
 >
-  <ul>
-    <li>
-      One
-    </li>
-    <li>
-      Two
-    </li>
-  </ul>
-</Dropdown>
+  <OutsideClickHandler
+    disabled={false}
+    display="block"
+    onOutsideClick={[Function]}
+    useCapture={true}
+  >
+    <div
+      className="trigger"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex="0"
+    >
+      <div />
+    </div>
+    <CSSTransition
+      classNames="message"
+      in={false}
+      timeout={10}
+      unmountOnExit={true}
+    >
+      <div
+        className="dropdown"
+      >
+        <ul>
+          <li>
+            One
+          </li>
+          <li>
+            Two
+          </li>
+        </ul>
+      </div>
+    </CSSTransition>
+  </OutsideClickHandler>
+</div>
 `;
