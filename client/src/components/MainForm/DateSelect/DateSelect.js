@@ -12,44 +12,25 @@ import styles from '../MainForm.css';
 
 const cx = cl.bind(styles);
 
-class DateSelect extends React.PureComponent {
-    static propTypes = {
-        value: PropTypes.string,
-        placeholder: PropTypes.string.isRequired,
-        isFirst: PropTypes.bool,
-        isLast: PropTypes.bool,
-        onSelect: PropTypes.func.isRequired,
-        isHighlighted: PropTypes.bool,
-    }
-
-    static defaultProps = {
-        value: null,
-        isFirst: false,
-        isLast: false,
-        isHighlighted: false,
-    }
-
-    handleClearDate = (event) => {
-        const { onSelect } = this.props;
-
+const DateSelect = ({
+    value,
+    placeholder,
+    isFirst,
+    isLast,
+    onSelect,
+    isHighlighted,
+}) => {
+    const handleClearDate = (event) => {
         event.stopPropagation();
         onSelect(null);
-    }
+    };
 
-    handleSetDate = (date) => {
-        const { onSelect } = this.props;
-        onSelect(dateToIsoString(date));
-    }
+    const handleSetDate = (date) => {
+        const formattedDate = dateToIsoString(date);
+        onSelect(formattedDate);
+    };
 
-    renderTrigger = () => {
-        const {
-            value,
-            placeholder,
-            isFirst,
-            isLast,
-            isHighlighted,
-        } = this.props;
-
+    const renderTrigger = () => {
         const locale = getBrowserLocale();
         const formatted = value && formatDateByLocale(value, locale);
 
@@ -71,7 +52,7 @@ class DateSelect extends React.PureComponent {
                         {formatted
                             ? (
                                 <ClearDateIcon
-                                    onClick={this.handleClearDate}
+                                    onClick={handleClearDate}
                                 />
                             )
                             : <CalendarIcon />
@@ -80,17 +61,31 @@ class DateSelect extends React.PureComponent {
                 </div>
             </div>
         );
-    }
+    };
 
-    render() {
-        return (
-            <DatePicker
-                onSelect={this.handleSetDate}
-                trigger={this.renderTrigger()}
-                classNames={{ formSelect: true }}
-            />
-        );
-    }
-}
+    return (
+        <DatePicker
+            onSelect={handleSetDate}
+            trigger={renderTrigger()}
+            classNames={{ formSelect: true }}
+        />
+    );
+};
+
+DateSelect.propTypes = {
+    value: PropTypes.string,
+    placeholder: PropTypes.string.isRequired,
+    isFirst: PropTypes.bool,
+    isLast: PropTypes.bool,
+    onSelect: PropTypes.func.isRequired,
+    isHighlighted: PropTypes.bool,
+};
+
+DateSelect.defaultProps = {
+    value: null,
+    isFirst: false,
+    isLast: false,
+    isHighlighted: false,
+};
 
 export default DateSelect;
