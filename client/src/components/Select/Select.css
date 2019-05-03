@@ -1,24 +1,27 @@
-.itemList.currency {
+.itemList {
     position: absolute;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    padding: 15px 0;
+    background: white;
+    z-index: 3;
+}
+
+.itemList.currency {
     top: 100%;
     right: 0;
     margin-top: 10px;
     width: var(--width);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-    padding: 15px 0;
-    background: white;
     border-radius: 5px;
 }
 
 .itemList.formSelect {
     width: 100%;
-    position: absolute;
     top: 68px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-    padding: 15px 0;
-    background: white;
     border-radius: 0 0 5px 5px;
     overflow-y: auto;
+    z-index: 3;
+    flex-grow: 1;
+    flex-basis: 33%;
 }
 
 @media (min-width: 640px) {

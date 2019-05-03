@@ -8,10 +8,6 @@
     outline: 0;
 }
 
-.dropdown {
-    z-index: 11;
-}
-
 .formSelect {
     flex-grow: 1;
     flex-basis: 33%;
