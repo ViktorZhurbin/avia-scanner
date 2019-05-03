@@ -8,7 +8,7 @@ export const getFilteredTickets = createSelector(
     (allTickets, selectedStops) => {
         const filteredTickets = allTickets
             ? allTickets.filter(
-                ({ stops }) => selectedStops[stops],
+                ({ stops }) => selectedStops.includes(stops),
             )
             : [];
 

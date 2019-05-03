@@ -4,12 +4,12 @@ import Filters from './Filters';
 import { setStops } from '../../store/ticketData/actions';
 
 const mapDispatchToProps = dispatch => ({
-    setUpStops: value => dispatch(setStops(value)),
+    onChange: value => dispatch(setStops(value)),
 });
 
 const mapStateToProps = ({ tickets }) => ({
-    selectedStops: tickets.selectedStops,
-    stopOptions: tickets.ticketData.stopOptions,
+    selectedFilters: tickets.selectedStops,
+    allFilters: tickets.ticketData.stopOptions,
 });
 
 export default connect(

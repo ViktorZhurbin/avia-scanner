@@ -12,9 +12,7 @@ const Checkbox = ({
     checked,
     onChange,
 }) => {
-    const onToggleFilter = () => {
-        onChange(id);
-    };
+    const onToggleFilter = () => onChange(id);
 
     return (
         /* eslint-disable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for */

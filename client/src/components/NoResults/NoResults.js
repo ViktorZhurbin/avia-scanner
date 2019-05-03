@@ -10,24 +10,12 @@ const cx = cl.bind(styles);
 
 class NoResults extends React.PureComponent {
     static propTypes = {
-        stopOptions: PropTypes.arrayOf(
-            PropTypes.number,
-        ).isRequired,
-        setUpStops: PropTypes.func.isRequired,
+        resetFilter: PropTypes.func.isRequired,
         count: PropTypes.number.isRequired,
     }
 
-    onFilterReset = () => {
-        const { stopOptions, setUpStops } = this.props;
-        const resetFilterState = {
-            [stopOptions[0]]: true,
-        };
-
-        setUpStops(resetFilterState);
-    }
-
     render() {
-        const { count } = this.props;
+        const { count, resetFilter } = this.props;
 
         return (
             <div className={cx('container')}>
@@ -37,7 +25,7 @@ class NoResults extends React.PureComponent {
                 </div>
                 <div className={cx('resetButton')}>
                     <Button
-                        onClick={this.onFilterReset}
+                        onClick={resetFilter}
                     >
                         <span className={cx('buttonText')}>
                             Reset Filters
