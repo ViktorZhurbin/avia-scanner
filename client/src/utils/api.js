@@ -33,9 +33,8 @@ export const fetchMockTicketData = async () => {
 export const ticketRequestController = new AbortController();
 
 export const fetchTickets = async (query) => {
-    if (query.length === 0) {
-        const mockData = fetchMockTicketData();
-
+    if (!query || query.length === 0) {
+        const mockData = await fetchMockTicketData();
         return mockData;
     }
     try {

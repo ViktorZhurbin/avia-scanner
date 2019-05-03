@@ -1,18 +1,20 @@
 import cookies from 'browser-cookies';
 import qs from 'query-string';
 
-const lastSearch = 'last_search';
+const LAST_SEARCH = 'last_search';
 
 export const setLastSearchCookie = (queryString) => {
-    const { departure } = qs.parse(queryString);
+    if (queryString && queryString.length > 0) {
+        const { departure } = qs.parse(queryString);
 
-    cookies.set(
-        lastSearch,
-        queryString,
-        { expires: departure },
-    );
+        cookies.set(
+            LAST_SEARCH,
+            queryString,
+            { expires: departure },
+        );
+    }
 };
 
 export const getLastSearchCookie = () => (
-    cookies.get(lastSearch)
+    cookies.get(LAST_SEARCH)
 );

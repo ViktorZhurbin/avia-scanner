@@ -15,6 +15,10 @@ import {
 } from './actions';
 
 function* fetchTicketDataApi(query) {
+    if (!query) {
+        const mockData = yield call(fetchTickets);
+        return mockData;
+    }
     for (let i = 1; i <= 5; i += 1) {
         try {
             const ticketData = yield call(fetchTickets, query);
@@ -35,6 +39,11 @@ function* fetchTicketDataApi(query) {
 
 function* fetchTicketData({ payload }) {
     yield delay(500);
+    if (!payload) {
+        const mockData = yield call(fetchTicketDataApi);
+        yield put(requestSuccess(mockData));
+        return;
+    }
     const ticketData = yield call(fetchTicketDataApi, payload);
     yield put(requestSuccess(ticketData));
 }
