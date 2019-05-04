@@ -63,7 +63,7 @@ const FormLayout = ({
         const { search } = window.location;
         window.onpopstate = () => onLoad(search);
         onLoad(search);
-    }, [window.location.search]);
+    }, []);
 
     return (
         <div className={cx('container', { hasTickets })}>
