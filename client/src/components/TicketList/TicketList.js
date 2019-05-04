@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cl from 'classnames/bind';
 
 import Ticket from '../Ticket';
 import NoResults from '../NoResults';
 import { ticketPropType } from '../../entities/propTypes';
+import { filterTickets } from '../../utils/api';
 
 import styles from './TicketList.css';
 
@@ -14,15 +15,20 @@ const TicketList = (props) => {
     const {
         currencyRates,
         hasTickets,
-        filteredTickets,
-        allTicketsCount,
+        selectedStops,
+        allTickets,
     } = props;
+
+    const filteredTickets = useMemo(
+        () => filterTickets(allTickets, selectedStops),
+        [allTickets, selectedStops],
+    );
 
     return (
         hasTickets && filteredTickets.length === 0
             ? (
                 <NoResults
-                    count={allTicketsCount}
+                    count={allTickets.length}
                 />
             )
             : (
@@ -40,14 +46,14 @@ const TicketList = (props) => {
 };
 
 TicketList.propTypes = {
-    filteredTickets: PropTypes.arrayOf(ticketPropType),
+    allTickets: PropTypes.arrayOf(ticketPropType),
     currencyRates: PropTypes.objectOf(PropTypes.number),
     hasTickets: PropTypes.bool.isRequired,
-    allTicketsCount: PropTypes.number.isRequired,
+    selectedStops: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 TicketList.defaultProps = {
-    filteredTickets: [],
+    allTickets: [],
     currencyRates: {},
 };
 

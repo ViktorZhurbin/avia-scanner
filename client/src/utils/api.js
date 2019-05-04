@@ -56,3 +56,11 @@ export const fetchTickets = async (query) => {
         throw error;
     }
 };
+
+export const filterTickets = (ticketList, filters) => (
+    ticketList
+        ? ticketList.filter(ticket => (
+            filters.includes(ticket.stops)
+        ))
+        : []
+);
