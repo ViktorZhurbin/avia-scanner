@@ -21,7 +21,7 @@ const FormLayout = ({
     isLoading,
     hasTickets,
 }) => {
-    const updateSearch = () => {
+    const resetForm = () => {
         const lastSearchQuery = getLastSearchCookie();
         if (lastSearchQuery) {
             setUpFormInput(lastSearchQuery);
@@ -37,11 +37,11 @@ const FormLayout = ({
         }
     };
 
-    const onResetState = () => {
+    const handleReset = () => {
         window.history.pushState('', '', '/');
         cancelRequest();
         resetTickets();
-        updateSearch();
+        resetForm();
     };
 
     const onLoad = (search) => {
@@ -49,11 +49,11 @@ const FormLayout = ({
             getTickets(search);
             setUpFormInput(search);
         } else {
-            onResetState();
+            handleReset();
         }
     };
 
-    const onSubmit = (search) => {
+    const handleSubmit = (search) => {
         setLastSearchCookie(search);
         getTickets(search);
         window.history.pushState({ search }, '', search);
@@ -72,10 +72,10 @@ const FormLayout = ({
                     isLoading={isLoading}
                 />
                 <NavBar
-                    onResetState={onResetState}
+                    onReset={handleReset}
                 />
                 <MainForm
-                    onSubmit={onSubmit}
+                    onSubmit={handleSubmit}
                     isLoading={isLoading}
                     hasTickets={hasTickets}
                 />

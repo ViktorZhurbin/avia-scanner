@@ -9,18 +9,18 @@ import styles from './NavBar.css';
 
 const cx = cl.bind(styles);
 
-const NavBar = ({ onResetState }) => (
+const NavBar = ({ onReset }) => (
     <div className={cx('container')}>
         <Logo
             className={cx('logo')}
-            onClick={onResetState}
+            onClick={onReset}
         />
         <CurrencySelect />
     </div>
 );
 
 NavBar.propTypes = {
-    onResetState: PropTypes.func.isRequired,
+    onReset: PropTypes.func.isRequired,
 };
 
 export default React.memo(NavBar);
