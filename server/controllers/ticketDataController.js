@@ -1,12 +1,12 @@
 const axios = require('axios');
 const qs = require('qs');
-
+require('dotenv').config();
 const mockTicketData = require('../mockData/ticketData');
 const { formatTickets } = require('../utils/formatTickets');
 const { handleError } = require('../utils/api');
 
-const baseUrl = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing';
-const apiKey = '166e56093cmsh7cb5c98216f8318p11d2eejsn8fe0d9372517';
+const baseUrl = process.env.BASE_URL_TICKET;
+const apiKey = process.env.API_KEY_TICKET;
 
 module.exports = {
     mockData: (req, res) => {
@@ -17,13 +17,7 @@ module.exports = {
 
     createSession: async (req, res, next) => {
         console.log('creating session with query:\n', req.query);
-        const {
-            origin,
-            destination,
-            departure,
-            locale,
-            currency,
-        } = req.query;
+        const { origin, destination, departure, locale, currency } = req.query;
 
         const [, country] = locale && locale.split('-');
 
@@ -35,7 +29,7 @@ module.exports = {
             destinationPlace: `${destination}-sky`,
             outboundDate: departure,
             adults: 1,
-        }
+        };
 
         const options = {
             method: 'POST',
@@ -44,17 +38,18 @@ module.exports = {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             data: qs.stringify(data),
-        }
+        };
 
         try {
-            const { headers } = await axios(`${baseUrl}/v1.0`, options).catch(handleError);
+            const { headers } = await axios(`${baseUrl}/v1.0`, options).catch(
+                handleError
+            );
             const { location } = headers;
             const sessionKey = location && location.split('/').pop();
 
             res.json({
                 body: sessionKey,
             });
-
         } catch (error) {
             // console.log(error);
             next(error);
@@ -68,16 +63,16 @@ module.exports = {
         const reqUrl = `${baseUrl}/uk2/v1.0/${key}?pageIndex=0&pageSize=10`;
 
         try {
-            const { data } = await axios.get(reqUrl, {
-                headers: { 'X-RapidAPI-Key': apiKey },
-            }).catch(handleError);
-            // console.log(status, headers, data);
+            const { data } = await axios
+                .get(reqUrl, {
+                    headers: { 'X-RapidAPI-Key': apiKey },
+                })
+                .catch(handleError);
 
             res.json({
                 body: data && formatTickets(data),
             });
         } catch (error) {
-            // console.log(error);
             next(error);
         }
     },
