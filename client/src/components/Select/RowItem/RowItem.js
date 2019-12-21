@@ -13,7 +13,7 @@ const RowItem = ({
     index,
     children,
     isSelected,
-    isDisabled,
+    isDisabled
 }) => {
     const onSelect = () => {
         handleSelect(value);
@@ -30,7 +30,7 @@ const RowItem = ({
             key={value.code}
             className={cx('item', {
                 isSelected,
-                isDisabled,
+                isDisabled
             })}
             role="button"
             tabIndex={index + 1}
@@ -48,12 +48,12 @@ RowItem.propTypes = {
     handleSelect: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     isSelected: PropTypes.bool,
-    isDisabled: PropTypes.bool,
+    isDisabled: PropTypes.bool
 };
 
 RowItem.defaultProps = {
     isSelected: false,
-    isDisabled: false,
+    isDisabled: false
 };
 
 export default RowItem;

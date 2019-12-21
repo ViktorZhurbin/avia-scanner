@@ -24,15 +24,15 @@ const Button = ({ children, onClick, isLoading }) => (
 Button.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.node,
+        PropTypes.node
     ]).isRequired,
     onClick: PropTypes.func,
-    isLoading: PropTypes.bool,
+    isLoading: PropTypes.bool
 };
 
 Button.defaultProps = {
     onClick: () => null,
-    isLoading: false,
+    isLoading: false
 };
 
 export default Button;

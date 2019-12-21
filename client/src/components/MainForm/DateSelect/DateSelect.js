@@ -18,7 +18,7 @@ const DateSelect = ({
     isFirst,
     isLast,
     onSelect,
-    isHighlighted,
+    isHighlighted
 }) => {
     const handleClearDate = (event) => {
         event.stopPropagation();
@@ -39,12 +39,12 @@ const DateSelect = ({
                 className={cx('triggerContainer', {
                     isFirst,
                     isLast,
-                    isHighlighted,
+                    isHighlighted
                 })}
             >
                 <div
                     className={cx('triggerText', 'dateTrigger', {
-                        placeholder: !formatted,
+                        placeholder: !formatted
                     })}
                 >
                     {formatted || placeholder}
@@ -78,14 +78,14 @@ DateSelect.propTypes = {
     isFirst: PropTypes.bool,
     isLast: PropTypes.bool,
     onSelect: PropTypes.func.isRequired,
-    isHighlighted: PropTypes.bool,
+    isHighlighted: PropTypes.bool
 };
 
 DateSelect.defaultProps = {
     value: null,
     isFirst: false,
     isLast: false,
-    isHighlighted: false,
+    isHighlighted: false
 };
 
 export default DateSelect;

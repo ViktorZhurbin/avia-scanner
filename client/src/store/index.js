@@ -7,7 +7,7 @@ import ticketDataSaga from './ticketData/sagas';
 
 const reducer = {
     tickets: ticketsReducer,
-    search: searchReducer,
+    search: searchReducer
 };
 
 const sagaMiddleware = createSagaMiddleware();
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
 const store = configureStore({
     reducer,
     middleware,
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: process.env.NODE_ENV !== 'production'
 });
 
 sagaMiddleware.run(ticketDataSaga);

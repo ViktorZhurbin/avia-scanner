@@ -4,7 +4,7 @@ import Ticket from './Ticket';
 
 const mapStateToProps = ({ search: { currency, locale } }) => ({
     currency,
-    locale,
+    locale
 });
 
 export default connect(

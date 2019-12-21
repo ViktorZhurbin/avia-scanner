@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const numberStringObject = PropTypes.objectOf(
     PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number,
+        PropTypes.number
     ]),
 );
 
@@ -13,9 +13,9 @@ export const classNamesPropType = PropTypes.oneOfType([
     PropTypes.objectOf(
         PropTypes.oneOfType([
             PropTypes.string,
-            PropTypes.bool,
+            PropTypes.bool
         ]),
-    ),
+    )
 ]);
 
 export const ticketPropType = PropTypes.shape({
@@ -39,13 +39,13 @@ export const ticketPropType = PropTypes.shape({
     stops: PropTypes.number,
     offer: PropTypes.shape({
         price: PropTypes.number,
-        link: PropTypes.string,
-    }),
+        link: PropTypes.string
+    })
 });
 
 export const codeNamePropType = PropTypes.shape({
     code: PropTypes.string,
-    name: PropTypes.string,
+    name: PropTypes.string
 });
 
 export const searchPropType = PropTypes.shape({
@@ -53,5 +53,5 @@ export const searchPropType = PropTypes.shape({
     currency: codeNamePropType,
     origin: codeNamePropType,
     destination: codeNamePropType,
-    departure: PropTypes.string,
+    departure: PropTypes.string
 });

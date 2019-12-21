@@ -16,7 +16,7 @@ const Calendar = React.lazy(() => CalendarPromise);
 const DatePicker = ({
     trigger,
     onSelect,
-    classNames,
+    classNames
 }) => {
     const [date, setDate] = useState(new Date());
 
@@ -47,11 +47,11 @@ const DatePicker = ({
 DatePicker.propTypes = {
     trigger: PropTypes.node.isRequired,
     onSelect: PropTypes.func.isRequired,
-    classNames: classNamesPropType,
+    classNames: classNamesPropType
 };
 
 DatePicker.defaultProps = {
-    classNames: null,
+    classNames: null
 };
 
 export default DatePicker;

@@ -19,7 +19,7 @@ const FormLayout = ({
     resetTickets,
     setUpFormInput,
     isLoading,
-    hasTickets,
+    hasTickets
 }) => {
     const resetForm = () => {
         const lastSearchQuery = getLastSearchCookie();
@@ -91,11 +91,11 @@ FormLayout.propTypes = {
     resetTickets: PropTypes.func.isRequired,
     setUpFormInput: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    hasTickets: PropTypes.bool,
+    hasTickets: PropTypes.bool
 };
 
 FormLayout.defaultProps = {
-    hasTickets: false,
+    hasTickets: false
 };
 
 export default FormLayout;

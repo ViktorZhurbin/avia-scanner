@@ -18,7 +18,7 @@ const Select = (props) => {
         disabledItem,
         onSelect,
         itemList,
-        renderItem,
+        renderItem
     } = props;
 
     return (
@@ -29,7 +29,7 @@ const Select = (props) => {
             <div
                 className={cx({
                     itemList: true,
-                    ...classNames,
+                    ...classNames
                 })}
             >
                 {itemList.map((item, index) => {
@@ -62,13 +62,13 @@ Select.propTypes = {
     selectedItem: codeNamePropType,
     disabledItem: codeNamePropType,
     onSelect: PropTypes.func.isRequired,
-    classNames: classNamesPropType,
+    classNames: classNamesPropType
 };
 
 Select.defaultProps = {
     classNames: null,
     disabledItem: null,
-    selectedItem: null,
+    selectedItem: null
 };
 
 export default Select;

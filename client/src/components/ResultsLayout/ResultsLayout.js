@@ -21,7 +21,7 @@ const ResultsLayout = ({ hasTickets }) => (
 );
 
 ResultsLayout.propTypes = {
-    hasTickets: PropTypes.bool.isRequired,
+    hasTickets: PropTypes.bool.isRequired
 };
 
 export default ResultsLayout;

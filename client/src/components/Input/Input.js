@@ -12,7 +12,7 @@ const Input = (props) => {
         placeholder,
         label,
         onInputChange,
-        inputValue,
+        inputValue
     } = props;
 
     return (
@@ -36,12 +36,12 @@ Input.propTypes = {
     inputValue: PropTypes.string,
     label: PropTypes.string,
     placeholder: PropTypes.string.isRequired,
-    onInputChange: PropTypes.func.isRequired,
+    onInputChange: PropTypes.func.isRequired
 };
 
 Input.defaultProps = {
     inputValue: '',
-    label: '',
+    label: ''
 };
 
 export default React.memo(Input);

@@ -16,7 +16,7 @@ const TicketList = (props) => {
         currencyRates,
         hasTickets,
         selectedStops,
-        allTickets,
+        allTickets
     } = props;
 
     const filteredTickets = useMemo(
@@ -49,12 +49,12 @@ TicketList.propTypes = {
     allTickets: PropTypes.arrayOf(ticketPropType),
     currencyRates: PropTypes.objectOf(PropTypes.number),
     hasTickets: PropTypes.bool.isRequired,
-    selectedStops: PropTypes.arrayOf(PropTypes.number).isRequired,
+    selectedStops: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 
 TicketList.defaultProps = {
     allTickets: [],
-    currencyRates: {},
+    currencyRates: {}
 };
 
 export default TicketList;

@@ -26,7 +26,7 @@ const Path = ({ duration }) => (
 );
 
 Path.propTypes = {
-    duration: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired
 };
 
 export default React.memo(Path);

@@ -17,7 +17,7 @@ const Ticket = ({
     ticket,
     locale,
     currency,
-    rates,
+    rates
 }) => {
     const {
         origin,
@@ -26,7 +26,7 @@ const Ticket = ({
         arrival,
         offer,
         carrier,
-        duration,
+        duration
     } = ticket;
 
     const convertedPrice = convertPrice(offer.price, currency.code, rates);
@@ -66,7 +66,7 @@ Ticket.propTypes = {
     ticket: ticketPropType.isRequired,
     locale: PropTypes.string.isRequired,
     currency: codeNamePropType.isRequired,
-    rates: PropTypes.objectOf(PropTypes.number).isRequired,
+    rates: PropTypes.objectOf(PropTypes.number).isRequired
 };
 
 Ticket.defaultProps = {};

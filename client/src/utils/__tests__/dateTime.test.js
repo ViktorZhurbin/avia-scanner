@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import {
     dateToIsoString,
     formatDateByLocale,
-    getFlightTimeDate,
+    getFlightTimeDate
 } from '../dateTime';
 
 describe('Test dateToIsoString util', () => {
@@ -37,7 +37,7 @@ describe('Test getFlightTimeDate util', () => {
         const value = getFlightTimeDate('2030-03-28T11:30:00', 'en-US');
         const expected = {
             time: '11:30',
-            date: '28 Mar 2030, Thu',
+            date: '28 Mar 2030, Thu'
         };
 
         expect(value).toEqual(expected);
@@ -47,7 +47,7 @@ describe('Test getFlightTimeDate util', () => {
         const value = getFlightTimeDate('2030-03-28T11:30:00', 'ru-RU');
         const expected = {
             time: '11:30',
-            date: '28 мар. 2030, чт',
+            date: '28 мар. 2030, чт'
         };
 
         expect(value).toEqual(expected);

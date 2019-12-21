@@ -1,39 +1,39 @@
 export const places = [
     {
         code: 'TXL',
-        name: 'Berlin',
+        name: 'Berlin'
     },
     {
         code: 'DME',
-        name: 'Moscow',
+        name: 'Moscow'
     },
     {
         code: 'DUB',
-        name: 'Dublin',
+        name: 'Dublin'
     },
     {
         code: 'HEL',
-        name: 'Helsinki',
+        name: 'Helsinki'
     },
     {
         code: 'TBS',
-        name: 'Tbilisi',
-    },
+        name: 'Tbilisi'
+    }
 ];
 
 export const currencyList = [
     {
         code: 'USD',
-        name: 'US Dollar',
+        name: 'US Dollar'
     },
     {
         code: 'RUB',
-        name: 'Rouble',
+        name: 'Rouble'
     },
     {
         code: 'EUR',
-        name: 'Euro',
-    },
+        name: 'Euro'
+    }
 ];
 
 export const currencyRates = (baseCurrency) => {
@@ -41,18 +41,18 @@ export const currencyRates = (baseCurrency) => {
         USD: {
             USD: 1,
             EUR: 0.8,
-            RUB: 60,
+            RUB: 60
         },
         EUR: {
             USD: 1.1,
             EUR: 1,
-            RUB: 70,
+            RUB: 70
         },
         RUB: {
             USD: 0.016666667,
             EUR: 0.013,
-            RUB: 1,
-        },
+            RUB: 1
+        }
     };
 
     return map[baseCurrency];

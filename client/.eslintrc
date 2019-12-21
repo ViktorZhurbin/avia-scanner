@@ -4,32 +4,17 @@
         "browser": true,
         "jest/globals": true
     },
-    "extends": [
-        "airbnb",
-        "plugin:jest/recommended"
-    ],
-    "plugins": [
-        "react",
-        "jest"
-    ],
+    "extends": ["airbnb", "plugin:jest/recommended"],
+    "plugins": ["react", "jest"],
     "rules": {
         "react/jsx-filename-extension": [
             1,
             {
-                "extensions": [
-                    ".js",
-                    ".jsx"
-                ]
+                "extensions": [".js", ".jsx"]
             }
         ],
-        "react/jsx-indent": [
-            "warn",
-            4
-        ],
-        "react/jsx-indent-props": [
-            "warn",
-            4
-        ],
+        "react/jsx-indent": ["warn", 4],
+        "react/jsx-indent-props": ["warn", 4],
         "indent": [
             "warn",
             4,
@@ -37,8 +22,7 @@
                 "SwitchCase": 1
             }
         ],
-        "react/destructuring-assignment": [
-            "off"
-        ]
+        "react/destructuring-assignment": ["off"],
+        "comma-dangle": ["error", "never"]
     }
 }

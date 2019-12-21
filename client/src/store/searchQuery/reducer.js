@@ -13,40 +13,40 @@ import {
     setDestination,
     setDeparture,
     setFormInput,
-    resetSearch,
+    resetSearch
 } from './actions';
 
 const initialState = {
     currency: {
         code: localeCurrency.getCurrency(getBrowserLocale()),
-        name: '',
+        name: ''
     },
     locale: getBrowserLocale(),
     origin: {},
     destination: {},
-    departure: getTodayPlusNDaysIsoString(14),
+    departure: getTodayPlusNDaysIsoString(14)
 };
 
 const reducer = createReducer(initialState, {
     [setCurrency]: (state, { payload }) => ({
         ...state,
-        currency: payload,
+        currency: payload
     }),
     [setLocale]: (state, { payload }) => ({
         ...state,
-        locale: payload,
+        locale: payload
     }),
     [setOrigin]: (state, { payload }) => ({
         ...state,
-        origin: payload,
+        origin: payload
     }),
     [setDestination]: (state, { payload }) => ({
         ...state,
-        destination: payload,
+        destination: payload
     }),
     [setDeparture]: (state, { payload }) => ({
         ...state,
-        departure: payload,
+        departure: payload
     }),
     [setFormInput]: (state, { payload }) => {
         const { origin, destination, departure } = qs.parse(payload);
@@ -57,10 +57,10 @@ const reducer = createReducer(initialState, {
             ...state,
             origin: originPlace,
             destination: destinationPlace,
-            departure,
+            departure
         };
     },
-    [resetSearch]: () => initialState,
+    [resetSearch]: () => initialState
 });
 
 export default reducer;

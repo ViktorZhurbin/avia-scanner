@@ -5,7 +5,7 @@ import NoResults from '../NoResults';
 
 const props = {
     ticketsCount: 10,
-    onFilterReset: () => null,
+    onFilterReset: () => null
 };
 
 describe('Render NoResults', () => {

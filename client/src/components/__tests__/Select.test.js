@@ -8,7 +8,7 @@ const props = {
     itemList: places,
     selectedItem: places[0],
     disabledItem: places[1],
-    onSelect: () => null,
+    onSelect: () => null
 };
 
 describe('Render Select', () => {

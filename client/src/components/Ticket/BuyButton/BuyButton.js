@@ -28,7 +28,7 @@ const BuyButton = ({ price, link }) => (
 
 BuyButton.propTypes = {
     price: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired
 };
 
 export default React.memo(BuyButton);

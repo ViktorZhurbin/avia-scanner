@@ -1,9 +1,11 @@
 import React from 'react';
 
 import FormLayout from '../FormLayout';
-import Loading from '../Loading/Loading';
+import Loading from '../Loading';
 
-const ResultsLayoutPromise = import(/* webpackChunkName: "ResultsLayout" */ '../ResultsLayout');
+const ResultsLayoutPromise = import(
+    /* webpackChunkName: "ResultsLayout" */ '../ResultsLayout'
+);
 const ResultsLayout = React.lazy(() => ResultsLayoutPromise);
 
 const App = () => (

@@ -7,7 +7,7 @@ import { resetSearch, setFormInput } from '../../store/searchQuery/actions';
 
 const mapStateToProps = ({ tickets }) => ({
     isLoading: tickets.isLoading,
-    hasTickets: tickets.hasTickets,
+    hasTickets: tickets.hasTickets
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
     getTicketsCancel: () => dispatch(requestCancel()),
     resetTickets: () => dispatch(reset()),
     resetSearchQuery: () => dispatch(resetSearch()),
-    setUpFormInput: search => dispatch(setFormInput(search)),
+    setUpFormInput: search => dispatch(setFormInput(search))
 });
 
 export default connect(

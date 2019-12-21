@@ -10,7 +10,7 @@ const Checkbox = ({
     id,
     name,
     checked,
-    onChange,
+    onChange
 }) => {
     const onToggleFilter = () => onChange(id);
 
@@ -35,15 +35,15 @@ const Checkbox = ({
 Checkbox.propTypes = {
     id: PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.string,
+        PropTypes.string
     ]).isRequired,
     checked: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func
 };
 
 Checkbox.defaultProps = {
-    onChange: null,
+    onChange: null
 };
 
 export default React.memo(Checkbox);

@@ -4,11 +4,11 @@ import CurrencySelect from './CurrencySelect';
 import { setCurrency } from '../../store/searchQuery/actions';
 
 const mapStateToProps = ({ search: { currency } }) => ({
-    currency,
+    currency
 });
 
 const mapDispatchToProps = dispatch => ({
-    setUpCurrency: currency => dispatch(setCurrency(currency)),
+    setUpCurrency: currency => dispatch(setCurrency(currency))
 });
 
 export default connect(

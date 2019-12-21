@@ -29,7 +29,7 @@ export const getFlightTimeDate = (dateString, locale) => {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
-        weekday: 'short',
+        weekday: 'short'
     };
     const formatter = new Intl.DateTimeFormat(locale, options);
     const formattedParts = formatter.formatToParts(new Date(date));
@@ -43,13 +43,13 @@ export const getFlightTimeDate = (dateString, locale) => {
         year,
         month,
         day,
-        weekday,
+        weekday
     } = dateObj;
 
     const resultDate = `${day} ${month} ${year}, ${weekday}`;
 
     return {
         time,
-        date: resultDate,
+        date: resultDate
     };
 };

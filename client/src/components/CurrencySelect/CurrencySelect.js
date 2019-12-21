@@ -47,11 +47,11 @@ const CurrencySelect = ({ currency, setUpCurrency }) => (
 
 CurrencySelect.propTypes = {
     currency: codeNamePropType.isRequired,
-    setUpCurrency: PropTypes.func.isRequired,
+    setUpCurrency: PropTypes.func.isRequired
 };
 
 DropdownTrigger.propTypes = {
-    currencyCode: PropTypes.string.isRequired,
+    currencyCode: PropTypes.string.isRequired
 };
 
 export default CurrencySelect;

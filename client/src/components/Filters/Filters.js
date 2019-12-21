@@ -12,7 +12,7 @@ const cx = cl.bind(styles);
 const Filters = ({
     allFilters,
     selectedFilters,
-    onChange,
+    onChange
 }) => {
     const onToggleFilter = (key) => {
         const filters = selectedFilters.includes(key)
@@ -78,7 +78,7 @@ Filters.propTypes = {
     selectedFilters: PropTypes.arrayOf(
         PropTypes.number,
     ).isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default Filters;

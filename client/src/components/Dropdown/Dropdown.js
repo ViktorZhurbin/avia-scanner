@@ -13,7 +13,7 @@ const cx = cl.bind(styles);
 const Dropdown = ({
     trigger,
     children,
-    classNames,
+    classNames
 }) => {
     const [isOpen, setDropdownState] = useState(false);
 
@@ -31,7 +31,7 @@ const Dropdown = ({
         <div
             className={cx({
                 container: true,
-                ...classNames,
+                ...classNames
             })}
             role="button"
             tabIndex="0"
@@ -68,11 +68,11 @@ const Dropdown = ({
 Dropdown.propTypes = {
     trigger: PropTypes.node.isRequired,
     children: PropTypes.node.isRequired,
-    classNames: classNamesPropType,
+    classNames: classNamesPropType
 };
 
 Dropdown.defaultProps = {
-    classNames: null,
+    classNames: null
 };
 
 export default Dropdown;

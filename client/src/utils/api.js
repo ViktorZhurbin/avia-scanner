@@ -4,7 +4,7 @@ const api = {
     createSession: 'api/createsession',
     getTickets: 'api/getTicketData',
     mockData: 'api/mockData',
-    getCurrencyRates: '/api/getCurrencyRates',
+    getCurrencyRates: '/api/getCurrencyRates'
 };
 
 const fetchCurrencyRates = async (base) => {

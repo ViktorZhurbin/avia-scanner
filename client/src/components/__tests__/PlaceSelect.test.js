@@ -5,7 +5,7 @@ import PlaceSelect from '../MainForm/PlaceSelect';
 
 const props = {
     onSelect: () => null,
-    placeholder: 'From',
+    placeholder: 'From'
 };
 
 describe('Render PlaceSelect', () => {

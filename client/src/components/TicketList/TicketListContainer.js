@@ -6,7 +6,7 @@ const mapStateToProps = ({ tickets }) => ({
     hasTickets: tickets.hasTickets,
     currencyRates: tickets.ticketData.currencyRates,
     allTickets: tickets.ticketData.allTickets,
-    selectedStops: tickets.selectedStops,
+    selectedStops: tickets.selectedStops
 });
 
 export default connect(

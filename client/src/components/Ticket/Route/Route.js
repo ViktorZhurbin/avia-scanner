@@ -23,7 +23,7 @@ const Route = ({ dateString, location, locale }) => {
 Route.propTypes = {
     location: PropTypes.string.isRequired,
     locale: PropTypes.string.isRequired,
-    dateString: PropTypes.string.isRequired,
+    dateString: PropTypes.string.isRequired
 };
 
 export default React.memo(Route);

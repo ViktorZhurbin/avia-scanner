@@ -20,7 +20,7 @@ const NavBar = ({ onReset }) => (
 );
 
 NavBar.propTypes = {
-    onReset: PropTypes.func.isRequired,
+    onReset: PropTypes.func.isRequired
 };
 
 export default React.memo(NavBar);

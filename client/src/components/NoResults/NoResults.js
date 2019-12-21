@@ -28,7 +28,7 @@ const NoResults = ({ resetFilter, count }) => (
 
 NoResults.propTypes = {
     resetFilter: PropTypes.func.isRequired,
-    count: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired
 };
 
 export default NoResults;

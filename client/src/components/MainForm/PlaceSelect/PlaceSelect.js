@@ -17,19 +17,19 @@ const PlaceSelect = ({
     disabledItem,
     isFirst,
     isLast,
-    isHighlighted,
+    isHighlighted
 }) => {
     const renderTrigger = () => (
         <div
             className={cx('triggerContainer', {
                 isFirst,
                 isLast,
-                isHighlighted,
+                isHighlighted
             })}
         >
             <div
                 className={cx('triggerText', {
-                    placeholder: !(value && value.name),
+                    placeholder: !(value && value.name)
                 })}
             >
                 {(value && value.name) || placeholder}
@@ -64,7 +64,7 @@ PlaceSelect.propTypes = {
     disabledItem: codeNamePropType,
     isFirst: PropTypes.bool,
     isLast: PropTypes.bool,
-    isHighlighted: PropTypes.bool,
+    isHighlighted: PropTypes.bool
 };
 
 PlaceSelect.defaultProps = {
@@ -72,7 +72,7 @@ PlaceSelect.defaultProps = {
     value: null,
     isFirst: false,
     isLast: false,
-    isHighlighted: false,
+    isHighlighted: false
 };
 
 export default PlaceSelect;

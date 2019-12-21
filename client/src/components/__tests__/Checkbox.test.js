@@ -7,7 +7,7 @@ const props = {
     id: 0,
     checked: false,
     name: 'checkbox',
-    selectedStops: [0],
+    selectedStops: [0]
 };
 
 describe('Render Checkbox', () => {

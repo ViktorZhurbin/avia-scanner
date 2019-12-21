@@ -19,7 +19,7 @@ const MainForm = ({
     search,
     setUpOrigin,
     setUpDestination,
-    setUpDeparture,
+    setUpDeparture
 }) => {
     const [highlightedFields, setHighlightedFields] = useState([]);
 
@@ -92,12 +92,12 @@ MainForm.propTypes = {
     search: searchPropType,
     setUpOrigin: PropTypes.func.isRequired,
     setUpDestination: PropTypes.func.isRequired,
-    setUpDeparture: PropTypes.func.isRequired,
+    setUpDeparture: PropTypes.func.isRequired
 };
 
 MainForm.defaultProps = {
     hasTickets: false,
-    search: {},
+    search: {}
 };
 
 export default MainForm;

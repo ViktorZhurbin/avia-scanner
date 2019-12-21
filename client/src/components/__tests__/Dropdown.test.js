@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Dropdown from '../Dropdown';
 
 const props = {
-    onSelect: () => null,
+    onSelect: () => null
 };
 
 describe('Render Dropdown', () => {

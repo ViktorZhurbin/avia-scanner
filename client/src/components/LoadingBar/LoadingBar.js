@@ -11,7 +11,7 @@ const LoadingBar = ({ isLoading }) => (
 );
 
 LoadingBar.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired
 };
 
 export default React.memo(LoadingBar);

@@ -2,7 +2,7 @@ import {
     formatPrice,
     convertPrice,
     getDuration,
-    validateQueryString,
+    validateQueryString
 } from '../string';
 import { currencyRates } from '../../constants/mockData';
 

@@ -2,7 +2,7 @@ import {
     call,
     put,
     takeLatest,
-    delay,
+    delay
 } from 'redux-saga/effects';
 
 import { fetchTickets } from '../../utils/api';
@@ -11,7 +11,7 @@ import {
     requestSuccess,
     requestFail,
     requestCancel,
-    requestRetry,
+    requestRetry
 } from './actions';
 
 function* fetchTicketDataApi(query) {
