@@ -1,15 +1,18 @@
-const rawMockTickets = require('../../mockData/rawTicketsResponse');
-const formattedMockTickets = require('../../mockData/ticketData');
+const { getMockTickets } = require('../../mockData/rawTicketsResponse');
+const { formatTickets } = require('../formatTickets');
 const {
     findObjectByValue,
     getPrice,
     getId,
     getLocation,
-    getArrayOfUniqueKeys,
+    getArrayOfUniqueKeys
 } = require('../helpers');
 
+const mockData = getMockTickets('2020-11-29');
+const formattedMockTickets = formatTickets(mockData);
+
 describe('Test findObjectByValue util', () => {
-    const array = rawMockTickets.Carriers;
+    const array = mockData.Carriers;
     const testKey = 'Name';
     it('gets the right result', () => {
         const testValue = 'Ryanair';
@@ -25,7 +28,7 @@ describe('Test findObjectByValue util', () => {
 });
 
 describe('Test getPrice util', () => {
-    const array = rawMockTickets.Itineraries;
+    const array = mockData.Itineraries;
     const testKey = 'OutboundLegId';
     it('gets the right result', () => {
         const testValue = '11051-1903290900--32090-2-11154-1903291710';
@@ -44,13 +47,13 @@ describe('Test getId util', () => {
     const ticket = formattedMockTickets.allTickets[0];
     it('gets the right result', () => {
         const result = getId(ticket);
-        const expected = '13554-2019-03-03T22:15:00-10413-2019-03-04T18:45:00';
+        const expected = '11051-2020-11-29T18:50:00-11154-2020-11-29T08:00:00';
         expect(result).toEqual(expected);
     });
 });
 
 describe('Test getLocation util', () => {
-    const array = rawMockTickets.Places;
+    const array = mockData.Places;
     it('gets the right result from city id', () => {
         const id = 6403;
         const result = getLocation(array, id);
@@ -69,6 +72,6 @@ describe('Test getArrayOfUniqueKeys util', () => {
     const key = 'stops';
     it('gets the right result', () => {
         const result = getArrayOfUniqueKeys(array, key);
-        expect(result).toEqual([0, 1]);
+        expect(result).toEqual([1, 2]);
     });
 });
