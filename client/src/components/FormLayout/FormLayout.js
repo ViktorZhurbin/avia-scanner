@@ -46,7 +46,7 @@ const FormLayout = ({
 
     const onLoad = (search) => {
         if (search.length > 0) {
-            getTickets(search);
+            getTickets({ search, isMock: true });
             setUpFormInput(search);
         } else {
             handleReset();
@@ -55,7 +55,7 @@ const FormLayout = ({
 
     const handleSubmit = (search) => {
         setLastSearchCookie(search);
-        getTickets(search);
+        getTickets({ search, isMock: true });
         window.history.pushState({ search }, '', search);
     };
 
@@ -68,12 +68,8 @@ const FormLayout = ({
     return (
         <div className={cx('container', { hasTickets })}>
             <div className={cx('innerContainer', { hasTickets })}>
-                <LoadingBar
-                    isLoading={isLoading}
-                />
-                <NavBar
-                    onReset={handleReset}
-                />
+                <LoadingBar isLoading={isLoading} />
+                <NavBar onReset={handleReset} />
                 <MainForm
                     onSubmit={handleSubmit}
                     isLoading={isLoading}

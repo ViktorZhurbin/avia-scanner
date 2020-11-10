@@ -1,7 +1,7 @@
 const axios = require('axios');
 const qs = require('qs');
 require('dotenv').config();
-const mockTicketData = require('../mockData/ticketData');
+const { getMockTickets } = require('../mockData/rawTicketsResponse');
 const { formatTickets } = require('../utils/formatTickets');
 const { handleError } = require('../utils/api');
 
@@ -10,8 +10,11 @@ const apiKey = process.env.API_KEY_TICKET;
 
 module.exports = {
     mockData: (req, res) => {
+        const { departure } = req.query;
+        const mockData = getMockTickets(departure);
+
         res.json({
-            body: mockTicketData,
+            body: formatTickets(mockData)
         });
     },
 
@@ -28,16 +31,16 @@ module.exports = {
             originPlace: `${origin}-sky`,
             destinationPlace: `${destination}-sky`,
             outboundDate: departure,
-            adults: 1,
+            adults: 1
         };
 
         const options = {
             method: 'POST',
             headers: {
                 'X-RapidAPI-Key': apiKey,
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: qs.stringify(data),
+            data: qs.stringify(data)
         };
 
         try {
@@ -48,7 +51,7 @@ module.exports = {
             const sessionKey = location && location.split('/').pop();
 
             res.json({
-                body: sessionKey,
+                body: sessionKey
             });
         } catch (error) {
             // console.log(error);
@@ -65,15 +68,15 @@ module.exports = {
         try {
             const { data } = await axios
                 .get(reqUrl, {
-                    headers: { 'X-RapidAPI-Key': apiKey },
+                    headers: { 'X-RapidAPI-Key': apiKey }
                 })
                 .catch(handleError);
 
             res.json({
-                body: data && formatTickets(data),
+                body: data && formatTickets(data)
             });
         } catch (error) {
             next(error);
         }
-    },
+    }
 };

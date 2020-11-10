@@ -12,14 +12,22 @@ const reducer = {
 
 const sagaMiddleware = createSagaMiddleware();
 
-const [immutableStateInvariant, serializableStateInvariant] = getDefaultMiddleware();
+const [
+    immutableStateInvariant,
+    serializableStateInvariant
+] = getDefaultMiddleware();
 
 let middleware = [sagaMiddleware];
 if (process.env.NODE_ENV !== 'production') {
     /* eslint-disable global-require */
-    const { logger } = require('redux-logger');
+    // const { logger } = require('redux-logger');
     /* eslint-enable global-require */
-    middleware = [...middleware, logger, immutableStateInvariant, serializableStateInvariant];
+    middleware = [
+        ...middleware,
+        // logger,
+        immutableStateInvariant,
+        serializableStateInvariant
+    ];
 }
 
 const store = configureStore({

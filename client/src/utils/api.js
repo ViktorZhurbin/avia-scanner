@@ -23,26 +23,28 @@ export const createApiSession = async (query) => {
     return data && data.body;
 };
 
-export const fetchMockTicketData = async () => {
-    const response = await fetch(api.mockData);
+export const fetchMockTicketData = async (query) => {
+    const encodedURI = window.encodeURI(`${api.mockData}/${query}`);
+    const response = await fetch(encodedURI);
     const data = await response.json();
 
-    return { ...data && data.body };
+    return { ...(data && data.body) };
 };
 
 export const ticketRequestController = new AbortController();
 
-export const fetchTickets = async (query) => {
-    if (!query || query.length === 0) {
-        const mockData = await fetchMockTicketData();
+export const fetchTickets = async ({ search, isMock }) => {
+    if (isMock) {
+        const mockData = await fetchMockTicketData(search);
+
         return mockData;
     }
     try {
-        const sessionKey = await createApiSession(query);
+        const sessionKey = await createApiSession(search);
         if (!sessionKey) {
             throw new Error('session key error');
         }
-        const { currency } = qs.parse(query);
+        const { currency } = qs.parse(search);
         const currencyRates = await fetchCurrencyRates(currency);
 
         const ticketsURI = window.encodeURI(`${api.getTickets}/${sessionKey}`);
@@ -57,10 +59,7 @@ export const fetchTickets = async (query) => {
     }
 };
 
-export const filterTickets = (ticketList, filters) => (
+export const filterTickets = (ticketList, filters) =>
     ticketList
-        ? ticketList.filter(ticket => (
-            filters.includes(ticket.stops)
-        ))
-        : []
-);
+        ? ticketList.filter((ticket) => filters.includes(ticket.stops))
+        : [];

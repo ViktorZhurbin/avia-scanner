@@ -11,7 +11,7 @@ const mapStateToProps = ({ tickets }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getTickets: query => dispatch(request(query)),
+    getTickets: (query, options) => dispatch(request(query, options)),
     getTicketsCancel: () => dispatch(requestCancel()),
     resetTickets: () => dispatch(reset()),
     resetSearchQuery: () => dispatch(resetSearch()),
