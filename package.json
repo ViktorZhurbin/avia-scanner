@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "10.15.2"
-  },
   "proxy": "http://localhost:5000",
   "scripts": {
+    "dev": "nodemon --require dotenv/config index.js",
     "start": "node index.js",
     "lint": "eslint server/ index.js",
     "test": "jest server",
@@ -26,7 +24,8 @@
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^8.0.1",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.6"
   },
   "repository": {
     "type": "git",
