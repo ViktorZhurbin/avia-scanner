@@ -15,17 +15,18 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
-    "express": "^4.16.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "express-static-gzip": "^1.1.3",
-    "lodash": "^4.17.15",
-    "qs": "^6.6.0"
+    "lodash": "^4.17.20",
+    "qs": "^6.9.4"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.0",
-    "eslint-plugin-jest": "^22.4.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.21.0",
     "eslint-plugin-node": "^8.0.1",
-    "jest": "^24.5.0"
+    "jest": "^24.9.0"
   },
   "repository": {
     "type": "git",
