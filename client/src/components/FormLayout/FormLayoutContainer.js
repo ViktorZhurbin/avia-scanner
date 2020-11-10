@@ -10,15 +10,12 @@ const mapStateToProps = ({ tickets }) => ({
     hasTickets: tickets.hasTickets
 });
 
-const mapDispatchToProps = dispatch => ({
-    getTickets: (query, options) => dispatch(request(query, options)),
+const mapDispatchToProps = (dispatch) => ({
+    getTickets: (query) => dispatch(request(query)),
     getTicketsCancel: () => dispatch(requestCancel()),
     resetTickets: () => dispatch(reset()),
     resetSearchQuery: () => dispatch(resetSearch()),
-    setUpFormInput: search => dispatch(setFormInput(search))
+    setUpFormInput: (search) => dispatch(setFormInput(search))
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(FormLayout);
+export default connect(mapStateToProps, mapDispatchToProps)(FormLayout);

@@ -34,12 +34,13 @@ export const fetchMockTicketData = async (query) => {
 export const ticketRequestController = new AbortController();
 
 export const fetchTickets = async ({ search, isMock }) => {
-    if (isMock) {
-        const mockData = await fetchMockTicketData(search);
-
-        return mockData;
-    }
     try {
+        if (isMock) {
+            const mockData = await fetchMockTicketData(search);
+
+            return mockData;
+        }
+
         const sessionKey = await createApiSession(search);
         if (!sessionKey) {
             throw new Error('session key error');

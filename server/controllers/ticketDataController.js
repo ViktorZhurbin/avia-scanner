@@ -1,6 +1,5 @@
 const axios = require('axios');
 const qs = require('qs');
-require('dotenv').config();
 const { getMockTickets } = require('../mockData/rawTicketsResponse');
 const { formatTickets } = require('../utils/formatTickets');
 const { handleError } = require('../utils/api');
@@ -11,10 +10,10 @@ const apiKey = process.env.API_KEY_TICKET;
 module.exports = {
     mockData: (req, res) => {
         const { departure } = req.query;
-        const mockData = getMockTickets(departure);
+        const mockTickets = getMockTickets(departure);
 
         res.json({
-            body: formatTickets(mockData)
+            body: formatTickets(mockTickets)
         });
     },
 
